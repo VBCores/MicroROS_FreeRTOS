@@ -1,0 +1,27 @@
+int8 config_set
+int8 config_get
+int8 domain_id
+int8 joint_number
+int8 motor_type
+int8 direction
+uint32 full_steps
+float32 gear_ratio
+int32 upper_limit_ticks
+int32 lower_limit_ticks
+float32 upper_limit_enc
+float32 lower_limit_enc
+float32 zero_enc
+float32 upper_limit_effort
+---
+int8 domain_id
+int8 joint_number
+int8 motor_type
+int8 direction
+uint32 full_steps
+float32 gear_ratio
+int32 upper_limit_ticks
+int32 lower_limit_ticks
+float32 upper_limit_enc
+float32 lower_limit_enc
+float32 zero_enc
+float32 upper_limit_effort

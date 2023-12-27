@@ -1,0 +1,15 @@
+bool enable_config
+bool disarm
+bool arm
+bool stop
+bool hold
+bool calibrate
+bool get_position
+bool set_zero
+bool set_upper_limit
+bool set_lower_limit
+int32 position
+---
+bool success
+int16 angle
+int32 position_in_ticks

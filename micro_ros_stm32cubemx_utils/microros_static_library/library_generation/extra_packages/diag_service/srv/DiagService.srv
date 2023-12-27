@@ -1,0 +1,7 @@
+int8 diag_get
+---
+bool abs_encoder
+bool quad_encoder
+bool motor
+bool power_supply
+uint32 deviation_in_ticks 

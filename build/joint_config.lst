@@ -1,0 +1,1087 @@
+ARM GAS  C:\Users\VR\AppData\Local\Temp\cc6QlVb6.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"joint_config.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.joint_config_main_part_init,"ax",%progbits
+  20              		.align	1
+  21              		.global	joint_config_main_part_init
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	joint_config_main_part_init:
+  27              	.LVL0:
+  28              	.LFB136:
+  29              		.file 1 "Core/Src/joint_config.c"
+   1:Core/Src/joint_config.c **** /*
+   2:Core/Src/joint_config.c ****  * joint_config.c
+   3:Core/Src/joint_config.c ****  *
+   4:Core/Src/joint_config.c ****  *  Created on: Dec 15, 2023
+   5:Core/Src/joint_config.c ****  *      Author: Sorokonog
+   6:Core/Src/joint_config.c ****  */
+   7:Core/Src/joint_config.c **** 
+   8:Core/Src/joint_config.c **** #include "cmsis_os.h"
+   9:Core/Src/joint_config.c **** #include "joint_config.h"
+  10:Core/Src/joint_config.c **** #include "at24_eeprom.h"
+  11:Core/Src/joint_config.c **** #include "main.h"
+  12:Core/Src/joint_config.c **** 
+  13:Core/Src/joint_config.c **** void joint_config_main_part_init(joint_config * jconf)
+  14:Core/Src/joint_config.c **** {
+  30              		.loc 1 14 1 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		@ link register save eliminated.
+  15:Core/Src/joint_config.c **** #ifdef NODIPSWITCH
+  16:Core/Src/joint_config.c **** 	jconf->joint_number = JOINT_N;
+  35              		.loc 1 16 2 view .LVU1
+  36              		.loc 1 16 22 is_stmt 0 view .LVU2
+  37 0000 0223     		movs	r3, #2
+  38 0002 8370     		strb	r3, [r0, #2]
+  17:Core/Src/joint_config.c **** 	jconf->domain_id = 0;
+  39              		.loc 1 17 2 is_stmt 1 view .LVU3
+  40              		.loc 1 17 19 is_stmt 0 view .LVU4
+  41 0004 0023     		movs	r3, #0
+ARM GAS  C:\Users\VR\AppData\Local\Temp\cc6QlVb6.s 			page 2
+
+
+  42 0006 4370     		strb	r3, [r0, #1]
+  18:Core/Src/joint_config.c **** #else
+  19:Core/Src/joint_config.c **** 	  joint_number_selector(jconf);
+  20:Core/Src/joint_config.c **** 	  domain_id_selector(jconf);
+  21:Core/Src/joint_config.c **** #endif
+  22:Core/Src/joint_config.c **** }
+  43              		.loc 1 22 1 view .LVU5
+  44 0008 7047     		bx	lr
+  45              		.cfi_endproc
+  46              	.LFE136:
+  48              		.section	.text.joint_config_assembler,"ax",%progbits
+  49              		.align	1
+  50              		.global	joint_config_assembler
+  51              		.syntax unified
+  52              		.thumb
+  53              		.thumb_func
+  55              	joint_config_assembler:
+  56              	.LVL1:
+  57              	.LFB138:
+  23:Core/Src/joint_config.c **** 
+  24:Core/Src/joint_config.c **** 
+  25:Core/Src/joint_config.c **** void joint_config_freertos_init(joint_config * jconf)
+  26:Core/Src/joint_config.c **** {
+  27:Core/Src/joint_config.c **** 	//TODO to make clear why JC not transfered from main()
+  28:Core/Src/joint_config.c **** #ifdef NODIPSWITCH
+  29:Core/Src/joint_config.c **** 	joint_config_read(jconf);
+  30:Core/Src/joint_config.c **** 	if (jconf->first_run != JOINT_N)
+  31:Core/Src/joint_config.c **** 	{
+  32:Core/Src/joint_config.c **** 		joint_config_assembler(jconf);
+  33:Core/Src/joint_config.c **** 		jconf->joint_number = JOINT_N; //TODO!!!!!!!!!!!!!!!!!!
+  34:Core/Src/joint_config.c **** 		jconf->direction = 1;
+  35:Core/Src/joint_config.c **** 		jconf->first_run = JOINT_N;
+  36:Core/Src/joint_config.c **** 		joint_config_write(jconf);
+  37:Core/Src/joint_config.c **** 	}
+  38:Core/Src/joint_config.c **** #else
+  39:Core/Src/joint_config.c **** 	joint_number_selector(jconf);
+  40:Core/Src/joint_config.c **** 	domain_id_selector(jconf);
+  41:Core/Src/joint_config.c **** 	if (&jconf->joint_number == 0)
+  42:Core/Src/joint_config.c **** 	{
+  43:Core/Src/joint_config.c **** 		joint_config_assembler(jconf);
+  44:Core/Src/joint_config.c **** 		joint_config_write(jconf);
+  45:Core/Src/joint_config.c **** 		return;
+  46:Core/Src/joint_config.c **** 	}
+  47:Core/Src/joint_config.c **** 	joint_config_read(jconf);
+  48:Core/Src/joint_config.c **** #endif
+  49:Core/Src/joint_config.c **** }
+  50:Core/Src/joint_config.c **** 
+  51:Core/Src/joint_config.c **** void joint_config_assembler(joint_config * jconf)
+  52:Core/Src/joint_config.c **** {
+  58              		.loc 1 52 1 is_stmt 1 view -0
+  59              		.cfi_startproc
+  60              		@ args = 0, pretend = 0, frame = 0
+  61              		@ frame_needed = 0, uses_anonymous_args = 0
+  62              		@ link register save eliminated.
+  53:Core/Src/joint_config.c **** 	jconf->domain_id = 0;
+  63              		.loc 1 53 2 view .LVU7
+  64              		.loc 1 53 19 is_stmt 0 view .LVU8
+ARM GAS  C:\Users\VR\AppData\Local\Temp\cc6QlVb6.s 			page 3
+
+
+  65 0000 0023     		movs	r3, #0
+  66 0002 4370     		strb	r3, [r0, #1]
+  54:Core/Src/joint_config.c **** 	jconf->joint_number = 0;
+  67              		.loc 1 54 2 is_stmt 1 view .LVU9
+  68              		.loc 1 54 22 is_stmt 0 view .LVU10
+  69 0004 8370     		strb	r3, [r0, #2]
+  55:Core/Src/joint_config.c **** 	jconf->full_steps = 0;
+  70              		.loc 1 55 2 is_stmt 1 view .LVU11
+  71              		.loc 1 55 20 is_stmt 0 view .LVU12
+  72 0006 8360     		str	r3, [r0, #8]
+  56:Core/Src/joint_config.c **** 	jconf->gear_ratio = 0.0;
+  73              		.loc 1 56 2 is_stmt 1 view .LVU13
+  74              		.loc 1 56 20 is_stmt 0 view .LVU14
+  75 0008 0022     		movs	r2, #0
+  76 000a C260     		str	r2, [r0, #12]	@ float
+  57:Core/Src/joint_config.c **** 	jconf->lower_limit_enc = 0.0;
+  77              		.loc 1 57 2 is_stmt 1 view .LVU15
+  78              		.loc 1 57 25 is_stmt 0 view .LVU16
+  79 000c C261     		str	r2, [r0, #28]	@ float
+  58:Core/Src/joint_config.c **** 	jconf->lower_limit_ticks = 0;
+  80              		.loc 1 58 2 is_stmt 1 view .LVU17
+  81              		.loc 1 58 27 is_stmt 0 view .LVU18
+  82 000e 4361     		str	r3, [r0, #20]
+  59:Core/Src/joint_config.c **** 	jconf->motor_type = 0;
+  83              		.loc 1 59 2 is_stmt 1 view .LVU19
+  84              		.loc 1 59 20 is_stmt 0 view .LVU20
+  85 0010 C370     		strb	r3, [r0, #3]
+  60:Core/Src/joint_config.c **** 	jconf->upper_limit_enc = 0.0;
+  86              		.loc 1 60 2 is_stmt 1 view .LVU21
+  87              		.loc 1 60 25 is_stmt 0 view .LVU22
+  88 0012 8261     		str	r2, [r0, #24]	@ float
+  61:Core/Src/joint_config.c **** 	jconf->upper_limit_ticks = 0;
+  89              		.loc 1 61 2 is_stmt 1 view .LVU23
+  90              		.loc 1 61 27 is_stmt 0 view .LVU24
+  91 0014 0361     		str	r3, [r0, #16]
+  62:Core/Src/joint_config.c **** 	jconf->zero_enc = 0.0;
+  92              		.loc 1 62 2 is_stmt 1 view .LVU25
+  93              		.loc 1 62 18 is_stmt 0 view .LVU26
+  94 0016 0262     		str	r2, [r0, #32]	@ float
+  63:Core/Src/joint_config.c **** 	jconf->upper_limit_effort = 0.0;
+  95              		.loc 1 63 2 is_stmt 1 view .LVU27
+  96              		.loc 1 63 28 is_stmt 0 view .LVU28
+  97 0018 4262     		str	r2, [r0, #36]	@ float
+  64:Core/Src/joint_config.c **** 	jconf->direction = 1;
+  98              		.loc 1 64 2 is_stmt 1 view .LVU29
+  99              		.loc 1 64 19 is_stmt 0 view .LVU30
+ 100 001a 0122     		movs	r2, #1
+ 101 001c 0271     		strb	r2, [r0, #4]
+  65:Core/Src/joint_config.c **** 	jconf->first_run = 0;
+ 102              		.loc 1 65 2 is_stmt 1 view .LVU31
+ 103              		.loc 1 65 19 is_stmt 0 view .LVU32
+ 104 001e 0370     		strb	r3, [r0]
+  66:Core/Src/joint_config.c **** }
+ 105              		.loc 1 66 1 view .LVU33
+ 106 0020 7047     		bx	lr
+ 107              		.cfi_endproc
+ 108              	.LFE138:
+ARM GAS  C:\Users\VR\AppData\Local\Temp\cc6QlVb6.s 			page 4
+
+
+ 110              		.section	.text.joint_number_selector,"ax",%progbits
+ 111              		.align	1
+ 112              		.global	joint_number_selector
+ 113              		.syntax unified
+ 114              		.thumb
+ 115              		.thumb_func
+ 117              	joint_number_selector:
+ 118              	.LVL2:
+ 119              	.LFB139:
+  67:Core/Src/joint_config.c **** 
+  68:Core/Src/joint_config.c **** 
+  69:Core/Src/joint_config.c **** 
+  70:Core/Src/joint_config.c **** void joint_number_selector(joint_config * jc)
+  71:Core/Src/joint_config.c **** {
+ 120              		.loc 1 71 1 is_stmt 1 view -0
+ 121              		.cfi_startproc
+ 122              		@ args = 0, pretend = 0, frame = 0
+ 123              		@ frame_needed = 0, uses_anonymous_args = 0
+ 124              		.loc 1 71 1 is_stmt 0 view .LVU35
+ 125 0000 10B5     		push	{r4, lr}
+ 126              	.LCFI0:
+ 127              		.cfi_def_cfa_offset 8
+ 128              		.cfi_offset 4, -8
+ 129              		.cfi_offset 14, -4
+ 130 0002 0446     		mov	r4, r0
+  72:Core/Src/joint_config.c **** 	if(HAL_GPIO_ReadPin(DIP_1_GPIO_Port, DIP_1_Pin))
+ 131              		.loc 1 72 2 is_stmt 1 view .LVU36
+ 132              		.loc 1 72 5 is_stmt 0 view .LVU37
+ 133 0004 4FF48061 		mov	r1, #1024
+ 134 0008 1B48     		ldr	r0, .L12
+ 135              	.LVL3:
+ 136              		.loc 1 72 5 view .LVU38
+ 137 000a FFF7FEFF 		bl	HAL_GPIO_ReadPin
+ 138              	.LVL4:
+ 139              		.loc 1 72 4 view .LVU39
+ 140 000e 10B1     		cbz	r0, .L4
+  73:Core/Src/joint_config.c **** 	{
+  74:Core/Src/joint_config.c **** 		jc->joint_number = 1;
+ 141              		.loc 1 74 3 is_stmt 1 view .LVU40
+ 142              		.loc 1 74 20 is_stmt 0 view .LVU41
+ 143 0010 0123     		movs	r3, #1
+ 144 0012 A370     		strb	r3, [r4, #2]
+ 145              	.L3:
+  75:Core/Src/joint_config.c **** 	}
+  76:Core/Src/joint_config.c **** 	else if(HAL_GPIO_ReadPin(DIP_2_GPIO_Port, DIP_2_Pin))
+  77:Core/Src/joint_config.c **** 	{
+  78:Core/Src/joint_config.c **** 		jc->joint_number = 2;
+  79:Core/Src/joint_config.c **** 	}
+  80:Core/Src/joint_config.c **** 	else if (HAL_GPIO_ReadPin(DIP_3_GPIO_Port, DIP_3_Pin))
+  81:Core/Src/joint_config.c **** 	{
+  82:Core/Src/joint_config.c **** 		jc->joint_number = 3;
+  83:Core/Src/joint_config.c **** 	}
+  84:Core/Src/joint_config.c **** 	else if (HAL_GPIO_ReadPin(DIP_4_GPIO_Port, DIP_4_Pin))
+  85:Core/Src/joint_config.c **** 	{
+  86:Core/Src/joint_config.c **** 		jc->joint_number = 4;
+  87:Core/Src/joint_config.c **** 	}
+  88:Core/Src/joint_config.c **** 	else if (HAL_GPIO_ReadPin(DIP_5_GPIO_Port, DIP_5_Pin))
+ARM GAS  C:\Users\VR\AppData\Local\Temp\cc6QlVb6.s 			page 5
+
+
+  89:Core/Src/joint_config.c **** 	{
+  90:Core/Src/joint_config.c **** 		jc->joint_number = 5;
+  91:Core/Src/joint_config.c **** 	}
+  92:Core/Src/joint_config.c **** 	else if (HAL_GPIO_ReadPin(DIP_6_GPIO_Port, DIP_6_Pin))
+  93:Core/Src/joint_config.c **** 	{
+  94:Core/Src/joint_config.c **** 		jc->joint_number = 6;
+  95:Core/Src/joint_config.c **** 	}
+  96:Core/Src/joint_config.c **** 	else
+  97:Core/Src/joint_config.c **** 	{
+  98:Core/Src/joint_config.c **** 		jc->joint_number = 0;
+  99:Core/Src/joint_config.c **** 	}
+ 100:Core/Src/joint_config.c **** }
+ 146              		.loc 1 100 1 view .LVU42
+ 147 0014 10BD     		pop	{r4, pc}
+ 148              	.LVL5:
+ 149              	.L4:
+  76:Core/Src/joint_config.c **** 	{
+ 150              		.loc 1 76 7 is_stmt 1 view .LVU43
+  76:Core/Src/joint_config.c **** 	{
+ 151              		.loc 1 76 10 is_stmt 0 view .LVU44
+ 152 0016 4FF40061 		mov	r1, #2048
+ 153 001a 1748     		ldr	r0, .L12
+ 154 001c FFF7FEFF 		bl	HAL_GPIO_ReadPin
+ 155              	.LVL6:
+  76:Core/Src/joint_config.c **** 	{
+ 156              		.loc 1 76 9 view .LVU45
+ 157 0020 10B1     		cbz	r0, .L6
+  78:Core/Src/joint_config.c **** 	}
+ 158              		.loc 1 78 3 is_stmt 1 view .LVU46
+  78:Core/Src/joint_config.c **** 	}
+ 159              		.loc 1 78 20 is_stmt 0 view .LVU47
+ 160 0022 0223     		movs	r3, #2
+ 161 0024 A370     		strb	r3, [r4, #2]
+ 162 0026 F5E7     		b	.L3
+ 163              	.L6:
+  80:Core/Src/joint_config.c **** 	{
+ 164              		.loc 1 80 7 is_stmt 1 view .LVU48
+  80:Core/Src/joint_config.c **** 	{
+ 165              		.loc 1 80 11 is_stmt 0 view .LVU49
+ 166 0028 4FF48051 		mov	r1, #4096
+ 167 002c 1248     		ldr	r0, .L12
+ 168 002e FFF7FEFF 		bl	HAL_GPIO_ReadPin
+ 169              	.LVL7:
+  80:Core/Src/joint_config.c **** 	{
+ 170              		.loc 1 80 10 view .LVU50
+ 171 0032 10B1     		cbz	r0, .L7
+  82:Core/Src/joint_config.c **** 	}
+ 172              		.loc 1 82 3 is_stmt 1 view .LVU51
+  82:Core/Src/joint_config.c **** 	}
+ 173              		.loc 1 82 20 is_stmt 0 view .LVU52
+ 174 0034 0323     		movs	r3, #3
+ 175 0036 A370     		strb	r3, [r4, #2]
+ 176 0038 ECE7     		b	.L3
+ 177              	.L7:
+  84:Core/Src/joint_config.c **** 	{
+ 178              		.loc 1 84 7 is_stmt 1 view .LVU53
+  84:Core/Src/joint_config.c **** 	{
+ARM GAS  C:\Users\VR\AppData\Local\Temp\cc6QlVb6.s 			page 6
+
+
+ 179              		.loc 1 84 11 is_stmt 0 view .LVU54
+ 180 003a 4FF40051 		mov	r1, #8192
+ 181 003e 0E48     		ldr	r0, .L12
+ 182 0040 FFF7FEFF 		bl	HAL_GPIO_ReadPin
+ 183              	.LVL8:
+  84:Core/Src/joint_config.c **** 	{
+ 184              		.loc 1 84 10 view .LVU55
+ 185 0044 10B1     		cbz	r0, .L8
+  86:Core/Src/joint_config.c **** 	}
+ 186              		.loc 1 86 3 is_stmt 1 view .LVU56
+  86:Core/Src/joint_config.c **** 	}
+ 187              		.loc 1 86 20 is_stmt 0 view .LVU57
+ 188 0046 0423     		movs	r3, #4
+ 189 0048 A370     		strb	r3, [r4, #2]
+ 190 004a E3E7     		b	.L3
+ 191              	.L8:
+  88:Core/Src/joint_config.c **** 	{
+ 192              		.loc 1 88 7 is_stmt 1 view .LVU58
+  88:Core/Src/joint_config.c **** 	{
+ 193              		.loc 1 88 11 is_stmt 0 view .LVU59
+ 194 004c 4FF48041 		mov	r1, #16384
+ 195 0050 0948     		ldr	r0, .L12
+ 196 0052 FFF7FEFF 		bl	HAL_GPIO_ReadPin
+ 197              	.LVL9:
+  88:Core/Src/joint_config.c **** 	{
+ 198              		.loc 1 88 10 view .LVU60
+ 199 0056 10B1     		cbz	r0, .L9
+  90:Core/Src/joint_config.c **** 	}
+ 200              		.loc 1 90 3 is_stmt 1 view .LVU61
+  90:Core/Src/joint_config.c **** 	}
+ 201              		.loc 1 90 20 is_stmt 0 view .LVU62
+ 202 0058 0523     		movs	r3, #5
+ 203 005a A370     		strb	r3, [r4, #2]
+ 204 005c DAE7     		b	.L3
+ 205              	.L9:
+  92:Core/Src/joint_config.c **** 	{
+ 206              		.loc 1 92 7 is_stmt 1 view .LVU63
+  92:Core/Src/joint_config.c **** 	{
+ 207              		.loc 1 92 11 is_stmt 0 view .LVU64
+ 208 005e 4FF40041 		mov	r1, #32768
+ 209 0062 0548     		ldr	r0, .L12
+ 210 0064 FFF7FEFF 		bl	HAL_GPIO_ReadPin
+ 211              	.LVL10:
+  92:Core/Src/joint_config.c **** 	{
+ 212              		.loc 1 92 10 view .LVU65
+ 213 0068 10B1     		cbz	r0, .L10
+  94:Core/Src/joint_config.c **** 	}
+ 214              		.loc 1 94 3 is_stmt 1 view .LVU66
+  94:Core/Src/joint_config.c **** 	}
+ 215              		.loc 1 94 20 is_stmt 0 view .LVU67
+ 216 006a 0623     		movs	r3, #6
+ 217 006c A370     		strb	r3, [r4, #2]
+ 218 006e D1E7     		b	.L3
+ 219              	.L10:
+  98:Core/Src/joint_config.c **** 	}
+ 220              		.loc 1 98 3 is_stmt 1 view .LVU68
+  98:Core/Src/joint_config.c **** 	}
+ARM GAS  C:\Users\VR\AppData\Local\Temp\cc6QlVb6.s 			page 7
+
+
+ 221              		.loc 1 98 20 is_stmt 0 view .LVU69
+ 222 0070 0023     		movs	r3, #0
+ 223 0072 A370     		strb	r3, [r4, #2]
+ 224              		.loc 1 100 1 view .LVU70
+ 225 0074 CEE7     		b	.L3
+ 226              	.L13:
+ 227 0076 00BF     		.align	2
+ 228              	.L12:
+ 229 0078 00040048 		.word	1207960576
+ 230              		.cfi_endproc
+ 231              	.LFE139:
+ 233              		.section	.text.domain_id_selector,"ax",%progbits
+ 234              		.align	1
+ 235              		.global	domain_id_selector
+ 236              		.syntax unified
+ 237              		.thumb
+ 238              		.thumb_func
+ 240              	domain_id_selector:
+ 241              	.LVL11:
+ 242              	.LFB140:
+ 101:Core/Src/joint_config.c **** 
+ 102:Core/Src/joint_config.c **** void domain_id_selector(joint_config * jc)
+ 103:Core/Src/joint_config.c **** {
+ 243              		.loc 1 103 1 is_stmt 1 view -0
+ 244              		.cfi_startproc
+ 245              		@ args = 0, pretend = 0, frame = 0
+ 246              		@ frame_needed = 0, uses_anonymous_args = 0
+ 247              		@ link register save eliminated.
+ 104:Core/Src/joint_config.c **** #ifdef NODIPSWITCH
+ 105:Core/Src/joint_config.c **** 	jc->domain_id = 0;
+ 248              		.loc 1 105 2 view .LVU72
+ 249              		.loc 1 105 16 is_stmt 0 view .LVU73
+ 250 0000 0023     		movs	r3, #0
+ 251 0002 4370     		strb	r3, [r0, #1]
+ 106:Core/Src/joint_config.c **** #else
+ 107:Core/Src/joint_config.c **** 	if(HAL_GPIO_ReadPin(DIP_8_GPIO_Port, DIP_8_Pin))
+ 108:Core/Src/joint_config.c **** 	{
+ 109:Core/Src/joint_config.c **** 		jc->domain_id = 0;
+ 110:Core/Src/joint_config.c **** 	}
+ 111:Core/Src/joint_config.c **** #endif
+ 112:Core/Src/joint_config.c **** }
+ 252              		.loc 1 112 1 view .LVU74
+ 253 0004 7047     		bx	lr
+ 254              		.cfi_endproc
+ 255              	.LFE140:
+ 257              		.section	.text.joint_config_write,"ax",%progbits
+ 258              		.align	1
+ 259              		.global	joint_config_write
+ 260              		.syntax unified
+ 261              		.thumb
+ 262              		.thumb_func
+ 264              	joint_config_write:
+ 265              	.LVL12:
+ 266              	.LFB141:
+ 113:Core/Src/joint_config.c **** 
+ 114:Core/Src/joint_config.c **** void joint_config_write(joint_config * jc)
+ 115:Core/Src/joint_config.c **** {
+ARM GAS  C:\Users\VR\AppData\Local\Temp\cc6QlVb6.s 			page 8
+
+
+ 267              		.loc 1 115 1 is_stmt 1 view -0
+ 268              		.cfi_startproc
+ 269              		@ args = 0, pretend = 0, frame = 0
+ 270              		@ frame_needed = 0, uses_anonymous_args = 0
+ 271              		.loc 1 115 1 is_stmt 0 view .LVU76
+ 272 0000 10B5     		push	{r4, lr}
+ 273              	.LCFI1:
+ 274              		.cfi_def_cfa_offset 8
+ 275              		.cfi_offset 4, -8
+ 276              		.cfi_offset 14, -4
+ 277 0002 0446     		mov	r4, r0
+ 116:Core/Src/joint_config.c **** 	uint16_t address_of_domain_id = 0x00;
+ 278              		.loc 1 116 2 is_stmt 1 view .LVU77
+ 279              	.LVL13:
+ 117:Core/Src/joint_config.c **** 	uint16_t address_of_upper_limit_enc = sizeof(&jc->domain_id);
+ 280              		.loc 1 117 2 view .LVU78
+ 118:Core/Src/joint_config.c **** 	uint16_t address_of_lower_limit_enc = address_of_upper_limit_enc + sizeof(&jc->upper_limit_enc);
+ 281              		.loc 1 118 2 view .LVU79
+ 119:Core/Src/joint_config.c **** 	uint16_t address_of_upper_limit_ticks = address_of_lower_limit_enc + sizeof(&jc->lower_limit_enc);
+ 282              		.loc 1 119 2 view .LVU80
+ 120:Core/Src/joint_config.c **** 	uint16_t address_of_lower_limit_ticks = address_of_upper_limit_ticks + sizeof(&jc->upper_limit_tic
+ 283              		.loc 1 120 2 view .LVU81
+ 121:Core/Src/joint_config.c **** 	uint16_t address_of_zero_enc = address_of_lower_limit_ticks + sizeof(&jc->lower_limit_ticks);
+ 284              		.loc 1 121 2 view .LVU82
+ 122:Core/Src/joint_config.c **** 	uint16_t address_of_joint_number = address_of_zero_enc + sizeof(&jc->zero_enc);
+ 285              		.loc 1 122 2 view .LVU83
+ 123:Core/Src/joint_config.c **** 	uint16_t address_of_motor_type = address_of_joint_number + sizeof(&jc->joint_number);
+ 286              		.loc 1 123 2 view .LVU84
+ 124:Core/Src/joint_config.c **** 	uint16_t address_of_full_steps = address_of_motor_type + sizeof(&jc->motor_type);
+ 287              		.loc 1 124 2 view .LVU85
+ 125:Core/Src/joint_config.c **** 	uint16_t address_of_gear_ratio = address_of_full_steps + sizeof(&jc->full_steps);
+ 288              		.loc 1 125 2 view .LVU86
+ 126:Core/Src/joint_config.c **** 	uint16_t address_of_upper_limit_effort = address_of_gear_ratio + sizeof(&jc->gear_ratio);
+ 289              		.loc 1 126 2 view .LVU87
+ 127:Core/Src/joint_config.c **** 	uint16_t address_of_direction = address_of_upper_limit_effort + sizeof(&jc->upper_limit_effort);
+ 290              		.loc 1 127 2 view .LVU88
+ 128:Core/Src/joint_config.c **** 	uint16_t address_of_first_run = address_of_direction + sizeof(&jc->direction);
+ 291              		.loc 1 128 2 view .LVU89
+ 129:Core/Src/joint_config.c **** 
+ 130:Core/Src/joint_config.c **** 	int timeout = 100;
+ 292              		.loc 1 130 2 view .LVU90
+ 131:Core/Src/joint_config.c **** 	if (at24_isConnected())
+ 293              		.loc 1 131 2 view .LVU91
+ 294              		.loc 1 131 6 is_stmt 0 view .LVU92
+ 295 0004 FFF7FEFF 		bl	at24_isConnected
+ 296              	.LVL14:
+ 297              		.loc 1 131 5 view .LVU93
+ 298 0008 00B9     		cbnz	r0, .L18
+ 299              	.L15:
+ 132:Core/Src/joint_config.c **** 	{
+ 133:Core/Src/joint_config.c **** 
+ 134:Core/Src/joint_config.c **** 		at24_write(address_of_domain_id, &jc->domain_id, sizeof(&jc->domain_id), timeout);
+ 135:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
+ 136:Core/Src/joint_config.c **** 		at24_write(address_of_upper_limit_enc, &jc->upper_limit_enc, sizeof(&jc->upper_limit_enc), timeou
+ 137:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
+ 138:Core/Src/joint_config.c **** 		at24_write(address_of_lower_limit_enc, &jc->lower_limit_enc, sizeof(&jc->lower_limit_enc), timeou
+ 139:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
+ARM GAS  C:\Users\VR\AppData\Local\Temp\cc6QlVb6.s 			page 9
+
+
+ 140:Core/Src/joint_config.c **** 		at24_write(address_of_upper_limit_ticks, &jc->upper_limit_ticks, sizeof(&jc->upper_limit_ticks), 
+ 141:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
+ 142:Core/Src/joint_config.c **** 		at24_write(address_of_lower_limit_ticks, &jc->lower_limit_ticks, sizeof(&jc->lower_limit_ticks), 
+ 143:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
+ 144:Core/Src/joint_config.c **** 		at24_write(address_of_zero_enc, &jc->zero_enc, sizeof(&jc->zero_enc), timeout);
+ 145:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
+ 146:Core/Src/joint_config.c **** 		at24_write(address_of_joint_number, &jc->joint_number, sizeof(&jc->joint_number), timeout);
+ 147:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
+ 148:Core/Src/joint_config.c **** 		at24_write(address_of_motor_type, &jc->motor_type, sizeof(&jc->motor_type), timeout);
+ 149:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
+ 150:Core/Src/joint_config.c **** 		at24_write(address_of_full_steps, &jc->full_steps, sizeof(&jc->full_steps), timeout);
+ 151:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
+ 152:Core/Src/joint_config.c **** 		at24_write(address_of_gear_ratio, &jc->gear_ratio, sizeof(&jc->gear_ratio), timeout);
+ 153:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
+ 154:Core/Src/joint_config.c **** 		at24_write(address_of_upper_limit_effort, &jc->upper_limit_effort, sizeof(&jc->upper_limit_effort
+ 155:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
+ 156:Core/Src/joint_config.c **** 		at24_write(address_of_direction, &jc->direction, sizeof(&jc->direction), timeout);
+ 157:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
+ 158:Core/Src/joint_config.c **** 		at24_write(address_of_first_run, &jc->first_run, sizeof(&jc->first_run), timeout);
+ 159:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
+ 160:Core/Src/joint_config.c **** 
+ 161:Core/Src/joint_config.c **** 	}
+ 162:Core/Src/joint_config.c **** }
+ 300              		.loc 1 162 1 view .LVU94
+ 301 000a 10BD     		pop	{r4, pc}
+ 302              	.LVL15:
+ 303              	.L18:
+ 134:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
+ 304              		.loc 1 134 3 is_stmt 1 view .LVU95
+ 305 000c 6423     		movs	r3, #100
+ 306 000e 0422     		movs	r2, #4
+ 307 0010 611C     		adds	r1, r4, #1
+ 308 0012 0020     		movs	r0, #0
+ 309 0014 FFF7FEFF 		bl	at24_write
+ 310              	.LVL16:
+ 135:Core/Src/joint_config.c **** 		at24_write(address_of_upper_limit_enc, &jc->upper_limit_enc, sizeof(&jc->upper_limit_enc), timeou
+ 311              		.loc 1 135 3 view .LVU96
+ 312 0018 0120     		movs	r0, #1
+ 313 001a FFF7FEFF 		bl	vTaskDelay
+ 314              	.LVL17:
+ 136:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
+ 315              		.loc 1 136 3 view .LVU97
+ 316 001e 6423     		movs	r3, #100
+ 317 0020 0422     		movs	r2, #4
+ 318 0022 04F11801 		add	r1, r4, #24
+ 319 0026 1046     		mov	r0, r2
+ 320 0028 FFF7FEFF 		bl	at24_write
+ 321              	.LVL18:
+ 137:Core/Src/joint_config.c **** 		at24_write(address_of_lower_limit_enc, &jc->lower_limit_enc, sizeof(&jc->lower_limit_enc), timeou
+ 322              		.loc 1 137 3 view .LVU98
+ 323 002c 0120     		movs	r0, #1
+ 324 002e FFF7FEFF 		bl	vTaskDelay
+ 325              	.LVL19:
+ 138:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
+ 326              		.loc 1 138 3 view .LVU99
+ 327 0032 6423     		movs	r3, #100
+ 328 0034 0422     		movs	r2, #4
+ARM GAS  C:\Users\VR\AppData\Local\Temp\cc6QlVb6.s 			page 10
+
+
+ 329 0036 04F11C01 		add	r1, r4, #28
+ 330 003a 0820     		movs	r0, #8
+ 331 003c FFF7FEFF 		bl	at24_write
+ 332              	.LVL20:
+ 139:Core/Src/joint_config.c **** 		at24_write(address_of_upper_limit_ticks, &jc->upper_limit_ticks, sizeof(&jc->upper_limit_ticks), 
+ 333              		.loc 1 139 3 view .LVU100
+ 334 0040 0120     		movs	r0, #1
+ 335 0042 FFF7FEFF 		bl	vTaskDelay
+ 336              	.LVL21:
+ 140:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
+ 337              		.loc 1 140 3 view .LVU101
+ 338 0046 6423     		movs	r3, #100
+ 339 0048 0422     		movs	r2, #4
+ 340 004a 04F11001 		add	r1, r4, #16
+ 341 004e 0C20     		movs	r0, #12
+ 342 0050 FFF7FEFF 		bl	at24_write
+ 343              	.LVL22:
+ 141:Core/Src/joint_config.c **** 		at24_write(address_of_lower_limit_ticks, &jc->lower_limit_ticks, sizeof(&jc->lower_limit_ticks), 
+ 344              		.loc 1 141 3 view .LVU102
+ 345 0054 0120     		movs	r0, #1
+ 346 0056 FFF7FEFF 		bl	vTaskDelay
+ 347              	.LVL23:
+ 142:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
+ 348              		.loc 1 142 3 view .LVU103
+ 349 005a 6423     		movs	r3, #100
+ 350 005c 0422     		movs	r2, #4
+ 351 005e 04F11401 		add	r1, r4, #20
+ 352 0062 1020     		movs	r0, #16
+ 353 0064 FFF7FEFF 		bl	at24_write
+ 354              	.LVL24:
+ 143:Core/Src/joint_config.c **** 		at24_write(address_of_zero_enc, &jc->zero_enc, sizeof(&jc->zero_enc), timeout);
+ 355              		.loc 1 143 3 view .LVU104
+ 356 0068 0120     		movs	r0, #1
+ 357 006a FFF7FEFF 		bl	vTaskDelay
+ 358              	.LVL25:
+ 144:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
+ 359              		.loc 1 144 3 view .LVU105
+ 360 006e 6423     		movs	r3, #100
+ 361 0070 0422     		movs	r2, #4
+ 362 0072 04F12001 		add	r1, r4, #32
+ 363 0076 1420     		movs	r0, #20
+ 364 0078 FFF7FEFF 		bl	at24_write
+ 365              	.LVL26:
+ 145:Core/Src/joint_config.c **** 		at24_write(address_of_joint_number, &jc->joint_number, sizeof(&jc->joint_number), timeout);
+ 366              		.loc 1 145 3 view .LVU106
+ 367 007c 0120     		movs	r0, #1
+ 368 007e FFF7FEFF 		bl	vTaskDelay
+ 369              	.LVL27:
+ 146:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
+ 370              		.loc 1 146 3 view .LVU107
+ 371 0082 6423     		movs	r3, #100
+ 372 0084 0422     		movs	r2, #4
+ 373 0086 A11C     		adds	r1, r4, #2
+ 374 0088 1820     		movs	r0, #24
+ 375 008a FFF7FEFF 		bl	at24_write
+ 376              	.LVL28:
+ 147:Core/Src/joint_config.c **** 		at24_write(address_of_motor_type, &jc->motor_type, sizeof(&jc->motor_type), timeout);
+ARM GAS  C:\Users\VR\AppData\Local\Temp\cc6QlVb6.s 			page 11
+
+
+ 377              		.loc 1 147 3 view .LVU108
+ 378 008e 0120     		movs	r0, #1
+ 379 0090 FFF7FEFF 		bl	vTaskDelay
+ 380              	.LVL29:
+ 148:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
+ 381              		.loc 1 148 3 view .LVU109
+ 382 0094 6423     		movs	r3, #100
+ 383 0096 0422     		movs	r2, #4
+ 384 0098 E11C     		adds	r1, r4, #3
+ 385 009a 1C20     		movs	r0, #28
+ 386 009c FFF7FEFF 		bl	at24_write
+ 387              	.LVL30:
+ 149:Core/Src/joint_config.c **** 		at24_write(address_of_full_steps, &jc->full_steps, sizeof(&jc->full_steps), timeout);
+ 388              		.loc 1 149 3 view .LVU110
+ 389 00a0 0120     		movs	r0, #1
+ 390 00a2 FFF7FEFF 		bl	vTaskDelay
+ 391              	.LVL31:
+ 150:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
+ 392              		.loc 1 150 3 view .LVU111
+ 393 00a6 6423     		movs	r3, #100
+ 394 00a8 0422     		movs	r2, #4
+ 395 00aa 04F10801 		add	r1, r4, #8
+ 396 00ae 2020     		movs	r0, #32
+ 397 00b0 FFF7FEFF 		bl	at24_write
+ 398              	.LVL32:
+ 151:Core/Src/joint_config.c **** 		at24_write(address_of_gear_ratio, &jc->gear_ratio, sizeof(&jc->gear_ratio), timeout);
+ 399              		.loc 1 151 3 view .LVU112
+ 400 00b4 0120     		movs	r0, #1
+ 401 00b6 FFF7FEFF 		bl	vTaskDelay
+ 402              	.LVL33:
+ 152:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
+ 403              		.loc 1 152 3 view .LVU113
+ 404 00ba 6423     		movs	r3, #100
+ 405 00bc 0422     		movs	r2, #4
+ 406 00be 04F10C01 		add	r1, r4, #12
+ 407 00c2 2420     		movs	r0, #36
+ 408 00c4 FFF7FEFF 		bl	at24_write
+ 409              	.LVL34:
+ 153:Core/Src/joint_config.c **** 		at24_write(address_of_upper_limit_effort, &jc->upper_limit_effort, sizeof(&jc->upper_limit_effort
+ 410              		.loc 1 153 3 view .LVU114
+ 411 00c8 0120     		movs	r0, #1
+ 412 00ca FFF7FEFF 		bl	vTaskDelay
+ 413              	.LVL35:
+ 154:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
+ 414              		.loc 1 154 3 view .LVU115
+ 415 00ce 6423     		movs	r3, #100
+ 416 00d0 0422     		movs	r2, #4
+ 417 00d2 04F12401 		add	r1, r4, #36
+ 418 00d6 2820     		movs	r0, #40
+ 419 00d8 FFF7FEFF 		bl	at24_write
+ 420              	.LVL36:
+ 155:Core/Src/joint_config.c **** 		at24_write(address_of_direction, &jc->direction, sizeof(&jc->direction), timeout);
+ 421              		.loc 1 155 3 view .LVU116
+ 422 00dc 0120     		movs	r0, #1
+ 423 00de FFF7FEFF 		bl	vTaskDelay
+ 424              	.LVL37:
+ 156:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
+ARM GAS  C:\Users\VR\AppData\Local\Temp\cc6QlVb6.s 			page 12
+
+
+ 425              		.loc 1 156 3 view .LVU117
+ 426 00e2 6423     		movs	r3, #100
+ 427 00e4 0422     		movs	r2, #4
+ 428 00e6 A118     		adds	r1, r4, r2
+ 429 00e8 2C20     		movs	r0, #44
+ 430 00ea FFF7FEFF 		bl	at24_write
+ 431              	.LVL38:
+ 157:Core/Src/joint_config.c **** 		at24_write(address_of_first_run, &jc->first_run, sizeof(&jc->first_run), timeout);
+ 432              		.loc 1 157 3 view .LVU118
+ 433 00ee 0120     		movs	r0, #1
+ 434 00f0 FFF7FEFF 		bl	vTaskDelay
+ 435              	.LVL39:
+ 158:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
+ 436              		.loc 1 158 3 view .LVU119
+ 437 00f4 6423     		movs	r3, #100
+ 438 00f6 0422     		movs	r2, #4
+ 439 00f8 2146     		mov	r1, r4
+ 440 00fa 3020     		movs	r0, #48
+ 441 00fc FFF7FEFF 		bl	at24_write
+ 442              	.LVL40:
+ 159:Core/Src/joint_config.c **** 
+ 443              		.loc 1 159 3 view .LVU120
+ 444 0100 0120     		movs	r0, #1
+ 445 0102 FFF7FEFF 		bl	vTaskDelay
+ 446              	.LVL41:
+ 447              		.loc 1 162 1 is_stmt 0 view .LVU121
+ 448 0106 80E7     		b	.L15
+ 449              		.cfi_endproc
+ 450              	.LFE141:
+ 452              		.section	.text.joint_config_read,"ax",%progbits
+ 453              		.align	1
+ 454              		.global	joint_config_read
+ 455              		.syntax unified
+ 456              		.thumb
+ 457              		.thumb_func
+ 459              	joint_config_read:
+ 460              	.LVL42:
+ 461              	.LFB142:
+ 163:Core/Src/joint_config.c **** 
+ 164:Core/Src/joint_config.c **** void joint_config_read(joint_config * jc)
+ 165:Core/Src/joint_config.c **** {
+ 462              		.loc 1 165 1 is_stmt 1 view -0
+ 463              		.cfi_startproc
+ 464              		@ args = 0, pretend = 0, frame = 0
+ 465              		@ frame_needed = 0, uses_anonymous_args = 0
+ 466              		.loc 1 165 1 is_stmt 0 view .LVU123
+ 467 0000 10B5     		push	{r4, lr}
+ 468              	.LCFI2:
+ 469              		.cfi_def_cfa_offset 8
+ 470              		.cfi_offset 4, -8
+ 471              		.cfi_offset 14, -4
+ 472 0002 0446     		mov	r4, r0
+ 166:Core/Src/joint_config.c **** 	uint16_t address_of_domain_id = 0x00;
+ 473              		.loc 1 166 2 is_stmt 1 view .LVU124
+ 474              	.LVL43:
+ 167:Core/Src/joint_config.c **** 	uint16_t address_of_upper_limit_enc = sizeof(&jc->domain_id);
+ 475              		.loc 1 167 2 view .LVU125
+ARM GAS  C:\Users\VR\AppData\Local\Temp\cc6QlVb6.s 			page 13
+
+
+ 168:Core/Src/joint_config.c **** 	uint16_t address_of_lower_limit_enc = address_of_upper_limit_enc + sizeof(&jc->upper_limit_enc);
+ 476              		.loc 1 168 2 view .LVU126
+ 169:Core/Src/joint_config.c **** 	uint16_t address_of_upper_limit_ticks = address_of_lower_limit_enc + sizeof(&jc->lower_limit_enc);
+ 477              		.loc 1 169 2 view .LVU127
+ 170:Core/Src/joint_config.c **** 	uint16_t address_of_lower_limit_ticks = address_of_upper_limit_ticks + sizeof(&jc->upper_limit_tic
+ 478              		.loc 1 170 2 view .LVU128
+ 171:Core/Src/joint_config.c **** 	uint16_t address_of_zero_enc = address_of_lower_limit_ticks + sizeof(&jc->lower_limit_ticks);
+ 479              		.loc 1 171 2 view .LVU129
+ 172:Core/Src/joint_config.c **** 	uint16_t address_of_joint_number = address_of_zero_enc + sizeof(&jc->zero_enc);
+ 480              		.loc 1 172 2 view .LVU130
+ 173:Core/Src/joint_config.c **** 	uint16_t address_of_motor_type = address_of_joint_number + sizeof(&jc->joint_number);
+ 481              		.loc 1 173 2 view .LVU131
+ 174:Core/Src/joint_config.c **** 	uint16_t address_of_full_steps = address_of_motor_type + sizeof(&jc->motor_type);
+ 482              		.loc 1 174 2 view .LVU132
+ 175:Core/Src/joint_config.c **** 	uint16_t address_of_gear_ratio = address_of_full_steps + sizeof(&jc->full_steps);
+ 483              		.loc 1 175 2 view .LVU133
+ 176:Core/Src/joint_config.c **** 	uint16_t address_of_upper_limit_effort = address_of_gear_ratio + sizeof(&jc->gear_ratio);
+ 484              		.loc 1 176 2 view .LVU134
+ 177:Core/Src/joint_config.c **** 	uint16_t address_of_direction = address_of_upper_limit_effort + sizeof(&jc->upper_limit_effort);
+ 485              		.loc 1 177 2 view .LVU135
+ 178:Core/Src/joint_config.c **** 	uint16_t address_of_first_run = address_of_direction + sizeof(&jc->direction);
+ 486              		.loc 1 178 2 view .LVU136
+ 179:Core/Src/joint_config.c **** 
+ 180:Core/Src/joint_config.c **** 	int timeout = 100;
+ 487              		.loc 1 180 2 view .LVU137
+ 181:Core/Src/joint_config.c **** 	if (at24_isConnected())
+ 488              		.loc 1 181 2 view .LVU138
+ 489              		.loc 1 181 6 is_stmt 0 view .LVU139
+ 490 0004 FFF7FEFF 		bl	at24_isConnected
+ 491              	.LVL44:
+ 492              		.loc 1 181 5 view .LVU140
+ 493 0008 00B9     		cbnz	r0, .L22
+ 494              	.L19:
+ 182:Core/Src/joint_config.c **** 		{
+ 183:Core/Src/joint_config.c **** 		at24_read(address_of_domain_id, &jc->domain_id, sizeof(&jc->domain_id), timeout);
+ 184:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
+ 185:Core/Src/joint_config.c **** 		at24_read(address_of_upper_limit_enc, &jc->upper_limit_enc, sizeof(&jc->upper_limit_enc), timeout
+ 186:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
+ 187:Core/Src/joint_config.c **** 		at24_read(address_of_lower_limit_enc, &jc->lower_limit_enc, sizeof(&jc->lower_limit_enc), timeout
+ 188:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
+ 189:Core/Src/joint_config.c **** 		at24_read(address_of_upper_limit_ticks, &jc->upper_limit_ticks, sizeof(&jc->upper_limit_ticks), t
+ 190:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
+ 191:Core/Src/joint_config.c **** 		at24_read(address_of_lower_limit_ticks, &jc->lower_limit_ticks, sizeof(&jc->lower_limit_ticks), t
+ 192:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
+ 193:Core/Src/joint_config.c **** 		at24_read(address_of_zero_enc, &jc->zero_enc, sizeof(&jc->zero_enc), timeout);
+ 194:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
+ 195:Core/Src/joint_config.c **** 		at24_read(address_of_joint_number, &jc->joint_number, sizeof(&jc->joint_number), timeout);
+ 196:Core/Src/joint_config.c **** 		vTaskDelay(1000/ portTICK_PERIOD_MS);
+ 197:Core/Src/joint_config.c **** 		at24_read(address_of_motor_type, &jc->motor_type, sizeof(&jc->motor_type), timeout);
+ 198:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
+ 199:Core/Src/joint_config.c **** 		at24_read(address_of_full_steps, &jc->full_steps, sizeof(&jc->full_steps), timeout);
+ 200:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
+ 201:Core/Src/joint_config.c **** 		at24_read(address_of_gear_ratio, &jc->gear_ratio, sizeof(&jc->gear_ratio), timeout);
+ 202:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
+ 203:Core/Src/joint_config.c **** 		at24_read(address_of_upper_limit_effort, &jc->upper_limit_effort, sizeof(&jc->upper_limit_effort)
+ 204:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
+ 205:Core/Src/joint_config.c **** 		at24_read(address_of_direction, &jc->direction, sizeof(&jc->direction), timeout);
+ARM GAS  C:\Users\VR\AppData\Local\Temp\cc6QlVb6.s 			page 14
+
+
+ 206:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
+ 207:Core/Src/joint_config.c **** 		at24_read(address_of_first_run, &jc->first_run, sizeof(&jc->first_run), timeout);
+ 208:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
+ 209:Core/Src/joint_config.c **** 		}
+ 210:Core/Src/joint_config.c **** }
+ 495              		.loc 1 210 1 view .LVU141
+ 496 000a 10BD     		pop	{r4, pc}
+ 497              	.LVL45:
+ 498              	.L22:
+ 183:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
+ 499              		.loc 1 183 3 is_stmt 1 view .LVU142
+ 500 000c 6423     		movs	r3, #100
+ 501 000e 0422     		movs	r2, #4
+ 502 0010 611C     		adds	r1, r4, #1
+ 503 0012 0020     		movs	r0, #0
+ 504 0014 FFF7FEFF 		bl	at24_read
+ 505              	.LVL46:
+ 184:Core/Src/joint_config.c **** 		at24_read(address_of_upper_limit_enc, &jc->upper_limit_enc, sizeof(&jc->upper_limit_enc), timeout
+ 506              		.loc 1 184 3 view .LVU143
+ 507 0018 0120     		movs	r0, #1
+ 508 001a FFF7FEFF 		bl	vTaskDelay
+ 509              	.LVL47:
+ 185:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
+ 510              		.loc 1 185 3 view .LVU144
+ 511 001e 6423     		movs	r3, #100
+ 512 0020 0422     		movs	r2, #4
+ 513 0022 04F11801 		add	r1, r4, #24
+ 514 0026 1046     		mov	r0, r2
+ 515 0028 FFF7FEFF 		bl	at24_read
+ 516              	.LVL48:
+ 186:Core/Src/joint_config.c **** 		at24_read(address_of_lower_limit_enc, &jc->lower_limit_enc, sizeof(&jc->lower_limit_enc), timeout
+ 517              		.loc 1 186 3 view .LVU145
+ 518 002c 0120     		movs	r0, #1
+ 519 002e FFF7FEFF 		bl	vTaskDelay
+ 520              	.LVL49:
+ 187:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
+ 521              		.loc 1 187 3 view .LVU146
+ 522 0032 6423     		movs	r3, #100
+ 523 0034 0422     		movs	r2, #4
+ 524 0036 04F11C01 		add	r1, r4, #28
+ 525 003a 0820     		movs	r0, #8
+ 526 003c FFF7FEFF 		bl	at24_read
+ 527              	.LVL50:
+ 188:Core/Src/joint_config.c **** 		at24_read(address_of_upper_limit_ticks, &jc->upper_limit_ticks, sizeof(&jc->upper_limit_ticks), t
+ 528              		.loc 1 188 3 view .LVU147
+ 529 0040 0120     		movs	r0, #1
+ 530 0042 FFF7FEFF 		bl	vTaskDelay
+ 531              	.LVL51:
+ 189:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
+ 532              		.loc 1 189 3 view .LVU148
+ 533 0046 6423     		movs	r3, #100
+ 534 0048 0422     		movs	r2, #4
+ 535 004a 04F11001 		add	r1, r4, #16
+ 536 004e 0C20     		movs	r0, #12
+ 537 0050 FFF7FEFF 		bl	at24_read
+ 538              	.LVL52:
+ 190:Core/Src/joint_config.c **** 		at24_read(address_of_lower_limit_ticks, &jc->lower_limit_ticks, sizeof(&jc->lower_limit_ticks), t
+ARM GAS  C:\Users\VR\AppData\Local\Temp\cc6QlVb6.s 			page 15
+
+
+ 539              		.loc 1 190 3 view .LVU149
+ 540 0054 0120     		movs	r0, #1
+ 541 0056 FFF7FEFF 		bl	vTaskDelay
+ 542              	.LVL53:
+ 191:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
+ 543              		.loc 1 191 3 view .LVU150
+ 544 005a 6423     		movs	r3, #100
+ 545 005c 0422     		movs	r2, #4
+ 546 005e 04F11401 		add	r1, r4, #20
+ 547 0062 1020     		movs	r0, #16
+ 548 0064 FFF7FEFF 		bl	at24_read
+ 549              	.LVL54:
+ 192:Core/Src/joint_config.c **** 		at24_read(address_of_zero_enc, &jc->zero_enc, sizeof(&jc->zero_enc), timeout);
+ 550              		.loc 1 192 3 view .LVU151
+ 551 0068 0120     		movs	r0, #1
+ 552 006a FFF7FEFF 		bl	vTaskDelay
+ 553              	.LVL55:
+ 193:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
+ 554              		.loc 1 193 3 view .LVU152
+ 555 006e 6423     		movs	r3, #100
+ 556 0070 0422     		movs	r2, #4
+ 557 0072 04F12001 		add	r1, r4, #32
+ 558 0076 1420     		movs	r0, #20
+ 559 0078 FFF7FEFF 		bl	at24_read
+ 560              	.LVL56:
+ 194:Core/Src/joint_config.c **** 		at24_read(address_of_joint_number, &jc->joint_number, sizeof(&jc->joint_number), timeout);
+ 561              		.loc 1 194 3 view .LVU153
+ 562 007c 0120     		movs	r0, #1
+ 563 007e FFF7FEFF 		bl	vTaskDelay
+ 564              	.LVL57:
+ 195:Core/Src/joint_config.c **** 		vTaskDelay(1000/ portTICK_PERIOD_MS);
+ 565              		.loc 1 195 3 view .LVU154
+ 566 0082 6423     		movs	r3, #100
+ 567 0084 0422     		movs	r2, #4
+ 568 0086 A11C     		adds	r1, r4, #2
+ 569 0088 1820     		movs	r0, #24
+ 570 008a FFF7FEFF 		bl	at24_read
+ 571              	.LVL58:
+ 196:Core/Src/joint_config.c **** 		at24_read(address_of_motor_type, &jc->motor_type, sizeof(&jc->motor_type), timeout);
+ 572              		.loc 1 196 3 view .LVU155
+ 573 008e 4FF47A70 		mov	r0, #1000
+ 574 0092 FFF7FEFF 		bl	vTaskDelay
+ 575              	.LVL59:
+ 197:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
+ 576              		.loc 1 197 3 view .LVU156
+ 577 0096 6423     		movs	r3, #100
+ 578 0098 0422     		movs	r2, #4
+ 579 009a E11C     		adds	r1, r4, #3
+ 580 009c 1C20     		movs	r0, #28
+ 581 009e FFF7FEFF 		bl	at24_read
+ 582              	.LVL60:
+ 198:Core/Src/joint_config.c **** 		at24_read(address_of_full_steps, &jc->full_steps, sizeof(&jc->full_steps), timeout);
+ 583              		.loc 1 198 3 view .LVU157
+ 584 00a2 0120     		movs	r0, #1
+ 585 00a4 FFF7FEFF 		bl	vTaskDelay
+ 586              	.LVL61:
+ 199:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
+ARM GAS  C:\Users\VR\AppData\Local\Temp\cc6QlVb6.s 			page 16
+
+
+ 587              		.loc 1 199 3 view .LVU158
+ 588 00a8 6423     		movs	r3, #100
+ 589 00aa 0422     		movs	r2, #4
+ 590 00ac 04F10801 		add	r1, r4, #8
+ 591 00b0 2020     		movs	r0, #32
+ 592 00b2 FFF7FEFF 		bl	at24_read
+ 593              	.LVL62:
+ 200:Core/Src/joint_config.c **** 		at24_read(address_of_gear_ratio, &jc->gear_ratio, sizeof(&jc->gear_ratio), timeout);
+ 594              		.loc 1 200 3 view .LVU159
+ 595 00b6 0120     		movs	r0, #1
+ 596 00b8 FFF7FEFF 		bl	vTaskDelay
+ 597              	.LVL63:
+ 201:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
+ 598              		.loc 1 201 3 view .LVU160
+ 599 00bc 6423     		movs	r3, #100
+ 600 00be 0422     		movs	r2, #4
+ 601 00c0 04F10C01 		add	r1, r4, #12
+ 602 00c4 2420     		movs	r0, #36
+ 603 00c6 FFF7FEFF 		bl	at24_read
+ 604              	.LVL64:
+ 202:Core/Src/joint_config.c **** 		at24_read(address_of_upper_limit_effort, &jc->upper_limit_effort, sizeof(&jc->upper_limit_effort)
+ 605              		.loc 1 202 3 view .LVU161
+ 606 00ca 0120     		movs	r0, #1
+ 607 00cc FFF7FEFF 		bl	vTaskDelay
+ 608              	.LVL65:
+ 203:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
+ 609              		.loc 1 203 3 view .LVU162
+ 610 00d0 6423     		movs	r3, #100
+ 611 00d2 0422     		movs	r2, #4
+ 612 00d4 04F12401 		add	r1, r4, #36
+ 613 00d8 2820     		movs	r0, #40
+ 614 00da FFF7FEFF 		bl	at24_read
+ 615              	.LVL66:
+ 204:Core/Src/joint_config.c **** 		at24_read(address_of_direction, &jc->direction, sizeof(&jc->direction), timeout);
+ 616              		.loc 1 204 3 view .LVU163
+ 617 00de 0120     		movs	r0, #1
+ 618 00e0 FFF7FEFF 		bl	vTaskDelay
+ 619              	.LVL67:
+ 205:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
+ 620              		.loc 1 205 3 view .LVU164
+ 621 00e4 6423     		movs	r3, #100
+ 622 00e6 0422     		movs	r2, #4
+ 623 00e8 A118     		adds	r1, r4, r2
+ 624 00ea 2C20     		movs	r0, #44
+ 625 00ec FFF7FEFF 		bl	at24_read
+ 626              	.LVL68:
+ 206:Core/Src/joint_config.c **** 		at24_read(address_of_first_run, &jc->first_run, sizeof(&jc->first_run), timeout);
+ 627              		.loc 1 206 3 view .LVU165
+ 628 00f0 0120     		movs	r0, #1
+ 629 00f2 FFF7FEFF 		bl	vTaskDelay
+ 630              	.LVL69:
+ 207:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
+ 631              		.loc 1 207 3 view .LVU166
+ 632 00f6 6423     		movs	r3, #100
+ 633 00f8 0422     		movs	r2, #4
+ 634 00fa 2146     		mov	r1, r4
+ 635 00fc 3020     		movs	r0, #48
+ARM GAS  C:\Users\VR\AppData\Local\Temp\cc6QlVb6.s 			page 17
+
+
+ 636 00fe FFF7FEFF 		bl	at24_read
+ 637              	.LVL70:
+ 208:Core/Src/joint_config.c **** 		}
+ 638              		.loc 1 208 3 view .LVU167
+ 639 0102 0120     		movs	r0, #1
+ 640 0104 FFF7FEFF 		bl	vTaskDelay
+ 641              	.LVL71:
+ 642              		.loc 1 210 1 is_stmt 0 view .LVU168
+ 643 0108 7FE7     		b	.L19
+ 644              		.cfi_endproc
+ 645              	.LFE142:
+ 647              		.section	.text.joint_config_freertos_init,"ax",%progbits
+ 648              		.align	1
+ 649              		.global	joint_config_freertos_init
+ 650              		.syntax unified
+ 651              		.thumb
+ 652              		.thumb_func
+ 654              	joint_config_freertos_init:
+ 655              	.LVL72:
+ 656              	.LFB137:
+  26:Core/Src/joint_config.c **** 	//TODO to make clear why JC not transfered from main()
+ 657              		.loc 1 26 1 is_stmt 1 view -0
+ 658              		.cfi_startproc
+ 659              		@ args = 0, pretend = 0, frame = 0
+ 660              		@ frame_needed = 0, uses_anonymous_args = 0
+  26:Core/Src/joint_config.c **** 	//TODO to make clear why JC not transfered from main()
+ 661              		.loc 1 26 1 is_stmt 0 view .LVU170
+ 662 0000 10B5     		push	{r4, lr}
+ 663              	.LCFI3:
+ 664              		.cfi_def_cfa_offset 8
+ 665              		.cfi_offset 4, -8
+ 666              		.cfi_offset 14, -4
+ 667 0002 0446     		mov	r4, r0
+  29:Core/Src/joint_config.c **** 	if (jconf->first_run != JOINT_N)
+ 668              		.loc 1 29 2 is_stmt 1 view .LVU171
+ 669 0004 FFF7FEFF 		bl	joint_config_read
+ 670              	.LVL73:
+  30:Core/Src/joint_config.c **** 	{
+ 671              		.loc 1 30 2 view .LVU172
+  30:Core/Src/joint_config.c **** 	{
+ 672              		.loc 1 30 11 is_stmt 0 view .LVU173
+ 673 0008 94F90030 		ldrsb	r3, [r4]
+  30:Core/Src/joint_config.c **** 	{
+ 674              		.loc 1 30 5 view .LVU174
+ 675 000c 022B     		cmp	r3, #2
+ 676 000e 00D1     		bne	.L26
+ 677              	.L23:
+  49:Core/Src/joint_config.c **** 
+ 678              		.loc 1 49 1 view .LVU175
+ 679 0010 10BD     		pop	{r4, pc}
+ 680              	.LVL74:
+ 681              	.L26:
+  32:Core/Src/joint_config.c **** 		jconf->joint_number = JOINT_N; //TODO!!!!!!!!!!!!!!!!!!
+ 682              		.loc 1 32 3 is_stmt 1 view .LVU176
+ 683 0012 2046     		mov	r0, r4
+ 684 0014 FFF7FEFF 		bl	joint_config_assembler
+ 685              	.LVL75:
+ARM GAS  C:\Users\VR\AppData\Local\Temp\cc6QlVb6.s 			page 18
+
+
+  33:Core/Src/joint_config.c **** 		jconf->direction = 1;
+ 686              		.loc 1 33 3 view .LVU177
+  33:Core/Src/joint_config.c **** 		jconf->direction = 1;
+ 687              		.loc 1 33 23 is_stmt 0 view .LVU178
+ 688 0018 0223     		movs	r3, #2
+ 689 001a A370     		strb	r3, [r4, #2]
+  34:Core/Src/joint_config.c **** 		jconf->first_run = JOINT_N;
+ 690              		.loc 1 34 3 is_stmt 1 view .LVU179
+  34:Core/Src/joint_config.c **** 		jconf->first_run = JOINT_N;
+ 691              		.loc 1 34 20 is_stmt 0 view .LVU180
+ 692 001c 0122     		movs	r2, #1
+ 693 001e 2271     		strb	r2, [r4, #4]
+  35:Core/Src/joint_config.c **** 		joint_config_write(jconf);
+ 694              		.loc 1 35 3 is_stmt 1 view .LVU181
+  35:Core/Src/joint_config.c **** 		joint_config_write(jconf);
+ 695              		.loc 1 35 20 is_stmt 0 view .LVU182
+ 696 0020 2370     		strb	r3, [r4]
+  36:Core/Src/joint_config.c **** 	}
+ 697              		.loc 1 36 3 is_stmt 1 view .LVU183
+ 698 0022 2046     		mov	r0, r4
+ 699 0024 FFF7FEFF 		bl	joint_config_write
+ 700              	.LVL76:
+  49:Core/Src/joint_config.c **** 
+ 701              		.loc 1 49 1 is_stmt 0 view .LVU184
+ 702 0028 F2E7     		b	.L23
+ 703              		.cfi_endproc
+ 704              	.LFE137:
+ 706              		.text
+ 707              	.Letext0:
+ 708              		.file 2 "C:\\ST\\STM32CubeIDE_1.8.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools
+ 709              		.file 3 "C:\\ST\\STM32CubeIDE_1.8.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools
+ 710              		.file 4 "Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/portmacro.h"
+ 711              		.file 5 "Core/Inc/joint_config.h"
+ 712              		.file 6 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g474xx.h"
+ 713              		.file 7 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_gpio.h"
+ 714              		.file 8 "Core/Inc/at24_eeprom.h"
+ 715              		.file 9 "Middlewares/Third_Party/FreeRTOS/Source/include/task.h"
+ARM GAS  C:\Users\VR\AppData\Local\Temp\cc6QlVb6.s 			page 19
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 joint_config.c
+C:\Users\VR\AppData\Local\Temp\cc6QlVb6.s:20     .text.joint_config_main_part_init:0000000000000000 $t
+C:\Users\VR\AppData\Local\Temp\cc6QlVb6.s:26     .text.joint_config_main_part_init:0000000000000000 joint_config_main_part_init
+C:\Users\VR\AppData\Local\Temp\cc6QlVb6.s:49     .text.joint_config_assembler:0000000000000000 $t
+C:\Users\VR\AppData\Local\Temp\cc6QlVb6.s:55     .text.joint_config_assembler:0000000000000000 joint_config_assembler
+C:\Users\VR\AppData\Local\Temp\cc6QlVb6.s:111    .text.joint_number_selector:0000000000000000 $t
+C:\Users\VR\AppData\Local\Temp\cc6QlVb6.s:117    .text.joint_number_selector:0000000000000000 joint_number_selector
+C:\Users\VR\AppData\Local\Temp\cc6QlVb6.s:229    .text.joint_number_selector:0000000000000078 $d
+C:\Users\VR\AppData\Local\Temp\cc6QlVb6.s:234    .text.domain_id_selector:0000000000000000 $t
+C:\Users\VR\AppData\Local\Temp\cc6QlVb6.s:240    .text.domain_id_selector:0000000000000000 domain_id_selector
+C:\Users\VR\AppData\Local\Temp\cc6QlVb6.s:258    .text.joint_config_write:0000000000000000 $t
+C:\Users\VR\AppData\Local\Temp\cc6QlVb6.s:264    .text.joint_config_write:0000000000000000 joint_config_write
+C:\Users\VR\AppData\Local\Temp\cc6QlVb6.s:453    .text.joint_config_read:0000000000000000 $t
+C:\Users\VR\AppData\Local\Temp\cc6QlVb6.s:459    .text.joint_config_read:0000000000000000 joint_config_read
+C:\Users\VR\AppData\Local\Temp\cc6QlVb6.s:648    .text.joint_config_freertos_init:0000000000000000 $t
+C:\Users\VR\AppData\Local\Temp\cc6QlVb6.s:654    .text.joint_config_freertos_init:0000000000000000 joint_config_freertos_init
+
+UNDEFINED SYMBOLS
+HAL_GPIO_ReadPin
+at24_isConnected
+at24_write
+vTaskDelay
+at24_read

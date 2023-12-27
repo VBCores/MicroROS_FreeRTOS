@@ -1,0 +1,293 @@
+ARM GAS  C:\Users\VR\AppData\Local\Temp\ccLQLomL.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"utility.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.sign_extend_bits_to_32,"ax",%progbits
+  20              		.align	1
+  21              		.global	sign_extend_bits_to_32
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	sign_extend_bits_to_32:
+  27              	.LVL0:
+  28              	.LFB0:
+  29              		.file 1 "Core/Src/utility.c"
+   1:Core/Src/utility.c **** /*
+   2:Core/Src/utility.c ****  * utility.c
+   3:Core/Src/utility.c ****  *
+   4:Core/Src/utility.c ****  *  Created on: Dec 21, 2023
+   5:Core/Src/utility.c ****  *      Author: VR
+   6:Core/Src/utility.c ****  */
+   7:Core/Src/utility.c **** 
+   8:Core/Src/utility.c **** #include "utility.h"
+   9:Core/Src/utility.c **** 
+  10:Core/Src/utility.c **** 
+  11:Core/Src/utility.c **** //TODO make sure that is works for less than 24 bit values
+  12:Core/Src/utility.c **** int32_t sign_extend_bits_to_32(int32_t x, uint8_t bits) {
+  30              		.loc 1 12 57 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		@ link register save eliminated.
+  13:Core/Src/utility.c **** 
+  14:Core/Src/utility.c **** 	uint32_t sign_mask = 0;
+  35              		.loc 1 14 2 view .LVU1
+  15:Core/Src/utility.c **** 	//getting value of sign bit
+  16:Core/Src/utility.c **** 	sign_mask = 1u << (bits - 1);
+  36              		.loc 1 16 2 view .LVU2
+  37              		.loc 1 16 26 is_stmt 0 view .LVU3
+  38 0000 4A1E     		subs	r2, r1, #1
+  39              		.loc 1 16 12 view .LVU4
+  40 0002 0123     		movs	r3, #1
+  41 0004 9340     		lsls	r3, r3, r2
+  42              	.LVL1:
+ARM GAS  C:\Users\VR\AppData\Local\Temp\ccLQLomL.s 			page 2
+
+
+  17:Core/Src/utility.c **** 	uint32_t sign_bit = 0;
+  43              		.loc 1 17 2 is_stmt 1 view .LVU5
+  18:Core/Src/utility.c **** 	sign_bit = x & sign_mask;
+  44              		.loc 1 18 2 view .LVU6
+  19:Core/Src/utility.c **** 	if(sign_bit) //if value < 0 therefore sign_bit == 1, fill first 8 bits with 1
+  45              		.loc 1 19 2 view .LVU7
+  46              		.loc 1 19 4 is_stmt 0 view .LVU8
+  47 0006 1842     		tst	r0, r3
+  48 0008 00D1     		bne	.L3
+  49              	.LVL2:
+  50              	.L2:
+  20:Core/Src/utility.c **** 	{
+  21:Core/Src/utility.c **** 		int32_t res = 0;
+  22:Core/Src/utility.c **** 		int32_t mask = 0b11111111;
+  23:Core/Src/utility.c **** 		res |= x;
+  24:Core/Src/utility.c **** 		res |= (mask << (bits));
+  25:Core/Src/utility.c **** 		return res;
+  26:Core/Src/utility.c **** 	}
+  27:Core/Src/utility.c ****     return x; //else return value itself
+  28:Core/Src/utility.c **** }
+  51              		.loc 1 28 1 view .LVU9
+  52 000a 7047     		bx	lr
+  53              	.LVL3:
+  54              	.L3:
+  55              	.LBB2:
+  21:Core/Src/utility.c **** 		int32_t mask = 0b11111111;
+  56              		.loc 1 21 3 is_stmt 1 view .LVU10
+  22:Core/Src/utility.c **** 		res |= x;
+  57              		.loc 1 22 3 view .LVU11
+  23:Core/Src/utility.c **** 		res |= (mask << (bits));
+  58              		.loc 1 23 3 view .LVU12
+  24:Core/Src/utility.c **** 		return res;
+  59              		.loc 1 24 3 view .LVU13
+  24:Core/Src/utility.c **** 		return res;
+  60              		.loc 1 24 16 is_stmt 0 view .LVU14
+  61 000c FF23     		movs	r3, #255
+  62              	.LVL4:
+  24:Core/Src/utility.c **** 		return res;
+  63              		.loc 1 24 16 view .LVU15
+  64 000e 8B40     		lsls	r3, r3, r1
+  24:Core/Src/utility.c **** 		return res;
+  65              		.loc 1 24 7 view .LVU16
+  66 0010 1843     		orrs	r0, r0, r3
+  67              	.LVL5:
+  25:Core/Src/utility.c **** 	}
+  68              		.loc 1 25 3 is_stmt 1 view .LVU17
+  25:Core/Src/utility.c **** 	}
+  69              		.loc 1 25 10 is_stmt 0 view .LVU18
+  70 0012 FAE7     		b	.L2
+  71              	.LBE2:
+  72              		.cfi_endproc
+  73              	.LFE0:
+  75              		.global	__aeabi_dcmplt
+  76              		.global	__aeabi_dcmpgt
+  77              		.section	.text.clamp_value_noref,"ax",%progbits
+  78              		.align	1
+  79              		.global	clamp_value_noref
+ARM GAS  C:\Users\VR\AppData\Local\Temp\ccLQLomL.s 			page 3
+
+
+  80              		.syntax unified
+  81              		.thumb
+  82              		.thumb_func
+  84              	clamp_value_noref:
+  85              	.LVL6:
+  86              	.LFB1:
+  29:Core/Src/utility.c **** 
+  30:Core/Src/utility.c **** double clamp_value_noref(double min_value, double value, double max_value)
+  31:Core/Src/utility.c **** {
+  87              		.loc 1 31 1 is_stmt 1 view -0
+  88              		.cfi_startproc
+  89              		@ args = 0, pretend = 0, frame = 0
+  90              		@ frame_needed = 0, uses_anonymous_args = 0
+  91              		.loc 1 31 1 is_stmt 0 view .LVU20
+  92 0000 2DE9F843 		push	{r3, r4, r5, r6, r7, r8, r9, lr}
+  93              	.LCFI0:
+  94              		.cfi_def_cfa_offset 32
+  95              		.cfi_offset 3, -32
+  96              		.cfi_offset 4, -28
+  97              		.cfi_offset 5, -24
+  98              		.cfi_offset 6, -20
+  99              		.cfi_offset 7, -16
+ 100              		.cfi_offset 8, -12
+ 101              		.cfi_offset 9, -8
+ 102              		.cfi_offset 14, -4
+ 103 0004 57EC106B 		vmov	r6, r7, d0
+ 104 0008 55EC114B 		vmov	r4, r5, d1
+ 105 000c 59EC128B 		vmov	r8, r9, d2
+  32:Core/Src/utility.c **** 	value = (((min_value < value)? value : min_value) > max_value)? max_value: value;
+ 106              		.loc 1 32 2 is_stmt 1 view .LVU21
+ 107              		.loc 1 32 39 is_stmt 0 view .LVU22
+ 108 0010 11EE102A 		vmov	r2, s2	@ int
+ 109 0014 2B46     		mov	r3, r5
+ 110 0016 10EE100A 		vmov	r0, s0	@ int
+ 111 001a 3946     		mov	r1, r7
+ 112 001c FFF7FEFF 		bl	__aeabi_dcmplt
+ 113              	.LVL7:
+ 114              		.loc 1 32 39 view .LVU23
+ 115 0020 08B1     		cbz	r0, .L5
+ 116 0022 2646     		mov	r6, r4
+ 117              	.LVL8:
+ 118              		.loc 1 32 39 view .LVU24
+ 119 0024 2F46     		mov	r7, r5
+ 120              	.L5:
+ 121              		.loc 1 32 75 discriminator 4 view .LVU25
+ 122 0026 4246     		mov	r2, r8
+ 123 0028 4B46     		mov	r3, r9
+ 124 002a 3046     		mov	r0, r6
+ 125 002c 3946     		mov	r1, r7
+ 126 002e FFF7FEFF 		bl	__aeabi_dcmpgt
+ 127              	.LVL9:
+ 128 0032 08B1     		cbz	r0, .L7
+ 129              		.loc 1 32 75 view .LVU26
+ 130 0034 4446     		mov	r4, r8
+ 131              	.LVL10:
+ 132              		.loc 1 32 75 view .LVU27
+ 133 0036 4D46     		mov	r5, r9
+ARM GAS  C:\Users\VR\AppData\Local\Temp\ccLQLomL.s 			page 4
+
+
+ 134              	.L7:
+ 135              	.LVL11:
+  33:Core/Src/utility.c **** 	return value;
+ 136              		.loc 1 33 2 is_stmt 1 discriminator 8 view .LVU28
+  34:Core/Src/utility.c **** }
+ 137              		.loc 1 34 1 is_stmt 0 discriminator 8 view .LVU29
+ 138 0038 45EC104B 		vmov	d0, r4, r5
+ 139 003c BDE8F883 		pop	{r3, r4, r5, r6, r7, r8, r9, pc}
+ 140              		.loc 1 34 1 discriminator 8 view .LVU30
+ 141              		.cfi_endproc
+ 142              	.LFE1:
+ 144              		.section	.text.clamp_value,"ax",%progbits
+ 145              		.align	1
+ 146              		.global	clamp_value
+ 147              		.syntax unified
+ 148              		.thumb
+ 149              		.thumb_func
+ 151              	clamp_value:
+ 152              	.LVL12:
+ 153              	.LFB2:
+  35:Core/Src/utility.c **** 
+  36:Core/Src/utility.c **** void clamp_value(double *min_value, double *value, double *max_value)
+  37:Core/Src/utility.c **** {
+ 154              		.loc 1 37 1 is_stmt 1 view -0
+ 155              		.cfi_startproc
+ 156              		@ args = 0, pretend = 0, frame = 0
+ 157              		@ frame_needed = 0, uses_anonymous_args = 0
+ 158              		.loc 1 37 1 is_stmt 0 view .LVU32
+ 159 0000 2DE9F84F 		push	{r3, r4, r5, r6, r7, r8, r9, r10, fp, lr}
+ 160              	.LCFI1:
+ 161              		.cfi_def_cfa_offset 40
+ 162              		.cfi_offset 3, -40
+ 163              		.cfi_offset 4, -36
+ 164              		.cfi_offset 5, -32
+ 165              		.cfi_offset 6, -28
+ 166              		.cfi_offset 7, -24
+ 167              		.cfi_offset 8, -20
+ 168              		.cfi_offset 9, -16
+ 169              		.cfi_offset 10, -12
+ 170              		.cfi_offset 11, -8
+ 171              		.cfi_offset 14, -4
+ 172 0004 0C46     		mov	r4, r1
+ 173 0006 1546     		mov	r5, r2
+  38:Core/Src/utility.c **** 	*value = (((*min_value < *value)? *value : *min_value) > *max_value)? *max_value: *value;
+ 174              		.loc 1 38 2 is_stmt 1 view .LVU33
+ 175              		.loc 1 38 14 is_stmt 0 view .LVU34
+ 176 0008 D0E90089 		ldrd	r8, [r0]
+ 177              		.loc 1 38 27 view .LVU35
+ 178 000c D1E90067 		ldrd	r6, [r1]
+ 179              		.loc 1 38 43 view .LVU36
+ 180 0010 3246     		mov	r2, r6
+ 181              	.LVL13:
+ 182              		.loc 1 38 43 view .LVU37
+ 183 0012 3B46     		mov	r3, r7
+ 184 0014 4046     		mov	r0, r8
+ 185              	.LVL14:
+ 186              		.loc 1 38 43 view .LVU38
+ARM GAS  C:\Users\VR\AppData\Local\Temp\ccLQLomL.s 			page 5
+
+
+ 187 0016 4946     		mov	r1, r9
+ 188              	.LVL15:
+ 189              		.loc 1 38 43 view .LVU39
+ 190 0018 FFF7FEFF 		bl	__aeabi_dcmplt
+ 191              	.LVL16:
+ 192 001c 08B1     		cbz	r0, .L13
+ 193 001e B046     		mov	r8, r6
+ 194 0020 B946     		mov	r9, r7
+ 195              	.L13:
+ 196              		.loc 1 38 59 discriminator 4 view .LVU40
+ 197 0022 D5E900AB 		ldrd	r10, [r5]
+ 198              		.loc 1 38 82 discriminator 4 view .LVU41
+ 199 0026 4246     		mov	r2, r8
+ 200 0028 4B46     		mov	r3, r9
+ 201 002a 5046     		mov	r0, r10
+ 202 002c 5946     		mov	r1, fp
+ 203 002e FFF7FEFF 		bl	__aeabi_dcmplt
+ 204              	.LVL17:
+ 205 0032 08B1     		cbz	r0, .L15
+ 206              		.loc 1 38 82 view .LVU42
+ 207 0034 5646     		mov	r6, r10
+ 208 0036 5F46     		mov	r7, fp
+ 209              	.L15:
+ 210              		.loc 1 38 9 discriminator 8 view .LVU43
+ 211 0038 C4E90067 		strd	r6, [r4]
+  39:Core/Src/utility.c **** }
+ 212              		.loc 1 39 1 discriminator 8 view .LVU44
+ 213 003c BDE8F88F 		pop	{r3, r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 214              		.loc 1 39 1 discriminator 8 view .LVU45
+ 215              		.cfi_endproc
+ 216              	.LFE2:
+ 218              		.text
+ 219              	.Letext0:
+ 220              		.file 2 "C:\\ST\\STM32CubeIDE_1.8.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools
+ 221              		.file 3 "C:\\ST\\STM32CubeIDE_1.8.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools
+ARM GAS  C:\Users\VR\AppData\Local\Temp\ccLQLomL.s 			page 6
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 utility.c
+C:\Users\VR\AppData\Local\Temp\ccLQLomL.s:20     .text.sign_extend_bits_to_32:0000000000000000 $t
+C:\Users\VR\AppData\Local\Temp\ccLQLomL.s:26     .text.sign_extend_bits_to_32:0000000000000000 sign_extend_bits_to_32
+C:\Users\VR\AppData\Local\Temp\ccLQLomL.s:78     .text.clamp_value_noref:0000000000000000 $t
+C:\Users\VR\AppData\Local\Temp\ccLQLomL.s:84     .text.clamp_value_noref:0000000000000000 clamp_value_noref
+C:\Users\VR\AppData\Local\Temp\ccLQLomL.s:145    .text.clamp_value:0000000000000000 $t
+C:\Users\VR\AppData\Local\Temp\ccLQLomL.s:151    .text.clamp_value:0000000000000000 clamp_value
+
+UNDEFINED SYMBOLS
+__aeabi_dcmplt
+__aeabi_dcmpgt

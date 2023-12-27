@@ -1,0 +1,579 @@
+ARM GAS  C:\Users\VR\AppData\Local\Temp\ccSHjAPQ.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"as50xx.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.parity,"ax",%progbits
+  20              		.align	1
+  21              		.global	parity
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	parity:
+  27              	.LVL0:
+  28              	.LFB132:
+  29              		.file 1 "Core/Src/as50xx.c"
+   1:Core/Src/as50xx.c **** /*
+   2:Core/Src/as50xx.c ****  * AS50xx.c
+   3:Core/Src/as50xx.c ****  *
+   4:Core/Src/as50xx.c ****  *  Created on: Jul 31, 2023
+   5:Core/Src/as50xx.c ****  *      Author: VR
+   6:Core/Src/as50xx.c ****  */
+   7:Core/Src/as50xx.c **** 
+   8:Core/Src/as50xx.c **** #include "as50xx.h"
+   9:Core/Src/as50xx.c **** #include "spi.h"
+  10:Core/Src/as50xx.c **** #include "main.h"
+  11:Core/Src/as50xx.c **** #include <stdbool.h>
+  12:Core/Src/as50xx.c **** #include <stdint.h>
+  13:Core/Src/as50xx.c **** #include <stddef.h>
+  14:Core/Src/as50xx.c **** 
+  15:Core/Src/as50xx.c **** #if (_ENCODER_USE_FREERTOS == 1)
+  16:Core/Src/as50xx.c **** #include "cmsis_os.h"
+  17:Core/Src/as50xx.c **** #define as50_delay(x)   osDelay(x)
+  18:Core/Src/as50xx.c **** #else
+  19:Core/Src/as50xx.c **** #define as50_delay(x)   HAL_Delay(x)
+  20:Core/Src/as50xx.c **** #endif
+  21:Core/Src/as50xx.c **** 
+  22:Core/Src/as50xx.c **** uint16_t read_angle_register = 0x3FFF; //angle read register
+  23:Core/Src/as50xx.c **** uint16_t set_zero_register_M = 0x0016; //angle set zero register MOST
+  24:Core/Src/as50xx.c **** uint16_t set_zero_register_L = 0x0017; //angle set zero register LEAST
+  25:Core/Src/as50xx.c **** uint16_t spiR;
+  26:Core/Src/as50xx.c **** 
+  27:Core/Src/as50xx.c **** /*
+  28:Core/Src/as50xx.c **** uint16_t parity(uint16_t x){};
+  29:Core/Src/as50xx.c **** bool as50_readAngle(uint16_t * data, uint32_t timeout){};
+ARM GAS  C:\Users\VR\AppData\Local\Temp\ccSHjAPQ.s 			page 2
+
+
+  30:Core/Src/as50xx.c **** bool as50_setZero(uint32_t timeout){};
+  31:Core/Src/as50xx.c **** bool as50_write(uint16_t address, uint16_t data){};
+  32:Core/Src/as50xx.c **** */
+  33:Core/Src/as50xx.c **** 
+  34:Core/Src/as50xx.c **** uint16_t parity(uint16_t x)
+  35:Core/Src/as50xx.c **** {
+  30              		.loc 1 35 1 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		@ link register save eliminated.
+  36:Core/Src/as50xx.c **** 	uint16_t parity = 0;
+  35              		.loc 1 36 2 view .LVU1
+  37:Core/Src/as50xx.c **** 
+  38:Core/Src/as50xx.c **** 	while(x != 0)
+  36              		.loc 1 38 2 view .LVU2
+  36:Core/Src/as50xx.c **** 	uint16_t parity = 0;
+  37              		.loc 1 36 11 is_stmt 0 view .LVU3
+  38 0000 0023     		movs	r3, #0
+  39              		.loc 1 38 7 view .LVU4
+  40 0002 01E0     		b	.L2
+  41              	.LVL1:
+  42              	.L3:
+  39:Core/Src/as50xx.c **** 	{
+  40:Core/Src/as50xx.c **** 		parity ^= x;
+  43              		.loc 1 40 3 is_stmt 1 view .LVU5
+  44              		.loc 1 40 10 is_stmt 0 view .LVU6
+  45 0004 4340     		eors	r3, r3, r0
+  46              	.LVL2:
+  41:Core/Src/as50xx.c **** 		x >>= 1;
+  47              		.loc 1 41 3 is_stmt 1 view .LVU7
+  48              		.loc 1 41 5 is_stmt 0 view .LVU8
+  49 0006 4008     		lsrs	r0, r0, #1
+  50              	.LVL3:
+  51              	.L2:
+  38:Core/Src/as50xx.c **** 	{
+  52              		.loc 1 38 10 is_stmt 1 view .LVU9
+  53 0008 0028     		cmp	r0, #0
+  54 000a FBD1     		bne	.L3
+  42:Core/Src/as50xx.c **** 	}
+  43:Core/Src/as50xx.c **** 
+  44:Core/Src/as50xx.c **** 	return (parity & 0x1);
+  55              		.loc 1 44 2 view .LVU10
+  45:Core/Src/as50xx.c **** }
+  56              		.loc 1 45 1 is_stmt 0 view .LVU11
+  57 000c 03F00100 		and	r0, r3, #1
+  58              	.LVL4:
+  59              		.loc 1 45 1 view .LVU12
+  60 0010 7047     		bx	lr
+  61              		.cfi_endproc
+  62              	.LFE132:
+  64              		.section	.text.as50_readAngle,"ax",%progbits
+  65              		.align	1
+  66              		.global	as50_readAngle
+  67              		.syntax unified
+  68              		.thumb
+  69              		.thumb_func
+ARM GAS  C:\Users\VR\AppData\Local\Temp\ccSHjAPQ.s 			page 3
+
+
+  71              	as50_readAngle:
+  72              	.LVL5:
+  73              	.LFB133:
+  46:Core/Src/as50xx.c **** 
+  47:Core/Src/as50xx.c **** bool as50_readAngle(uint16_t * data, uint32_t timeout)
+  48:Core/Src/as50xx.c **** {
+  74              		.loc 1 48 1 is_stmt 1 view -0
+  75              		.cfi_startproc
+  76              		@ args = 0, pretend = 0, frame = 0
+  77              		@ frame_needed = 0, uses_anonymous_args = 0
+  78              		.loc 1 48 1 is_stmt 0 view .LVU14
+  79 0000 30B5     		push	{r4, r5, lr}
+  80              	.LCFI0:
+  81              		.cfi_def_cfa_offset 12
+  82              		.cfi_offset 4, -12
+  83              		.cfi_offset 5, -8
+  84              		.cfi_offset 14, -4
+  85 0002 83B0     		sub	sp, sp, #12
+  86              	.LCFI1:
+  87              		.cfi_def_cfa_offset 24
+  88 0004 0446     		mov	r4, r0
+  89 0006 0D46     		mov	r5, r1
+  49:Core/Src/as50xx.c **** 
+  50:Core/Src/as50xx.c **** 	  HAL_GPIO_WritePin(_ENCODER_NSS_GPIO, _ENCODER_NSS_PIN, GPIO_PIN_RESET);
+  90              		.loc 1 50 4 is_stmt 1 view .LVU15
+  91 0008 0022     		movs	r2, #0
+  92 000a 4FF40041 		mov	r1, #32768
+  93              	.LVL6:
+  94              		.loc 1 50 4 is_stmt 0 view .LVU16
+  95 000e 4FF09040 		mov	r0, #1207959552
+  96              	.LVL7:
+  97              		.loc 1 50 4 view .LVU17
+  98 0012 FFF7FEFF 		bl	HAL_GPIO_WritePin
+  99              	.LVL8:
+  51:Core/Src/as50xx.c **** 	  if (HAL_SPI_TransmitReceive(&_ENCODER_SPI, (uint8_t*)&read_angle_register, (uint8_t*)data, 1, ti
+ 100              		.loc 1 51 4 is_stmt 1 view .LVU18
+ 101              		.loc 1 51 8 is_stmt 0 view .LVU19
+ 102 0016 0095     		str	r5, [sp]
+ 103 0018 0123     		movs	r3, #1
+ 104 001a 2246     		mov	r2, r4
+ 105 001c 0D49     		ldr	r1, .L8
+ 106 001e 0E48     		ldr	r0, .L8+4
+ 107 0020 FFF7FEFF 		bl	HAL_SPI_TransmitReceive
+ 108              	.LVL9:
+ 109              		.loc 1 51 7 view .LVU20
+ 110 0024 68B9     		cbnz	r0, .L5
+  52:Core/Src/as50xx.c **** 	  {
+  53:Core/Src/as50xx.c **** 		  HAL_GPIO_WritePin(_ENCODER_NSS_GPIO, _ENCODER_NSS_PIN, GPIO_PIN_SET);
+ 111              		.loc 1 53 5 is_stmt 1 view .LVU21
+ 112 0026 0122     		movs	r2, #1
+ 113 0028 4FF40041 		mov	r1, #32768
+ 114 002c 4FF09040 		mov	r0, #1207959552
+ 115 0030 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 116              	.LVL10:
+  54:Core/Src/as50xx.c **** 		  *data &= _ENCODER_READMASK;
+ 117              		.loc 1 54 5 view .LVU22
+ 118              		.loc 1 54 11 is_stmt 0 view .LVU23
+ARM GAS  C:\Users\VR\AppData\Local\Temp\ccSHjAPQ.s 			page 4
+
+
+ 119 0034 2388     		ldrh	r3, [r4]
+ 120 0036 C3F30D03 		ubfx	r3, r3, #0, #14
+ 121 003a 2380     		strh	r3, [r4]	@ movhi
+  55:Core/Src/as50xx.c **** 		  return true;
+ 122              		.loc 1 55 5 is_stmt 1 view .LVU24
+ 123              		.loc 1 55 12 is_stmt 0 view .LVU25
+ 124 003c 0120     		movs	r0, #1
+ 125              	.L6:
+  56:Core/Src/as50xx.c **** 	  }
+  57:Core/Src/as50xx.c **** 	  else
+  58:Core/Src/as50xx.c **** 	  {
+  59:Core/Src/as50xx.c **** 		  HAL_GPIO_WritePin(_ENCODER_NSS_GPIO, _ENCODER_NSS_PIN, GPIO_PIN_SET);
+  60:Core/Src/as50xx.c **** 		  return false;
+  61:Core/Src/as50xx.c **** 	  }
+  62:Core/Src/as50xx.c **** }
+ 126              		.loc 1 62 1 view .LVU26
+ 127 003e 03B0     		add	sp, sp, #12
+ 128              	.LCFI2:
+ 129              		.cfi_remember_state
+ 130              		.cfi_def_cfa_offset 12
+ 131              		@ sp needed
+ 132 0040 30BD     		pop	{r4, r5, pc}
+ 133              	.LVL11:
+ 134              	.L5:
+ 135              	.LCFI3:
+ 136              		.cfi_restore_state
+  59:Core/Src/as50xx.c **** 		  return false;
+ 137              		.loc 1 59 5 is_stmt 1 view .LVU27
+ 138 0042 0122     		movs	r2, #1
+ 139 0044 4FF40041 		mov	r1, #32768
+ 140 0048 4FF09040 		mov	r0, #1207959552
+ 141 004c FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 142              	.LVL12:
+  60:Core/Src/as50xx.c **** 	  }
+ 143              		.loc 1 60 5 view .LVU28
+  60:Core/Src/as50xx.c **** 	  }
+ 144              		.loc 1 60 12 is_stmt 0 view .LVU29
+ 145 0050 0020     		movs	r0, #0
+ 146 0052 F4E7     		b	.L6
+ 147              	.L9:
+ 148              		.align	2
+ 149              	.L8:
+ 150 0054 00000000 		.word	.LANCHOR0
+ 151 0058 00000000 		.word	hspi3
+ 152              		.cfi_endproc
+ 153              	.LFE133:
+ 155              		.section	.text.as50_write,"ax",%progbits
+ 156              		.align	1
+ 157              		.global	as50_write
+ 158              		.syntax unified
+ 159              		.thumb
+ 160              		.thumb_func
+ 162              	as50_write:
+ 163              	.LVL13:
+ 164              	.LFB135:
+  63:Core/Src/as50xx.c **** 
+  64:Core/Src/as50xx.c **** 
+ARM GAS  C:\Users\VR\AppData\Local\Temp\ccSHjAPQ.s 			page 5
+
+
+  65:Core/Src/as50xx.c **** bool as50_setZero(uint32_t timeout)
+  66:Core/Src/as50xx.c **** {
+  67:Core/Src/as50xx.c **** 	  uint16_t angle_to_set_as_zero;
+  68:Core/Src/as50xx.c **** 	  as50_readAngle(&angle_to_set_as_zero, 100);
+  69:Core/Src/as50xx.c **** 	  as50_write(set_zero_register_M, ((angle_to_set_as_zero >> 6) & 0x00FF));
+  70:Core/Src/as50xx.c **** 	  as50_write(set_zero_register_L, (angle_to_set_as_zero  & 0x003F));
+  71:Core/Src/as50xx.c **** 	  return true;
+  72:Core/Src/as50xx.c **** }
+  73:Core/Src/as50xx.c **** 
+  74:Core/Src/as50xx.c **** 
+  75:Core/Src/as50xx.c **** bool as50_write(uint16_t address, uint16_t data)
+  76:Core/Src/as50xx.c **** {
+ 165              		.loc 1 76 1 is_stmt 1 view -0
+ 166              		.cfi_startproc
+ 167              		@ args = 0, pretend = 0, frame = 8
+ 168              		@ frame_needed = 0, uses_anonymous_args = 0
+ 169              		.loc 1 76 1 is_stmt 0 view .LVU31
+ 170 0000 10B5     		push	{r4, lr}
+ 171              	.LCFI4:
+ 172              		.cfi_def_cfa_offset 8
+ 173              		.cfi_offset 4, -8
+ 174              		.cfi_offset 14, -4
+ 175 0002 82B0     		sub	sp, sp, #8
+ 176              	.LCFI5:
+ 177              		.cfi_def_cfa_offset 16
+ 178 0004 ADF80600 		strh	r0, [sp, #6]	@ movhi
+ 179 0008 ADF80410 		strh	r1, [sp, #4]	@ movhi
+  77:Core/Src/as50xx.c **** 	if (parity(address & 0x3FFF) == 1) address = address | 0x8000; // set parity bit
+ 180              		.loc 1 77 2 is_stmt 1 view .LVU32
+ 181              		.loc 1 77 6 is_stmt 0 view .LVU33
+ 182 000c 84B2     		uxth	r4, r0
+ 183 000e C4F30D00 		ubfx	r0, r4, #0, #14
+ 184              	.LVL14:
+ 185              		.loc 1 77 6 view .LVU34
+ 186 0012 FFF7FEFF 		bl	parity
+ 187              	.LVL15:
+ 188              		.loc 1 77 5 view .LVU35
+ 189 0016 0128     		cmp	r0, #1
+ 190 0018 3ED0     		beq	.L16
+ 191              	.L11:
+  78:Core/Src/as50xx.c **** 
+  79:Core/Src/as50xx.c **** 	HAL_GPIO_WritePin(_ENCODER_NSS_GPIO, _ENCODER_NSS_PIN, GPIO_PIN_RESET);
+ 192              		.loc 1 79 2 is_stmt 1 view .LVU36
+ 193 001a 0022     		movs	r2, #0
+ 194 001c 4FF40041 		mov	r1, #32768
+ 195 0020 4FF09040 		mov	r0, #1207959552
+ 196 0024 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 197              	.LVL16:
+  80:Core/Src/as50xx.c **** 
+  81:Core/Src/as50xx.c **** 	as50_delay(1);
+ 198              		.loc 1 81 2 view .LVU37
+ 199 0028 0120     		movs	r0, #1
+ 200 002a FFF7FEFF 		bl	HAL_Delay
+ 201              	.LVL17:
+  82:Core/Src/as50xx.c **** 
+  83:Core/Src/as50xx.c **** 	if (HAL_SPI_Transmit(&_ENCODER_SPI, (uint8_t*) &address, 2, 100) != HAL_OK)
+ 202              		.loc 1 83 2 view .LVU38
+ARM GAS  C:\Users\VR\AppData\Local\Temp\ccSHjAPQ.s 			page 6
+
+
+ 203              		.loc 1 83 6 is_stmt 0 view .LVU39
+ 204 002e 6423     		movs	r3, #100
+ 205 0030 0222     		movs	r2, #2
+ 206 0032 0DF10601 		add	r1, sp, #6
+ 207 0036 2248     		ldr	r0, .L20
+ 208 0038 FFF7FEFF 		bl	HAL_SPI_Transmit
+ 209              	.LVL18:
+ 210              		.loc 1 83 5 view .LVU40
+ 211 003c 98BB     		cbnz	r0, .L17
+ 212              	.L12:
+  84:Core/Src/as50xx.c **** 	{
+  85:Core/Src/as50xx.c **** 		Error_Handler();
+  86:Core/Src/as50xx.c **** 	}
+  87:Core/Src/as50xx.c **** 
+  88:Core/Src/as50xx.c **** 	HAL_GPIO_WritePin(_ENCODER_NSS_GPIO, _ENCODER_NSS_PIN, GPIO_PIN_SET);
+ 213              		.loc 1 88 2 is_stmt 1 view .LVU41
+ 214 003e 0122     		movs	r2, #1
+ 215 0040 4FF40041 		mov	r1, #32768
+ 216 0044 4FF09040 		mov	r0, #1207959552
+ 217 0048 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 218              	.LVL19:
+  89:Core/Src/as50xx.c **** 
+  90:Core/Src/as50xx.c **** 	as50_delay(1);
+ 219              		.loc 1 90 2 view .LVU42
+ 220 004c 0120     		movs	r0, #1
+ 221 004e FFF7FEFF 		bl	HAL_Delay
+ 222              	.LVL20:
+  91:Core/Src/as50xx.c **** 
+  92:Core/Src/as50xx.c **** 	if (parity(data & 0x3FFF) == 1) data = data | 0x8000; // set parity bit
+ 223              		.loc 1 92 2 view .LVU43
+ 224              		.loc 1 92 6 is_stmt 0 view .LVU44
+ 225 0052 BDF80440 		ldrh	r4, [sp, #4]
+ 226 0056 C4F30D00 		ubfx	r0, r4, #0, #14
+ 227 005a FFF7FEFF 		bl	parity
+ 228              	.LVL21:
+ 229              		.loc 1 92 5 view .LVU45
+ 230 005e 0128     		cmp	r0, #1
+ 231 0060 24D0     		beq	.L18
+ 232              	.L13:
+  93:Core/Src/as50xx.c **** 
+  94:Core/Src/as50xx.c **** 	HAL_GPIO_WritePin(_ENCODER_NSS_GPIO, _ENCODER_NSS_PIN, GPIO_PIN_RESET);
+ 233              		.loc 1 94 2 is_stmt 1 view .LVU46
+ 234 0062 0022     		movs	r2, #0
+ 235 0064 4FF40041 		mov	r1, #32768
+ 236 0068 4FF09040 		mov	r0, #1207959552
+ 237 006c FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 238              	.LVL22:
+  95:Core/Src/as50xx.c **** 
+  96:Core/Src/as50xx.c **** 	as50_delay(1);
+ 239              		.loc 1 96 2 view .LVU47
+ 240 0070 0120     		movs	r0, #1
+ 241 0072 FFF7FEFF 		bl	HAL_Delay
+ 242              	.LVL23:
+  97:Core/Src/as50xx.c **** 
+  98:Core/Src/as50xx.c **** 	if (HAL_SPI_Transmit(&_ENCODER_SPI, (uint8_t*) &data, 2, 100) != HAL_OK)
+ 243              		.loc 1 98 2 view .LVU48
+ 244              		.loc 1 98 6 is_stmt 0 view .LVU49
+ARM GAS  C:\Users\VR\AppData\Local\Temp\ccSHjAPQ.s 			page 7
+
+
+ 245 0076 6423     		movs	r3, #100
+ 246 0078 0222     		movs	r2, #2
+ 247 007a 01A9     		add	r1, sp, #4
+ 248 007c 1048     		ldr	r0, .L20
+ 249 007e FFF7FEFF 		bl	HAL_SPI_Transmit
+ 250              	.LVL24:
+ 251              		.loc 1 98 5 view .LVU50
+ 252 0082 D0B9     		cbnz	r0, .L19
+ 253              	.L14:
+  99:Core/Src/as50xx.c **** 	{
+ 100:Core/Src/as50xx.c **** 		Error_Handler();
+ 101:Core/Src/as50xx.c **** 	}
+ 102:Core/Src/as50xx.c **** 
+ 103:Core/Src/as50xx.c **** 	HAL_GPIO_WritePin(_ENCODER_NSS_GPIO, _ENCODER_NSS_PIN, GPIO_PIN_SET);
+ 254              		.loc 1 103 2 is_stmt 1 view .LVU51
+ 255 0084 0122     		movs	r2, #1
+ 256 0086 4FF40041 		mov	r1, #32768
+ 257 008a 4FF09040 		mov	r0, #1207959552
+ 258 008e FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 259              	.LVL25:
+ 104:Core/Src/as50xx.c **** 	return true;
+ 260              		.loc 1 104 2 view .LVU52
+ 105:Core/Src/as50xx.c **** }
+ 261              		.loc 1 105 1 is_stmt 0 view .LVU53
+ 262 0092 0120     		movs	r0, #1
+ 263 0094 02B0     		add	sp, sp, #8
+ 264              	.LCFI6:
+ 265              		.cfi_remember_state
+ 266              		.cfi_def_cfa_offset 8
+ 267              		@ sp needed
+ 268 0096 10BD     		pop	{r4, pc}
+ 269              	.L16:
+ 270              	.LCFI7:
+ 271              		.cfi_restore_state
+  77:Core/Src/as50xx.c **** 
+ 272              		.loc 1 77 37 is_stmt 1 discriminator 1 view .LVU54
+  77:Core/Src/as50xx.c **** 
+ 273              		.loc 1 77 45 is_stmt 0 discriminator 1 view .LVU55
+ 274 0098 6FEA4444 		mvn	r4, r4, lsl #17
+ 275 009c 6FEA5444 		mvn	r4, r4, lsr #17
+ 276 00a0 ADF80640 		strh	r4, [sp, #6]	@ movhi
+ 277 00a4 B9E7     		b	.L11
+ 278              	.L17:
+  85:Core/Src/as50xx.c **** 	}
+ 279              		.loc 1 85 3 is_stmt 1 view .LVU56
+ 280 00a6 FFF7FEFF 		bl	Error_Handler
+ 281              	.LVL26:
+ 282 00aa C8E7     		b	.L12
+ 283              	.L18:
+  92:Core/Src/as50xx.c **** 
+ 284              		.loc 1 92 34 discriminator 1 view .LVU57
+  92:Core/Src/as50xx.c **** 
+ 285              		.loc 1 92 39 is_stmt 0 discriminator 1 view .LVU58
+ 286 00ac 6FEA4444 		mvn	r4, r4, lsl #17
+ 287 00b0 6FEA5444 		mvn	r4, r4, lsr #17
+ 288 00b4 ADF80440 		strh	r4, [sp, #4]	@ movhi
+ 289 00b8 D3E7     		b	.L13
+ARM GAS  C:\Users\VR\AppData\Local\Temp\ccSHjAPQ.s 			page 8
+
+
+ 290              	.L19:
+ 100:Core/Src/as50xx.c **** 	}
+ 291              		.loc 1 100 3 is_stmt 1 view .LVU59
+ 292 00ba FFF7FEFF 		bl	Error_Handler
+ 293              	.LVL27:
+ 294 00be E1E7     		b	.L14
+ 295              	.L21:
+ 296              		.align	2
+ 297              	.L20:
+ 298 00c0 00000000 		.word	hspi3
+ 299              		.cfi_endproc
+ 300              	.LFE135:
+ 302              		.section	.text.as50_setZero,"ax",%progbits
+ 303              		.align	1
+ 304              		.global	as50_setZero
+ 305              		.syntax unified
+ 306              		.thumb
+ 307              		.thumb_func
+ 309              	as50_setZero:
+ 310              	.LVL28:
+ 311              	.LFB134:
+  66:Core/Src/as50xx.c **** 	  uint16_t angle_to_set_as_zero;
+ 312              		.loc 1 66 1 view -0
+ 313              		.cfi_startproc
+ 314              		@ args = 0, pretend = 0, frame = 8
+ 315              		@ frame_needed = 0, uses_anonymous_args = 0
+  66:Core/Src/as50xx.c **** 	  uint16_t angle_to_set_as_zero;
+ 316              		.loc 1 66 1 is_stmt 0 view .LVU61
+ 317 0000 00B5     		push	{lr}
+ 318              	.LCFI8:
+ 319              		.cfi_def_cfa_offset 4
+ 320              		.cfi_offset 14, -4
+ 321 0002 83B0     		sub	sp, sp, #12
+ 322              	.LCFI9:
+ 323              		.cfi_def_cfa_offset 16
+  67:Core/Src/as50xx.c **** 	  as50_readAngle(&angle_to_set_as_zero, 100);
+ 324              		.loc 1 67 4 is_stmt 1 view .LVU62
+  68:Core/Src/as50xx.c **** 	  as50_write(set_zero_register_M, ((angle_to_set_as_zero >> 6) & 0x00FF));
+ 325              		.loc 1 68 4 view .LVU63
+ 326 0004 6421     		movs	r1, #100
+ 327 0006 0DF10600 		add	r0, sp, #6
+ 328              	.LVL29:
+  68:Core/Src/as50xx.c **** 	  as50_write(set_zero_register_M, ((angle_to_set_as_zero >> 6) & 0x00FF));
+ 329              		.loc 1 68 4 is_stmt 0 view .LVU64
+ 330 000a FFF7FEFF 		bl	as50_readAngle
+ 331              	.LVL30:
+  69:Core/Src/as50xx.c **** 	  as50_write(set_zero_register_L, (angle_to_set_as_zero  & 0x003F));
+ 332              		.loc 1 69 4 is_stmt 1 view .LVU65
+  69:Core/Src/as50xx.c **** 	  as50_write(set_zero_register_L, (angle_to_set_as_zero  & 0x003F));
+ 333              		.loc 1 69 65 is_stmt 0 view .LVU66
+ 334 000e BDF80610 		ldrh	r1, [sp, #6]
+  69:Core/Src/as50xx.c **** 	  as50_write(set_zero_register_L, (angle_to_set_as_zero  & 0x003F));
+ 335              		.loc 1 69 4 view .LVU67
+ 336 0012 C1F38711 		ubfx	r1, r1, #6, #8
+ 337 0016 084B     		ldr	r3, .L24
+ 338 0018 1888     		ldrh	r0, [r3]
+ 339 001a FFF7FEFF 		bl	as50_write
+ARM GAS  C:\Users\VR\AppData\Local\Temp\ccSHjAPQ.s 			page 9
+
+
+ 340              	.LVL31:
+  70:Core/Src/as50xx.c **** 	  return true;
+ 341              		.loc 1 70 4 is_stmt 1 view .LVU68
+ 342 001e BDF80610 		ldrh	r1, [sp, #6]
+ 343 0022 01F03F01 		and	r1, r1, #63
+ 344 0026 054B     		ldr	r3, .L24+4
+ 345 0028 1888     		ldrh	r0, [r3]
+ 346 002a FFF7FEFF 		bl	as50_write
+ 347              	.LVL32:
+  71:Core/Src/as50xx.c **** }
+ 348              		.loc 1 71 4 view .LVU69
+  72:Core/Src/as50xx.c **** 
+ 349              		.loc 1 72 1 is_stmt 0 view .LVU70
+ 350 002e 0120     		movs	r0, #1
+ 351 0030 03B0     		add	sp, sp, #12
+ 352              	.LCFI10:
+ 353              		.cfi_def_cfa_offset 4
+ 354              		@ sp needed
+ 355 0032 5DF804FB 		ldr	pc, [sp], #4
+ 356              	.L25:
+ 357 0036 00BF     		.align	2
+ 358              	.L24:
+ 359 0038 00000000 		.word	.LANCHOR1
+ 360 003c 00000000 		.word	.LANCHOR2
+ 361              		.cfi_endproc
+ 362              	.LFE134:
+ 364              		.global	spiR
+ 365              		.global	set_zero_register_L
+ 366              		.global	set_zero_register_M
+ 367              		.global	read_angle_register
+ 368              		.section	.bss.spiR,"aw",%nobits
+ 369              		.align	1
+ 372              	spiR:
+ 373 0000 0000     		.space	2
+ 374              		.section	.data.read_angle_register,"aw"
+ 375              		.align	1
+ 376              		.set	.LANCHOR0,. + 0
+ 379              	read_angle_register:
+ 380 0000 FF3F     		.short	16383
+ 381              		.section	.data.set_zero_register_L,"aw"
+ 382              		.align	1
+ 383              		.set	.LANCHOR2,. + 0
+ 386              	set_zero_register_L:
+ 387 0000 1700     		.short	23
+ 388              		.section	.data.set_zero_register_M,"aw"
+ 389              		.align	1
+ 390              		.set	.LANCHOR1,. + 0
+ 393              	set_zero_register_M:
+ 394 0000 1600     		.short	22
+ 395              		.text
+ 396              	.Letext0:
+ 397              		.file 2 "C:\\ST\\STM32CubeIDE_1.8.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools
+ 398              		.file 3 "C:\\ST\\STM32CubeIDE_1.8.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools
+ 399              		.file 4 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g474xx.h"
+ 400              		.file 5 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h"
+ 401              		.file 6 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_gpio.h"
+ 402              		.file 7 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_dma.h"
+ARM GAS  C:\Users\VR\AppData\Local\Temp\ccSHjAPQ.s 			page 10
+
+
+ 403              		.file 8 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_spi.h"
+ 404              		.file 9 "Core/Inc/spi.h"
+ 405              		.file 10 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h"
+ 406              		.file 11 "Core/Inc/main.h"
+ARM GAS  C:\Users\VR\AppData\Local\Temp\ccSHjAPQ.s 			page 11
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 as50xx.c
+C:\Users\VR\AppData\Local\Temp\ccSHjAPQ.s:20     .text.parity:0000000000000000 $t
+C:\Users\VR\AppData\Local\Temp\ccSHjAPQ.s:26     .text.parity:0000000000000000 parity
+C:\Users\VR\AppData\Local\Temp\ccSHjAPQ.s:65     .text.as50_readAngle:0000000000000000 $t
+C:\Users\VR\AppData\Local\Temp\ccSHjAPQ.s:71     .text.as50_readAngle:0000000000000000 as50_readAngle
+C:\Users\VR\AppData\Local\Temp\ccSHjAPQ.s:150    .text.as50_readAngle:0000000000000054 $d
+C:\Users\VR\AppData\Local\Temp\ccSHjAPQ.s:156    .text.as50_write:0000000000000000 $t
+C:\Users\VR\AppData\Local\Temp\ccSHjAPQ.s:162    .text.as50_write:0000000000000000 as50_write
+C:\Users\VR\AppData\Local\Temp\ccSHjAPQ.s:298    .text.as50_write:00000000000000c0 $d
+C:\Users\VR\AppData\Local\Temp\ccSHjAPQ.s:303    .text.as50_setZero:0000000000000000 $t
+C:\Users\VR\AppData\Local\Temp\ccSHjAPQ.s:309    .text.as50_setZero:0000000000000000 as50_setZero
+C:\Users\VR\AppData\Local\Temp\ccSHjAPQ.s:359    .text.as50_setZero:0000000000000038 $d
+C:\Users\VR\AppData\Local\Temp\ccSHjAPQ.s:372    .bss.spiR:0000000000000000 spiR
+C:\Users\VR\AppData\Local\Temp\ccSHjAPQ.s:386    .data.set_zero_register_L:0000000000000000 set_zero_register_L
+C:\Users\VR\AppData\Local\Temp\ccSHjAPQ.s:393    .data.set_zero_register_M:0000000000000000 set_zero_register_M
+C:\Users\VR\AppData\Local\Temp\ccSHjAPQ.s:379    .data.read_angle_register:0000000000000000 read_angle_register
+C:\Users\VR\AppData\Local\Temp\ccSHjAPQ.s:369    .bss.spiR:0000000000000000 $d
+C:\Users\VR\AppData\Local\Temp\ccSHjAPQ.s:375    .data.read_angle_register:0000000000000000 $d
+C:\Users\VR\AppData\Local\Temp\ccSHjAPQ.s:382    .data.set_zero_register_L:0000000000000000 $d
+C:\Users\VR\AppData\Local\Temp\ccSHjAPQ.s:389    .data.set_zero_register_M:0000000000000000 $d
+
+UNDEFINED SYMBOLS
+HAL_GPIO_WritePin
+HAL_SPI_TransmitReceive
+hspi3
+HAL_Delay
+HAL_SPI_Transmit
+Error_Handler

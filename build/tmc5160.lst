@@ -1,0 +1,2798 @@
+ARM GAS  C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"tmc5160.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.tmc5160_write,"ax",%progbits
+  20              		.align	1
+  21              		.global	tmc5160_write
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	tmc5160_write:
+  27              	.LVL0:
+  28              	.LFB138:
+  29              		.file 1 "Core/Src/tmc5160.c"
+   1:Core/Src/tmc5160.c **** /*
+   2:Core/Src/tmc5160.c ****  * tmc5160.c
+   3:Core/Src/tmc5160.c ****  *
+   4:Core/Src/tmc5160.c ****  *  Created on: Aug 11, 2023
+   5:Core/Src/tmc5160.c ****  *      Author: VR
+   6:Core/Src/tmc5160.c ****  */
+   7:Core/Src/tmc5160.c **** 
+   8:Core/Src/tmc5160.c **** 
+   9:Core/Src/tmc5160.c **** /*
+  10:Core/Src/tmc5160.c **** 
+  11:Core/Src/tmc5160.c **** #define NEMA14_MAX_IRUN_SCALER 10
+  12:Core/Src/tmc5160.c **** #define NEMA17_MAX_IRUN_SCALER 12
+  13:Core/Src/tmc5160.c **** #define NEMA23_MAX_IRUN_SCALER 31
+  14:Core/Src/tmc5160.c **** 
+  15:Core/Src/tmc5160.c **** //TODO to research global scaler adjust for different types of motor to achieve full range of curre
+  16:Core/Src/tmc5160.c **** #if MOTOR == NEMA14
+  17:Core/Src/tmc5160.c **** 	#define MOTOR_MAX_IRUN_SCALER NEMA14_MAX_IRUN_SCALER
+  18:Core/Src/tmc5160.c **** #elif MOTOR == NEMA17
+  19:Core/Src/tmc5160.c **** 	#define MOTOR_MAX_IRUN_SCALER NEMA17_MAX_IRUN_SCALER
+  20:Core/Src/tmc5160.c **** #elif MOTOR == NEMA23
+  21:Core/Src/tmc5160.c **** 	#define MOTOR_MAX_IRUN_SCALER NEMA23_MAX_IRUN_SCALER
+  22:Core/Src/tmc5160.c **** #endif
+  23:Core/Src/tmc5160.c **** 
+  24:Core/Src/tmc5160.c **** //MAX HOLDING TORQUE * gear ratio / 5 (which is empirical decrease for moving torque)
+  25:Core/Src/tmc5160.c **** #define NEMA14_MAX_TORQUE 0.5
+  26:Core/Src/tmc5160.c **** #define NEMA17_MAX_TORQUE 3.9
+  27:Core/Src/tmc5160.c **** #define NEMA23_MAX_TORQUE 10.2
+  28:Core/Src/tmc5160.c **** 
+  29:Core/Src/tmc5160.c **** #if MOTOR == NEMA14
+ARM GAS  C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s 			page 2
+
+
+  30:Core/Src/tmc5160.c **** 	#define MOTOR_MAX_TORQUE NEMA14_MAX_TORQUE
+  31:Core/Src/tmc5160.c **** #elif MOTOR == NEMA17
+  32:Core/Src/tmc5160.c **** 	#define MOTOR_MAX_TORQUE NEMA17_MAX_TORQUE
+  33:Core/Src/tmc5160.c **** #elif MOTOR == NEMA23
+  34:Core/Src/tmc5160.c **** 	#define MOTOR_MAX_TORQUE NEMA23_MAX_TORQUE
+  35:Core/Src/tmc5160.c **** #endif
+  36:Core/Src/tmc5160.c **** 
+  37:Core/Src/tmc5160.c **** // 200 (fullsteps) * 256 (microsteps) * Gear ratio
+  38:Core/Src/tmc5160.c **** #define NEMA14_FULLSTEPS    983204
+  39:Core/Src/tmc5160.c **** #define NEMA17_FULLSTEPS	2560000
+  40:Core/Src/tmc5160.c **** #define NEMA23_FULLSTEPS    2560000
+  41:Core/Src/tmc5160.c **** 
+  42:Core/Src/tmc5160.c **** #if MOTOR == NEMA14
+  43:Core/Src/tmc5160.c **** 	#define MOTOR_FULLSTEP NEMA14_FULLSTEPS
+  44:Core/Src/tmc5160.c **** #elif MOTOR == NEMA17
+  45:Core/Src/tmc5160.c **** 	#define MOTOR_FULLSTEP NEMA17_FULLSTEPS
+  46:Core/Src/tmc5160.c **** #elif MOTOR == NEMA23
+  47:Core/Src/tmc5160.c **** 	#define MOTOR_FULLSTEP NEMA23_FULLSTEPS
+  48:Core/Src/tmc5160.c **** #endif
+  49:Core/Src/tmc5160.c **** 
+  50:Core/Src/tmc5160.c **** // Gear ratio
+  51:Core/Src/tmc5160.c **** #define NEMA14_GR 19 //TODO possible to correct ratio to 19.38/187 for more precise velocity calcul
+  52:Core/Src/tmc5160.c **** #define NEMA17_GR 50
+  53:Core/Src/tmc5160.c **** #define NEMA23_GR 50
+  54:Core/Src/tmc5160.c **** 
+  55:Core/Src/tmc5160.c **** #if MOTOR == NEMA14
+  56:Core/Src/tmc5160.c **** 	#define MOTOR_GR NEMA14_GR
+  57:Core/Src/tmc5160.c **** #elif MOTOR == NEMA17
+  58:Core/Src/tmc5160.c **** 	#define MOTOR_GR NEMA17_GR
+  59:Core/Src/tmc5160.c **** #elif MOTOR == NEMA23
+  60:Core/Src/tmc5160.c **** 	#define MOTOR_GR NEMA23_GR
+  61:Core/Src/tmc5160.c **** #endif
+  62:Core/Src/tmc5160.c **** 
+  63:Core/Src/tmc5160.c **** */
+  64:Core/Src/tmc5160.c **** 
+  65:Core/Src/tmc5160.c **** 
+  66:Core/Src/tmc5160.c **** #include "tmc5160.h"
+  67:Core/Src/tmc5160.c **** #include "spi.h"
+  68:Core/Src/tmc5160.c **** #include "main.h"
+  69:Core/Src/tmc5160.c **** #include <stdbool.h>
+  70:Core/Src/tmc5160.c **** #include <stdint.h>
+  71:Core/Src/tmc5160.c **** #include <stddef.h>
+  72:Core/Src/tmc5160.c **** #include "utility.h"
+  73:Core/Src/tmc5160.c **** 
+  74:Core/Src/tmc5160.c **** #if (USE_FREERTOS == 1)
+  75:Core/Src/tmc5160.c **** #include "cmsis_os.h"
+  76:Core/Src/tmc5160.c **** #define tmc5160_delay(x)   osDelay(x)
+  77:Core/Src/tmc5160.c **** #else
+  78:Core/Src/tmc5160.c **** #define tmc5160_delay(x)   HAL_Delay(x)
+  79:Core/Src/tmc5160.c **** #endif
+  80:Core/Src/tmc5160.c **** 
+  81:Core/Src/tmc5160.c **** 
+  82:Core/Src/tmc5160.c **** extern motor_config motor_cfg;
+  83:Core/Src/tmc5160.c **** 
+  84:Core/Src/tmc5160.c **** void tmc5160_position(int32_t position)
+  85:Core/Src/tmc5160.c **** {
+  86:Core/Src/tmc5160.c **** 	uint8_t WData[5] = {0};
+ARM GAS  C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s 			page 3
+
+
+  87:Core/Src/tmc5160.c **** 
+  88:Core/Src/tmc5160.c **** 	WData[0] = 0xA0; WData[1] = 0x00; WData[2] = 0x00; WData[3] = 0x00; WData[4] = 0x00; //SPI send: 0
+  89:Core/Src/tmc5160.c **** 	  tmc5160_write(WData);
+  90:Core/Src/tmc5160.c **** 
+  91:Core/Src/tmc5160.c **** 	WData[0] = 0xAD; //moving register
+  92:Core/Src/tmc5160.c **** 	WData[1] = (position & 0xFF000000) >> 24; //position in steps
+  93:Core/Src/tmc5160.c **** 	WData[2] = (position & 0x00FF0000) >> 16;
+  94:Core/Src/tmc5160.c **** 	WData[3] = (position & 0x0000FF00) >> 8;
+  95:Core/Src/tmc5160.c **** 	WData[4] = (position & 0x000000FF);
+  96:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+  97:Core/Src/tmc5160.c **** }
+  98:Core/Src/tmc5160.c **** 
+  99:Core/Src/tmc5160.c **** void tmc5160_move(int32_t vel)
+ 100:Core/Src/tmc5160.c **** {
+ 101:Core/Src/tmc5160.c **** 	vel *= 1.3981013; //1.3981.. is the time ratio according to "Microstep velocity time reference t f
+ 102:Core/Src/tmc5160.c **** 	int32_t v1;
+ 103:Core/Src/tmc5160.c **** 	uint8_t WData[5] = {0};
+ 104:Core/Src/tmc5160.c **** 
+ 105:Core/Src/tmc5160.c **** 	v1 = vel >> 1; // >> 1 (to divide by 2)
+ 106:Core/Src/tmc5160.c **** 
+ 107:Core/Src/tmc5160.c **** 	if (vel < 0) //select positive or negative mode depending on vel sign
+ 108:Core/Src/tmc5160.c **** 	{
+ 109:Core/Src/tmc5160.c **** 		  WData[0] = 0xA0; WData[1] = 0x00; WData[2] = 0x00; WData[3] = 0x00; WData[4] = 0x02; //SPI send
+ 110:Core/Src/tmc5160.c **** 		  tmc5160_write(WData);
+ 111:Core/Src/tmc5160.c **** 	}
+ 112:Core/Src/tmc5160.c **** 	else
+ 113:Core/Src/tmc5160.c **** 	{
+ 114:Core/Src/tmc5160.c **** 		  WData[0] = 0xA0; WData[1] = 0x00; WData[2] = 0x00; WData[3] = 0x00; WData[4] = 0x01; //SPI send
+ 115:Core/Src/tmc5160.c **** 		  tmc5160_write(WData);
+ 116:Core/Src/tmc5160.c **** 	}
+ 117:Core/Src/tmc5160.c **** 
+ 118:Core/Src/tmc5160.c **** 	//Acceleration threshold velocity V1
+ 119:Core/Src/tmc5160.c **** 	WData[0] = 0xA5; //V1 speed register
+ 120:Core/Src/tmc5160.c **** 	WData[1] = (v1 & 0xFF000000) >> 24;
+ 121:Core/Src/tmc5160.c **** 	WData[2] = (v1 & 0x00FF0000) >> 16;
+ 122:Core/Src/tmc5160.c **** 	WData[3] = (v1 & 0x0000FF00) >> 8;
+ 123:Core/Src/tmc5160.c **** 	WData[4] = (v1 & 0x000000FF);
+ 124:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 125:Core/Src/tmc5160.c **** 
+ 126:Core/Src/tmc5160.c **** 	vel = abs(vel);
+ 127:Core/Src/tmc5160.c **** 	//sending VMAX
+ 128:Core/Src/tmc5160.c **** 	WData[0] = 0xA7; //VMAX speed register
+ 129:Core/Src/tmc5160.c **** 	WData[1] = (vel & 0xFF000000) >> 24;
+ 130:Core/Src/tmc5160.c **** 	WData[2] = (vel & 0x00FF0000) >> 16;
+ 131:Core/Src/tmc5160.c **** 	WData[3] = (vel & 0x0000FF00) >> 8;
+ 132:Core/Src/tmc5160.c **** 	WData[4] = (vel & 0x000000FF);
+ 133:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 134:Core/Src/tmc5160.c **** }
+ 135:Core/Src/tmc5160.c **** 
+ 136:Core/Src/tmc5160.c **** void tmc5160_set_default_vel()
+ 137:Core/Src/tmc5160.c **** {
+ 138:Core/Src/tmc5160.c **** 	uint8_t WData[5] = {0};
+ 139:Core/Src/tmc5160.c **** 
+ 140:Core/Src/tmc5160.c **** 	tmc5160_velocity(1000000); //initial vel config
+ 141:Core/Src/tmc5160.c **** 
+ 142:Core/Src/tmc5160.c **** 	WData[0] = 0xA3; WData[1] = 0x00; WData[2] = 0x00; WData[3] = 0x00; WData[4] = 0x0A; // Start acce
+ 143:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ARM GAS  C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s 			page 4
+
+
+ 144:Core/Src/tmc5160.c **** 
+ 145:Core/Src/tmc5160.c **** 	WData[0] = 0xA4; WData[1] = 0x00; WData[2] = 0x00; WData[3] = 0x6e; WData[4] = 0x20; // A1 = 10 00
+ 146:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 147:Core/Src/tmc5160.c **** 
+ 148:Core/Src/tmc5160.c **** 	WData[0] = 0xA6; WData[1] = 0x00; WData[2] = 0x00; WData[3] = 0x23; WData[4] = 0x88; // AMAX = 5 0
+ 149:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 150:Core/Src/tmc5160.c **** 
+ 151:Core/Src/tmc5160.c **** 	WData[0] = 0xA8; WData[1] = 0x00; WData[2] = 0x00; WData[3] = 0x23; WData[4] = 0x88; // DMAX = 5 0
+ 152:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 153:Core/Src/tmc5160.c **** 
+ 154:Core/Src/tmc5160.c **** 	WData[0] = 0xAA; WData[1] = 0x00; WData[2] = 0x00; WData[3] = 0x6e; WData[4] = 0x20; // D1 = 10 00
+ 155:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 156:Core/Src/tmc5160.c **** 
+ 157:Core/Src/tmc5160.c **** 	WData[0] = 0xAB; WData[1] = 0x00; WData[2] = 0x00; WData[3] = 0x00; WData[4] = 0x0A; // VSTOP = 10
+ 158:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 159:Core/Src/tmc5160.c **** }
+ 160:Core/Src/tmc5160.c **** 
+ 161:Core/Src/tmc5160.c **** void tmc5160_velocity(uint32_t vel)
+ 162:Core/Src/tmc5160.c **** {
+ 163:Core/Src/tmc5160.c **** 	vel *= 1.3981013; //1.3981.. is the time ratio according to "Microstep velocity time reference t f
+ 164:Core/Src/tmc5160.c **** 	uint32_t v1;
+ 165:Core/Src/tmc5160.c **** 	uint8_t WData[5] = {0};
+ 166:Core/Src/tmc5160.c **** 
+ 167:Core/Src/tmc5160.c **** 	v1 = vel >> 1; // >> 1 (to divide by 2)
+ 168:Core/Src/tmc5160.c **** 
+ 169:Core/Src/tmc5160.c **** 	//Acceleration threshold velocity V1
+ 170:Core/Src/tmc5160.c **** 	WData[0] = 0xA5; //V1 speed register
+ 171:Core/Src/tmc5160.c **** 	WData[1] = (v1 & 0xFF000000) >> 24;
+ 172:Core/Src/tmc5160.c **** 	WData[2] = (v1 & 0x00FF0000) >> 16;
+ 173:Core/Src/tmc5160.c **** 	WData[3] = (v1 & 0x0000FF00) >> 8;
+ 174:Core/Src/tmc5160.c **** 	WData[4] = (v1 & 0x000000FF);
+ 175:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 176:Core/Src/tmc5160.c **** 
+ 177:Core/Src/tmc5160.c **** 	//VMAX
+ 178:Core/Src/tmc5160.c **** 	WData[0] = 0xA7; //VMAX speed register
+ 179:Core/Src/tmc5160.c **** 	WData[1] = (vel & 0xFF000000) >> 24;
+ 180:Core/Src/tmc5160.c **** 	WData[2] = (vel & 0x00FF0000) >> 16;
+ 181:Core/Src/tmc5160.c **** 	WData[3] = (vel & 0x0000FF00) >> 8;
+ 182:Core/Src/tmc5160.c **** 	WData[4] = (vel & 0x000000FF);
+ 183:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 184:Core/Src/tmc5160.c **** 
+ 185:Core/Src/tmc5160.c **** }
+ 186:Core/Src/tmc5160.c **** 
+ 187:Core/Src/tmc5160.c **** void tmc5160_effort(double effort, double motor_max_torque)
+ 188:Core/Src/tmc5160.c **** {
+ 189:Core/Src/tmc5160.c **** uint8_t IRUN = 0;
+ 190:Core/Src/tmc5160.c **** uint8_t IHOLD = 0;
+ 191:Core/Src/tmc5160.c **** uint8_t WData[5] = {0};
+ 192:Core/Src/tmc5160.c **** 
+ 193:Core/Src/tmc5160.c **** IRUN =  tmc5160_torque_to_curent(effort, motor_max_torque);
+ 194:Core/Src/tmc5160.c **** IHOLD = IRUN >> 1;
+ 195:Core/Src/tmc5160.c **** 
+ 196:Core/Src/tmc5160.c **** WData[0] = 0x90;
+ 197:Core/Src/tmc5160.c **** WData[1] = 0x00;
+ 198:Core/Src/tmc5160.c **** WData[2] = 0x00; // IHOLDDELAY=0 TODO?
+ 199:Core/Src/tmc5160.c **** WData[3] = IRUN; // IRUN
+ 200:Core/Src/tmc5160.c **** WData[4] = IHOLD; // IHOLD
+ARM GAS  C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s 			page 5
+
+
+ 201:Core/Src/tmc5160.c **** 
+ 202:Core/Src/tmc5160.c **** tmc5160_write(WData);
+ 203:Core/Src/tmc5160.c **** }
+ 204:Core/Src/tmc5160.c **** 
+ 205:Core/Src/tmc5160.c **** 
+ 206:Core/Src/tmc5160.c **** void tmc5160_acceleration(uint32_t acc)
+ 207:Core/Src/tmc5160.c **** {
+ 208:Core/Src/tmc5160.c **** 	uint8_t WData[5] = {0};
+ 209:Core/Src/tmc5160.c **** 	uint8_t Tk = 65; //time constant. Acceleration equals steps/Tk see ref on p. 81 of datasheet
+ 210:Core/Src/tmc5160.c **** 	acc = acc / Tk;
+ 211:Core/Src/tmc5160.c **** 
+ 212:Core/Src/tmc5160.c **** 	WData[0] = 0xA3; WData[1] = 0x00; WData[2] = 0x00; WData[3] = 0x00; WData[4] = 0x0A; // Start acce
+ 213:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 214:Core/Src/tmc5160.c **** 
+ 215:Core/Src/tmc5160.c **** 	// A1 First acceleration
+ 216:Core/Src/tmc5160.c **** 	WData[0] = 0xA4;
+ 217:Core/Src/tmc5160.c **** 	WData[3] = (acc & 0x0000FF00) >> 8;
+ 218:Core/Src/tmc5160.c **** 	WData[4] = (acc & 0x000000FF);
+ 219:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 220:Core/Src/tmc5160.c **** 
+ 221:Core/Src/tmc5160.c **** 	// AMAX Acceleration above V1
+ 222:Core/Src/tmc5160.c **** 	WData[0] = 0xA6;
+ 223:Core/Src/tmc5160.c **** 	WData[3] = (acc & 0x0000FF00) >> 8;
+ 224:Core/Src/tmc5160.c **** 	WData[4] = (acc & 0x000000FF);
+ 225:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 226:Core/Src/tmc5160.c **** 
+ 227:Core/Src/tmc5160.c **** 	// DMAX Deceleration above V1
+ 228:Core/Src/tmc5160.c **** 	WData[0] = 0xA8;
+ 229:Core/Src/tmc5160.c **** 	WData[3] = (acc & 0x0000FF00) >> 8;
+ 230:Core/Src/tmc5160.c **** 	WData[4] = (acc & 0x000000FF);
+ 231:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 232:Core/Src/tmc5160.c **** 
+ 233:Core/Src/tmc5160.c **** 	// D1 Deceleration below V1
+ 234:Core/Src/tmc5160.c **** 	WData[0] = 0xAA;
+ 235:Core/Src/tmc5160.c **** 	WData[3] = (acc & 0x0000FF00) >> 8;
+ 236:Core/Src/tmc5160.c **** 	WData[4] = (acc & 0x000000FF);
+ 237:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 238:Core/Src/tmc5160.c **** 
+ 239:Core/Src/tmc5160.c **** 	WData[0] = 0xAB; WData[1] = 0x00; WData[2] = 0x00; WData[3] = 0x00; WData[4] = 0x0A; // VSTOP = 10
+ 240:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 241:Core/Src/tmc5160.c **** }
+ 242:Core/Src/tmc5160.c **** 
+ 243:Core/Src/tmc5160.c **** 
+ 244:Core/Src/tmc5160.c **** void tmc5160_write(uint8_t* data)
+ 245:Core/Src/tmc5160.c **** {
+  30              		.loc 1 245 1 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		.loc 1 245 1 is_stmt 0 view .LVU1
+  35 0000 10B5     		push	{r4, lr}
+  36              	.LCFI0:
+  37              		.cfi_def_cfa_offset 8
+  38              		.cfi_offset 4, -8
+  39              		.cfi_offset 14, -4
+  40 0002 0446     		mov	r4, r0
+ 246:Core/Src/tmc5160.c **** 	HAL_GPIO_WritePin(_STEPPER_MOTOR_DRIVER_NSS_GPIO, _STEPPER_MOTOR_DRIVER_NSS_PIN, GPIO_PIN_RESET); 
+ARM GAS  C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s 			page 6
+
+
+  41              		.loc 1 246 2 is_stmt 1 view .LVU2
+  42 0004 0022     		movs	r2, #0
+  43 0006 1021     		movs	r1, #16
+  44 0008 4FF09040 		mov	r0, #1207959552
+  45              	.LVL1:
+  46              		.loc 1 246 2 is_stmt 0 view .LVU3
+  47 000c FFF7FEFF 		bl	HAL_GPIO_WritePin
+  48              	.LVL2:
+ 247:Core/Src/tmc5160.c **** 	HAL_SPI_Transmit(&_STEPPER_MOTOR_DRIVER_SPI, data, 5, HAL_MAX_DELAY);
+  49              		.loc 1 247 2 is_stmt 1 view .LVU4
+  50 0010 4FF0FF33 		mov	r3, #-1
+  51 0014 0522     		movs	r2, #5
+  52 0016 2146     		mov	r1, r4
+  53 0018 0448     		ldr	r0, .L3
+  54 001a FFF7FEFF 		bl	HAL_SPI_Transmit
+  55              	.LVL3:
+ 248:Core/Src/tmc5160.c **** 	HAL_GPIO_WritePin(_STEPPER_MOTOR_DRIVER_NSS_GPIO, _STEPPER_MOTOR_DRIVER_NSS_PIN, GPIO_PIN_SET); //
+  56              		.loc 1 248 2 view .LVU5
+  57 001e 0122     		movs	r2, #1
+  58 0020 1021     		movs	r1, #16
+  59 0022 4FF09040 		mov	r0, #1207959552
+  60 0026 FFF7FEFF 		bl	HAL_GPIO_WritePin
+  61              	.LVL4:
+ 249:Core/Src/tmc5160.c **** }
+  62              		.loc 1 249 1 is_stmt 0 view .LVU6
+  63 002a 10BD     		pop	{r4, pc}
+  64              	.LVL5:
+  65              	.L4:
+  66              		.loc 1 249 1 view .LVU7
+  67              		.align	2
+  68              	.L3:
+  69 002c 00000000 		.word	hspi1
+  70              		.cfi_endproc
+  71              	.LFE138:
+  73              		.section	.text.tmc5160_position,"ax",%progbits
+  74              		.align	1
+  75              		.global	tmc5160_position
+  76              		.syntax unified
+  77              		.thumb
+  78              		.thumb_func
+  80              	tmc5160_position:
+  81              	.LVL6:
+  82              	.LFB132:
+  85:Core/Src/tmc5160.c **** 	uint8_t WData[5] = {0};
+  83              		.loc 1 85 1 is_stmt 1 view -0
+  84              		.cfi_startproc
+  85              		@ args = 0, pretend = 0, frame = 8
+  86              		@ frame_needed = 0, uses_anonymous_args = 0
+  85:Core/Src/tmc5160.c **** 	uint8_t WData[5] = {0};
+  87              		.loc 1 85 1 is_stmt 0 view .LVU9
+  88 0000 10B5     		push	{r4, lr}
+  89              	.LCFI1:
+  90              		.cfi_def_cfa_offset 8
+  91              		.cfi_offset 4, -8
+  92              		.cfi_offset 14, -4
+  93 0002 82B0     		sub	sp, sp, #8
+  94              	.LCFI2:
+ARM GAS  C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s 			page 7
+
+
+  95              		.cfi_def_cfa_offset 16
+  96 0004 0446     		mov	r4, r0
+  86:Core/Src/tmc5160.c **** 
+  97              		.loc 1 86 2 is_stmt 1 view .LVU10
+  86:Core/Src/tmc5160.c **** 
+  98              		.loc 1 86 10 is_stmt 0 view .LVU11
+  99 0006 0023     		movs	r3, #0
+ 100 0008 0093     		str	r3, [sp]
+ 101 000a 8DF80430 		strb	r3, [sp, #4]
+  88:Core/Src/tmc5160.c **** 	  tmc5160_write(WData);
+ 102              		.loc 1 88 2 is_stmt 1 view .LVU12
+  88:Core/Src/tmc5160.c **** 	  tmc5160_write(WData);
+ 103              		.loc 1 88 11 is_stmt 0 view .LVU13
+ 104 000e A023     		movs	r3, #160
+ 105 0010 8DF80030 		strb	r3, [sp]
+  88:Core/Src/tmc5160.c **** 	  tmc5160_write(WData);
+ 106              		.loc 1 88 19 is_stmt 1 view .LVU14
+  88:Core/Src/tmc5160.c **** 	  tmc5160_write(WData);
+ 107              		.loc 1 88 36 view .LVU15
+  88:Core/Src/tmc5160.c **** 	  tmc5160_write(WData);
+ 108              		.loc 1 88 53 view .LVU16
+  88:Core/Src/tmc5160.c **** 	  tmc5160_write(WData);
+ 109              		.loc 1 88 70 view .LVU17
+  89:Core/Src/tmc5160.c **** 
+ 110              		.loc 1 89 4 view .LVU18
+ 111 0014 6846     		mov	r0, sp
+ 112              	.LVL7:
+  89:Core/Src/tmc5160.c **** 
+ 113              		.loc 1 89 4 is_stmt 0 view .LVU19
+ 114 0016 FFF7FEFF 		bl	tmc5160_write
+ 115              	.LVL8:
+  91:Core/Src/tmc5160.c **** 	WData[1] = (position & 0xFF000000) >> 24; //position in steps
+ 116              		.loc 1 91 2 is_stmt 1 view .LVU20
+  91:Core/Src/tmc5160.c **** 	WData[1] = (position & 0xFF000000) >> 24; //position in steps
+ 117              		.loc 1 91 11 is_stmt 0 view .LVU21
+ 118 001a AD23     		movs	r3, #173
+ 119 001c 8DF80030 		strb	r3, [sp]
+  92:Core/Src/tmc5160.c **** 	WData[2] = (position & 0x00FF0000) >> 16;
+ 120              		.loc 1 92 2 is_stmt 1 view .LVU22
+  92:Core/Src/tmc5160.c **** 	WData[2] = (position & 0x00FF0000) >> 16;
+ 121              		.loc 1 92 37 is_stmt 0 view .LVU23
+ 122 0020 230E     		lsrs	r3, r4, #24
+  92:Core/Src/tmc5160.c **** 	WData[2] = (position & 0x00FF0000) >> 16;
+ 123              		.loc 1 92 11 view .LVU24
+ 124 0022 8DF80130 		strb	r3, [sp, #1]
+  93:Core/Src/tmc5160.c **** 	WData[3] = (position & 0x0000FF00) >> 8;
+ 125              		.loc 1 93 2 is_stmt 1 view .LVU25
+  93:Core/Src/tmc5160.c **** 	WData[3] = (position & 0x0000FF00) >> 8;
+ 126              		.loc 1 93 37 is_stmt 0 view .LVU26
+ 127 0026 2314     		asrs	r3, r4, #16
+  93:Core/Src/tmc5160.c **** 	WData[3] = (position & 0x0000FF00) >> 8;
+ 128              		.loc 1 93 11 view .LVU27
+ 129 0028 8DF80230 		strb	r3, [sp, #2]
+  94:Core/Src/tmc5160.c **** 	WData[4] = (position & 0x000000FF);
+ 130              		.loc 1 94 2 is_stmt 1 view .LVU28
+  94:Core/Src/tmc5160.c **** 	WData[4] = (position & 0x000000FF);
+ 131              		.loc 1 94 37 is_stmt 0 view .LVU29
+ARM GAS  C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s 			page 8
+
+
+ 132 002c 2312     		asrs	r3, r4, #8
+  94:Core/Src/tmc5160.c **** 	WData[4] = (position & 0x000000FF);
+ 133              		.loc 1 94 11 view .LVU30
+ 134 002e 8DF80330 		strb	r3, [sp, #3]
+  95:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 135              		.loc 1 95 2 is_stmt 1 view .LVU31
+  95:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 136              		.loc 1 95 11 is_stmt 0 view .LVU32
+ 137 0032 8DF80440 		strb	r4, [sp, #4]
+  96:Core/Src/tmc5160.c **** }
+ 138              		.loc 1 96 2 is_stmt 1 view .LVU33
+ 139 0036 6846     		mov	r0, sp
+ 140 0038 FFF7FEFF 		bl	tmc5160_write
+ 141              	.LVL9:
+  97:Core/Src/tmc5160.c **** 
+ 142              		.loc 1 97 1 is_stmt 0 view .LVU34
+ 143 003c 02B0     		add	sp, sp, #8
+ 144              	.LCFI3:
+ 145              		.cfi_def_cfa_offset 8
+ 146              		@ sp needed
+ 147 003e 10BD     		pop	{r4, pc}
+  97:Core/Src/tmc5160.c **** 
+ 148              		.loc 1 97 1 view .LVU35
+ 149              		.cfi_endproc
+ 150              	.LFE132:
+ 152              		.global	__aeabi_i2d
+ 153              		.global	__aeabi_dmul
+ 154              		.global	__aeabi_d2iz
+ 155              		.section	.text.tmc5160_move,"ax",%progbits
+ 156              		.align	1
+ 157              		.global	tmc5160_move
+ 158              		.syntax unified
+ 159              		.thumb
+ 160              		.thumb_func
+ 162              	tmc5160_move:
+ 163              	.LVL10:
+ 164              	.LFB133:
+ 100:Core/Src/tmc5160.c **** 	vel *= 1.3981013; //1.3981.. is the time ratio according to "Microstep velocity time reference t f
+ 165              		.loc 1 100 1 is_stmt 1 view -0
+ 166              		.cfi_startproc
+ 167              		@ args = 0, pretend = 0, frame = 8
+ 168              		@ frame_needed = 0, uses_anonymous_args = 0
+ 100:Core/Src/tmc5160.c **** 	vel *= 1.3981013; //1.3981.. is the time ratio according to "Microstep velocity time reference t f
+ 169              		.loc 1 100 1 is_stmt 0 view .LVU37
+ 170 0000 30B5     		push	{r4, r5, lr}
+ 171              	.LCFI4:
+ 172              		.cfi_def_cfa_offset 12
+ 173              		.cfi_offset 4, -12
+ 174              		.cfi_offset 5, -8
+ 175              		.cfi_offset 14, -4
+ 176 0002 83B0     		sub	sp, sp, #12
+ 177              	.LCFI5:
+ 178              		.cfi_def_cfa_offset 24
+ 101:Core/Src/tmc5160.c **** 	int32_t v1;
+ 179              		.loc 1 101 2 is_stmt 1 view .LVU38
+ 101:Core/Src/tmc5160.c **** 	int32_t v1;
+ 180              		.loc 1 101 6 is_stmt 0 view .LVU39
+ARM GAS  C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s 			page 9
+
+
+ 181 0004 FFF7FEFF 		bl	__aeabi_i2d
+ 182              	.LVL11:
+ 101:Core/Src/tmc5160.c **** 	int32_t v1;
+ 183              		.loc 1 101 6 view .LVU40
+ 184 0008 25A3     		adr	r3, .L12
+ 185 000a D3E90023 		ldrd	r2, [r3]
+ 186 000e FFF7FEFF 		bl	__aeabi_dmul
+ 187              	.LVL12:
+ 188 0012 FFF7FEFF 		bl	__aeabi_d2iz
+ 189              	.LVL13:
+ 190 0016 0446     		mov	r4, r0
+ 191              	.LVL14:
+ 102:Core/Src/tmc5160.c **** 	uint8_t WData[5] = {0};
+ 192              		.loc 1 102 2 is_stmt 1 view .LVU41
+ 103:Core/Src/tmc5160.c **** 
+ 193              		.loc 1 103 2 view .LVU42
+ 103:Core/Src/tmc5160.c **** 
+ 194              		.loc 1 103 10 is_stmt 0 view .LVU43
+ 195 0018 0023     		movs	r3, #0
+ 196 001a 0093     		str	r3, [sp]
+ 197 001c 8DF80430 		strb	r3, [sp, #4]
+ 105:Core/Src/tmc5160.c **** 
+ 198              		.loc 1 105 2 is_stmt 1 view .LVU44
+ 105:Core/Src/tmc5160.c **** 
+ 199              		.loc 1 105 5 is_stmt 0 view .LVU45
+ 200 0020 4510     		asrs	r5, r0, #1
+ 201              	.LVL15:
+ 107:Core/Src/tmc5160.c **** 	{
+ 202              		.loc 1 107 2 is_stmt 1 view .LVU46
+ 107:Core/Src/tmc5160.c **** 	{
+ 203              		.loc 1 107 5 is_stmt 0 view .LVU47
+ 204 0022 9842     		cmp	r0, r3
+ 205 0024 2FDB     		blt	.L11
+ 114:Core/Src/tmc5160.c **** 		  tmc5160_write(WData);
+ 206              		.loc 1 114 5 is_stmt 1 view .LVU48
+ 114:Core/Src/tmc5160.c **** 		  tmc5160_write(WData);
+ 207              		.loc 1 114 14 is_stmt 0 view .LVU49
+ 208 0026 A023     		movs	r3, #160
+ 209 0028 8DF80030 		strb	r3, [sp]
+ 114:Core/Src/tmc5160.c **** 		  tmc5160_write(WData);
+ 210              		.loc 1 114 22 is_stmt 1 view .LVU50
+ 114:Core/Src/tmc5160.c **** 		  tmc5160_write(WData);
+ 211              		.loc 1 114 39 view .LVU51
+ 114:Core/Src/tmc5160.c **** 		  tmc5160_write(WData);
+ 212              		.loc 1 114 56 view .LVU52
+ 114:Core/Src/tmc5160.c **** 		  tmc5160_write(WData);
+ 213              		.loc 1 114 73 view .LVU53
+ 114:Core/Src/tmc5160.c **** 		  tmc5160_write(WData);
+ 214              		.loc 1 114 82 is_stmt 0 view .LVU54
+ 215 002c 0123     		movs	r3, #1
+ 216 002e 8DF80430 		strb	r3, [sp, #4]
+ 115:Core/Src/tmc5160.c **** 	}
+ 217              		.loc 1 115 5 is_stmt 1 view .LVU55
+ 218 0032 6846     		mov	r0, sp
+ 219              	.LVL16:
+ 115:Core/Src/tmc5160.c **** 	}
+ 220              		.loc 1 115 5 is_stmt 0 view .LVU56
+ARM GAS  C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s 			page 10
+
+
+ 221 0034 FFF7FEFF 		bl	tmc5160_write
+ 222              	.LVL17:
+ 223              	.L9:
+ 119:Core/Src/tmc5160.c **** 	WData[1] = (v1 & 0xFF000000) >> 24;
+ 224              		.loc 1 119 2 is_stmt 1 view .LVU57
+ 119:Core/Src/tmc5160.c **** 	WData[1] = (v1 & 0xFF000000) >> 24;
+ 225              		.loc 1 119 11 is_stmt 0 view .LVU58
+ 226 0038 A523     		movs	r3, #165
+ 227 003a 8DF80030 		strb	r3, [sp]
+ 120:Core/Src/tmc5160.c **** 	WData[2] = (v1 & 0x00FF0000) >> 16;
+ 228              		.loc 1 120 2 is_stmt 1 view .LVU59
+ 120:Core/Src/tmc5160.c **** 	WData[2] = (v1 & 0x00FF0000) >> 16;
+ 229              		.loc 1 120 31 is_stmt 0 view .LVU60
+ 230 003e 2B0E     		lsrs	r3, r5, #24
+ 120:Core/Src/tmc5160.c **** 	WData[2] = (v1 & 0x00FF0000) >> 16;
+ 231              		.loc 1 120 11 view .LVU61
+ 232 0040 8DF80130 		strb	r3, [sp, #1]
+ 121:Core/Src/tmc5160.c **** 	WData[3] = (v1 & 0x0000FF00) >> 8;
+ 233              		.loc 1 121 2 is_stmt 1 view .LVU62
+ 121:Core/Src/tmc5160.c **** 	WData[3] = (v1 & 0x0000FF00) >> 8;
+ 234              		.loc 1 121 31 is_stmt 0 view .LVU63
+ 235 0044 6314     		asrs	r3, r4, #17
+ 121:Core/Src/tmc5160.c **** 	WData[3] = (v1 & 0x0000FF00) >> 8;
+ 236              		.loc 1 121 11 view .LVU64
+ 237 0046 8DF80230 		strb	r3, [sp, #2]
+ 122:Core/Src/tmc5160.c **** 	WData[4] = (v1 & 0x000000FF);
+ 238              		.loc 1 122 2 is_stmt 1 view .LVU65
+ 122:Core/Src/tmc5160.c **** 	WData[4] = (v1 & 0x000000FF);
+ 239              		.loc 1 122 31 is_stmt 0 view .LVU66
+ 240 004a 6312     		asrs	r3, r4, #9
+ 122:Core/Src/tmc5160.c **** 	WData[4] = (v1 & 0x000000FF);
+ 241              		.loc 1 122 11 view .LVU67
+ 242 004c 8DF80330 		strb	r3, [sp, #3]
+ 123:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 243              		.loc 1 123 2 is_stmt 1 view .LVU68
+ 123:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 244              		.loc 1 123 11 is_stmt 0 view .LVU69
+ 245 0050 8DF80450 		strb	r5, [sp, #4]
+ 124:Core/Src/tmc5160.c **** 
+ 246              		.loc 1 124 2 is_stmt 1 view .LVU70
+ 247 0054 6846     		mov	r0, sp
+ 248 0056 FFF7FEFF 		bl	tmc5160_write
+ 249              	.LVL18:
+ 126:Core/Src/tmc5160.c **** 	//sending VMAX
+ 250              		.loc 1 126 2 view .LVU71
+ 126:Core/Src/tmc5160.c **** 	//sending VMAX
+ 251              		.loc 1 126 6 is_stmt 0 view .LVU72
+ 252 005a 002C     		cmp	r4, #0
+ 253 005c B8BF     		it	lt
+ 254 005e 6442     		rsblt	r4, r4, #0
+ 255              	.LVL19:
+ 128:Core/Src/tmc5160.c **** 	WData[1] = (vel & 0xFF000000) >> 24;
+ 256              		.loc 1 128 2 is_stmt 1 view .LVU73
+ 128:Core/Src/tmc5160.c **** 	WData[1] = (vel & 0xFF000000) >> 24;
+ 257              		.loc 1 128 11 is_stmt 0 view .LVU74
+ 258 0060 A723     		movs	r3, #167
+ 259 0062 8DF80030 		strb	r3, [sp]
+ARM GAS  C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s 			page 11
+
+
+ 129:Core/Src/tmc5160.c **** 	WData[2] = (vel & 0x00FF0000) >> 16;
+ 260              		.loc 1 129 2 is_stmt 1 view .LVU75
+ 129:Core/Src/tmc5160.c **** 	WData[2] = (vel & 0x00FF0000) >> 16;
+ 261              		.loc 1 129 32 is_stmt 0 view .LVU76
+ 262 0066 230E     		lsrs	r3, r4, #24
+ 129:Core/Src/tmc5160.c **** 	WData[2] = (vel & 0x00FF0000) >> 16;
+ 263              		.loc 1 129 11 view .LVU77
+ 264 0068 8DF80130 		strb	r3, [sp, #1]
+ 130:Core/Src/tmc5160.c **** 	WData[3] = (vel & 0x0000FF00) >> 8;
+ 265              		.loc 1 130 2 is_stmt 1 view .LVU78
+ 130:Core/Src/tmc5160.c **** 	WData[3] = (vel & 0x0000FF00) >> 8;
+ 266              		.loc 1 130 32 is_stmt 0 view .LVU79
+ 267 006c 2314     		asrs	r3, r4, #16
+ 130:Core/Src/tmc5160.c **** 	WData[3] = (vel & 0x0000FF00) >> 8;
+ 268              		.loc 1 130 11 view .LVU80
+ 269 006e 8DF80230 		strb	r3, [sp, #2]
+ 131:Core/Src/tmc5160.c **** 	WData[4] = (vel & 0x000000FF);
+ 270              		.loc 1 131 2 is_stmt 1 view .LVU81
+ 131:Core/Src/tmc5160.c **** 	WData[4] = (vel & 0x000000FF);
+ 271              		.loc 1 131 32 is_stmt 0 view .LVU82
+ 272 0072 2312     		asrs	r3, r4, #8
+ 131:Core/Src/tmc5160.c **** 	WData[4] = (vel & 0x000000FF);
+ 273              		.loc 1 131 11 view .LVU83
+ 274 0074 8DF80330 		strb	r3, [sp, #3]
+ 132:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 275              		.loc 1 132 2 is_stmt 1 view .LVU84
+ 132:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 276              		.loc 1 132 11 is_stmt 0 view .LVU85
+ 277 0078 8DF80440 		strb	r4, [sp, #4]
+ 133:Core/Src/tmc5160.c **** }
+ 278              		.loc 1 133 2 is_stmt 1 view .LVU86
+ 279 007c 6846     		mov	r0, sp
+ 280 007e FFF7FEFF 		bl	tmc5160_write
+ 281              	.LVL20:
+ 134:Core/Src/tmc5160.c **** 
+ 282              		.loc 1 134 1 is_stmt 0 view .LVU87
+ 283 0082 03B0     		add	sp, sp, #12
+ 284              	.LCFI6:
+ 285              		.cfi_remember_state
+ 286              		.cfi_def_cfa_offset 12
+ 287              		@ sp needed
+ 288 0084 30BD     		pop	{r4, r5, pc}
+ 289              	.LVL21:
+ 290              	.L11:
+ 291              	.LCFI7:
+ 292              		.cfi_restore_state
+ 109:Core/Src/tmc5160.c **** 		  tmc5160_write(WData);
+ 293              		.loc 1 109 5 is_stmt 1 view .LVU88
+ 109:Core/Src/tmc5160.c **** 		  tmc5160_write(WData);
+ 294              		.loc 1 109 14 is_stmt 0 view .LVU89
+ 295 0086 A023     		movs	r3, #160
+ 296 0088 8DF80030 		strb	r3, [sp]
+ 109:Core/Src/tmc5160.c **** 		  tmc5160_write(WData);
+ 297              		.loc 1 109 22 is_stmt 1 view .LVU90
+ 109:Core/Src/tmc5160.c **** 		  tmc5160_write(WData);
+ 298              		.loc 1 109 39 view .LVU91
+ 109:Core/Src/tmc5160.c **** 		  tmc5160_write(WData);
+ARM GAS  C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s 			page 12
+
+
+ 299              		.loc 1 109 56 view .LVU92
+ 109:Core/Src/tmc5160.c **** 		  tmc5160_write(WData);
+ 300              		.loc 1 109 73 view .LVU93
+ 109:Core/Src/tmc5160.c **** 		  tmc5160_write(WData);
+ 301              		.loc 1 109 82 is_stmt 0 view .LVU94
+ 302 008c 0223     		movs	r3, #2
+ 303 008e 8DF80430 		strb	r3, [sp, #4]
+ 110:Core/Src/tmc5160.c **** 	}
+ 304              		.loc 1 110 5 is_stmt 1 view .LVU95
+ 305 0092 6846     		mov	r0, sp
+ 306              	.LVL22:
+ 110:Core/Src/tmc5160.c **** 	}
+ 307              		.loc 1 110 5 is_stmt 0 view .LVU96
+ 308 0094 FFF7FEFF 		bl	tmc5160_write
+ 309              	.LVL23:
+ 310 0098 CEE7     		b	.L9
+ 311              	.L13:
+ 312 009a 00BFAFF3 		.align	3
+ 312      0080
+ 313              	.L12:
+ 314 00a0 DEEBFF77 		.word	2013260766
+ 315 00a4 9F5EF63F 		.word	1073110687
+ 316              		.cfi_endproc
+ 317              	.LFE133:
+ 319              		.global	__aeabi_ui2d
+ 320              		.global	__aeabi_d2uiz
+ 321              		.section	.text.tmc5160_velocity,"ax",%progbits
+ 322              		.align	1
+ 323              		.global	tmc5160_velocity
+ 324              		.syntax unified
+ 325              		.thumb
+ 326              		.thumb_func
+ 328              	tmc5160_velocity:
+ 329              	.LVL24:
+ 330              	.LFB135:
+ 162:Core/Src/tmc5160.c **** 	vel *= 1.3981013; //1.3981.. is the time ratio according to "Microstep velocity time reference t f
+ 331              		.loc 1 162 1 is_stmt 1 view -0
+ 332              		.cfi_startproc
+ 333              		@ args = 0, pretend = 0, frame = 8
+ 334              		@ frame_needed = 0, uses_anonymous_args = 0
+ 162:Core/Src/tmc5160.c **** 	vel *= 1.3981013; //1.3981.. is the time ratio according to "Microstep velocity time reference t f
+ 335              		.loc 1 162 1 is_stmt 0 view .LVU98
+ 336 0000 10B5     		push	{r4, lr}
+ 337              	.LCFI8:
+ 338              		.cfi_def_cfa_offset 8
+ 339              		.cfi_offset 4, -8
+ 340              		.cfi_offset 14, -4
+ 341 0002 82B0     		sub	sp, sp, #8
+ 342              	.LCFI9:
+ 343              		.cfi_def_cfa_offset 16
+ 163:Core/Src/tmc5160.c **** 	uint32_t v1;
+ 344              		.loc 1 163 2 is_stmt 1 view .LVU99
+ 163:Core/Src/tmc5160.c **** 	uint32_t v1;
+ 345              		.loc 1 163 6 is_stmt 0 view .LVU100
+ 346 0004 FFF7FEFF 		bl	__aeabi_ui2d
+ 347              	.LVL25:
+ 163:Core/Src/tmc5160.c **** 	uint32_t v1;
+ARM GAS  C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s 			page 13
+
+
+ 348              		.loc 1 163 6 view .LVU101
+ 349 0008 19A3     		adr	r3, .L16
+ 350 000a D3E90023 		ldrd	r2, [r3]
+ 351 000e FFF7FEFF 		bl	__aeabi_dmul
+ 352              	.LVL26:
+ 353 0012 FFF7FEFF 		bl	__aeabi_d2uiz
+ 354              	.LVL27:
+ 355 0016 0446     		mov	r4, r0
+ 356              	.LVL28:
+ 164:Core/Src/tmc5160.c **** 	uint8_t WData[5] = {0};
+ 357              		.loc 1 164 2 is_stmt 1 view .LVU102
+ 165:Core/Src/tmc5160.c **** 
+ 358              		.loc 1 165 2 view .LVU103
+ 165:Core/Src/tmc5160.c **** 
+ 359              		.loc 1 165 10 is_stmt 0 view .LVU104
+ 360 0018 0023     		movs	r3, #0
+ 361 001a 0093     		str	r3, [sp]
+ 362 001c 8DF80430 		strb	r3, [sp, #4]
+ 167:Core/Src/tmc5160.c **** 
+ 363              		.loc 1 167 2 is_stmt 1 view .LVU105
+ 167:Core/Src/tmc5160.c **** 
+ 364              		.loc 1 167 5 is_stmt 0 view .LVU106
+ 365 0020 4308     		lsrs	r3, r0, #1
+ 366              	.LVL29:
+ 170:Core/Src/tmc5160.c **** 	WData[1] = (v1 & 0xFF000000) >> 24;
+ 367              		.loc 1 170 2 is_stmt 1 view .LVU107
+ 170:Core/Src/tmc5160.c **** 	WData[1] = (v1 & 0xFF000000) >> 24;
+ 368              		.loc 1 170 11 is_stmt 0 view .LVU108
+ 369 0022 A522     		movs	r2, #165
+ 370 0024 8DF80020 		strb	r2, [sp]
+ 171:Core/Src/tmc5160.c **** 	WData[2] = (v1 & 0x00FF0000) >> 16;
+ 371              		.loc 1 171 2 is_stmt 1 view .LVU109
+ 171:Core/Src/tmc5160.c **** 	WData[2] = (v1 & 0x00FF0000) >> 16;
+ 372              		.loc 1 171 31 is_stmt 0 view .LVU110
+ 373 0028 420E     		lsrs	r2, r0, #25
+ 171:Core/Src/tmc5160.c **** 	WData[2] = (v1 & 0x00FF0000) >> 16;
+ 374              		.loc 1 171 11 view .LVU111
+ 375 002a 8DF80120 		strb	r2, [sp, #1]
+ 172:Core/Src/tmc5160.c **** 	WData[3] = (v1 & 0x0000FF00) >> 8;
+ 376              		.loc 1 172 2 is_stmt 1 view .LVU112
+ 172:Core/Src/tmc5160.c **** 	WData[3] = (v1 & 0x0000FF00) >> 8;
+ 377              		.loc 1 172 31 is_stmt 0 view .LVU113
+ 378 002e 420C     		lsrs	r2, r0, #17
+ 172:Core/Src/tmc5160.c **** 	WData[3] = (v1 & 0x0000FF00) >> 8;
+ 379              		.loc 1 172 11 view .LVU114
+ 380 0030 8DF80220 		strb	r2, [sp, #2]
+ 173:Core/Src/tmc5160.c **** 	WData[4] = (v1 & 0x000000FF);
+ 381              		.loc 1 173 2 is_stmt 1 view .LVU115
+ 173:Core/Src/tmc5160.c **** 	WData[4] = (v1 & 0x000000FF);
+ 382              		.loc 1 173 31 is_stmt 0 view .LVU116
+ 383 0034 420A     		lsrs	r2, r0, #9
+ 173:Core/Src/tmc5160.c **** 	WData[4] = (v1 & 0x000000FF);
+ 384              		.loc 1 173 11 view .LVU117
+ 385 0036 8DF80320 		strb	r2, [sp, #3]
+ 174:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 386              		.loc 1 174 2 is_stmt 1 view .LVU118
+ 174:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ARM GAS  C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s 			page 14
+
+
+ 387              		.loc 1 174 11 is_stmt 0 view .LVU119
+ 388 003a 8DF80430 		strb	r3, [sp, #4]
+ 175:Core/Src/tmc5160.c **** 
+ 389              		.loc 1 175 2 is_stmt 1 view .LVU120
+ 390 003e 6846     		mov	r0, sp
+ 391              	.LVL30:
+ 175:Core/Src/tmc5160.c **** 
+ 392              		.loc 1 175 2 is_stmt 0 view .LVU121
+ 393 0040 FFF7FEFF 		bl	tmc5160_write
+ 394              	.LVL31:
+ 178:Core/Src/tmc5160.c **** 	WData[1] = (vel & 0xFF000000) >> 24;
+ 395              		.loc 1 178 2 is_stmt 1 view .LVU122
+ 178:Core/Src/tmc5160.c **** 	WData[1] = (vel & 0xFF000000) >> 24;
+ 396              		.loc 1 178 11 is_stmt 0 view .LVU123
+ 397 0044 A723     		movs	r3, #167
+ 398 0046 8DF80030 		strb	r3, [sp]
+ 179:Core/Src/tmc5160.c **** 	WData[2] = (vel & 0x00FF0000) >> 16;
+ 399              		.loc 1 179 2 is_stmt 1 view .LVU124
+ 179:Core/Src/tmc5160.c **** 	WData[2] = (vel & 0x00FF0000) >> 16;
+ 400              		.loc 1 179 32 is_stmt 0 view .LVU125
+ 401 004a 230E     		lsrs	r3, r4, #24
+ 179:Core/Src/tmc5160.c **** 	WData[2] = (vel & 0x00FF0000) >> 16;
+ 402              		.loc 1 179 11 view .LVU126
+ 403 004c 8DF80130 		strb	r3, [sp, #1]
+ 180:Core/Src/tmc5160.c **** 	WData[3] = (vel & 0x0000FF00) >> 8;
+ 404              		.loc 1 180 2 is_stmt 1 view .LVU127
+ 180:Core/Src/tmc5160.c **** 	WData[3] = (vel & 0x0000FF00) >> 8;
+ 405              		.loc 1 180 32 is_stmt 0 view .LVU128
+ 406 0050 230C     		lsrs	r3, r4, #16
+ 180:Core/Src/tmc5160.c **** 	WData[3] = (vel & 0x0000FF00) >> 8;
+ 407              		.loc 1 180 11 view .LVU129
+ 408 0052 8DF80230 		strb	r3, [sp, #2]
+ 181:Core/Src/tmc5160.c **** 	WData[4] = (vel & 0x000000FF);
+ 409              		.loc 1 181 2 is_stmt 1 view .LVU130
+ 181:Core/Src/tmc5160.c **** 	WData[4] = (vel & 0x000000FF);
+ 410              		.loc 1 181 32 is_stmt 0 view .LVU131
+ 411 0056 230A     		lsrs	r3, r4, #8
+ 181:Core/Src/tmc5160.c **** 	WData[4] = (vel & 0x000000FF);
+ 412              		.loc 1 181 11 view .LVU132
+ 413 0058 8DF80330 		strb	r3, [sp, #3]
+ 182:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 414              		.loc 1 182 2 is_stmt 1 view .LVU133
+ 182:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 415              		.loc 1 182 11 is_stmt 0 view .LVU134
+ 416 005c 8DF80440 		strb	r4, [sp, #4]
+ 183:Core/Src/tmc5160.c **** 
+ 417              		.loc 1 183 2 is_stmt 1 view .LVU135
+ 418 0060 6846     		mov	r0, sp
+ 419 0062 FFF7FEFF 		bl	tmc5160_write
+ 420              	.LVL32:
+ 185:Core/Src/tmc5160.c **** 
+ 421              		.loc 1 185 1 is_stmt 0 view .LVU136
+ 422 0066 02B0     		add	sp, sp, #8
+ 423              	.LCFI10:
+ 424              		.cfi_def_cfa_offset 8
+ 425              		@ sp needed
+ 426 0068 10BD     		pop	{r4, pc}
+ARM GAS  C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s 			page 15
+
+
+ 427              	.LVL33:
+ 428              	.L17:
+ 185:Core/Src/tmc5160.c **** 
+ 429              		.loc 1 185 1 view .LVU137
+ 430 006a 00BFAFF3 		.align	3
+ 430      0080
+ 431              	.L16:
+ 432 0070 DEEBFF77 		.word	2013260766
+ 433 0074 9F5EF63F 		.word	1073110687
+ 434              		.cfi_endproc
+ 435              	.LFE135:
+ 437              		.section	.text.tmc5160_set_default_vel,"ax",%progbits
+ 438              		.align	1
+ 439              		.global	tmc5160_set_default_vel
+ 440              		.syntax unified
+ 441              		.thumb
+ 442              		.thumb_func
+ 444              	tmc5160_set_default_vel:
+ 445              	.LFB134:
+ 137:Core/Src/tmc5160.c **** 	uint8_t WData[5] = {0};
+ 446              		.loc 1 137 1 is_stmt 1 view -0
+ 447              		.cfi_startproc
+ 448              		@ args = 0, pretend = 0, frame = 8
+ 449              		@ frame_needed = 0, uses_anonymous_args = 0
+ 450 0000 2DE9F043 		push	{r4, r5, r6, r7, r8, r9, lr}
+ 451              	.LCFI11:
+ 452              		.cfi_def_cfa_offset 28
+ 453              		.cfi_offset 4, -28
+ 454              		.cfi_offset 5, -24
+ 455              		.cfi_offset 6, -20
+ 456              		.cfi_offset 7, -16
+ 457              		.cfi_offset 8, -12
+ 458              		.cfi_offset 9, -8
+ 459              		.cfi_offset 14, -4
+ 460 0004 83B0     		sub	sp, sp, #12
+ 461              	.LCFI12:
+ 462              		.cfi_def_cfa_offset 40
+ 138:Core/Src/tmc5160.c **** 
+ 463              		.loc 1 138 2 view .LVU139
+ 138:Core/Src/tmc5160.c **** 
+ 464              		.loc 1 138 10 is_stmt 0 view .LVU140
+ 465 0006 0024     		movs	r4, #0
+ 466 0008 0094     		str	r4, [sp]
+ 467 000a 8DF80440 		strb	r4, [sp, #4]
+ 140:Core/Src/tmc5160.c **** 
+ 468              		.loc 1 140 2 is_stmt 1 view .LVU141
+ 469 000e 3048     		ldr	r0, .L20
+ 470 0010 FFF7FEFF 		bl	tmc5160_velocity
+ 471              	.LVL34:
+ 142:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 472              		.loc 1 142 2 view .LVU142
+ 142:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 473              		.loc 1 142 11 is_stmt 0 view .LVU143
+ 474 0014 A323     		movs	r3, #163
+ 475 0016 8DF80030 		strb	r3, [sp]
+ 142:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 476              		.loc 1 142 19 is_stmt 1 view .LVU144
+ARM GAS  C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s 			page 16
+
+
+ 142:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 477              		.loc 1 142 28 is_stmt 0 view .LVU145
+ 478 001a 8DF80140 		strb	r4, [sp, #1]
+ 142:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 479              		.loc 1 142 36 is_stmt 1 view .LVU146
+ 142:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 480              		.loc 1 142 45 is_stmt 0 view .LVU147
+ 481 001e 8DF80240 		strb	r4, [sp, #2]
+ 142:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 482              		.loc 1 142 53 is_stmt 1 view .LVU148
+ 142:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 483              		.loc 1 142 62 is_stmt 0 view .LVU149
+ 484 0022 8DF80340 		strb	r4, [sp, #3]
+ 142:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 485              		.loc 1 142 70 is_stmt 1 view .LVU150
+ 142:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 486              		.loc 1 142 79 is_stmt 0 view .LVU151
+ 487 0026 0A25     		movs	r5, #10
+ 488 0028 8DF80450 		strb	r5, [sp, #4]
+ 143:Core/Src/tmc5160.c **** 
+ 489              		.loc 1 143 2 is_stmt 1 view .LVU152
+ 490 002c 6846     		mov	r0, sp
+ 491 002e FFF7FEFF 		bl	tmc5160_write
+ 492              	.LVL35:
+ 145:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 493              		.loc 1 145 2 view .LVU153
+ 145:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 494              		.loc 1 145 11 is_stmt 0 view .LVU154
+ 495 0032 A423     		movs	r3, #164
+ 496 0034 8DF80030 		strb	r3, [sp]
+ 145:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 497              		.loc 1 145 19 is_stmt 1 view .LVU155
+ 145:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 498              		.loc 1 145 28 is_stmt 0 view .LVU156
+ 499 0038 8DF80140 		strb	r4, [sp, #1]
+ 145:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 500              		.loc 1 145 36 is_stmt 1 view .LVU157
+ 145:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 501              		.loc 1 145 45 is_stmt 0 view .LVU158
+ 502 003c 8DF80240 		strb	r4, [sp, #2]
+ 145:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 503              		.loc 1 145 53 is_stmt 1 view .LVU159
+ 145:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 504              		.loc 1 145 62 is_stmt 0 view .LVU160
+ 505 0040 6E27     		movs	r7, #110
+ 506 0042 8DF80370 		strb	r7, [sp, #3]
+ 145:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 507              		.loc 1 145 70 is_stmt 1 view .LVU161
+ 145:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 508              		.loc 1 145 79 is_stmt 0 view .LVU162
+ 509 0046 2026     		movs	r6, #32
+ 510 0048 8DF80460 		strb	r6, [sp, #4]
+ 146:Core/Src/tmc5160.c **** 
+ 511              		.loc 1 146 2 is_stmt 1 view .LVU163
+ 512 004c 6846     		mov	r0, sp
+ 513 004e FFF7FEFF 		bl	tmc5160_write
+ 514              	.LVL36:
+ARM GAS  C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s 			page 17
+
+
+ 148:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 515              		.loc 1 148 2 view .LVU164
+ 148:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 516              		.loc 1 148 11 is_stmt 0 view .LVU165
+ 517 0052 A623     		movs	r3, #166
+ 518 0054 8DF80030 		strb	r3, [sp]
+ 148:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 519              		.loc 1 148 19 is_stmt 1 view .LVU166
+ 148:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 520              		.loc 1 148 28 is_stmt 0 view .LVU167
+ 521 0058 8DF80140 		strb	r4, [sp, #1]
+ 148:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 522              		.loc 1 148 36 is_stmt 1 view .LVU168
+ 148:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 523              		.loc 1 148 45 is_stmt 0 view .LVU169
+ 524 005c 8DF80240 		strb	r4, [sp, #2]
+ 148:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 525              		.loc 1 148 53 is_stmt 1 view .LVU170
+ 148:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 526              		.loc 1 148 62 is_stmt 0 view .LVU171
+ 527 0060 4FF02309 		mov	r9, #35
+ 528 0064 8DF80390 		strb	r9, [sp, #3]
+ 148:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 529              		.loc 1 148 70 is_stmt 1 view .LVU172
+ 148:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 530              		.loc 1 148 79 is_stmt 0 view .LVU173
+ 531 0068 4FF08808 		mov	r8, #136
+ 532 006c 8DF80480 		strb	r8, [sp, #4]
+ 149:Core/Src/tmc5160.c **** 
+ 533              		.loc 1 149 2 is_stmt 1 view .LVU174
+ 534 0070 6846     		mov	r0, sp
+ 535 0072 FFF7FEFF 		bl	tmc5160_write
+ 536              	.LVL37:
+ 151:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 537              		.loc 1 151 2 view .LVU175
+ 151:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 538              		.loc 1 151 11 is_stmt 0 view .LVU176
+ 539 0076 A823     		movs	r3, #168
+ 540 0078 8DF80030 		strb	r3, [sp]
+ 151:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 541              		.loc 1 151 19 is_stmt 1 view .LVU177
+ 151:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 542              		.loc 1 151 28 is_stmt 0 view .LVU178
+ 543 007c 8DF80140 		strb	r4, [sp, #1]
+ 151:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 544              		.loc 1 151 36 is_stmt 1 view .LVU179
+ 151:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 545              		.loc 1 151 45 is_stmt 0 view .LVU180
+ 546 0080 8DF80240 		strb	r4, [sp, #2]
+ 151:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 547              		.loc 1 151 53 is_stmt 1 view .LVU181
+ 151:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 548              		.loc 1 151 62 is_stmt 0 view .LVU182
+ 549 0084 8DF80390 		strb	r9, [sp, #3]
+ 151:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 550              		.loc 1 151 70 is_stmt 1 view .LVU183
+ 151:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ARM GAS  C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s 			page 18
+
+
+ 551              		.loc 1 151 79 is_stmt 0 view .LVU184
+ 552 0088 8DF80480 		strb	r8, [sp, #4]
+ 152:Core/Src/tmc5160.c **** 
+ 553              		.loc 1 152 2 is_stmt 1 view .LVU185
+ 554 008c 6846     		mov	r0, sp
+ 555 008e FFF7FEFF 		bl	tmc5160_write
+ 556              	.LVL38:
+ 154:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 557              		.loc 1 154 2 view .LVU186
+ 154:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 558              		.loc 1 154 11 is_stmt 0 view .LVU187
+ 559 0092 AA23     		movs	r3, #170
+ 560 0094 8DF80030 		strb	r3, [sp]
+ 154:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 561              		.loc 1 154 19 is_stmt 1 view .LVU188
+ 154:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 562              		.loc 1 154 28 is_stmt 0 view .LVU189
+ 563 0098 8DF80140 		strb	r4, [sp, #1]
+ 154:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 564              		.loc 1 154 36 is_stmt 1 view .LVU190
+ 154:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 565              		.loc 1 154 45 is_stmt 0 view .LVU191
+ 566 009c 8DF80240 		strb	r4, [sp, #2]
+ 154:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 567              		.loc 1 154 53 is_stmt 1 view .LVU192
+ 154:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 568              		.loc 1 154 62 is_stmt 0 view .LVU193
+ 569 00a0 8DF80370 		strb	r7, [sp, #3]
+ 154:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 570              		.loc 1 154 70 is_stmt 1 view .LVU194
+ 154:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 571              		.loc 1 154 79 is_stmt 0 view .LVU195
+ 572 00a4 8DF80460 		strb	r6, [sp, #4]
+ 155:Core/Src/tmc5160.c **** 
+ 573              		.loc 1 155 2 is_stmt 1 view .LVU196
+ 574 00a8 6846     		mov	r0, sp
+ 575 00aa FFF7FEFF 		bl	tmc5160_write
+ 576              	.LVL39:
+ 157:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 577              		.loc 1 157 2 view .LVU197
+ 157:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 578              		.loc 1 157 11 is_stmt 0 view .LVU198
+ 579 00ae AB23     		movs	r3, #171
+ 580 00b0 8DF80030 		strb	r3, [sp]
+ 157:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 581              		.loc 1 157 19 is_stmt 1 view .LVU199
+ 157:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 582              		.loc 1 157 28 is_stmt 0 view .LVU200
+ 583 00b4 8DF80140 		strb	r4, [sp, #1]
+ 157:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 584              		.loc 1 157 36 is_stmt 1 view .LVU201
+ 157:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 585              		.loc 1 157 45 is_stmt 0 view .LVU202
+ 586 00b8 8DF80240 		strb	r4, [sp, #2]
+ 157:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 587              		.loc 1 157 53 is_stmt 1 view .LVU203
+ 157:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ARM GAS  C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s 			page 19
+
+
+ 588              		.loc 1 157 62 is_stmt 0 view .LVU204
+ 589 00bc 8DF80340 		strb	r4, [sp, #3]
+ 157:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 590              		.loc 1 157 70 is_stmt 1 view .LVU205
+ 157:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 591              		.loc 1 157 79 is_stmt 0 view .LVU206
+ 592 00c0 8DF80450 		strb	r5, [sp, #4]
+ 158:Core/Src/tmc5160.c **** }
+ 593              		.loc 1 158 2 is_stmt 1 view .LVU207
+ 594 00c4 6846     		mov	r0, sp
+ 595 00c6 FFF7FEFF 		bl	tmc5160_write
+ 596              	.LVL40:
+ 159:Core/Src/tmc5160.c **** 
+ 597              		.loc 1 159 1 is_stmt 0 view .LVU208
+ 598 00ca 03B0     		add	sp, sp, #12
+ 599              	.LCFI13:
+ 600              		.cfi_def_cfa_offset 28
+ 601              		@ sp needed
+ 602 00cc BDE8F083 		pop	{r4, r5, r6, r7, r8, r9, pc}
+ 603              	.L21:
+ 604              		.align	2
+ 605              	.L20:
+ 606 00d0 40420F00 		.word	1000000
+ 607              		.cfi_endproc
+ 608              	.LFE134:
+ 610              		.section	.text.tmc5160_acceleration,"ax",%progbits
+ 611              		.align	1
+ 612              		.global	tmc5160_acceleration
+ 613              		.syntax unified
+ 614              		.thumb
+ 615              		.thumb_func
+ 617              	tmc5160_acceleration:
+ 618              	.LVL41:
+ 619              	.LFB137:
+ 207:Core/Src/tmc5160.c **** 	uint8_t WData[5] = {0};
+ 620              		.loc 1 207 1 is_stmt 1 view -0
+ 621              		.cfi_startproc
+ 622              		@ args = 0, pretend = 0, frame = 8
+ 623              		@ frame_needed = 0, uses_anonymous_args = 0
+ 207:Core/Src/tmc5160.c **** 	uint8_t WData[5] = {0};
+ 624              		.loc 1 207 1 is_stmt 0 view .LVU210
+ 625 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 626              	.LCFI14:
+ 627              		.cfi_def_cfa_offset 20
+ 628              		.cfi_offset 4, -20
+ 629              		.cfi_offset 5, -16
+ 630              		.cfi_offset 6, -12
+ 631              		.cfi_offset 7, -8
+ 632              		.cfi_offset 14, -4
+ 633 0002 83B0     		sub	sp, sp, #12
+ 634              	.LCFI15:
+ 635              		.cfi_def_cfa_offset 32
+ 208:Core/Src/tmc5160.c **** 	uint8_t Tk = 65; //time constant. Acceleration equals steps/Tk see ref on p. 81 of datasheet
+ 636              		.loc 1 208 2 is_stmt 1 view .LVU211
+ 208:Core/Src/tmc5160.c **** 	uint8_t Tk = 65; //time constant. Acceleration equals steps/Tk see ref on p. 81 of datasheet
+ 637              		.loc 1 208 10 is_stmt 0 view .LVU212
+ 638 0004 0026     		movs	r6, #0
+ARM GAS  C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s 			page 20
+
+
+ 639 0006 0096     		str	r6, [sp]
+ 640 0008 8DF80460 		strb	r6, [sp, #4]
+ 209:Core/Src/tmc5160.c **** 	acc = acc / Tk;
+ 641              		.loc 1 209 2 is_stmt 1 view .LVU213
+ 642              	.LVL42:
+ 210:Core/Src/tmc5160.c **** 
+ 643              		.loc 1 210 2 view .LVU214
+ 210:Core/Src/tmc5160.c **** 
+ 644              		.loc 1 210 6 is_stmt 0 view .LVU215
+ 645 000c 234B     		ldr	r3, .L24
+ 646 000e A3FB0034 		umull	r3, r4, r3, r0
+ 647 0012 A509     		lsrs	r5, r4, #6
+ 648              	.LVL43:
+ 212:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 649              		.loc 1 212 2 is_stmt 1 view .LVU216
+ 212:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 650              		.loc 1 212 11 is_stmt 0 view .LVU217
+ 651 0014 A323     		movs	r3, #163
+ 652 0016 8DF80030 		strb	r3, [sp]
+ 212:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 653              		.loc 1 212 19 is_stmt 1 view .LVU218
+ 212:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 654              		.loc 1 212 36 view .LVU219
+ 212:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 655              		.loc 1 212 53 view .LVU220
+ 212:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 656              		.loc 1 212 70 view .LVU221
+ 212:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 657              		.loc 1 212 79 is_stmt 0 view .LVU222
+ 658 001a 0A27     		movs	r7, #10
+ 659 001c 8DF80470 		strb	r7, [sp, #4]
+ 213:Core/Src/tmc5160.c **** 
+ 660              		.loc 1 213 2 is_stmt 1 view .LVU223
+ 661 0020 6846     		mov	r0, sp
+ 662 0022 FFF7FEFF 		bl	tmc5160_write
+ 663              	.LVL44:
+ 216:Core/Src/tmc5160.c **** 	WData[3] = (acc & 0x0000FF00) >> 8;
+ 664              		.loc 1 216 2 view .LVU224
+ 216:Core/Src/tmc5160.c **** 	WData[3] = (acc & 0x0000FF00) >> 8;
+ 665              		.loc 1 216 11 is_stmt 0 view .LVU225
+ 666 0026 A423     		movs	r3, #164
+ 667 0028 8DF80030 		strb	r3, [sp]
+ 217:Core/Src/tmc5160.c **** 	WData[4] = (acc & 0x000000FF);
+ 668              		.loc 1 217 2 is_stmt 1 view .LVU226
+ 217:Core/Src/tmc5160.c **** 	WData[4] = (acc & 0x000000FF);
+ 669              		.loc 1 217 11 is_stmt 0 view .LVU227
+ 670 002c C4F38734 		ubfx	r4, r4, #14, #8
+ 671 0030 8DF80340 		strb	r4, [sp, #3]
+ 218:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 672              		.loc 1 218 2 is_stmt 1 view .LVU228
+ 218:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 673              		.loc 1 218 11 is_stmt 0 view .LVU229
+ 674 0034 EDB2     		uxtb	r5, r5
+ 675              	.LVL45:
+ 218:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 676              		.loc 1 218 11 view .LVU230
+ 677 0036 8DF80450 		strb	r5, [sp, #4]
+ARM GAS  C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s 			page 21
+
+
+ 219:Core/Src/tmc5160.c **** 
+ 678              		.loc 1 219 2 is_stmt 1 view .LVU231
+ 679 003a 6846     		mov	r0, sp
+ 680 003c FFF7FEFF 		bl	tmc5160_write
+ 681              	.LVL46:
+ 222:Core/Src/tmc5160.c **** 	WData[3] = (acc & 0x0000FF00) >> 8;
+ 682              		.loc 1 222 2 view .LVU232
+ 222:Core/Src/tmc5160.c **** 	WData[3] = (acc & 0x0000FF00) >> 8;
+ 683              		.loc 1 222 11 is_stmt 0 view .LVU233
+ 684 0040 A623     		movs	r3, #166
+ 685 0042 8DF80030 		strb	r3, [sp]
+ 223:Core/Src/tmc5160.c **** 	WData[4] = (acc & 0x000000FF);
+ 686              		.loc 1 223 2 is_stmt 1 view .LVU234
+ 223:Core/Src/tmc5160.c **** 	WData[4] = (acc & 0x000000FF);
+ 687              		.loc 1 223 11 is_stmt 0 view .LVU235
+ 688 0046 8DF80340 		strb	r4, [sp, #3]
+ 224:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 689              		.loc 1 224 2 is_stmt 1 view .LVU236
+ 224:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 690              		.loc 1 224 11 is_stmt 0 view .LVU237
+ 691 004a 8DF80450 		strb	r5, [sp, #4]
+ 225:Core/Src/tmc5160.c **** 
+ 692              		.loc 1 225 2 is_stmt 1 view .LVU238
+ 693 004e 6846     		mov	r0, sp
+ 694 0050 FFF7FEFF 		bl	tmc5160_write
+ 695              	.LVL47:
+ 228:Core/Src/tmc5160.c **** 	WData[3] = (acc & 0x0000FF00) >> 8;
+ 696              		.loc 1 228 2 view .LVU239
+ 228:Core/Src/tmc5160.c **** 	WData[3] = (acc & 0x0000FF00) >> 8;
+ 697              		.loc 1 228 11 is_stmt 0 view .LVU240
+ 698 0054 A823     		movs	r3, #168
+ 699 0056 8DF80030 		strb	r3, [sp]
+ 229:Core/Src/tmc5160.c **** 	WData[4] = (acc & 0x000000FF);
+ 700              		.loc 1 229 2 is_stmt 1 view .LVU241
+ 229:Core/Src/tmc5160.c **** 	WData[4] = (acc & 0x000000FF);
+ 701              		.loc 1 229 11 is_stmt 0 view .LVU242
+ 702 005a 8DF80340 		strb	r4, [sp, #3]
+ 230:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 703              		.loc 1 230 2 is_stmt 1 view .LVU243
+ 230:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 704              		.loc 1 230 11 is_stmt 0 view .LVU244
+ 705 005e 8DF80450 		strb	r5, [sp, #4]
+ 231:Core/Src/tmc5160.c **** 
+ 706              		.loc 1 231 2 is_stmt 1 view .LVU245
+ 707 0062 6846     		mov	r0, sp
+ 708 0064 FFF7FEFF 		bl	tmc5160_write
+ 709              	.LVL48:
+ 234:Core/Src/tmc5160.c **** 	WData[3] = (acc & 0x0000FF00) >> 8;
+ 710              		.loc 1 234 2 view .LVU246
+ 234:Core/Src/tmc5160.c **** 	WData[3] = (acc & 0x0000FF00) >> 8;
+ 711              		.loc 1 234 11 is_stmt 0 view .LVU247
+ 712 0068 AA23     		movs	r3, #170
+ 713 006a 8DF80030 		strb	r3, [sp]
+ 235:Core/Src/tmc5160.c **** 	WData[4] = (acc & 0x000000FF);
+ 714              		.loc 1 235 2 is_stmt 1 view .LVU248
+ 235:Core/Src/tmc5160.c **** 	WData[4] = (acc & 0x000000FF);
+ 715              		.loc 1 235 11 is_stmt 0 view .LVU249
+ARM GAS  C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s 			page 22
+
+
+ 716 006e 8DF80340 		strb	r4, [sp, #3]
+ 236:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 717              		.loc 1 236 2 is_stmt 1 view .LVU250
+ 236:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 718              		.loc 1 236 11 is_stmt 0 view .LVU251
+ 719 0072 8DF80450 		strb	r5, [sp, #4]
+ 237:Core/Src/tmc5160.c **** 
+ 720              		.loc 1 237 2 is_stmt 1 view .LVU252
+ 721 0076 6846     		mov	r0, sp
+ 722 0078 FFF7FEFF 		bl	tmc5160_write
+ 723              	.LVL49:
+ 239:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 724              		.loc 1 239 2 view .LVU253
+ 239:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 725              		.loc 1 239 11 is_stmt 0 view .LVU254
+ 726 007c AB23     		movs	r3, #171
+ 727 007e 8DF80030 		strb	r3, [sp]
+ 239:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 728              		.loc 1 239 19 is_stmt 1 view .LVU255
+ 239:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 729              		.loc 1 239 28 is_stmt 0 view .LVU256
+ 730 0082 8DF80160 		strb	r6, [sp, #1]
+ 239:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 731              		.loc 1 239 36 is_stmt 1 view .LVU257
+ 239:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 732              		.loc 1 239 45 is_stmt 0 view .LVU258
+ 733 0086 8DF80260 		strb	r6, [sp, #2]
+ 239:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 734              		.loc 1 239 53 is_stmt 1 view .LVU259
+ 239:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 735              		.loc 1 239 62 is_stmt 0 view .LVU260
+ 736 008a 8DF80360 		strb	r6, [sp, #3]
+ 239:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 737              		.loc 1 239 70 is_stmt 1 view .LVU261
+ 239:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 738              		.loc 1 239 79 is_stmt 0 view .LVU262
+ 739 008e 8DF80470 		strb	r7, [sp, #4]
+ 240:Core/Src/tmc5160.c **** }
+ 740              		.loc 1 240 2 is_stmt 1 view .LVU263
+ 741 0092 6846     		mov	r0, sp
+ 742 0094 FFF7FEFF 		bl	tmc5160_write
+ 743              	.LVL50:
+ 241:Core/Src/tmc5160.c **** 
+ 744              		.loc 1 241 1 is_stmt 0 view .LVU264
+ 745 0098 03B0     		add	sp, sp, #12
+ 746              	.LCFI16:
+ 747              		.cfi_def_cfa_offset 20
+ 748              		@ sp needed
+ 749 009a F0BD     		pop	{r4, r5, r6, r7, pc}
+ 750              	.L25:
+ 751              		.align	2
+ 752              	.L24:
+ 753 009c FDC00FFC 		.word	-66076419
+ 754              		.cfi_endproc
+ 755              	.LFE137:
+ 757              		.section	.text.tmc5160_read,"ax",%progbits
+ 758              		.align	1
+ARM GAS  C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s 			page 23
+
+
+ 759              		.global	tmc5160_read
+ 760              		.syntax unified
+ 761              		.thumb
+ 762              		.thumb_func
+ 764              	tmc5160_read:
+ 765              	.LVL51:
+ 766              	.LFB139:
+ 250:Core/Src/tmc5160.c **** 
+ 251:Core/Src/tmc5160.c **** 
+ 252:Core/Src/tmc5160.c **** void tmc5160_read(uint8_t* WData, uint8_t* RData)
+ 253:Core/Src/tmc5160.c **** {
+ 767              		.loc 1 253 1 is_stmt 1 view -0
+ 768              		.cfi_startproc
+ 769              		@ args = 0, pretend = 0, frame = 0
+ 770              		@ frame_needed = 0, uses_anonymous_args = 0
+ 771              		.loc 1 253 1 is_stmt 0 view .LVU266
+ 772 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 773              	.LCFI17:
+ 774              		.cfi_def_cfa_offset 20
+ 775              		.cfi_offset 4, -20
+ 776              		.cfi_offset 5, -16
+ 777              		.cfi_offset 6, -12
+ 778              		.cfi_offset 7, -8
+ 779              		.cfi_offset 14, -4
+ 780 0002 83B0     		sub	sp, sp, #12
+ 781              	.LCFI18:
+ 782              		.cfi_def_cfa_offset 32
+ 783 0004 0446     		mov	r4, r0
+ 784 0006 0D46     		mov	r5, r1
+ 254:Core/Src/tmc5160.c **** 	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_RESET); //CS LOW
+ 785              		.loc 1 254 2 is_stmt 1 view .LVU267
+ 786 0008 0022     		movs	r2, #0
+ 787 000a 1021     		movs	r1, #16
+ 788              	.LVL52:
+ 789              		.loc 1 254 2 is_stmt 0 view .LVU268
+ 790 000c 4FF09040 		mov	r0, #1207959552
+ 791              	.LVL53:
+ 792              		.loc 1 254 2 view .LVU269
+ 793 0010 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 794              	.LVL54:
+ 255:Core/Src/tmc5160.c **** 	HAL_SPI_TransmitReceive(&_STEPPER_MOTOR_DRIVER_SPI, WData, RData, 5, HAL_MAX_DELAY);
+ 795              		.loc 1 255 2 is_stmt 1 view .LVU270
+ 796 0014 124E     		ldr	r6, .L28
+ 797 0016 4FF0FF37 		mov	r7, #-1
+ 798 001a 0097     		str	r7, [sp]
+ 799 001c 0523     		movs	r3, #5
+ 800 001e 2A46     		mov	r2, r5
+ 801 0020 2146     		mov	r1, r4
+ 802 0022 3046     		mov	r0, r6
+ 803 0024 FFF7FEFF 		bl	HAL_SPI_TransmitReceive
+ 804              	.LVL55:
+ 256:Core/Src/tmc5160.c **** 	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_SET); //CS HIGH
+ 805              		.loc 1 256 2 view .LVU271
+ 806 0028 0122     		movs	r2, #1
+ 807 002a 1021     		movs	r1, #16
+ 808 002c 4FF09040 		mov	r0, #1207959552
+ 809 0030 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ARM GAS  C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s 			page 24
+
+
+ 810              	.LVL56:
+ 257:Core/Src/tmc5160.c **** 
+ 258:Core/Src/tmc5160.c **** 	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_RESET); //CS LOW
+ 811              		.loc 1 258 2 view .LVU272
+ 812 0034 0022     		movs	r2, #0
+ 813 0036 1021     		movs	r1, #16
+ 814 0038 4FF09040 		mov	r0, #1207959552
+ 815 003c FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 816              	.LVL57:
+ 259:Core/Src/tmc5160.c **** 	HAL_SPI_TransmitReceive(&_STEPPER_MOTOR_DRIVER_SPI, WData, RData, 5, HAL_MAX_DELAY);
+ 817              		.loc 1 259 2 view .LVU273
+ 818 0040 0097     		str	r7, [sp]
+ 819 0042 0523     		movs	r3, #5
+ 820 0044 2A46     		mov	r2, r5
+ 821 0046 2146     		mov	r1, r4
+ 822 0048 3046     		mov	r0, r6
+ 823 004a FFF7FEFF 		bl	HAL_SPI_TransmitReceive
+ 824              	.LVL58:
+ 260:Core/Src/tmc5160.c **** 	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_SET); //CS HIGH
+ 825              		.loc 1 260 2 view .LVU274
+ 826 004e 0122     		movs	r2, #1
+ 827 0050 1021     		movs	r1, #16
+ 828 0052 4FF09040 		mov	r0, #1207959552
+ 829 0056 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 830              	.LVL59:
+ 261:Core/Src/tmc5160.c **** }
+ 831              		.loc 1 261 1 is_stmt 0 view .LVU275
+ 832 005a 03B0     		add	sp, sp, #12
+ 833              	.LCFI19:
+ 834              		.cfi_def_cfa_offset 20
+ 835              		@ sp needed
+ 836 005c F0BD     		pop	{r4, r5, r6, r7, pc}
+ 837              	.LVL60:
+ 838              	.L29:
+ 839              		.loc 1 261 1 view .LVU276
+ 840 005e 00BF     		.align	2
+ 841              	.L28:
+ 842 0060 00000000 		.word	hspi1
+ 843              		.cfi_endproc
+ 844              	.LFE139:
+ 846              		.section	.text.tmc5160_position_read,"ax",%progbits
+ 847              		.align	1
+ 848              		.global	tmc5160_position_read
+ 849              		.syntax unified
+ 850              		.thumb
+ 851              		.thumb_func
+ 853              	tmc5160_position_read:
+ 854              	.LFB140:
+ 262:Core/Src/tmc5160.c **** 
+ 263:Core/Src/tmc5160.c **** 
+ 264:Core/Src/tmc5160.c **** int32_t tmc5160_position_read()
+ 265:Core/Src/tmc5160.c **** {
+ 855              		.loc 1 265 1 is_stmt 1 view -0
+ 856              		.cfi_startproc
+ 857              		@ args = 0, pretend = 0, frame = 16
+ 858              		@ frame_needed = 0, uses_anonymous_args = 0
+ 859 0000 00B5     		push	{lr}
+ARM GAS  C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s 			page 25
+
+
+ 860              	.LCFI20:
+ 861              		.cfi_def_cfa_offset 4
+ 862              		.cfi_offset 14, -4
+ 863 0002 85B0     		sub	sp, sp, #20
+ 864              	.LCFI21:
+ 865              		.cfi_def_cfa_offset 24
+ 266:Core/Src/tmc5160.c **** 	uint8_t WData[5] = {0};
+ 866              		.loc 1 266 2 view .LVU278
+ 867              		.loc 1 266 10 is_stmt 0 view .LVU279
+ 868 0004 0023     		movs	r3, #0
+ 869 0006 0293     		str	r3, [sp, #8]
+ 870 0008 8DF80C30 		strb	r3, [sp, #12]
+ 267:Core/Src/tmc5160.c **** 	uint8_t RData[5] = {0};
+ 871              		.loc 1 267 2 is_stmt 1 view .LVU280
+ 872              		.loc 1 267 10 is_stmt 0 view .LVU281
+ 873 000c 0093     		str	r3, [sp]
+ 874 000e 8DF80430 		strb	r3, [sp, #4]
+ 268:Core/Src/tmc5160.c **** 	WData[0] = 0x21; //XACTUAL register address
+ 875              		.loc 1 268 2 is_stmt 1 view .LVU282
+ 876              		.loc 1 268 11 is_stmt 0 view .LVU283
+ 877 0012 2123     		movs	r3, #33
+ 878 0014 8DF80830 		strb	r3, [sp, #8]
+ 269:Core/Src/tmc5160.c **** 	tmc5160_read(WData, RData);
+ 879              		.loc 1 269 2 is_stmt 1 view .LVU284
+ 880 0018 6946     		mov	r1, sp
+ 881 001a 02A8     		add	r0, sp, #8
+ 882 001c FFF7FEFF 		bl	tmc5160_read
+ 883              	.LVL61:
+ 270:Core/Src/tmc5160.c **** 
+ 271:Core/Src/tmc5160.c **** 	int32_t response = 0;
+ 884              		.loc 1 271 2 view .LVU285
+ 272:Core/Src/tmc5160.c **** 
+ 273:Core/Src/tmc5160.c ****     response |= (RData[1]);
+ 885              		.loc 1 273 5 view .LVU286
+ 886              		.loc 1 273 23 is_stmt 0 view .LVU287
+ 887 0020 9DF80130 		ldrb	r3, [sp, #1]	@ zero_extendqisi2
+ 888              	.LVL62:
+ 274:Core/Src/tmc5160.c ****     response <<= 8;
+ 889              		.loc 1 274 5 is_stmt 1 view .LVU288
+ 275:Core/Src/tmc5160.c ****     response |= (RData[2]);
+ 890              		.loc 1 275 5 view .LVU289
+ 891              		.loc 1 275 23 is_stmt 0 view .LVU290
+ 892 0024 9DF80220 		ldrb	r2, [sp, #2]	@ zero_extendqisi2
+ 893              		.loc 1 275 14 view .LVU291
+ 894 0028 42EA0322 		orr	r2, r2, r3, lsl #8
+ 895              	.LVL63:
+ 276:Core/Src/tmc5160.c ****     response <<= 8;
+ 896              		.loc 1 276 5 is_stmt 1 view .LVU292
+ 277:Core/Src/tmc5160.c ****     response |= (RData[3]);
+ 897              		.loc 1 277 5 view .LVU293
+ 898              		.loc 1 277 23 is_stmt 0 view .LVU294
+ 899 002c 9DF80330 		ldrb	r3, [sp, #3]	@ zero_extendqisi2
+ 900              		.loc 1 277 14 view .LVU295
+ 901 0030 43EA0223 		orr	r3, r3, r2, lsl #8
+ 902              	.LVL64:
+ 278:Core/Src/tmc5160.c ****     response <<= 8;
+ 903              		.loc 1 278 5 is_stmt 1 view .LVU296
+ARM GAS  C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s 			page 26
+
+
+ 279:Core/Src/tmc5160.c ****     response |= (RData[4]);
+ 904              		.loc 1 279 5 view .LVU297
+ 905              		.loc 1 279 23 is_stmt 0 view .LVU298
+ 906 0034 9DF80400 		ldrb	r0, [sp, #4]	@ zero_extendqisi2
+ 907              	.LVL65:
+ 280:Core/Src/tmc5160.c **** 
+ 281:Core/Src/tmc5160.c **** 	return response;
+ 908              		.loc 1 281 2 is_stmt 1 view .LVU299
+ 282:Core/Src/tmc5160.c **** }
+ 909              		.loc 1 282 1 is_stmt 0 view .LVU300
+ 910 0038 40EA0320 		orr	r0, r0, r3, lsl #8
+ 911              	.LVL66:
+ 912              		.loc 1 282 1 view .LVU301
+ 913 003c 05B0     		add	sp, sp, #20
+ 914              	.LCFI22:
+ 915              		.cfi_def_cfa_offset 4
+ 916              		@ sp needed
+ 917 003e 5DF804FB 		ldr	pc, [sp], #4
+ 918              		.cfi_endproc
+ 919              	.LFE140:
+ 921              		.global	__aeabi_ddiv
+ 922              		.section	.text.tmc5160_velocity_read,"ax",%progbits
+ 923              		.align	1
+ 924              		.global	tmc5160_velocity_read
+ 925              		.syntax unified
+ 926              		.thumb
+ 927              		.thumb_func
+ 929              	tmc5160_velocity_read:
+ 930              	.LFB141:
+ 283:Core/Src/tmc5160.c **** 
+ 284:Core/Src/tmc5160.c **** int32_t tmc5160_velocity_read()
+ 285:Core/Src/tmc5160.c **** {
+ 931              		.loc 1 285 1 is_stmt 1 view -0
+ 932              		.cfi_startproc
+ 933              		@ args = 0, pretend = 0, frame = 16
+ 934              		@ frame_needed = 0, uses_anonymous_args = 0
+ 935 0000 00B5     		push	{lr}
+ 936              	.LCFI23:
+ 937              		.cfi_def_cfa_offset 4
+ 938              		.cfi_offset 14, -4
+ 939 0002 85B0     		sub	sp, sp, #20
+ 940              	.LCFI24:
+ 941              		.cfi_def_cfa_offset 24
+ 286:Core/Src/tmc5160.c **** 	uint8_t WData[5] = {0};
+ 942              		.loc 1 286 2 view .LVU303
+ 943              		.loc 1 286 10 is_stmt 0 view .LVU304
+ 944 0004 0023     		movs	r3, #0
+ 945 0006 0293     		str	r3, [sp, #8]
+ 946 0008 8DF80C30 		strb	r3, [sp, #12]
+ 287:Core/Src/tmc5160.c **** 	uint8_t RData[5] = {0};
+ 947              		.loc 1 287 2 is_stmt 1 view .LVU305
+ 948              		.loc 1 287 10 is_stmt 0 view .LVU306
+ 949 000c 0093     		str	r3, [sp]
+ 950 000e 8DF80430 		strb	r3, [sp, #4]
+ 288:Core/Src/tmc5160.c **** 	WData[0] = 0x22; //VACTUAL register address
+ 951              		.loc 1 288 2 is_stmt 1 view .LVU307
+ 952              		.loc 1 288 11 is_stmt 0 view .LVU308
+ARM GAS  C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s 			page 27
+
+
+ 953 0012 2223     		movs	r3, #34
+ 954 0014 8DF80830 		strb	r3, [sp, #8]
+ 289:Core/Src/tmc5160.c **** 	tmc5160_read(WData, RData);
+ 955              		.loc 1 289 2 is_stmt 1 view .LVU309
+ 956 0018 6946     		mov	r1, sp
+ 957 001a 02A8     		add	r0, sp, #8
+ 958 001c FFF7FEFF 		bl	tmc5160_read
+ 959              	.LVL67:
+ 290:Core/Src/tmc5160.c **** 
+ 291:Core/Src/tmc5160.c **** 	int32_t response = 0;
+ 960              		.loc 1 291 2 view .LVU310
+ 292:Core/Src/tmc5160.c **** 
+ 293:Core/Src/tmc5160.c ****     response |= (RData[1] & 0xFF);
+ 961              		.loc 1 293 5 view .LVU311
+ 962              		.loc 1 293 23 is_stmt 0 view .LVU312
+ 963 0020 9DF80130 		ldrb	r3, [sp, #1]	@ zero_extendqisi2
+ 964              	.LVL68:
+ 294:Core/Src/tmc5160.c ****     response <<= 8;
+ 965              		.loc 1 294 5 is_stmt 1 view .LVU313
+ 295:Core/Src/tmc5160.c ****     response |= (RData[2] & 0xFF);
+ 966              		.loc 1 295 5 view .LVU314
+ 967              		.loc 1 295 23 is_stmt 0 view .LVU315
+ 968 0024 9DF80220 		ldrb	r2, [sp, #2]	@ zero_extendqisi2
+ 969              		.loc 1 295 14 view .LVU316
+ 970 0028 42EA0322 		orr	r2, r2, r3, lsl #8
+ 971              	.LVL69:
+ 296:Core/Src/tmc5160.c ****     response <<= 8;
+ 972              		.loc 1 296 5 is_stmt 1 view .LVU317
+ 297:Core/Src/tmc5160.c ****     response |= (RData[3] & 0xFF);
+ 973              		.loc 1 297 5 view .LVU318
+ 974              		.loc 1 297 23 is_stmt 0 view .LVU319
+ 975 002c 9DF80330 		ldrb	r3, [sp, #3]	@ zero_extendqisi2
+ 976              		.loc 1 297 14 view .LVU320
+ 977 0030 43EA0223 		orr	r3, r3, r2, lsl #8
+ 978              	.LVL70:
+ 298:Core/Src/tmc5160.c ****     response <<= 8;
+ 979              		.loc 1 298 5 is_stmt 1 view .LVU321
+ 299:Core/Src/tmc5160.c ****     response |= (RData[4] & 0xFF);
+ 980              		.loc 1 299 5 view .LVU322
+ 981              		.loc 1 299 23 is_stmt 0 view .LVU323
+ 982 0034 9DF80400 		ldrb	r0, [sp, #4]	@ zero_extendqisi2
+ 983              	.LVL71:
+ 300:Core/Src/tmc5160.c **** 
+ 301:Core/Src/tmc5160.c ****     int32_t rv = 0;
+ 984              		.loc 1 301 5 is_stmt 1 view .LVU324
+ 302:Core/Src/tmc5160.c ****     rv = sign_extend_bits_to_32(response, 24);
+ 985              		.loc 1 302 5 view .LVU325
+ 986              		.loc 1 302 10 is_stmt 0 view .LVU326
+ 987 0038 1821     		movs	r1, #24
+ 988 003a 40EA0320 		orr	r0, r0, r3, lsl #8
+ 989              	.LVL72:
+ 990              		.loc 1 302 10 view .LVU327
+ 991 003e FFF7FEFF 		bl	sign_extend_bits_to_32
+ 992              	.LVL73:
+ 303:Core/Src/tmc5160.c **** 
+ 304:Core/Src/tmc5160.c **** 	return (rv / 1.3981013); //1.3981.. is the time ratio according to "Microstep velocity time refere
+ 993              		.loc 1 304 2 is_stmt 1 view .LVU328
+ARM GAS  C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s 			page 28
+
+
+ 994              		.loc 1 304 13 is_stmt 0 view .LVU329
+ 995 0042 FFF7FEFF 		bl	__aeabi_i2d
+ 996              	.LVL74:
+ 997              		.loc 1 304 13 view .LVU330
+ 998 0046 06A3     		adr	r3, .L34
+ 999 0048 D3E90023 		ldrd	r2, [r3]
+ 1000 004c FFF7FEFF 		bl	__aeabi_ddiv
+ 1001              	.LVL75:
+ 1002 0050 FFF7FEFF 		bl	__aeabi_d2iz
+ 1003              	.LVL76:
+ 305:Core/Src/tmc5160.c **** }
+ 1004              		.loc 1 305 1 view .LVU331
+ 1005 0054 05B0     		add	sp, sp, #20
+ 1006              	.LCFI25:
+ 1007              		.cfi_def_cfa_offset 4
+ 1008              		@ sp needed
+ 1009 0056 5DF804FB 		ldr	pc, [sp], #4
+ 1010              	.L35:
+ 1011 005a 00BFAFF3 		.align	3
+ 1011      0080
+ 1012              	.L34:
+ 1013 0060 DEEBFF77 		.word	2013260766
+ 1014 0064 9F5EF63F 		.word	1073110687
+ 1015              		.cfi_endproc
+ 1016              	.LFE141:
+ 1018              		.section	.text.tmc5160_init,"ax",%progbits
+ 1019              		.align	1
+ 1020              		.global	tmc5160_init
+ 1021              		.syntax unified
+ 1022              		.thumb
+ 1023              		.thumb_func
+ 1025              	tmc5160_init:
+ 1026              	.LFB142:
+ 306:Core/Src/tmc5160.c **** 
+ 307:Core/Src/tmc5160.c **** void tmc5160_init()
+ 308:Core/Src/tmc5160.c **** {
+ 1027              		.loc 1 308 1 is_stmt 1 view -0
+ 1028              		.cfi_startproc
+ 1029              		@ args = 0, pretend = 0, frame = 8
+ 1030              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1031 0000 2DE9F043 		push	{r4, r5, r6, r7, r8, r9, lr}
+ 1032              	.LCFI26:
+ 1033              		.cfi_def_cfa_offset 28
+ 1034              		.cfi_offset 4, -28
+ 1035              		.cfi_offset 5, -24
+ 1036              		.cfi_offset 6, -20
+ 1037              		.cfi_offset 7, -16
+ 1038              		.cfi_offset 8, -12
+ 1039              		.cfi_offset 9, -8
+ 1040              		.cfi_offset 14, -4
+ 1041 0004 83B0     		sub	sp, sp, #12
+ 1042              	.LCFI27:
+ 1043              		.cfi_def_cfa_offset 40
+ 309:Core/Src/tmc5160.c **** 	HAL_GPIO_WritePin(GPIOC, GPIO_PIN_5, GPIO_PIN_RESET); //DRV SLEEP 0 for power on, 1 for power off
+ 1044              		.loc 1 309 2 view .LVU333
+ 1045 0006 0022     		movs	r2, #0
+ 1046 0008 2021     		movs	r1, #32
+ARM GAS  C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s 			page 29
+
+
+ 1047 000a 7148     		ldr	r0, .L38
+ 1048 000c FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 1049              	.LVL77:
+ 310:Core/Src/tmc5160.c **** 	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_11, GPIO_PIN_SET); //SPI_MODE ON
+ 1050              		.loc 1 310 2 view .LVU334
+ 1051 0010 0122     		movs	r2, #1
+ 1052 0012 4FF40061 		mov	r1, #2048
+ 1053 0016 4FF09040 		mov	r0, #1207959552
+ 1054 001a FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 1055              	.LVL78:
+ 311:Core/Src/tmc5160.c **** 	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_12, GPIO_PIN_RESET); //SD_MODE OFF INTERNAL RAMP GENERATOR ON
+ 1056              		.loc 1 311 2 view .LVU335
+ 1057 001e 0022     		movs	r2, #0
+ 1058 0020 4FF48051 		mov	r1, #4096
+ 1059 0024 4FF09040 		mov	r0, #1207959552
+ 1060 0028 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 1061              	.LVL79:
+ 312:Core/Src/tmc5160.c **** 
+ 313:Core/Src/tmc5160.c **** 	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_SET); //CS HIGH
+ 1062              		.loc 1 313 2 view .LVU336
+ 1063 002c 0122     		movs	r2, #1
+ 1064 002e 1021     		movs	r1, #16
+ 1065 0030 4FF09040 		mov	r0, #1207959552
+ 1066 0034 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 1067              	.LVL80:
+ 314:Core/Src/tmc5160.c **** 
+ 315:Core/Src/tmc5160.c **** 	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9, GPIO_PIN_RESET); //DIR
+ 1068              		.loc 1 315 2 view .LVU337
+ 1069 0038 0022     		movs	r2, #0
+ 1070 003a 4FF40071 		mov	r1, #512
+ 1071 003e 4FF09040 		mov	r0, #1207959552
+ 1072 0042 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 1073              	.LVL81:
+ 316:Core/Src/tmc5160.c **** 	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, GPIO_PIN_RESET); //STEP
+ 1074              		.loc 1 316 2 view .LVU338
+ 1075 0046 0022     		movs	r2, #0
+ 1076 0048 4FF48071 		mov	r1, #256
+ 1077 004c 4FF09040 		mov	r0, #1207959552
+ 1078 0050 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 1079              	.LVL82:
+ 317:Core/Src/tmc5160.c **** 	HAL_Delay(100);
+ 1080              		.loc 1 317 2 view .LVU339
+ 1081 0054 6420     		movs	r0, #100
+ 1082 0056 FFF7FEFF 		bl	HAL_Delay
+ 1083              	.LVL83:
+ 318:Core/Src/tmc5160.c **** 
+ 319:Core/Src/tmc5160.c **** 	uint8_t WData[5] = {0};
+ 1084              		.loc 1 319 2 view .LVU340
+ 1085              		.loc 1 319 10 is_stmt 0 view .LVU341
+ 1086 005a 0024     		movs	r4, #0
+ 1087 005c 0094     		str	r4, [sp]
+ 1088 005e 8DF80440 		strb	r4, [sp, #4]
+ 320:Core/Src/tmc5160.c **** 
+ 321:Core/Src/tmc5160.c **** 	WData[0] = 0xEC; WData[1] = 0x00; WData[2] = 0x00; WData[3] = 0x00; WData[4] = 0xC3; // CHOPCONF: 
+ 1089              		.loc 1 321 2 is_stmt 1 view .LVU342
+ 1090              		.loc 1 321 11 is_stmt 0 view .LVU343
+ 1091 0062 EC23     		movs	r3, #236
+ARM GAS  C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s 			page 30
+
+
+ 1092 0064 8DF80030 		strb	r3, [sp]
+ 1093              		.loc 1 321 19 is_stmt 1 view .LVU344
+ 1094              		.loc 1 321 36 view .LVU345
+ 1095              		.loc 1 321 53 view .LVU346
+ 1096              		.loc 1 321 70 view .LVU347
+ 1097              		.loc 1 321 79 is_stmt 0 view .LVU348
+ 1098 0068 C323     		movs	r3, #195
+ 1099 006a 8DF80430 		strb	r3, [sp, #4]
+ 322:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 1100              		.loc 1 322 2 is_stmt 1 view .LVU349
+ 1101 006e 6846     		mov	r0, sp
+ 1102 0070 FFF7FEFF 		bl	tmc5160_write
+ 1103              	.LVL84:
+ 323:Core/Src/tmc5160.c **** 
+ 324:Core/Src/tmc5160.c **** 	WData[0] = 0x90; WData[1] = 0x00; WData[2] = 0x00; WData[3] = 0x01; WData[4] = 0x01; //  IHOLDDELA
+ 1104              		.loc 1 324 2 view .LVU350
+ 1105              		.loc 1 324 11 is_stmt 0 view .LVU351
+ 1106 0074 9023     		movs	r3, #144
+ 1107 0076 8DF80030 		strb	r3, [sp]
+ 1108              		.loc 1 324 19 is_stmt 1 view .LVU352
+ 1109              		.loc 1 324 28 is_stmt 0 view .LVU353
+ 1110 007a 8DF80140 		strb	r4, [sp, #1]
+ 1111              		.loc 1 324 36 is_stmt 1 view .LVU354
+ 1112              		.loc 1 324 45 is_stmt 0 view .LVU355
+ 1113 007e 8DF80240 		strb	r4, [sp, #2]
+ 1114              		.loc 1 324 53 is_stmt 1 view .LVU356
+ 1115              		.loc 1 324 62 is_stmt 0 view .LVU357
+ 1116 0082 0123     		movs	r3, #1
+ 1117 0084 8DF80330 		strb	r3, [sp, #3]
+ 1118              		.loc 1 324 70 is_stmt 1 view .LVU358
+ 1119              		.loc 1 324 79 is_stmt 0 view .LVU359
+ 1120 0088 8DF80430 		strb	r3, [sp, #4]
+ 325:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 1121              		.loc 1 325 2 is_stmt 1 view .LVU360
+ 1122 008c 6846     		mov	r0, sp
+ 1123 008e FFF7FEFF 		bl	tmc5160_write
+ 1124              	.LVL85:
+ 326:Core/Src/tmc5160.c **** 
+ 327:Core/Src/tmc5160.c **** 	WData[0] = 0x91; WData[1] = 0x00; WData[2] = 0x00; WData[3] = 0x00; WData[4] = 0x0A; // TPOWERDOWN
+ 1125              		.loc 1 327 2 view .LVU361
+ 1126              		.loc 1 327 11 is_stmt 0 view .LVU362
+ 1127 0092 9123     		movs	r3, #145
+ 1128 0094 8DF80030 		strb	r3, [sp]
+ 1129              		.loc 1 327 19 is_stmt 1 view .LVU363
+ 1130              		.loc 1 327 28 is_stmt 0 view .LVU364
+ 1131 0098 8DF80140 		strb	r4, [sp, #1]
+ 1132              		.loc 1 327 36 is_stmt 1 view .LVU365
+ 1133              		.loc 1 327 45 is_stmt 0 view .LVU366
+ 1134 009c 8DF80240 		strb	r4, [sp, #2]
+ 1135              		.loc 1 327 53 is_stmt 1 view .LVU367
+ 1136              		.loc 1 327 62 is_stmt 0 view .LVU368
+ 1137 00a0 8DF80340 		strb	r4, [sp, #3]
+ 1138              		.loc 1 327 70 is_stmt 1 view .LVU369
+ 1139              		.loc 1 327 79 is_stmt 0 view .LVU370
+ 1140 00a4 0A25     		movs	r5, #10
+ 1141 00a6 8DF80450 		strb	r5, [sp, #4]
+ 328:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ARM GAS  C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s 			page 31
+
+
+ 1142              		.loc 1 328 2 is_stmt 1 view .LVU371
+ 1143 00aa 6846     		mov	r0, sp
+ 1144 00ac FFF7FEFF 		bl	tmc5160_write
+ 1145              	.LVL86:
+ 329:Core/Src/tmc5160.c **** 
+ 330:Core/Src/tmc5160.c **** 	WData[0] = 0x80; WData[1] = 0x00; WData[2] = 0x00; WData[3] = 0x00; WData[4] = 0x04; // EN_PWM_MOD
+ 1146              		.loc 1 330 2 view .LVU372
+ 1147              		.loc 1 330 11 is_stmt 0 view .LVU373
+ 1148 00b0 8023     		movs	r3, #128
+ 1149 00b2 8DF80030 		strb	r3, [sp]
+ 1150              		.loc 1 330 19 is_stmt 1 view .LVU374
+ 1151              		.loc 1 330 28 is_stmt 0 view .LVU375
+ 1152 00b6 8DF80140 		strb	r4, [sp, #1]
+ 1153              		.loc 1 330 36 is_stmt 1 view .LVU376
+ 1154              		.loc 1 330 45 is_stmt 0 view .LVU377
+ 1155 00ba 8DF80240 		strb	r4, [sp, #2]
+ 1156              		.loc 1 330 53 is_stmt 1 view .LVU378
+ 1157              		.loc 1 330 62 is_stmt 0 view .LVU379
+ 1158 00be 8DF80340 		strb	r4, [sp, #3]
+ 1159              		.loc 1 330 70 is_stmt 1 view .LVU380
+ 1160              		.loc 1 330 79 is_stmt 0 view .LVU381
+ 1161 00c2 0423     		movs	r3, #4
+ 1162 00c4 8DF80430 		strb	r3, [sp, #4]
+ 331:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 1163              		.loc 1 331 2 is_stmt 1 view .LVU382
+ 1164 00c8 6846     		mov	r0, sp
+ 1165 00ca FFF7FEFF 		bl	tmc5160_write
+ 1166              	.LVL87:
+ 332:Core/Src/tmc5160.c **** 
+ 333:Core/Src/tmc5160.c **** 	tmc5160_velocity(1000000); //initial vel config
+ 1167              		.loc 1 333 2 view .LVU383
+ 1168 00ce 4148     		ldr	r0, .L38+4
+ 1169 00d0 FFF7FEFF 		bl	tmc5160_velocity
+ 1170              	.LVL88:
+ 334:Core/Src/tmc5160.c **** 
+ 335:Core/Src/tmc5160.c **** 	WData[0] = 0x93; WData[1] = 0x00; WData[2] = 0x00; WData[3] = 0x00; WData[4] = 0xC8; // TPWM_THRS=
+ 1171              		.loc 1 335 2 view .LVU384
+ 1172              		.loc 1 335 11 is_stmt 0 view .LVU385
+ 1173 00d4 9323     		movs	r3, #147
+ 1174 00d6 8DF80030 		strb	r3, [sp]
+ 1175              		.loc 1 335 19 is_stmt 1 view .LVU386
+ 1176              		.loc 1 335 28 is_stmt 0 view .LVU387
+ 1177 00da 8DF80140 		strb	r4, [sp, #1]
+ 1178              		.loc 1 335 36 is_stmt 1 view .LVU388
+ 1179              		.loc 1 335 45 is_stmt 0 view .LVU389
+ 1180 00de 8DF80240 		strb	r4, [sp, #2]
+ 1181              		.loc 1 335 53 is_stmt 1 view .LVU390
+ 1182              		.loc 1 335 62 is_stmt 0 view .LVU391
+ 1183 00e2 8DF80340 		strb	r4, [sp, #3]
+ 1184              		.loc 1 335 70 is_stmt 1 view .LVU392
+ 1185              		.loc 1 335 79 is_stmt 0 view .LVU393
+ 1186 00e6 C823     		movs	r3, #200
+ 1187 00e8 8DF80430 		strb	r3, [sp, #4]
+ 336:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 1188              		.loc 1 336 2 is_stmt 1 view .LVU394
+ 1189 00ec 6846     		mov	r0, sp
+ 1190 00ee FFF7FEFF 		bl	tmc5160_write
+ARM GAS  C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s 			page 32
+
+
+ 1191              	.LVL89:
+ 337:Core/Src/tmc5160.c **** 
+ 338:Core/Src/tmc5160.c **** 	WData[0] = 0xA0; WData[1] = 0x00; WData[2] = 0x00; WData[3] = 0x00; WData[4] = 0x00; //SPI send: 0
+ 1192              		.loc 1 338 2 view .LVU395
+ 1193              		.loc 1 338 11 is_stmt 0 view .LVU396
+ 1194 00f2 A023     		movs	r3, #160
+ 1195 00f4 8DF80030 		strb	r3, [sp]
+ 1196              		.loc 1 338 19 is_stmt 1 view .LVU397
+ 1197              		.loc 1 338 28 is_stmt 0 view .LVU398
+ 1198 00f8 8DF80140 		strb	r4, [sp, #1]
+ 1199              		.loc 1 338 36 is_stmt 1 view .LVU399
+ 1200              		.loc 1 338 45 is_stmt 0 view .LVU400
+ 1201 00fc 8DF80240 		strb	r4, [sp, #2]
+ 1202              		.loc 1 338 53 is_stmt 1 view .LVU401
+ 1203              		.loc 1 338 62 is_stmt 0 view .LVU402
+ 1204 0100 8DF80340 		strb	r4, [sp, #3]
+ 1205              		.loc 1 338 70 is_stmt 1 view .LVU403
+ 1206              		.loc 1 338 79 is_stmt 0 view .LVU404
+ 1207 0104 8DF80440 		strb	r4, [sp, #4]
+ 339:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 1208              		.loc 1 339 2 is_stmt 1 view .LVU405
+ 1209 0108 6846     		mov	r0, sp
+ 1210 010a FFF7FEFF 		bl	tmc5160_write
+ 1211              	.LVL90:
+ 340:Core/Src/tmc5160.c **** 
+ 341:Core/Src/tmc5160.c **** 	WData[0] = 0xA3; WData[1] = 0x00; WData[2] = 0x00; WData[3] = 0x00; WData[4] = 0x0A; // Start acce
+ 1212              		.loc 1 341 2 view .LVU406
+ 1213              		.loc 1 341 11 is_stmt 0 view .LVU407
+ 1214 010e A323     		movs	r3, #163
+ 1215 0110 8DF80030 		strb	r3, [sp]
+ 1216              		.loc 1 341 19 is_stmt 1 view .LVU408
+ 1217              		.loc 1 341 28 is_stmt 0 view .LVU409
+ 1218 0114 8DF80140 		strb	r4, [sp, #1]
+ 1219              		.loc 1 341 36 is_stmt 1 view .LVU410
+ 1220              		.loc 1 341 45 is_stmt 0 view .LVU411
+ 1221 0118 8DF80240 		strb	r4, [sp, #2]
+ 1222              		.loc 1 341 53 is_stmt 1 view .LVU412
+ 1223              		.loc 1 341 62 is_stmt 0 view .LVU413
+ 1224 011c 8DF80340 		strb	r4, [sp, #3]
+ 1225              		.loc 1 341 70 is_stmt 1 view .LVU414
+ 1226              		.loc 1 341 79 is_stmt 0 view .LVU415
+ 1227 0120 8DF80450 		strb	r5, [sp, #4]
+ 342:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 1228              		.loc 1 342 2 is_stmt 1 view .LVU416
+ 1229 0124 6846     		mov	r0, sp
+ 1230 0126 FFF7FEFF 		bl	tmc5160_write
+ 1231              	.LVL91:
+ 343:Core/Src/tmc5160.c **** 
+ 344:Core/Src/tmc5160.c **** 	WData[0] = 0xA4; WData[1] = 0x00; WData[2] = 0x00; WData[3] = 0x6e; WData[4] = 0x20; // A1 = 10 00
+ 1232              		.loc 1 344 2 view .LVU417
+ 1233              		.loc 1 344 11 is_stmt 0 view .LVU418
+ 1234 012a A423     		movs	r3, #164
+ 1235 012c 8DF80030 		strb	r3, [sp]
+ 1236              		.loc 1 344 19 is_stmt 1 view .LVU419
+ 1237              		.loc 1 344 28 is_stmt 0 view .LVU420
+ 1238 0130 8DF80140 		strb	r4, [sp, #1]
+ 1239              		.loc 1 344 36 is_stmt 1 view .LVU421
+ARM GAS  C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s 			page 33
+
+
+ 1240              		.loc 1 344 45 is_stmt 0 view .LVU422
+ 1241 0134 8DF80240 		strb	r4, [sp, #2]
+ 1242              		.loc 1 344 53 is_stmt 1 view .LVU423
+ 1243              		.loc 1 344 62 is_stmt 0 view .LVU424
+ 1244 0138 6E27     		movs	r7, #110
+ 1245 013a 8DF80370 		strb	r7, [sp, #3]
+ 1246              		.loc 1 344 70 is_stmt 1 view .LVU425
+ 1247              		.loc 1 344 79 is_stmt 0 view .LVU426
+ 1248 013e 2026     		movs	r6, #32
+ 1249 0140 8DF80460 		strb	r6, [sp, #4]
+ 345:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 1250              		.loc 1 345 2 is_stmt 1 view .LVU427
+ 1251 0144 6846     		mov	r0, sp
+ 1252 0146 FFF7FEFF 		bl	tmc5160_write
+ 1253              	.LVL92:
+ 346:Core/Src/tmc5160.c **** 
+ 347:Core/Src/tmc5160.c **** 	WData[0] = 0xA6; WData[1] = 0x00; WData[2] = 0x00; WData[3] = 0x23; WData[4] = 0x88; // AMAX = 5 0
+ 1254              		.loc 1 347 2 view .LVU428
+ 1255              		.loc 1 347 11 is_stmt 0 view .LVU429
+ 1256 014a A623     		movs	r3, #166
+ 1257 014c 8DF80030 		strb	r3, [sp]
+ 1258              		.loc 1 347 19 is_stmt 1 view .LVU430
+ 1259              		.loc 1 347 28 is_stmt 0 view .LVU431
+ 1260 0150 8DF80140 		strb	r4, [sp, #1]
+ 1261              		.loc 1 347 36 is_stmt 1 view .LVU432
+ 1262              		.loc 1 347 45 is_stmt 0 view .LVU433
+ 1263 0154 8DF80240 		strb	r4, [sp, #2]
+ 1264              		.loc 1 347 53 is_stmt 1 view .LVU434
+ 1265              		.loc 1 347 62 is_stmt 0 view .LVU435
+ 1266 0158 4FF02309 		mov	r9, #35
+ 1267 015c 8DF80390 		strb	r9, [sp, #3]
+ 1268              		.loc 1 347 70 is_stmt 1 view .LVU436
+ 1269              		.loc 1 347 79 is_stmt 0 view .LVU437
+ 1270 0160 4FF08808 		mov	r8, #136
+ 1271 0164 8DF80480 		strb	r8, [sp, #4]
+ 348:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 1272              		.loc 1 348 2 is_stmt 1 view .LVU438
+ 1273 0168 6846     		mov	r0, sp
+ 1274 016a FFF7FEFF 		bl	tmc5160_write
+ 1275              	.LVL93:
+ 349:Core/Src/tmc5160.c **** 
+ 350:Core/Src/tmc5160.c **** 	WData[0] = 0xA8; WData[1] = 0x00; WData[2] = 0x00; WData[3] = 0x23; WData[4] = 0x88; // DMAX = 5 0
+ 1276              		.loc 1 350 2 view .LVU439
+ 1277              		.loc 1 350 11 is_stmt 0 view .LVU440
+ 1278 016e A823     		movs	r3, #168
+ 1279 0170 8DF80030 		strb	r3, [sp]
+ 1280              		.loc 1 350 19 is_stmt 1 view .LVU441
+ 1281              		.loc 1 350 28 is_stmt 0 view .LVU442
+ 1282 0174 8DF80140 		strb	r4, [sp, #1]
+ 1283              		.loc 1 350 36 is_stmt 1 view .LVU443
+ 1284              		.loc 1 350 45 is_stmt 0 view .LVU444
+ 1285 0178 8DF80240 		strb	r4, [sp, #2]
+ 1286              		.loc 1 350 53 is_stmt 1 view .LVU445
+ 1287              		.loc 1 350 62 is_stmt 0 view .LVU446
+ 1288 017c 8DF80390 		strb	r9, [sp, #3]
+ 1289              		.loc 1 350 70 is_stmt 1 view .LVU447
+ 1290              		.loc 1 350 79 is_stmt 0 view .LVU448
+ARM GAS  C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s 			page 34
+
+
+ 1291 0180 8DF80480 		strb	r8, [sp, #4]
+ 351:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 1292              		.loc 1 351 2 is_stmt 1 view .LVU449
+ 1293 0184 6846     		mov	r0, sp
+ 1294 0186 FFF7FEFF 		bl	tmc5160_write
+ 1295              	.LVL94:
+ 352:Core/Src/tmc5160.c **** 
+ 353:Core/Src/tmc5160.c **** 	WData[0] = 0xAA; WData[1] = 0x00; WData[2] = 0x00; WData[3] = 0x6e; WData[4] = 0x20; // D1 = 10 00
+ 1296              		.loc 1 353 2 view .LVU450
+ 1297              		.loc 1 353 11 is_stmt 0 view .LVU451
+ 1298 018a AA23     		movs	r3, #170
+ 1299 018c 8DF80030 		strb	r3, [sp]
+ 1300              		.loc 1 353 19 is_stmt 1 view .LVU452
+ 1301              		.loc 1 353 28 is_stmt 0 view .LVU453
+ 1302 0190 8DF80140 		strb	r4, [sp, #1]
+ 1303              		.loc 1 353 36 is_stmt 1 view .LVU454
+ 1304              		.loc 1 353 45 is_stmt 0 view .LVU455
+ 1305 0194 8DF80240 		strb	r4, [sp, #2]
+ 1306              		.loc 1 353 53 is_stmt 1 view .LVU456
+ 1307              		.loc 1 353 62 is_stmt 0 view .LVU457
+ 1308 0198 8DF80370 		strb	r7, [sp, #3]
+ 1309              		.loc 1 353 70 is_stmt 1 view .LVU458
+ 1310              		.loc 1 353 79 is_stmt 0 view .LVU459
+ 1311 019c 8DF80460 		strb	r6, [sp, #4]
+ 354:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 1312              		.loc 1 354 2 is_stmt 1 view .LVU460
+ 1313 01a0 6846     		mov	r0, sp
+ 1314 01a2 FFF7FEFF 		bl	tmc5160_write
+ 1315              	.LVL95:
+ 355:Core/Src/tmc5160.c **** 
+ 356:Core/Src/tmc5160.c **** 	WData[0] = 0xAB; WData[1] = 0x00; WData[2] = 0x00; WData[3] = 0x00; WData[4] = 0x0A; // VSTOP = 10
+ 1316              		.loc 1 356 2 view .LVU461
+ 1317              		.loc 1 356 11 is_stmt 0 view .LVU462
+ 1318 01a6 AB23     		movs	r3, #171
+ 1319 01a8 8DF80030 		strb	r3, [sp]
+ 1320              		.loc 1 356 19 is_stmt 1 view .LVU463
+ 1321              		.loc 1 356 28 is_stmt 0 view .LVU464
+ 1322 01ac 8DF80140 		strb	r4, [sp, #1]
+ 1323              		.loc 1 356 36 is_stmt 1 view .LVU465
+ 1324              		.loc 1 356 45 is_stmt 0 view .LVU466
+ 1325 01b0 8DF80240 		strb	r4, [sp, #2]
+ 1326              		.loc 1 356 53 is_stmt 1 view .LVU467
+ 1327              		.loc 1 356 62 is_stmt 0 view .LVU468
+ 1328 01b4 8DF80340 		strb	r4, [sp, #3]
+ 1329              		.loc 1 356 70 is_stmt 1 view .LVU469
+ 1330              		.loc 1 356 79 is_stmt 0 view .LVU470
+ 1331 01b8 8DF80450 		strb	r5, [sp, #4]
+ 357:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 1332              		.loc 1 357 2 is_stmt 1 view .LVU471
+ 1333 01bc 6846     		mov	r0, sp
+ 1334 01be FFF7FEFF 		bl	tmc5160_write
+ 1335              	.LVL96:
+ 358:Core/Src/tmc5160.c **** 
+ 359:Core/Src/tmc5160.c **** 	HAL_Delay(100);
+ 1336              		.loc 1 359 2 view .LVU472
+ 1337 01c2 6420     		movs	r0, #100
+ 1338 01c4 FFF7FEFF 		bl	HAL_Delay
+ARM GAS  C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s 			page 35
+
+
+ 1339              	.LVL97:
+ 360:Core/Src/tmc5160.c **** }
+ 1340              		.loc 1 360 1 is_stmt 0 view .LVU473
+ 1341 01c8 03B0     		add	sp, sp, #12
+ 1342              	.LCFI28:
+ 1343              		.cfi_def_cfa_offset 28
+ 1344              		@ sp needed
+ 1345 01ca BDE8F083 		pop	{r4, r5, r6, r7, r8, r9, pc}
+ 1346              	.L39:
+ 1347 01ce 00BF     		.align	2
+ 1348              	.L38:
+ 1349 01d0 00080048 		.word	1207961600
+ 1350 01d4 40420F00 		.word	1000000
+ 1351              		.cfi_endproc
+ 1352              	.LFE142:
+ 1354              		.section	.text.tmc5160_set_motor_direction,"ax",%progbits
+ 1355              		.align	1
+ 1356              		.global	tmc5160_set_motor_direction
+ 1357              		.syntax unified
+ 1358              		.thumb
+ 1359              		.thumb_func
+ 1361              	tmc5160_set_motor_direction:
+ 1362              	.LVL98:
+ 1363              	.LFB143:
+ 361:Core/Src/tmc5160.c **** 
+ 362:Core/Src/tmc5160.c **** 
+ 363:Core/Src/tmc5160.c **** void tmc5160_set_motor_direction(int8_t dir)
+ 364:Core/Src/tmc5160.c **** {
+ 1364              		.loc 1 364 1 is_stmt 1 view -0
+ 1365              		.cfi_startproc
+ 1366              		@ args = 0, pretend = 0, frame = 8
+ 1367              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1368              		.loc 1 364 1 is_stmt 0 view .LVU475
+ 1369 0000 00B5     		push	{lr}
+ 1370              	.LCFI29:
+ 1371              		.cfi_def_cfa_offset 4
+ 1372              		.cfi_offset 14, -4
+ 1373 0002 83B0     		sub	sp, sp, #12
+ 1374              	.LCFI30:
+ 1375              		.cfi_def_cfa_offset 16
+ 365:Core/Src/tmc5160.c **** 	if(dir < 0)
+ 1376              		.loc 1 365 2 is_stmt 1 view .LVU476
+ 1377              		.loc 1 365 4 is_stmt 0 view .LVU477
+ 1378 0004 0028     		cmp	r0, #0
+ 1379 0006 0FDB     		blt	.L44
+ 1380              	.LBB2:
+ 366:Core/Src/tmc5160.c **** 	{
+ 367:Core/Src/tmc5160.c **** 	  uint8_t WData[5] = {0};
+ 368:Core/Src/tmc5160.c **** 	  WData[0] = 0x80; WData[1] = 0x00; WData[2] = 0x00; WData[3] = 0x00; WData[4] = 0x14; // EN_PWM_M
+ 369:Core/Src/tmc5160.c **** 	  tmc5160_write(WData);
+ 370:Core/Src/tmc5160.c **** 	}
+ 371:Core/Src/tmc5160.c **** 	else
+ 372:Core/Src/tmc5160.c **** 	{
+ 373:Core/Src/tmc5160.c **** 	  uint8_t WData[5] = {0};
+ 1381              		.loc 1 373 4 is_stmt 1 view .LVU478
+ 1382              		.loc 1 373 12 is_stmt 0 view .LVU479
+ 1383 0008 0023     		movs	r3, #0
+ARM GAS  C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s 			page 36
+
+
+ 1384 000a 0093     		str	r3, [sp]
+ 1385 000c 8DF80430 		strb	r3, [sp, #4]
+ 374:Core/Src/tmc5160.c **** 	  WData[0] = 0x80; WData[1] = 0x00; WData[2] = 0x00; WData[3] = 0x00; WData[4] = 0x04; // EN_PWM_M
+ 1386              		.loc 1 374 4 is_stmt 1 view .LVU480
+ 1387              		.loc 1 374 13 is_stmt 0 view .LVU481
+ 1388 0010 8023     		movs	r3, #128
+ 1389 0012 8DF80030 		strb	r3, [sp]
+ 1390              		.loc 1 374 21 is_stmt 1 view .LVU482
+ 1391              		.loc 1 374 38 view .LVU483
+ 1392              		.loc 1 374 55 view .LVU484
+ 1393              		.loc 1 374 72 view .LVU485
+ 1394              		.loc 1 374 81 is_stmt 0 view .LVU486
+ 1395 0016 0423     		movs	r3, #4
+ 1396 0018 8DF80430 		strb	r3, [sp, #4]
+ 375:Core/Src/tmc5160.c **** 	  tmc5160_write(WData);
+ 1397              		.loc 1 375 4 is_stmt 1 view .LVU487
+ 1398 001c 6846     		mov	r0, sp
+ 1399              	.LVL99:
+ 1400              		.loc 1 375 4 is_stmt 0 view .LVU488
+ 1401 001e FFF7FEFF 		bl	tmc5160_write
+ 1402              	.LVL100:
+ 1403              	.L40:
+ 1404              	.LBE2:
+ 376:Core/Src/tmc5160.c **** 	}
+ 377:Core/Src/tmc5160.c **** }
+ 1405              		.loc 1 377 1 view .LVU489
+ 1406 0022 03B0     		add	sp, sp, #12
+ 1407              	.LCFI31:
+ 1408              		.cfi_remember_state
+ 1409              		.cfi_def_cfa_offset 4
+ 1410              		@ sp needed
+ 1411 0024 5DF804FB 		ldr	pc, [sp], #4
+ 1412              	.LVL101:
+ 1413              	.L44:
+ 1414              	.LCFI32:
+ 1415              		.cfi_restore_state
+ 1416              	.LBB3:
+ 367:Core/Src/tmc5160.c **** 	  WData[0] = 0x80; WData[1] = 0x00; WData[2] = 0x00; WData[3] = 0x00; WData[4] = 0x14; // EN_PWM_M
+ 1417              		.loc 1 367 4 is_stmt 1 view .LVU490
+ 367:Core/Src/tmc5160.c **** 	  WData[0] = 0x80; WData[1] = 0x00; WData[2] = 0x00; WData[3] = 0x00; WData[4] = 0x14; // EN_PWM_M
+ 1418              		.loc 1 367 12 is_stmt 0 view .LVU491
+ 1419 0028 0023     		movs	r3, #0
+ 1420 002a 0093     		str	r3, [sp]
+ 1421 002c 8DF80430 		strb	r3, [sp, #4]
+ 368:Core/Src/tmc5160.c **** 	  tmc5160_write(WData);
+ 1422              		.loc 1 368 4 is_stmt 1 view .LVU492
+ 368:Core/Src/tmc5160.c **** 	  tmc5160_write(WData);
+ 1423              		.loc 1 368 13 is_stmt 0 view .LVU493
+ 1424 0030 8023     		movs	r3, #128
+ 1425 0032 8DF80030 		strb	r3, [sp]
+ 368:Core/Src/tmc5160.c **** 	  tmc5160_write(WData);
+ 1426              		.loc 1 368 21 is_stmt 1 view .LVU494
+ 368:Core/Src/tmc5160.c **** 	  tmc5160_write(WData);
+ 1427              		.loc 1 368 38 view .LVU495
+ 368:Core/Src/tmc5160.c **** 	  tmc5160_write(WData);
+ 1428              		.loc 1 368 55 view .LVU496
+ 368:Core/Src/tmc5160.c **** 	  tmc5160_write(WData);
+ARM GAS  C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s 			page 37
+
+
+ 1429              		.loc 1 368 72 view .LVU497
+ 368:Core/Src/tmc5160.c **** 	  tmc5160_write(WData);
+ 1430              		.loc 1 368 81 is_stmt 0 view .LVU498
+ 1431 0036 1423     		movs	r3, #20
+ 1432 0038 8DF80430 		strb	r3, [sp, #4]
+ 369:Core/Src/tmc5160.c **** 	}
+ 1433              		.loc 1 369 4 is_stmt 1 view .LVU499
+ 1434 003c 6846     		mov	r0, sp
+ 1435              	.LVL102:
+ 369:Core/Src/tmc5160.c **** 	}
+ 1436              		.loc 1 369 4 is_stmt 0 view .LVU500
+ 1437 003e FFF7FEFF 		bl	tmc5160_write
+ 1438              	.LVL103:
+ 1439              	.LBE3:
+ 1440 0042 EEE7     		b	.L40
+ 1441              		.cfi_endproc
+ 1442              	.LFE143:
+ 1444              		.section	.text.tmc5160_set_zero,"ax",%progbits
+ 1445              		.align	1
+ 1446              		.global	tmc5160_set_zero
+ 1447              		.syntax unified
+ 1448              		.thumb
+ 1449              		.thumb_func
+ 1451              	tmc5160_set_zero:
+ 1452              	.LFB144:
+ 378:Core/Src/tmc5160.c **** 
+ 379:Core/Src/tmc5160.c **** void tmc5160_set_zero()
+ 380:Core/Src/tmc5160.c **** {
+ 1453              		.loc 1 380 1 is_stmt 1 view -0
+ 1454              		.cfi_startproc
+ 1455              		@ args = 0, pretend = 0, frame = 8
+ 1456              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1457 0000 10B5     		push	{r4, lr}
+ 1458              	.LCFI33:
+ 1459              		.cfi_def_cfa_offset 8
+ 1460              		.cfi_offset 4, -8
+ 1461              		.cfi_offset 14, -4
+ 1462 0002 82B0     		sub	sp, sp, #8
+ 1463              	.LCFI34:
+ 1464              		.cfi_def_cfa_offset 16
+ 381:Core/Src/tmc5160.c **** 	uint8_t WData[5] = {0};
+ 1465              		.loc 1 381 2 view .LVU502
+ 1466              		.loc 1 381 10 is_stmt 0 view .LVU503
+ 1467 0004 0024     		movs	r4, #0
+ 1468 0006 0094     		str	r4, [sp]
+ 1469 0008 8DF80440 		strb	r4, [sp, #4]
+ 382:Core/Src/tmc5160.c **** 	uint32_t pos = 0;
+ 1470              		.loc 1 382 2 is_stmt 1 view .LVU504
+ 1471              	.LVL104:
+ 383:Core/Src/tmc5160.c **** 	//tmc5160_stop();
+ 384:Core/Src/tmc5160.c **** 	pos = tmc5160_position_read();
+ 1472              		.loc 1 384 2 view .LVU505
+ 1473              		.loc 1 384 8 is_stmt 0 view .LVU506
+ 1474 000c FFF7FEFF 		bl	tmc5160_position_read
+ 1475              	.LVL105:
+ 385:Core/Src/tmc5160.c **** 	WData[0] = 0xA0; WData[1] = 0x00; WData[2] = 0x00; WData[3] = 0x00; WData[4] = 0x03; // RAMPMODE =
+ 1476              		.loc 1 385 2 is_stmt 1 view .LVU507
+ARM GAS  C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s 			page 38
+
+
+ 1477              		.loc 1 385 11 is_stmt 0 view .LVU508
+ 1478 0010 A023     		movs	r3, #160
+ 1479 0012 8DF80030 		strb	r3, [sp]
+ 1480              		.loc 1 385 19 is_stmt 1 view .LVU509
+ 1481              		.loc 1 385 28 is_stmt 0 view .LVU510
+ 1482 0016 8DF80140 		strb	r4, [sp, #1]
+ 1483              		.loc 1 385 36 is_stmt 1 view .LVU511
+ 1484              		.loc 1 385 45 is_stmt 0 view .LVU512
+ 1485 001a 8DF80240 		strb	r4, [sp, #2]
+ 1486              		.loc 1 385 53 is_stmt 1 view .LVU513
+ 1487              		.loc 1 385 62 is_stmt 0 view .LVU514
+ 1488 001e 8DF80340 		strb	r4, [sp, #3]
+ 1489              		.loc 1 385 70 is_stmt 1 view .LVU515
+ 1490              		.loc 1 385 79 is_stmt 0 view .LVU516
+ 1491 0022 0323     		movs	r3, #3
+ 1492 0024 8DF80430 		strb	r3, [sp, #4]
+ 386:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 1493              		.loc 1 386 2 is_stmt 1 view .LVU517
+ 1494 0028 6846     		mov	r0, sp
+ 1495 002a FFF7FEFF 		bl	tmc5160_write
+ 1496              	.LVL106:
+ 387:Core/Src/tmc5160.c **** 
+ 388:Core/Src/tmc5160.c **** 	WData[0] = 0xA1; WData[1] = 0x00; WData[2] = 0x00; WData[3] = 0x00; WData[4] = 0x00; // Set zero
+ 1497              		.loc 1 388 2 view .LVU518
+ 1498              		.loc 1 388 11 is_stmt 0 view .LVU519
+ 1499 002e A123     		movs	r3, #161
+ 1500 0030 8DF80030 		strb	r3, [sp]
+ 1501              		.loc 1 388 19 is_stmt 1 view .LVU520
+ 1502              		.loc 1 388 28 is_stmt 0 view .LVU521
+ 1503 0034 8DF80140 		strb	r4, [sp, #1]
+ 1504              		.loc 1 388 36 is_stmt 1 view .LVU522
+ 1505              		.loc 1 388 45 is_stmt 0 view .LVU523
+ 1506 0038 8DF80240 		strb	r4, [sp, #2]
+ 1507              		.loc 1 388 53 is_stmt 1 view .LVU524
+ 1508              		.loc 1 388 62 is_stmt 0 view .LVU525
+ 1509 003c 8DF80340 		strb	r4, [sp, #3]
+ 1510              		.loc 1 388 70 is_stmt 1 view .LVU526
+ 1511              		.loc 1 388 79 is_stmt 0 view .LVU527
+ 1512 0040 8DF80440 		strb	r4, [sp, #4]
+ 389:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 1513              		.loc 1 389 2 is_stmt 1 view .LVU528
+ 1514 0044 6846     		mov	r0, sp
+ 1515 0046 FFF7FEFF 		bl	tmc5160_write
+ 1516              	.LVL107:
+ 390:Core/Src/tmc5160.c **** }
+ 1517              		.loc 1 390 1 is_stmt 0 view .LVU529
+ 1518 004a 02B0     		add	sp, sp, #8
+ 1519              	.LCFI35:
+ 1520              		.cfi_def_cfa_offset 8
+ 1521              		@ sp needed
+ 1522 004c 10BD     		pop	{r4, pc}
+ 1523              		.cfi_endproc
+ 1524              	.LFE144:
+ 1526              		.section	.text.tmc5160_disarm,"ax",%progbits
+ 1527              		.align	1
+ 1528              		.global	tmc5160_disarm
+ 1529              		.syntax unified
+ARM GAS  C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s 			page 39
+
+
+ 1530              		.thumb
+ 1531              		.thumb_func
+ 1533              	tmc5160_disarm:
+ 1534              	.LFB145:
+ 391:Core/Src/tmc5160.c **** 
+ 392:Core/Src/tmc5160.c **** void tmc5160_disarm()
+ 393:Core/Src/tmc5160.c **** {
+ 1535              		.loc 1 393 1 is_stmt 1 view -0
+ 1536              		.cfi_startproc
+ 1537              		@ args = 0, pretend = 0, frame = 0
+ 1538              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1539 0000 08B5     		push	{r3, lr}
+ 1540              	.LCFI36:
+ 1541              		.cfi_def_cfa_offset 8
+ 1542              		.cfi_offset 3, -8
+ 1543              		.cfi_offset 14, -4
+ 394:Core/Src/tmc5160.c **** 	HAL_GPIO_WritePin(GPIOC, GPIO_PIN_5, GPIO_PIN_SET); //DRV SLEEP 0 for power on, 1 for power off
+ 1544              		.loc 1 394 2 view .LVU531
+ 1545 0002 0122     		movs	r2, #1
+ 1546 0004 2021     		movs	r1, #32
+ 1547 0006 0248     		ldr	r0, .L49
+ 1548 0008 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 1549              	.LVL108:
+ 395:Core/Src/tmc5160.c **** }
+ 1550              		.loc 1 395 1 is_stmt 0 view .LVU532
+ 1551 000c 08BD     		pop	{r3, pc}
+ 1552              	.L50:
+ 1553 000e 00BF     		.align	2
+ 1554              	.L49:
+ 1555 0010 00080048 		.word	1207961600
+ 1556              		.cfi_endproc
+ 1557              	.LFE145:
+ 1559              		.section	.text.tmc5160_arm,"ax",%progbits
+ 1560              		.align	1
+ 1561              		.global	tmc5160_arm
+ 1562              		.syntax unified
+ 1563              		.thumb
+ 1564              		.thumb_func
+ 1566              	tmc5160_arm:
+ 1567              	.LFB146:
+ 396:Core/Src/tmc5160.c **** 
+ 397:Core/Src/tmc5160.c **** void tmc5160_arm()
+ 398:Core/Src/tmc5160.c **** {
+ 1568              		.loc 1 398 1 is_stmt 1 view -0
+ 1569              		.cfi_startproc
+ 1570              		@ args = 0, pretend = 0, frame = 0
+ 1571              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1572 0000 08B5     		push	{r3, lr}
+ 1573              	.LCFI37:
+ 1574              		.cfi_def_cfa_offset 8
+ 1575              		.cfi_offset 3, -8
+ 1576              		.cfi_offset 14, -4
+ 399:Core/Src/tmc5160.c **** 	HAL_GPIO_WritePin(GPIOC, GPIO_PIN_5, GPIO_PIN_RESET); //DRV SLEEP 0 for power on, 1 for power off
+ 1577              		.loc 1 399 2 view .LVU534
+ 1578 0002 0022     		movs	r2, #0
+ 1579 0004 2021     		movs	r1, #32
+ 1580 0006 0248     		ldr	r0, .L53
+ARM GAS  C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s 			page 40
+
+
+ 1581 0008 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 1582              	.LVL109:
+ 400:Core/Src/tmc5160.c **** }
+ 1583              		.loc 1 400 1 is_stmt 0 view .LVU535
+ 1584 000c 08BD     		pop	{r3, pc}
+ 1585              	.L54:
+ 1586 000e 00BF     		.align	2
+ 1587              	.L53:
+ 1588 0010 00080048 		.word	1207961600
+ 1589              		.cfi_endproc
+ 1590              	.LFE146:
+ 1592              		.section	.text.tmc5160_stop,"ax",%progbits
+ 1593              		.align	1
+ 1594              		.global	tmc5160_stop
+ 1595              		.syntax unified
+ 1596              		.thumb
+ 1597              		.thumb_func
+ 1599              	tmc5160_stop:
+ 1600              	.LFB147:
+ 401:Core/Src/tmc5160.c **** 
+ 402:Core/Src/tmc5160.c **** void tmc5160_stop()
+ 403:Core/Src/tmc5160.c **** {
+ 1601              		.loc 1 403 1 is_stmt 1 view -0
+ 1602              		.cfi_startproc
+ 1603              		@ args = 0, pretend = 0, frame = 8
+ 1604              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1605 0000 10B5     		push	{r4, lr}
+ 1606              	.LCFI38:
+ 1607              		.cfi_def_cfa_offset 8
+ 1608              		.cfi_offset 4, -8
+ 1609              		.cfi_offset 14, -4
+ 1610 0002 82B0     		sub	sp, sp, #8
+ 1611              	.LCFI39:
+ 1612              		.cfi_def_cfa_offset 16
+ 404:Core/Src/tmc5160.c **** 	uint8_t WData[5] = {0};
+ 1613              		.loc 1 404 2 view .LVU537
+ 1614              		.loc 1 404 10 is_stmt 0 view .LVU538
+ 1615 0004 0024     		movs	r4, #0
+ 1616 0006 0094     		str	r4, [sp]
+ 1617 0008 8DF80440 		strb	r4, [sp, #4]
+ 405:Core/Src/tmc5160.c **** 	uint32_t pos = 0;
+ 1618              		.loc 1 405 2 is_stmt 1 view .LVU539
+ 1619              	.LVL110:
+ 406:Core/Src/tmc5160.c **** 
+ 407:Core/Src/tmc5160.c **** 	WData[0] = 0xA3; WData[1] = 0x00; WData[2] = 0x00; WData[3] = 0x00; WData[4] = 0x00; // Start acce
+ 1620              		.loc 1 407 2 view .LVU540
+ 1621              		.loc 1 407 11 is_stmt 0 view .LVU541
+ 1622 000c A323     		movs	r3, #163
+ 1623 000e 8DF80030 		strb	r3, [sp]
+ 1624              		.loc 1 407 19 is_stmt 1 view .LVU542
+ 1625              		.loc 1 407 36 view .LVU543
+ 1626              		.loc 1 407 53 view .LVU544
+ 1627              		.loc 1 407 70 view .LVU545
+ 408:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 1628              		.loc 1 408 2 view .LVU546
+ 1629 0012 6846     		mov	r0, sp
+ 1630 0014 FFF7FEFF 		bl	tmc5160_write
+ARM GAS  C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s 			page 41
+
+
+ 1631              	.LVL111:
+ 409:Core/Src/tmc5160.c **** 
+ 410:Core/Src/tmc5160.c **** 	//VMAX
+ 411:Core/Src/tmc5160.c **** 	WData[0] = 0xA7; WData[1] = 0x00; WData[2] = 0x00; WData[3] = 0x00; WData[4] = 0x00;
+ 1632              		.loc 1 411 2 view .LVU547
+ 1633              		.loc 1 411 11 is_stmt 0 view .LVU548
+ 1634 0018 A723     		movs	r3, #167
+ 1635 001a 8DF80030 		strb	r3, [sp]
+ 1636              		.loc 1 411 19 is_stmt 1 view .LVU549
+ 1637              		.loc 1 411 28 is_stmt 0 view .LVU550
+ 1638 001e 8DF80140 		strb	r4, [sp, #1]
+ 1639              		.loc 1 411 36 is_stmt 1 view .LVU551
+ 1640              		.loc 1 411 45 is_stmt 0 view .LVU552
+ 1641 0022 8DF80240 		strb	r4, [sp, #2]
+ 1642              		.loc 1 411 53 is_stmt 1 view .LVU553
+ 1643              		.loc 1 411 62 is_stmt 0 view .LVU554
+ 1644 0026 8DF80340 		strb	r4, [sp, #3]
+ 1645              		.loc 1 411 70 is_stmt 1 view .LVU555
+ 1646              		.loc 1 411 79 is_stmt 0 view .LVU556
+ 1647 002a 8DF80440 		strb	r4, [sp, #4]
+ 412:Core/Src/tmc5160.c **** 	tmc5160_write(WData);
+ 1648              		.loc 1 412 2 is_stmt 1 view .LVU557
+ 1649 002e 6846     		mov	r0, sp
+ 1650 0030 FFF7FEFF 		bl	tmc5160_write
+ 1651              	.LVL112:
+ 413:Core/Src/tmc5160.c **** 
+ 414:Core/Src/tmc5160.c **** 	pos = tmc5160_position_read();
+ 1652              		.loc 1 414 2 view .LVU558
+ 1653              		.loc 1 414 8 is_stmt 0 view .LVU559
+ 1654 0034 FFF7FEFF 		bl	tmc5160_position_read
+ 1655              	.LVL113:
+ 415:Core/Src/tmc5160.c **** 	tmc5160_position(pos);
+ 1656              		.loc 1 415 2 is_stmt 1 view .LVU560
+ 1657 0038 FFF7FEFF 		bl	tmc5160_position
+ 1658              	.LVL114:
+ 416:Core/Src/tmc5160.c **** }
+ 1659              		.loc 1 416 1 is_stmt 0 view .LVU561
+ 1660 003c 02B0     		add	sp, sp, #8
+ 1661              	.LCFI40:
+ 1662              		.cfi_def_cfa_offset 8
+ 1663              		@ sp needed
+ 1664 003e 10BD     		pop	{r4, pc}
+ 1665              		.cfi_endproc
+ 1666              	.LFE147:
+ 1668              		.section	.text.tmc5160_torque_to_curent,"ax",%progbits
+ 1669              		.align	1
+ 1670              		.global	tmc5160_torque_to_curent
+ 1671              		.syntax unified
+ 1672              		.thumb
+ 1673              		.thumb_func
+ 1675              	tmc5160_torque_to_curent:
+ 1676              	.LVL115:
+ 1677              	.LFB148:
+ 417:Core/Src/tmc5160.c **** 
+ 418:Core/Src/tmc5160.c **** 
+ 419:Core/Src/tmc5160.c **** uint8_t tmc5160_torque_to_curent(double effort, double max_effort)
+ 420:Core/Src/tmc5160.c **** {
+ARM GAS  C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s 			page 42
+
+
+ 1678              		.loc 1 420 1 is_stmt 1 view -0
+ 1679              		.cfi_startproc
+ 1680              		@ args = 0, pretend = 0, frame = 0
+ 1681              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1682              		.loc 1 420 1 is_stmt 0 view .LVU563
+ 1683 0000 38B5     		push	{r3, r4, r5, lr}
+ 1684              	.LCFI41:
+ 1685              		.cfi_def_cfa_offset 16
+ 1686              		.cfi_offset 3, -16
+ 1687              		.cfi_offset 4, -12
+ 1688              		.cfi_offset 5, -8
+ 1689              		.cfi_offset 14, -4
+ 1690 0002 51EC100B 		vmov	r0, r1, d0
+ 1691 0006 53EC112B 		vmov	r2, r3, d1
+ 421:Core/Src/tmc5160.c **** 	uint8_t IRUN = 0;
+ 1692              		.loc 1 421 2 is_stmt 1 view .LVU564
+ 1693              	.LVL116:
+ 422:Core/Src/tmc5160.c **** 	IRUN = (effort / max_effort) * motor_cfg.max_irun_scaler;
+ 1694              		.loc 1 422 2 view .LVU565
+ 1695              		.loc 1 422 17 is_stmt 0 view .LVU566
+ 1696 000a FFF7FEFF 		bl	__aeabi_ddiv
+ 1697              	.LVL117:
+ 1698              		.loc 1 422 17 view .LVU567
+ 1699 000e 0446     		mov	r4, r0
+ 1700 0010 0D46     		mov	r5, r1
+ 1701              		.loc 1 422 31 view .LVU568
+ 1702 0012 064B     		ldr	r3, .L59
+ 1703 0014 93F91400 		ldrsb	r0, [r3, #20]
+ 1704 0018 FFF7FEFF 		bl	__aeabi_i2d
+ 1705              	.LVL118:
+ 1706 001c 2246     		mov	r2, r4
+ 1707 001e 2B46     		mov	r3, r5
+ 1708 0020 FFF7FEFF 		bl	__aeabi_dmul
+ 1709              	.LVL119:
+ 1710              		.loc 1 422 7 view .LVU569
+ 1711 0024 FFF7FEFF 		bl	__aeabi_d2uiz
+ 1712              	.LVL120:
+ 423:Core/Src/tmc5160.c **** 	return IRUN;
+ 1713              		.loc 1 423 2 is_stmt 1 view .LVU570
+ 424:Core/Src/tmc5160.c **** }
+ 1714              		.loc 1 424 1 is_stmt 0 view .LVU571
+ 1715 0028 C0B2     		uxtb	r0, r0
+ 1716              		.loc 1 424 1 view .LVU572
+ 1717 002a 38BD     		pop	{r3, r4, r5, pc}
+ 1718              	.L60:
+ 1719              		.align	2
+ 1720              	.L59:
+ 1721 002c 00000000 		.word	motor_cfg
+ 1722              		.cfi_endproc
+ 1723              	.LFE148:
+ 1725              		.section	.text.tmc5160_effort,"ax",%progbits
+ 1726              		.align	1
+ 1727              		.global	tmc5160_effort
+ 1728              		.syntax unified
+ 1729              		.thumb
+ 1730              		.thumb_func
+ 1732              	tmc5160_effort:
+ARM GAS  C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s 			page 43
+
+
+ 1733              	.LVL121:
+ 1734              	.LFB136:
+ 188:Core/Src/tmc5160.c **** uint8_t IRUN = 0;
+ 1735              		.loc 1 188 1 is_stmt 1 view -0
+ 1736              		.cfi_startproc
+ 1737              		@ args = 0, pretend = 0, frame = 8
+ 1738              		@ frame_needed = 0, uses_anonymous_args = 0
+ 188:Core/Src/tmc5160.c **** uint8_t IRUN = 0;
+ 1739              		.loc 1 188 1 is_stmt 0 view .LVU574
+ 1740 0000 00B5     		push	{lr}
+ 1741              	.LCFI42:
+ 1742              		.cfi_def_cfa_offset 4
+ 1743              		.cfi_offset 14, -4
+ 1744 0002 83B0     		sub	sp, sp, #12
+ 1745              	.LCFI43:
+ 1746              		.cfi_def_cfa_offset 16
+ 189:Core/Src/tmc5160.c **** uint8_t IHOLD = 0;
+ 1747              		.loc 1 189 1 is_stmt 1 view .LVU575
+ 1748              	.LVL122:
+ 190:Core/Src/tmc5160.c **** uint8_t WData[5] = {0};
+ 1749              		.loc 1 190 1 view .LVU576
+ 191:Core/Src/tmc5160.c **** 
+ 1750              		.loc 1 191 1 view .LVU577
+ 191:Core/Src/tmc5160.c **** 
+ 1751              		.loc 1 191 9 is_stmt 0 view .LVU578
+ 1752 0004 0023     		movs	r3, #0
+ 1753 0006 0093     		str	r3, [sp]
+ 1754 0008 8DF80430 		strb	r3, [sp, #4]
+ 193:Core/Src/tmc5160.c **** IHOLD = IRUN >> 1;
+ 1755              		.loc 1 193 1 is_stmt 1 view .LVU579
+ 193:Core/Src/tmc5160.c **** IHOLD = IRUN >> 1;
+ 1756              		.loc 1 193 9 is_stmt 0 view .LVU580
+ 1757 000c FFF7FEFF 		bl	tmc5160_torque_to_curent
+ 1758              	.LVL123:
+ 194:Core/Src/tmc5160.c **** 
+ 1759              		.loc 1 194 1 is_stmt 1 view .LVU581
+ 194:Core/Src/tmc5160.c **** 
+ 1760              		.loc 1 194 7 is_stmt 0 view .LVU582
+ 1761 0010 C0F34703 		ubfx	r3, r0, #1, #8
+ 1762              	.LVL124:
+ 196:Core/Src/tmc5160.c **** WData[1] = 0x00;
+ 1763              		.loc 1 196 1 is_stmt 1 view .LVU583
+ 196:Core/Src/tmc5160.c **** WData[1] = 0x00;
+ 1764              		.loc 1 196 10 is_stmt 0 view .LVU584
+ 1765 0014 9022     		movs	r2, #144
+ 1766 0016 8DF80020 		strb	r2, [sp]
+ 197:Core/Src/tmc5160.c **** WData[2] = 0x00; // IHOLDDELAY=0 TODO?
+ 1767              		.loc 1 197 1 is_stmt 1 view .LVU585
+ 198:Core/Src/tmc5160.c **** WData[3] = IRUN; // IRUN
+ 1768              		.loc 1 198 1 view .LVU586
+ 199:Core/Src/tmc5160.c **** WData[4] = IHOLD; // IHOLD
+ 1769              		.loc 1 199 1 view .LVU587
+ 199:Core/Src/tmc5160.c **** WData[4] = IHOLD; // IHOLD
+ 1770              		.loc 1 199 10 is_stmt 0 view .LVU588
+ 1771 001a 8DF80300 		strb	r0, [sp, #3]
+ 200:Core/Src/tmc5160.c **** 
+ 1772              		.loc 1 200 1 is_stmt 1 view .LVU589
+ARM GAS  C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s 			page 44
+
+
+ 200:Core/Src/tmc5160.c **** 
+ 1773              		.loc 1 200 10 is_stmt 0 view .LVU590
+ 1774 001e 8DF80430 		strb	r3, [sp, #4]
+ 202:Core/Src/tmc5160.c **** }
+ 1775              		.loc 1 202 1 is_stmt 1 view .LVU591
+ 1776 0022 6846     		mov	r0, sp
+ 1777              	.LVL125:
+ 202:Core/Src/tmc5160.c **** }
+ 1778              		.loc 1 202 1 is_stmt 0 view .LVU592
+ 1779 0024 FFF7FEFF 		bl	tmc5160_write
+ 1780              	.LVL126:
+ 203:Core/Src/tmc5160.c **** 
+ 1781              		.loc 1 203 1 view .LVU593
+ 1782 0028 03B0     		add	sp, sp, #12
+ 1783              	.LCFI44:
+ 1784              		.cfi_def_cfa_offset 4
+ 1785              		@ sp needed
+ 1786 002a 5DF804FB 		ldr	pc, [sp], #4
+ 1787              		.cfi_endproc
+ 1788              	.LFE136:
+ 1790              		.section	.text.tmc5160_motor_config,"ax",%progbits
+ 1791              		.align	1
+ 1792              		.global	tmc5160_motor_config
+ 1793              		.syntax unified
+ 1794              		.thumb
+ 1795              		.thumb_func
+ 1797              	tmc5160_motor_config:
+ 1798              	.LVL127:
+ 1799              	.LFB149:
+ 425:Core/Src/tmc5160.c **** 
+ 426:Core/Src/tmc5160.c **** void tmc5160_motor_config(int8_t motor_type, int8_t direction, uint32_t full_steps, float gear_rati
+ 427:Core/Src/tmc5160.c **** {
+ 1800              		.loc 1 427 1 is_stmt 1 view -0
+ 1801              		.cfi_startproc
+ 1802              		@ args = 0, pretend = 0, frame = 0
+ 1803              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1804              		.loc 1 427 1 is_stmt 0 view .LVU595
+ 1805 0000 08B5     		push	{r3, lr}
+ 1806              	.LCFI45:
+ 1807              		.cfi_def_cfa_offset 8
+ 1808              		.cfi_offset 3, -8
+ 1809              		.cfi_offset 14, -4
+ 1810 0002 8446     		mov	ip, r0
+ 1811 0004 0846     		mov	r0, r1
+ 1812              	.LVL128:
+ 428:Core/Src/tmc5160.c **** 	switch(motor_type)
+ 1813              		.loc 1 428 2 is_stmt 1 view .LVU596
+ 1814 0006 BCF1110F 		cmp	ip, #17
+ 1815 000a 0AD0     		beq	.L64
+ 1816 000c BCF1170F 		cmp	ip, #23
+ 1817 0010 0BD0     		beq	.L65
+ 1818 0012 BCF10E0F 		cmp	ip, #14
+ 1819 0016 0CD1     		bne	.L66
+ 429:Core/Src/tmc5160.c **** 	{
+ 430:Core/Src/tmc5160.c **** 	case 14:
+ 431:Core/Src/tmc5160.c **** 		mc->max_irun_scaler = 10;
+ 1820              		.loc 1 431 3 view .LVU597
+ARM GAS  C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s 			page 45
+
+
+ 1821              		.loc 1 431 23 is_stmt 0 view .LVU598
+ 1822 0018 0A21     		movs	r1, #10
+ 1823              	.LVL129:
+ 1824              		.loc 1 431 23 view .LVU599
+ 1825 001a 1975     		strb	r1, [r3, #20]
+ 432:Core/Src/tmc5160.c **** 		mc->max_effort_by_default = 0.5;
+ 1826              		.loc 1 432 3 is_stmt 1 view .LVU600
+ 1827              		.loc 1 432 29 is_stmt 0 view .LVU601
+ 1828 001c 4FF07C51 		mov	r1, #1056964608
+ 1829 0020 1961     		str	r1, [r3, #16]	@ float
+ 1830              	.L64:
+ 433:Core/Src/tmc5160.c **** 	case 17:
+ 434:Core/Src/tmc5160.c **** 		mc->max_irun_scaler = 12;
+ 1831              		.loc 1 434 3 is_stmt 1 view .LVU602
+ 1832              		.loc 1 434 23 is_stmt 0 view .LVU603
+ 1833 0022 0C21     		movs	r1, #12
+ 1834 0024 1975     		strb	r1, [r3, #20]
+ 435:Core/Src/tmc5160.c **** 		mc->max_effort_by_default = 3.9;
+ 1835              		.loc 1 435 3 is_stmt 1 view .LVU604
+ 1836              		.loc 1 435 29 is_stmt 0 view .LVU605
+ 1837 0026 0849     		ldr	r1, .L68
+ 1838 0028 1961     		str	r1, [r3, #16]	@ float
+ 1839              	.L65:
+ 436:Core/Src/tmc5160.c **** 	case 23:
+ 437:Core/Src/tmc5160.c **** 		mc->max_irun_scaler = 31;
+ 1840              		.loc 1 437 3 is_stmt 1 view .LVU606
+ 1841              		.loc 1 437 23 is_stmt 0 view .LVU607
+ 1842 002a 1F21     		movs	r1, #31
+ 1843 002c 1975     		strb	r1, [r3, #20]
+ 438:Core/Src/tmc5160.c **** 		mc->max_effort_by_default = 10.2;
+ 1844              		.loc 1 438 3 is_stmt 1 view .LVU608
+ 1845              		.loc 1 438 29 is_stmt 0 view .LVU609
+ 1846 002e 0749     		ldr	r1, .L68+4
+ 1847 0030 1961     		str	r1, [r3, #16]	@ float
+ 1848              	.L66:
+ 439:Core/Src/tmc5160.c **** 	}
+ 440:Core/Src/tmc5160.c **** 
+ 441:Core/Src/tmc5160.c **** 	mc->motor_type = motor_type;
+ 1849              		.loc 1 441 2 is_stmt 1 view .LVU610
+ 1850              		.loc 1 441 17 is_stmt 0 view .LVU611
+ 1851 0032 83F800C0 		strb	ip, [r3]
+ 442:Core/Src/tmc5160.c **** 	mc->gear_ratio = gear_ratio;
+ 1852              		.loc 1 442 2 is_stmt 1 view .LVU612
+ 1853              		.loc 1 442 17 is_stmt 0 view .LVU613
+ 1854 0036 83ED020A 		vstr.32	s0, [r3, #8]
+ 443:Core/Src/tmc5160.c **** 	mc->full_steps = full_steps;
+ 1855              		.loc 1 443 2 is_stmt 1 view .LVU614
+ 1856              		.loc 1 443 17 is_stmt 0 view .LVU615
+ 1857 003a 5A60     		str	r2, [r3, #4]
+ 444:Core/Src/tmc5160.c **** 	mc->upper_limit_effort = upper_limit_effort;
+ 1858              		.loc 1 444 2 is_stmt 1 view .LVU616
+ 1859              		.loc 1 444 25 is_stmt 0 view .LVU617
+ 1860 003c C3ED030A 		vstr.32	s1, [r3, #12]
+ 445:Core/Src/tmc5160.c **** 	tmc5160_set_motor_direction(direction);
+ 1861              		.loc 1 445 2 is_stmt 1 view .LVU618
+ 1862 0040 FFF7FEFF 		bl	tmc5160_set_motor_direction
+ 1863              	.LVL130:
+ARM GAS  C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s 			page 46
+
+
+ 446:Core/Src/tmc5160.c **** }
+ 1864              		.loc 1 446 1 is_stmt 0 view .LVU619
+ 1865 0044 08BD     		pop	{r3, pc}
+ 1866              	.L69:
+ 1867 0046 00BF     		.align	2
+ 1868              	.L68:
+ 1869 0048 9A997940 		.word	1081711002
+ 1870 004c 33332341 		.word	1092825907
+ 1871              		.cfi_endproc
+ 1872              	.LFE149:
+ 1874              		.text
+ 1875              	.Letext0:
+ 1876              		.file 2 "C:\\ST\\STM32CubeIDE_1.8.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools
+ 1877              		.file 3 "C:\\ST\\STM32CubeIDE_1.8.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools
+ 1878              		.file 4 "Core/Inc/tmc5160.h"
+ 1879              		.file 5 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g474xx.h"
+ 1880              		.file 6 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h"
+ 1881              		.file 7 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_gpio.h"
+ 1882              		.file 8 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_dma.h"
+ 1883              		.file 9 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_spi.h"
+ 1884              		.file 10 "Core/Inc/spi.h"
+ 1885              		.file 11 "Core/Inc/utility.h"
+ 1886              		.file 12 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h"
+ 1887              		.file 13 "<built-in>"
+ARM GAS  C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s 			page 47
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 tmc5160.c
+C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s:20     .text.tmc5160_write:0000000000000000 $t
+C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s:26     .text.tmc5160_write:0000000000000000 tmc5160_write
+C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s:69     .text.tmc5160_write:000000000000002c $d
+C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s:74     .text.tmc5160_position:0000000000000000 $t
+C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s:80     .text.tmc5160_position:0000000000000000 tmc5160_position
+C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s:156    .text.tmc5160_move:0000000000000000 $t
+C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s:162    .text.tmc5160_move:0000000000000000 tmc5160_move
+C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s:314    .text.tmc5160_move:00000000000000a0 $d
+C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s:322    .text.tmc5160_velocity:0000000000000000 $t
+C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s:328    .text.tmc5160_velocity:0000000000000000 tmc5160_velocity
+C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s:432    .text.tmc5160_velocity:0000000000000070 $d
+C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s:438    .text.tmc5160_set_default_vel:0000000000000000 $t
+C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s:444    .text.tmc5160_set_default_vel:0000000000000000 tmc5160_set_default_vel
+C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s:606    .text.tmc5160_set_default_vel:00000000000000d0 $d
+C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s:611    .text.tmc5160_acceleration:0000000000000000 $t
+C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s:617    .text.tmc5160_acceleration:0000000000000000 tmc5160_acceleration
+C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s:753    .text.tmc5160_acceleration:000000000000009c $d
+C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s:758    .text.tmc5160_read:0000000000000000 $t
+C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s:764    .text.tmc5160_read:0000000000000000 tmc5160_read
+C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s:842    .text.tmc5160_read:0000000000000060 $d
+C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s:847    .text.tmc5160_position_read:0000000000000000 $t
+C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s:853    .text.tmc5160_position_read:0000000000000000 tmc5160_position_read
+C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s:923    .text.tmc5160_velocity_read:0000000000000000 $t
+C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s:929    .text.tmc5160_velocity_read:0000000000000000 tmc5160_velocity_read
+C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s:1013   .text.tmc5160_velocity_read:0000000000000060 $d
+C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s:1019   .text.tmc5160_init:0000000000000000 $t
+C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s:1025   .text.tmc5160_init:0000000000000000 tmc5160_init
+C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s:1349   .text.tmc5160_init:00000000000001d0 $d
+C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s:1355   .text.tmc5160_set_motor_direction:0000000000000000 $t
+C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s:1361   .text.tmc5160_set_motor_direction:0000000000000000 tmc5160_set_motor_direction
+C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s:1445   .text.tmc5160_set_zero:0000000000000000 $t
+C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s:1451   .text.tmc5160_set_zero:0000000000000000 tmc5160_set_zero
+C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s:1527   .text.tmc5160_disarm:0000000000000000 $t
+C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s:1533   .text.tmc5160_disarm:0000000000000000 tmc5160_disarm
+C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s:1555   .text.tmc5160_disarm:0000000000000010 $d
+C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s:1560   .text.tmc5160_arm:0000000000000000 $t
+C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s:1566   .text.tmc5160_arm:0000000000000000 tmc5160_arm
+C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s:1588   .text.tmc5160_arm:0000000000000010 $d
+C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s:1593   .text.tmc5160_stop:0000000000000000 $t
+C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s:1599   .text.tmc5160_stop:0000000000000000 tmc5160_stop
+C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s:1669   .text.tmc5160_torque_to_curent:0000000000000000 $t
+C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s:1675   .text.tmc5160_torque_to_curent:0000000000000000 tmc5160_torque_to_curent
+C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s:1721   .text.tmc5160_torque_to_curent:000000000000002c $d
+C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s:1726   .text.tmc5160_effort:0000000000000000 $t
+C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s:1732   .text.tmc5160_effort:0000000000000000 tmc5160_effort
+C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s:1791   .text.tmc5160_motor_config:0000000000000000 $t
+C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s:1797   .text.tmc5160_motor_config:0000000000000000 tmc5160_motor_config
+C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s:1869   .text.tmc5160_motor_config:0000000000000048 $d
+
+UNDEFINED SYMBOLS
+HAL_GPIO_WritePin
+HAL_SPI_Transmit
+hspi1
+__aeabi_i2d
+__aeabi_dmul
+ARM GAS  C:\Users\VR\AppData\Local\Temp\cc8dRZBo.s 			page 48
+
+
+__aeabi_d2iz
+__aeabi_ui2d
+__aeabi_d2uiz
+HAL_SPI_TransmitReceive
+__aeabi_ddiv
+sign_extend_bits_to_32
+HAL_Delay
+motor_cfg
