@@ -433,7 +433,7 @@ void tmc5160_motor_config(int8_t motor_type, int8_t direction, uint32_t full_ste
 	case 17:
 		mc->max_irun_scaler = 12;
 		mc->max_effort_by_default = 3.9;
-	case 23:
+	case 21:
 		mc->max_irun_scaler = 31;
 		mc->max_effort_by_default = 10.2;
 	}

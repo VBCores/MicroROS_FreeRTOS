@@ -11,7 +11,6 @@
 
 struct joint_config
 {
-	int8_t first_run;
 	int8_t domain_id;
 	int8_t joint_number;
 	int8_t motor_type;

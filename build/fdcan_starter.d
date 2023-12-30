@@ -32,7 +32,7 @@ build/fdcan_starter.o: Core/Src/fdcan_starter.c Core/Inc/fdcan.h \
  Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_tim_ex.h \
  Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart.h \
  Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart_ex.h \
- Core/Inc/joint_config.h
+ Core/Inc/joint_config.h Core/Inc/main.h
 Core/Inc/fdcan.h:
 Core/Inc/main.h:
 Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h:
@@ -71,3 +71,4 @@ Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_tim_ex.h:
 Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart.h:
 Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart_ex.h:
 Core/Inc/joint_config.h:
+Core/Inc/main.h:

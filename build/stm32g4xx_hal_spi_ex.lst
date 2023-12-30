@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccxd4aE3.s 			page 1
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccI5yeYj.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccxd4aE3.s 			page 1
   27:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_spi_ex.c ****   * @{
   28:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_spi_ex.c ****   */
   29:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_spi_ex.c **** 
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccxd4aE3.s 			page 2
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccI5yeYj.s 			page 2
 
 
   30:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_spi_ex.c **** /** @defgroup SPIEx SPIEx
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccxd4aE3.s 			page 1
   33              		@ frame_needed = 0, uses_anonymous_args = 0
   34              		@ link register save eliminated.
   81:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_spi_ex.c ****   __IO uint32_t tmpreg;
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccxd4aE3.s 			page 3
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccI5yeYj.s 			page 3
 
 
   35              		.loc 1 81 3 view .LVU1
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccxd4aE3.s 			page 1
   80 0024 042B     		cmp	r3, #4
   81 0026 F3D1     		bne	.L12
   89:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_spi_ex.c ****     {
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccxd4aE3.s 			page 4
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccI5yeYj.s 			page 4
 
 
   90:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_spi_ex.c ****       return HAL_TIMEOUT;
@@ -222,18 +222,18 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccxd4aE3.s 			page 1
  112              	.LFE132:
  114              		.text
  115              	.Letext0:
- 116              		.file 2 "C:\\ST\\STM32CubeIDE_1.8.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools
- 117              		.file 3 "C:\\ST\\STM32CubeIDE_1.8.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools
+ 116              		.file 2 "C:\\ST\\STM32CubeIDE_1.9.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools
+ 117              		.file 3 "C:\\ST\\STM32CubeIDE_1.9.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools
  118              		.file 4 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g474xx.h"
  119              		.file 5 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h"
  120              		.file 6 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_dma.h"
  121              		.file 7 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_spi.h"
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccxd4aE3.s 			page 5
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccI5yeYj.s 			page 5
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 stm32g4xx_hal_spi_ex.c
-C:\Users\VR\AppData\Local\Temp\ccxd4aE3.s:20     .text.HAL_SPIEx_FlushRxFifo:0000000000000000 $t
-C:\Users\VR\AppData\Local\Temp\ccxd4aE3.s:26     .text.HAL_SPIEx_FlushRxFifo:0000000000000000 HAL_SPIEx_FlushRxFifo
+C:\Users\SOROKO~1\AppData\Local\Temp\ccI5yeYj.s:20     .text.HAL_SPIEx_FlushRxFifo:0000000000000000 $t
+C:\Users\SOROKO~1\AppData\Local\Temp\ccI5yeYj.s:26     .text.HAL_SPIEx_FlushRxFifo:0000000000000000 HAL_SPIEx_FlushRxFifo
 
 NO UNDEFINED SYMBOLS

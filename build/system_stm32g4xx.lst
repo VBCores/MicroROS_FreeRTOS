@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\VR\AppData\Local\Temp\cc0oVaqd.s 			page 1
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccw4yK4g.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\cc0oVaqd.s 			page 1
   28:Core/Src/system_stm32g4xx.c ****   *        System Clock source                    | HSI
   29:Core/Src/system_stm32g4xx.c ****   *-----------------------------------------------------------------------------
   30:Core/Src/system_stm32g4xx.c ****   *        SYSCLK(Hz)                             | 16000000
-ARM GAS  C:\Users\VR\AppData\Local\Temp\cc0oVaqd.s 			page 2
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccw4yK4g.s 			page 2
 
 
   31:Core/Src/system_stm32g4xx.c ****   *-----------------------------------------------------------------------------
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\cc0oVaqd.s 			page 1
   85:Core/Src/system_stm32g4xx.c ****   #define HSI_VALUE    16000000U /*!< Value of the Internal oscillator in Hz*/
   86:Core/Src/system_stm32g4xx.c **** #endif /* HSI_VALUE */
   87:Core/Src/system_stm32g4xx.c **** 
-ARM GAS  C:\Users\VR\AppData\Local\Temp\cc0oVaqd.s 			page 3
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccw4yK4g.s 			page 3
 
 
   88:Core/Src/system_stm32g4xx.c **** /**
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\cc0oVaqd.s 			page 1
  142:Core/Src/system_stm32g4xx.c ****   * @{
  143:Core/Src/system_stm32g4xx.c ****   */
  144:Core/Src/system_stm32g4xx.c ****   /* The SystemCoreClock variable is updated in three ways:
-ARM GAS  C:\Users\VR\AppData\Local\Temp\cc0oVaqd.s 			page 4
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccw4yK4g.s 			page 4
 
 
  145:Core/Src/system_stm32g4xx.c ****       1) by calling CMSIS function SystemCoreClockUpdate()
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\cc0oVaqd.s 			page 1
  188:Core/Src/system_stm32g4xx.c ****   SCB->VTOR = VECT_TAB_BASE_ADDRESS | VECT_TAB_OFFSET; /* Vector Table Relocation in Internal SRAM 
  189:Core/Src/system_stm32g4xx.c **** #endif /* USER_VECT_TAB_ADDRESS */
  190:Core/Src/system_stm32g4xx.c **** }
-ARM GAS  C:\Users\VR\AppData\Local\Temp\cc0oVaqd.s 			page 5
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccw4yK4g.s 			page 5
 
 
   40              		.loc 1 190 1 view .LVU3
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\cc0oVaqd.s 			page 1
  229:Core/Src/system_stm32g4xx.c **** {
   58              		.loc 1 229 1 is_stmt 1 view -0
   59              		.cfi_startproc
-ARM GAS  C:\Users\VR\AppData\Local\Temp\cc0oVaqd.s 			page 6
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccw4yK4g.s 			page 6
 
 
   60              		@ args = 0, pretend = 0, frame = 0
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\cc0oVaqd.s 			page 1
  266:Core/Src/system_stm32g4xx.c ****   /* Get HCLK prescaler */
  267:Core/Src/system_stm32g4xx.c ****   tmp = AHBPrescTable[((RCC->CFGR & RCC_CFGR_HPRE) >> 4)];
   78              		.loc 1 267 3 is_stmt 1 view .LVU10
-ARM GAS  C:\Users\VR\AppData\Local\Temp\cc0oVaqd.s 			page 7
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccw4yK4g.s 			page 7
 
 
   79              		.loc 1 267 28 is_stmt 0 view .LVU11
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\cc0oVaqd.s 			page 1
  248:Core/Src/system_stm32g4xx.c ****       if (pllsource == 0x02UL) /* HSI used as PLL clock source */
  121              		.loc 1 248 7 is_stmt 1 view .LVU26
  248:Core/Src/system_stm32g4xx.c ****       if (pllsource == 0x02UL) /* HSI used as PLL clock source */
-ARM GAS  C:\Users\VR\AppData\Local\Temp\cc0oVaqd.s 			page 8
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccw4yK4g.s 			page 8
 
 
  122              		.loc 1 248 19 is_stmt 0 view .LVU27
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\cc0oVaqd.s 			page 1
  259:Core/Src/system_stm32g4xx.c ****       break;
  160              		.loc 1 259 7 is_stmt 1 view .LVU44
  259:Core/Src/system_stm32g4xx.c ****       break;
-ARM GAS  C:\Users\VR\AppData\Local\Temp\cc0oVaqd.s 			page 9
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccw4yK4g.s 			page 9
 
 
  161              		.loc 1 259 31 is_stmt 0 view .LVU45
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\cc0oVaqd.s 			page 1
  210 000d 070809   		.ascii	"\007\010\011"
  211              		.section	.rodata.APBPrescTable,"a"
  212              		.align	2
-ARM GAS  C:\Users\VR\AppData\Local\Temp\cc0oVaqd.s 			page 10
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccw4yK4g.s 			page 10
 
 
  215              	APBPrescTable:
@@ -546,27 +546,27 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\cc0oVaqd.s 			page 1
  216      01020304 
  217              		.text
  218              	.Letext0:
- 219              		.file 2 "C:\\ST\\STM32CubeIDE_1.8.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools
- 220              		.file 3 "C:\\ST\\STM32CubeIDE_1.8.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools
+ 219              		.file 2 "C:\\ST\\STM32CubeIDE_1.9.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools
+ 220              		.file 3 "C:\\ST\\STM32CubeIDE_1.9.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools
  221              		.file 4 "Drivers/CMSIS/Include/core_cm4.h"
  222              		.file 5 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/system_stm32g4xx.h"
  223              		.file 6 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g474xx.h"
-ARM GAS  C:\Users\VR\AppData\Local\Temp\cc0oVaqd.s 			page 11
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccw4yK4g.s 			page 11
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 system_stm32g4xx.c
-C:\Users\VR\AppData\Local\Temp\cc0oVaqd.s:20     .text.SystemInit:0000000000000000 $t
-C:\Users\VR\AppData\Local\Temp\cc0oVaqd.s:26     .text.SystemInit:0000000000000000 SystemInit
-C:\Users\VR\AppData\Local\Temp\cc0oVaqd.s:45     .text.SystemInit:0000000000000010 $d
-C:\Users\VR\AppData\Local\Temp\cc0oVaqd.s:50     .text.SystemCoreClockUpdate:0000000000000000 $t
-C:\Users\VR\AppData\Local\Temp\cc0oVaqd.s:56     .text.SystemCoreClockUpdate:0000000000000000 SystemCoreClockUpdate
-C:\Users\VR\AppData\Local\Temp\cc0oVaqd.s:185    .text.SystemCoreClockUpdate:000000000000007c $d
-C:\Users\VR\AppData\Local\Temp\cc0oVaqd.s:215    .rodata.APBPrescTable:0000000000000000 APBPrescTable
-C:\Users\VR\AppData\Local\Temp\cc0oVaqd.s:208    .rodata.AHBPrescTable:0000000000000000 AHBPrescTable
-C:\Users\VR\AppData\Local\Temp\cc0oVaqd.s:201    .data.SystemCoreClock:0000000000000000 SystemCoreClock
-C:\Users\VR\AppData\Local\Temp\cc0oVaqd.s:197    .data.SystemCoreClock:0000000000000000 $d
-C:\Users\VR\AppData\Local\Temp\cc0oVaqd.s:204    .rodata.AHBPrescTable:0000000000000000 $d
-C:\Users\VR\AppData\Local\Temp\cc0oVaqd.s:212    .rodata.APBPrescTable:0000000000000000 $d
+C:\Users\SOROKO~1\AppData\Local\Temp\ccw4yK4g.s:20     .text.SystemInit:0000000000000000 $t
+C:\Users\SOROKO~1\AppData\Local\Temp\ccw4yK4g.s:26     .text.SystemInit:0000000000000000 SystemInit
+C:\Users\SOROKO~1\AppData\Local\Temp\ccw4yK4g.s:45     .text.SystemInit:0000000000000010 $d
+C:\Users\SOROKO~1\AppData\Local\Temp\ccw4yK4g.s:50     .text.SystemCoreClockUpdate:0000000000000000 $t
+C:\Users\SOROKO~1\AppData\Local\Temp\ccw4yK4g.s:56     .text.SystemCoreClockUpdate:0000000000000000 SystemCoreClockUpdate
+C:\Users\SOROKO~1\AppData\Local\Temp\ccw4yK4g.s:185    .text.SystemCoreClockUpdate:000000000000007c $d
+C:\Users\SOROKO~1\AppData\Local\Temp\ccw4yK4g.s:215    .rodata.APBPrescTable:0000000000000000 APBPrescTable
+C:\Users\SOROKO~1\AppData\Local\Temp\ccw4yK4g.s:208    .rodata.AHBPrescTable:0000000000000000 AHBPrescTable
+C:\Users\SOROKO~1\AppData\Local\Temp\ccw4yK4g.s:201    .data.SystemCoreClock:0000000000000000 SystemCoreClock
+C:\Users\SOROKO~1\AppData\Local\Temp\ccw4yK4g.s:197    .data.SystemCoreClock:0000000000000000 $d
+C:\Users\SOROKO~1\AppData\Local\Temp\ccw4yK4g.s:204    .rodata.AHBPrescTable:0000000000000000 $d
+C:\Users\SOROKO~1\AppData\Local\Temp\ccw4yK4g.s:212    .rodata.APBPrescTable:0000000000000000 $d
 
 NO UNDEFINED SYMBOLS

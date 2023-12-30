@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
   28:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****            (++) Lock and Unlock the FLASH interface using HAL_FLASH_Unlock() and
   29:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****                 HAL_FLASH_Lock() functions
   30:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****            (++) Erase function: Erase pages, or mass erase banks
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 2
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 2
 
 
   31:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****            (++) There are two modes of erase :
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
   85:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c **** /* Private define ------------------------------------------------------------*/
   86:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c **** /* Private macro -------------------------------------------------------------*/
   87:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c **** /* Private variables ---------------------------------------------------------*/
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 3
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 3
 
 
   88:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c **** /* Private function prototypes -----------------------------------------------*/
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
  142:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c **** 
  143:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****   /* Check the parameters */
  144:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****   assert_param(IS_FLASH_TYPEERASE(pEraseInit->TypeErase));
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 4
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 4
 
 
  145:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c **** 
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
  199:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****       /*Initialization of PageError variable*/
  200:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****       *PageError = 0xFFFFFFFFU;
  201:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c **** 
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 5
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 5
 
 
  202:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****       for (page_index = pEraseInit->Page; page_index < (pEraseInit->Page + pEraseInit->NbPages); pa
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
  256:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****       pFlash.CacheToReactivate = FLASH_CACHE_ICACHE_DCACHE_ENABLED;
  257:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****     }
  258:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****     else
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 6
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 6
 
 
  259:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****     {
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
  313:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c **** 
  314:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****   /* Check the parameters */
  315:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****   assert_param(IS_OPTIONBYTE(pOBInit->OptionType));
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 7
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 7
 
 
  316:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c **** 
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
  370:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****     {
  371:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****       status = HAL_ERROR;
  372:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****     }
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 8
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 8
 
 
  373:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****   }
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
  427:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****     pOBInit->OptionType |= OPTIONBYTE_PCROP;
  428:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****     /* Get the Proprietary code readout protection */
  429:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****     FLASH_OB_GetPCROP(&(pOBInit->PCROPConfig), &(pOBInit->PCROPStartAddr), &(pOBInit->PCROPEndAddr)
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 9
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 9
 
 
  430:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****   }
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
  484:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c **** 
  485:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****   return HAL_OK;
  486:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c **** }
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 10
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 10
 
 
  487:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c **** 
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
  536:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****   if (READ_BIT(FLASH->OPTR, FLASH_OPTR_DBANK) != 0U)
   34              		.loc 1 536 3 view .LVU1
   35              		.loc 1 536 7 is_stmt 0 view .LVU2
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 11
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 11
 
 
   36 0000 114B     		ldr	r3, .L5
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
   67 0034 43F00403 		orr	r3, r3, #4
   68 0038 5361     		str	r3, [r2, #20]
   69              	.L4:
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 12
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 12
 
 
  560:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****   }
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
  593:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****     {
  594:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****       CLEAR_BIT(FLASH->CR, FLASH_CR_BKER);
  595:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****     }
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 13
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 13
 
 
  596:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****     else
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
  650:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****   *         cleared with the call of HAL_FLASH_OB_Unlock() function.
  651:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****   * @note   New option bytes configuration will be taken into account in two cases:
  652:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****   *         - after an option bytes launch through the call of HAL_FLASH_OB_Launch()
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 14
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 14
 
 
  653:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****   *         - after a power reset (BOR reset or exit from Standby/Shutdown modes)
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
  707:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c **** 
  708:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****     /* Wait for last operation to be completed */
  709:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****     status = FLASH_WaitForLastOperation((uint32_t)FLASH_TIMEOUT_VALUE);
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 15
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 15
 
 
  710:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****   }
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
  764:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****   * @param  UserType The FLASH User Option Bytes to be modified.
  765:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****   *         This parameter can be a combination of @ref FLASH_OB_USER_Type.
  766:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****   * @param  UserConfig The selected User Option Bytes values:
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 16
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 16
 
 
  767:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****   *         This parameter can be a combination of @ref FLASH_OB_USER_BOR_LEVEL,
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
  821:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****     }
  822:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c **** 
  823:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****     if ((UserType & OB_USER_nRST_SHDW) != 0U)
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 17
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 17
 
 
  824:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****     {
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
  878:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c **** 
  879:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****       /* Set value and mask for BFB2 option byte */
  880:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****       optr_reg_val |= (UserConfig & FLASH_OPTR_BFB2);
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 18
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 18
 
 
  881:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****       optr_reg_mask |= FLASH_OPTR_BFB2;
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
  935:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****     if ((UserType & OB_USER_NRST_MODE) != 0U)
  936:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****     {
  937:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****       /* Reset Configuration option byte should be modified */
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 19
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 19
 
 
  938:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****       assert_param(IS_OB_USER_NRST_MODE(UserConfig & FLASH_OPTR_NRST_MODE));
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
  992:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c **** #endif
  993:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c **** 
  994:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****   /* Check the parameters */
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 20
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 20
 
 
  995:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****   assert_param(IS_FLASH_BANK_EXCLUSIVE(PCROPConfig & FLASH_BANK_BOTH));
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
 1049:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****       /* Configure the Proprietary code readout protection */
 1050:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****       if ((PCROPConfig & FLASH_BANK_BOTH) == FLASH_BANK_1)
 1051:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****       {
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 21
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 21
 
 
 1052:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****         reg_value = ((PCROPStartAddr - bank1_addr) >> 3);
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
 1106:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c **** 
 1107:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****   /* Check the parameters */
 1108:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****   assert_param(IS_FLASH_BANK_EXCLUSIVE(SecBank));
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 22
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 22
 
 
 1109:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****   assert_param(IS_OB_SECMEM_SIZE(SecSize));
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
 1163:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****   /* Wait for last operation to be completed */
 1164:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****   status = FLASH_WaitForLastOperation((uint32_t)FLASH_TIMEOUT_VALUE);
 1165:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c **** 
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 23
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 23
 
 
 1166:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****   if (status == HAL_OK)
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
 1206:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****   }
 1207:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c **** #endif
 1208:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c **** }
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 24
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 24
 
 
  107              		.loc 1 1208 1 view .LVU19
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
  146              		@ args = 0, pretend = 0, frame = 0
  147              		@ frame_needed = 0, uses_anonymous_args = 0
  148              		@ link register save eliminated.
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 25
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 25
 
 
 1219:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****   return (READ_REG(FLASH->SEC1R) & FLASH_SEC1R_BOOT_LOCK);
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
  184 000a 17       		.byte	(.L21-.L20)/2
  185 000b 2A       		.byte	(.L17-.L20)/2
  186 000c 21       		.byte	(.L19-.L20)/2
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 26
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 26
 
 
  187 000d 00       		.p2align 1
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
  228              		.loc 1 1252 23 is_stmt 0 view .LVU51
  229 0036 0A48     		ldr	r0, .L25
  230              	.LVL7:
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 27
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 27
 
 
  231              		.loc 1 1252 23 view .LVU52
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
  273              		.section	.text.FLASH_OB_GetRDP,"ax",%progbits
  274              		.align	1
  275              		.syntax unified
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 28
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 28
 
 
  276              		.thumb
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
  309 0014 00200240 		.word	1073881088
  310              		.cfi_endproc
  311              	.LFE151:
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 29
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 29
 
 
  313              		.section	.text.FLASH_OB_GetUser,"ax",%progbits
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
  347              		.syntax unified
  348              		.thumb
  349              		.thumb_func
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 30
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 30
 
 
  351              	FLASH_OB_GetPCROP:
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
  381 000e B3F8E040 		ldrh	r4, [r3, #224]
  382              		.loc 1 1333 29 view .LVU95
  383 0012 4FF6FF73 		movw	r3, #65535
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 31
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 31
 
 
  384 0016 9C42     		cmp	r4, r3
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
  415 0042 022B     		cmp	r3, #2
  416 0044 31D0     		beq	.L46
  417              	.LVL18:
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 32
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 32
 
 
  418              	.L40:
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
  431              		.loc 1 1396 1 view .LVU113
  432 0054 70BC     		pop	{r4, r5, r6}
  433              	.LCFI1:
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 33
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 33
 
 
  434              		.cfi_remember_state
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
 1349:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****       *PCROPStartAddr = (reg_value << 4) + FLASH_BASE;
  478              		.loc 1 1349 7 is_stmt 1 view .LVU124
 1349:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****       *PCROPStartAddr = (reg_value << 4) + FLASH_BASE;
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 34
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 34
 
 
  479              		.loc 1 1349 26 is_stmt 0 view .LVU125
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
 1358:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c **** 
  518              		.loc 1 1358 23 view .LVU141
  519 00b8 0C60     		str	r4, [r1]
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 35
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 35
 
 
 1360:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****       *PCROPEndAddr = (reg_value << 4) + FLASH_BASE;
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
  557              		.loc 1 1383 42 view .LVU158
  558 00e4 2544     		add	r5, r5, r4
 1383:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c **** 
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 36
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 36
 
 
  559              		.loc 1 1383 23 view .LVU159
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
  596              		.loc 1 1377 34 is_stmt 0 view .LVU176
  597 0104 04EAC104 		and	r4, r4, r1, lsl #3
 1377:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****     }
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 37
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 37
 
 
  598              		.loc 1 1377 40 view .LVU177
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
  677:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c **** 
  646              		.loc 1 677 12 is_stmt 0 view .LVU186
  647 0008 4FF47A70 		mov	r0, #1000
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 38
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 38
 
 
  648              	.LVL42:
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
  689 003a 70BD     		pop	{r4, r5, r6, pc}
  690              	.LVL46:
  691              	.L56:
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 39
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 39
 
 
  688:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****     }
@@ -2338,7 +2338,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
  738              		@ args = 0, pretend = 0, frame = 0
  739              		@ frame_needed = 0, uses_anonymous_args = 0
  733:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****   HAL_StatusTypeDef status;
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 40
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 40
 
 
  740              		.loc 1 733 1 is_stmt 0 view .LVU210
@@ -2398,7 +2398,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
  751:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****   }
  781              		.loc 1 751 14 view .LVU224
  782 002c EFE7     		b	.L63
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 41
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 41
 
 
  783              	.L67:
@@ -2458,7 +2458,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
  828 0010 40F08F80 		bne	.L69
  793:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****     {
  829              		.loc 1 793 5 is_stmt 1 view .LVU236
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 42
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 42
 
 
  793:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****     {
@@ -2518,7 +2518,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
  867 003a 04D0     		beq	.L72
  816:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c **** 
  868              		.loc 1 816 7 is_stmt 1 view .LVU254
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 43
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 43
 
 
  819:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****       optr_reg_mask |= FLASH_OPTR_nRST_STDBY;
@@ -2578,7 +2578,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
  904              		.loc 1 839 20 view .LVU273
  905 0060 0B43     		orrs	r3, r3, r1
  906              	.LVL71:
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 44
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 44
 
 
  840:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****     }
@@ -2638,7 +2638,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
  943              	.L76:
  863:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****     {
  944              		.loc 1 863 5 is_stmt 1 view .LVU292
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 45
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 45
 
 
  863:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****     {
@@ -2698,7 +2698,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
  891:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****       optr_reg_mask |= FLASH_OPTR_nBOOT1;
  981              		.loc 1 891 7 view .LVU311
  891:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****       optr_reg_mask |= FLASH_OPTR_nBOOT1;
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 46
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 46
 
 
  982              		.loc 1 891 35 is_stmt 0 view .LVU312
@@ -2758,7 +2758,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
  912:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****     }
  1019              		.loc 1 912 7 is_stmt 1 view .LVU330
  912:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****     }
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 47
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 47
 
 
  1020              		.loc 1 912 21 is_stmt 0 view .LVU331
@@ -2818,7 +2818,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
  935:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****     {
  1057              		.loc 1 935 8 is_stmt 0 view .LVU349
  1058 00f6 14F4004F 		tst	r4, #32768
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 48
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 48
 
 
  1059 00fa 04D0     		beq	.L84
@@ -2878,7 +2878,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
  956:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c **** 
  1097              		.loc 1 956 5 view .LVU366
  1098 0120 0362     		str	r3, [r0, #32]
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 49
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 49
 
 
  959:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c **** 
@@ -2938,7 +2938,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
  988:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****   uint32_t bank1_addr;
  1146              		.loc 1 988 3 view .LVU376
  989:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c **** #if defined (FLASH_OPTR_DBANK)
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 50
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 50
 
 
  1147              		.loc 1 989 3 view .LVU377
@@ -2998,7 +2998,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
  1183 0030 4E4A     		ldr	r2, .L104+12
  1184 0032 02EA4322 		and	r2, r2, r3, lsl #9
 1010:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****     }
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 51
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 51
 
 
  1185              		.loc 1 1010 31 discriminator 1 view .LVU396
@@ -3058,7 +3058,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
  1225              		.loc 1 1080 5 view .LVU410
 1080:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****   }
  1226              		.loc 1 1080 14 is_stmt 0 view .LVU411
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 52
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 52
 
 
  1227 006c 4FF47A70 		mov	r0, #1000
@@ -3118,7 +3118,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
  1269              	.L101:
 1027:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****         MODIFY_REG(FLASH->PCROP1SR, FLASH_PCROP1SR_PCROP1_STRT, reg_value);
  1270              		.loc 1 1027 9 is_stmt 1 view .LVU424
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 53
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 53
 
 
 1027:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****         MODIFY_REG(FLASH->PCROP1SR, FLASH_PCROP1SR_PCROP1_STRT, reg_value);
@@ -3178,7 +3178,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
  1314 00fe 8364     		str	r3, [r0, #72]
  1315 0100 A8E7     		b	.L96
  1316              	.LVL118:
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 54
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 54
 
 
  1317              	.L94:
@@ -3238,7 +3238,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
  1357              	.LVL123:
 1053:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c **** 
  1358              		.loc 1 1053 9 is_stmt 1 view .LVU450
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 55
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 55
 
 
  1359 0138 0D48     		ldr	r0, .L104+16
@@ -3298,7 +3298,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
  1409              		.cfi_offset 5, -8
  1410              		.cfi_offset 14, -4
  1411 0002 0446     		mov	r4, r0
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 56
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 56
 
 
  1412 0004 0D46     		mov	r5, r1
@@ -3358,7 +3358,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
  1448              		.loc 1 1140 1 is_stmt 0 view .LVU474
  1449 002a 38BD     		pop	{r3, r4, r5, pc}
  1450              	.LVL130:
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 57
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 57
 
 
  1451              	.L111:
@@ -3418,7 +3418,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
  1499              	.LVL132:
 1164:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c **** 
  1500              		.loc 1 1164 12 view .LVU483
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 58
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 58
 
 
  1501 0008 FFF7FEFF 		bl	FLASH_WaitForLastOperation
@@ -3478,7 +3478,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
  1547              		.loc 1 311 1 is_stmt 1 view -0
  1548              		.cfi_startproc
  1549              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 59
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 59
 
 
  1550              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -3538,7 +3538,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
  1589              		.loc 1 333 15 is_stmt 0 view .LVU508
  1590 0020 2368     		ldr	r3, [r4]
  333:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****   {
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 60
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 60
 
 
  1591              		.loc 1 333 6 view .LVU509
@@ -3598,7 +3598,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
  1630 0048 2368     		ldr	r3, [r4]
  376:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****   {
  1631              		.loc 1 376 6 view .LVU525
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 61
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 61
 
 
  1632 004a 13F0100F 		tst	r3, #16
@@ -3658,7 +3658,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
  1673              		.loc 1 336 8 view .LVU538
  1674 0074 0028     		cmp	r0, #0
  1675 0076 D7D0     		beq	.L124
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 62
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 62
 
 
  338:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****     }
@@ -3718,7 +3718,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
  1716 009a 216B     		ldr	r1, [r4, #48]
  1717 009c E06A     		ldr	r0, [r4, #44]
  1718 009e FFF7FEFF 		bl	FLASH_OB_SecMemConfig
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 63
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 63
 
 
  1719              	.LVL159:
@@ -3778,7 +3778,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
  1765              		.loc 1 400 1 is_stmt 1 view -0
  1766              		.cfi_startproc
  1767              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 64
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 64
 
 
  1768              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -3838,7 +3838,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
  419:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c **** 
  1808              		.loc 1 419 25 is_stmt 0 view .LVU577
  1809 0028 FFF7FEFF 		bl	FLASH_OB_GetUser
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 65
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 65
 
 
  1810              	.LVL169:
@@ -3898,7 +3898,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
  1847              		.loc 1 427 25 is_stmt 0 view .LVU594
  1848 004e 2368     		ldr	r3, [r4]
  1849 0050 43F00803 		orr	r3, r3, #8
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 66
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 66
 
 
  1850 0054 2246     		mov	r2, r4
@@ -3958,7 +3958,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
  468:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****     {
  1896              		.loc 1 468 5 view .LVU605
  468:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****     {
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 67
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 67
 
 
  1897              		.loc 1 468 8 is_stmt 0 view .LVU606
@@ -4018,7 +4018,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
  494:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****   FLASH->ACR |= FLASH_ACR_DBG_SWEN;
  1945              		.loc 1 494 1 is_stmt 1 view -0
  1946              		.cfi_startproc
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 68
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 68
 
 
  1947              		@ args = 0, pretend = 0, frame = 0
@@ -4078,7 +4078,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
  1997              		.syntax unified
  1998              		.thumb
  1999              		.thumb_func
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 69
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 69
 
 
  2001              	FLASH_PageErase:
@@ -4138,7 +4138,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
  2044              	.L167:
  590:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c **** 
  2045              		.loc 1 590 5 is_stmt 1 view .LVU634
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 70
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 70
 
 
  592:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****     {
@@ -4198,7 +4198,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
  2093              	.LCFI11:
  2094              		.cfi_def_cfa_offset 8
  2095              		.cfi_offset 3, -8
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 71
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 71
 
 
  2096              		.cfi_offset 14, -4
@@ -4258,7 +4258,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
  2134              		.loc 1 275 3 discriminator 4 view .LVU659
  275:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c **** 
  2135              		.loc 1 275 3 discriminator 4 view .LVU660
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 72
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 72
 
 
  275:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c **** 
@@ -4318,7 +4318,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
  2173              	.LVL181:
  296:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c **** }
  2174              		.loc 1 296 10 is_stmt 0 view .LVU678
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 73
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 73
 
 
  2175 0064 0020     		movs	r0, #0
@@ -4378,7 +4378,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
  2216 0094 044A     		ldr	r2, .L185
  2217 0096 0221     		movs	r1, #2
  2218 0098 1172     		strb	r1, [r2, #8]
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 74
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 74
 
 
  283:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****   }
@@ -4438,7 +4438,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
  618:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****       (cache == FLASH_CACHE_ICACHE_DCACHE_ENABLED))
  2267              		.loc 1 618 3 is_stmt 1 view .LVU700
  618:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****       (cache == FLASH_CACHE_ICACHE_DCACHE_ENABLED))
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 75
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 75
 
 
  2268              		.loc 1 618 6 is_stmt 0 view .LVU701
@@ -4498,7 +4498,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
  2309 003a 0022     		movs	r2, #0
  2310 003c 1A77     		strb	r2, [r3, #28]
  641:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c **** 
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 76
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 76
 
 
  2311              		.loc 1 641 1 view .LVU715
@@ -4558,7 +4558,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
  2360              		.cfi_offset 7, -8
  2361              		.cfi_offset 14, -4
  140:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****   uint32_t page_index;
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 77
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 77
 
 
  2362              		.loc 1 140 3 is_stmt 1 view .LVU723
@@ -4618,7 +4618,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
  2400 002c 13F4007F 		tst	r3, #512
  2401 0030 2FD0     		beq	.L197
  159:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****       {
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 78
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 78
 
 
  2402              		.loc 1 159 7 is_stmt 1 view .LVU740
@@ -4678,7 +4678,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
  2440              		.loc 1 202 74 discriminator 1 view .LVU756
  2441 005e 1344     		add	r3, r3, r2
  202:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****       {
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 79
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 79
 
 
  2442              		.loc 1 202 54 discriminator 1 view .LVU757
@@ -4738,7 +4738,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
  2483              		.loc 1 170 13 view .LVU770
  2484 0096 13F4806F 		tst	r3, #1024
  2485 009a 08D0     		beq	.L200
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 80
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 80
 
 
  173:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****       pFlash.CacheToReactivate = FLASH_CACHE_DCACHE_ENABLED;
@@ -4798,7 +4798,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
  2528              		.loc 1 215 22 is_stmt 0 view .LVU782
  2529 00d6 3560     		str	r5, [r6]
  216:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c ****         }
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 81
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 81
 
 
  2530              		.loc 1 216 11 is_stmt 1 view .LVU783
@@ -4841,90 +4841,90 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 1
  2560              	.LFE132:
  2562              		.text
  2563              	.Letext0:
- 2564              		.file 2 "C:\\ST\\STM32CubeIDE_1.8.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools
- 2565              		.file 3 "C:\\ST\\STM32CubeIDE_1.8.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools
+ 2564              		.file 2 "C:\\ST\\STM32CubeIDE_1.9.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools
+ 2565              		.file 3 "C:\\ST\\STM32CubeIDE_1.9.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools
  2566              		.file 4 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g474xx.h"
  2567              		.file 5 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h"
  2568              		.file 6 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_flash.h"
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 82
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 82
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 stm32g4xx_hal_flash_ex.c
-C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s:20     .text.FLASH_MassErase:0000000000000000 $t
-C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s:25     .text.FLASH_MassErase:0000000000000000 FLASH_MassErase
-C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s:80     .text.FLASH_MassErase:0000000000000048 $d
-C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s:85     .text.FLASH_OB_GetSecMem:0000000000000000 $t
-C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s:90     .text.FLASH_OB_GetSecMem:0000000000000000 FLASH_OB_GetSecMem
-C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s:132    .text.FLASH_OB_GetSecMem:0000000000000020 $d
-C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s:137    .text.FLASH_OB_GetBootLock:0000000000000000 $t
-C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s:142    .text.FLASH_OB_GetBootLock:0000000000000000 FLASH_OB_GetBootLock
-C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s:159    .text.FLASH_OB_GetBootLock:000000000000000c $d
-C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s:164    .text.FLASH_OB_GetWRP:0000000000000000 $t
-C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s:169    .text.FLASH_OB_GetWRP:0000000000000000 FLASH_OB_GetWRP
-C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s:182    .text.FLASH_OB_GetWRP:0000000000000008 $d
-C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s:269    .text.FLASH_OB_GetWRP:0000000000000060 $d
-C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s:274    .text.FLASH_OB_GetRDP:0000000000000000 $t
-C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s:279    .text.FLASH_OB_GetRDP:0000000000000000 FLASH_OB_GetRDP
-C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s:309    .text.FLASH_OB_GetRDP:0000000000000014 $d
-C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s:314    .text.FLASH_OB_GetUser:0000000000000000 $t
-C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s:319    .text.FLASH_OB_GetUser:0000000000000000 FLASH_OB_GetUser
-C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s:341    .text.FLASH_OB_GetUser:000000000000000c $d
-C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s:346    .text.FLASH_OB_GetPCROP:0000000000000000 $t
-C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s:351    .text.FLASH_OB_GetPCROP:0000000000000000 FLASH_OB_GetPCROP
-C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s:606    .text.FLASH_OB_GetPCROP:0000000000000110 $d
-C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s:618    .text.FLASH_OB_WRPConfig:0000000000000000 $t
-C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s:623    .text.FLASH_OB_WRPConfig:0000000000000000 FLASH_OB_WRPConfig
-C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s:660    .text.FLASH_OB_WRPConfig:000000000000001a $d
-C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s:723    .text.FLASH_OB_WRPConfig:000000000000005c $d
-C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s:728    .text.FLASH_OB_RDPConfig:0000000000000000 $t
-C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s:733    .text.FLASH_OB_RDPConfig:0000000000000000 FLASH_OB_RDPConfig
-C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s:786    .text.FLASH_OB_RDPConfig:0000000000000030 $d
-C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s:791    .text.FLASH_OB_UserConfig:0000000000000000 $t
-C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s:796    .text.FLASH_OB_UserConfig:0000000000000000 FLASH_OB_UserConfig
-C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s:1117   .text.FLASH_OB_UserConfig:0000000000000134 $d
-C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s:1122   .text.FLASH_OB_PCROPConfig:0000000000000000 $t
-C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s:1127   .text.FLASH_OB_PCROPConfig:0000000000000000 FLASH_OB_PCROPConfig
-C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s:1381   .text.FLASH_OB_PCROPConfig:0000000000000160 $d
-C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s:1391   .text.FLASH_OB_SecMemConfig:0000000000000000 $t
-C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s:1396   .text.FLASH_OB_SecMemConfig:0000000000000000 FLASH_OB_SecMemConfig
-C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s:1470   .text.FLASH_OB_SecMemConfig:0000000000000048 $d
-C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s:1475   .text.FLASH_OB_BootLockConfig:0000000000000000 $t
-C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s:1480   .text.FLASH_OB_BootLockConfig:0000000000000000 FLASH_OB_BootLockConfig
-C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s:1533   .text.FLASH_OB_BootLockConfig:0000000000000030 $d
-C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s:1538   .text.HAL_FLASHEx_OBProgram:0000000000000000 $t
-C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s:1544   .text.HAL_FLASHEx_OBProgram:0000000000000000 HAL_FLASHEx_OBProgram
-C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s:1751   .text.HAL_FLASHEx_OBProgram:00000000000000bc $d
-C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s:1756   .text.HAL_FLASHEx_OBGetConfig:0000000000000000 $t
-C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s:1762   .text.HAL_FLASHEx_OBGetConfig:0000000000000000 HAL_FLASHEx_OBGetConfig
-C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s:1874   .text.HAL_FLASHEx_EnableSecMemProtection:0000000000000000 $t
-C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s:1880   .text.HAL_FLASHEx_EnableSecMemProtection:0000000000000000 HAL_FLASHEx_EnableSecMemProtection
-C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s:1932   .text.HAL_FLASHEx_EnableSecMemProtection:000000000000003c $d
-C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s:1937   .text.HAL_FLASHEx_EnableDebugger:0000000000000000 $t
-C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s:1943   .text.HAL_FLASHEx_EnableDebugger:0000000000000000 HAL_FLASHEx_EnableDebugger
-C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s:1961   .text.HAL_FLASHEx_EnableDebugger:000000000000000c $d
-C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s:1966   .text.HAL_FLASHEx_DisableDebugger:0000000000000000 $t
-C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s:1972   .text.HAL_FLASHEx_DisableDebugger:0000000000000000 HAL_FLASHEx_DisableDebugger
-C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s:1990   .text.HAL_FLASHEx_DisableDebugger:000000000000000c $d
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s 			page 83
+C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s:20     .text.FLASH_MassErase:0000000000000000 $t
+C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s:25     .text.FLASH_MassErase:0000000000000000 FLASH_MassErase
+C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s:80     .text.FLASH_MassErase:0000000000000048 $d
+C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s:85     .text.FLASH_OB_GetSecMem:0000000000000000 $t
+C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s:90     .text.FLASH_OB_GetSecMem:0000000000000000 FLASH_OB_GetSecMem
+C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s:132    .text.FLASH_OB_GetSecMem:0000000000000020 $d
+C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s:137    .text.FLASH_OB_GetBootLock:0000000000000000 $t
+C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s:142    .text.FLASH_OB_GetBootLock:0000000000000000 FLASH_OB_GetBootLock
+C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s:159    .text.FLASH_OB_GetBootLock:000000000000000c $d
+C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s:164    .text.FLASH_OB_GetWRP:0000000000000000 $t
+C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s:169    .text.FLASH_OB_GetWRP:0000000000000000 FLASH_OB_GetWRP
+C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s:182    .text.FLASH_OB_GetWRP:0000000000000008 $d
+C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s:269    .text.FLASH_OB_GetWRP:0000000000000060 $d
+C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s:274    .text.FLASH_OB_GetRDP:0000000000000000 $t
+C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s:279    .text.FLASH_OB_GetRDP:0000000000000000 FLASH_OB_GetRDP
+C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s:309    .text.FLASH_OB_GetRDP:0000000000000014 $d
+C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s:314    .text.FLASH_OB_GetUser:0000000000000000 $t
+C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s:319    .text.FLASH_OB_GetUser:0000000000000000 FLASH_OB_GetUser
+C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s:341    .text.FLASH_OB_GetUser:000000000000000c $d
+C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s:346    .text.FLASH_OB_GetPCROP:0000000000000000 $t
+C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s:351    .text.FLASH_OB_GetPCROP:0000000000000000 FLASH_OB_GetPCROP
+C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s:606    .text.FLASH_OB_GetPCROP:0000000000000110 $d
+C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s:618    .text.FLASH_OB_WRPConfig:0000000000000000 $t
+C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s:623    .text.FLASH_OB_WRPConfig:0000000000000000 FLASH_OB_WRPConfig
+C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s:660    .text.FLASH_OB_WRPConfig:000000000000001a $d
+C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s:723    .text.FLASH_OB_WRPConfig:000000000000005c $d
+C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s:728    .text.FLASH_OB_RDPConfig:0000000000000000 $t
+C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s:733    .text.FLASH_OB_RDPConfig:0000000000000000 FLASH_OB_RDPConfig
+C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s:786    .text.FLASH_OB_RDPConfig:0000000000000030 $d
+C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s:791    .text.FLASH_OB_UserConfig:0000000000000000 $t
+C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s:796    .text.FLASH_OB_UserConfig:0000000000000000 FLASH_OB_UserConfig
+C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s:1117   .text.FLASH_OB_UserConfig:0000000000000134 $d
+C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s:1122   .text.FLASH_OB_PCROPConfig:0000000000000000 $t
+C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s:1127   .text.FLASH_OB_PCROPConfig:0000000000000000 FLASH_OB_PCROPConfig
+C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s:1381   .text.FLASH_OB_PCROPConfig:0000000000000160 $d
+C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s:1391   .text.FLASH_OB_SecMemConfig:0000000000000000 $t
+C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s:1396   .text.FLASH_OB_SecMemConfig:0000000000000000 FLASH_OB_SecMemConfig
+C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s:1470   .text.FLASH_OB_SecMemConfig:0000000000000048 $d
+C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s:1475   .text.FLASH_OB_BootLockConfig:0000000000000000 $t
+C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s:1480   .text.FLASH_OB_BootLockConfig:0000000000000000 FLASH_OB_BootLockConfig
+C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s:1533   .text.FLASH_OB_BootLockConfig:0000000000000030 $d
+C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s:1538   .text.HAL_FLASHEx_OBProgram:0000000000000000 $t
+C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s:1544   .text.HAL_FLASHEx_OBProgram:0000000000000000 HAL_FLASHEx_OBProgram
+C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s:1751   .text.HAL_FLASHEx_OBProgram:00000000000000bc $d
+C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s:1756   .text.HAL_FLASHEx_OBGetConfig:0000000000000000 $t
+C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s:1762   .text.HAL_FLASHEx_OBGetConfig:0000000000000000 HAL_FLASHEx_OBGetConfig
+C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s:1874   .text.HAL_FLASHEx_EnableSecMemProtection:0000000000000000 $t
+C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s:1880   .text.HAL_FLASHEx_EnableSecMemProtection:0000000000000000 HAL_FLASHEx_EnableSecMemProtection
+C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s:1932   .text.HAL_FLASHEx_EnableSecMemProtection:000000000000003c $d
+C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s:1937   .text.HAL_FLASHEx_EnableDebugger:0000000000000000 $t
+C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s:1943   .text.HAL_FLASHEx_EnableDebugger:0000000000000000 HAL_FLASHEx_EnableDebugger
+C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s:1961   .text.HAL_FLASHEx_EnableDebugger:000000000000000c $d
+C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s:1966   .text.HAL_FLASHEx_DisableDebugger:0000000000000000 $t
+C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s:1972   .text.HAL_FLASHEx_DisableDebugger:0000000000000000 HAL_FLASHEx_DisableDebugger
+C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s:1990   .text.HAL_FLASHEx_DisableDebugger:000000000000000c $d
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s 			page 83
 
 
-C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s:1995   .text.FLASH_PageErase:0000000000000000 $t
-C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s:2001   .text.FLASH_PageErase:0000000000000000 FLASH_PageErase
-C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s:2066   .text.FLASH_PageErase:0000000000000058 $d
-C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s:2071   .text.HAL_FLASHEx_Erase_IT:0000000000000000 $t
-C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s:2077   .text.HAL_FLASHEx_Erase_IT:0000000000000000 HAL_FLASHEx_Erase_IT
-C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s:2242   .text.HAL_FLASHEx_Erase_IT:00000000000000a8 $d
-C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s:2248   .text.FLASH_FlushCaches:0000000000000000 $t
-C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s:2254   .text.FLASH_FlushCaches:0000000000000000 FLASH_FlushCaches
-C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s:2333   .text.FLASH_FlushCaches:000000000000005c $d
-C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s:2339   .text.HAL_FLASHEx_Erase:0000000000000000 $t
-C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s:2345   .text.HAL_FLASHEx_Erase:0000000000000000 HAL_FLASHEx_Erase
-C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s:2557   .text.HAL_FLASHEx_Erase:00000000000000ec $d
-C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s:187    .text.FLASH_OB_GetWRP:000000000000000d $d
-C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s:187    .text.FLASH_OB_GetWRP:000000000000000e $t
-C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s:665    .text.FLASH_OB_WRPConfig:000000000000001f $d
-C:\Users\VR\AppData\Local\Temp\ccZ54RMA.s:665    .text.FLASH_OB_WRPConfig:0000000000000020 $t
+C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s:1995   .text.FLASH_PageErase:0000000000000000 $t
+C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s:2001   .text.FLASH_PageErase:0000000000000000 FLASH_PageErase
+C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s:2066   .text.FLASH_PageErase:0000000000000058 $d
+C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s:2071   .text.HAL_FLASHEx_Erase_IT:0000000000000000 $t
+C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s:2077   .text.HAL_FLASHEx_Erase_IT:0000000000000000 HAL_FLASHEx_Erase_IT
+C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s:2242   .text.HAL_FLASHEx_Erase_IT:00000000000000a8 $d
+C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s:2248   .text.FLASH_FlushCaches:0000000000000000 $t
+C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s:2254   .text.FLASH_FlushCaches:0000000000000000 FLASH_FlushCaches
+C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s:2333   .text.FLASH_FlushCaches:000000000000005c $d
+C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s:2339   .text.HAL_FLASHEx_Erase:0000000000000000 $t
+C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s:2345   .text.HAL_FLASHEx_Erase:0000000000000000 HAL_FLASHEx_Erase
+C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s:2557   .text.HAL_FLASHEx_Erase:00000000000000ec $d
+C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s:187    .text.FLASH_OB_GetWRP:000000000000000d $d
+C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s:187    .text.FLASH_OB_GetWRP:000000000000000e $t
+C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s:665    .text.FLASH_OB_WRPConfig:000000000000001f $d
+C:\Users\SOROKO~1\AppData\Local\Temp\ccgm2Vbf.s:665    .text.FLASH_OB_WRPConfig:0000000000000020 $t
 
 UNDEFINED SYMBOLS
 FLASH_WaitForLastOperation

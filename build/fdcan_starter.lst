@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccokmJJc.s 			page 1
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccBZtRCE.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -37,48 +37,49 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccokmJJc.s 			page 1
    6:Core/Src/fdcan_starter.c ****  */
    7:Core/Src/fdcan_starter.c **** #include <fdcan.h>
    8:Core/Src/fdcan_starter.c **** #include "joint_config.h"
-   9:Core/Src/fdcan_starter.c **** extern joint_config jc;
-  10:Core/Src/fdcan_starter.c **** 
-  11:Core/Src/fdcan_starter.c **** void FDCAN_Filter_Config(FDCAN_FilterTypeDef* sFilterConfig){
-  30              		.loc 1 11 61 view -0
+   9:Core/Src/fdcan_starter.c **** #include "main.h"
+  10:Core/Src/fdcan_starter.c **** extern joint_config jc;
+  11:Core/Src/fdcan_starter.c **** 
+  12:Core/Src/fdcan_starter.c **** void FDCAN_Filter_Config(FDCAN_FilterTypeDef* sFilterConfig){
+  30              		.loc 1 12 61 view -0
   31              		.cfi_startproc
   32              		@ args = 0, pretend = 0, frame = 0
   33              		@ frame_needed = 0, uses_anonymous_args = 0
   34              		@ link register save eliminated.
-  12:Core/Src/fdcan_starter.c **** 	sFilterConfig->IdType = FDCAN_STANDARD_ID;
-  35              		.loc 1 12 2 view .LVU1
-  36              		.loc 1 12 24 is_stmt 0 view .LVU2
+  13:Core/Src/fdcan_starter.c **** 	sFilterConfig->IdType = FDCAN_STANDARD_ID;
+  35              		.loc 1 13 2 view .LVU1
+  36              		.loc 1 13 24 is_stmt 0 view .LVU2
   37 0000 0023     		movs	r3, #0
   38 0002 0360     		str	r3, [r0]
-  13:Core/Src/fdcan_starter.c **** 	sFilterConfig->FilterIndex = 0;
-  39              		.loc 1 13 2 is_stmt 1 view .LVU3
-  40              		.loc 1 13 29 is_stmt 0 view .LVU4
+  14:Core/Src/fdcan_starter.c **** 	sFilterConfig->FilterIndex = 0;
+  39              		.loc 1 14 2 is_stmt 1 view .LVU3
+  40              		.loc 1 14 29 is_stmt 0 view .LVU4
   41 0004 4360     		str	r3, [r0, #4]
-  14:Core/Src/fdcan_starter.c **** 	sFilterConfig->FilterType = FDCAN_FILTER_MASK;
-  42              		.loc 1 14 2 is_stmt 1 view .LVU5
-  43              		.loc 1 14 28 is_stmt 0 view .LVU6
+  15:Core/Src/fdcan_starter.c **** 	sFilterConfig->FilterType = FDCAN_FILTER_MASK;
+  42              		.loc 1 15 2 is_stmt 1 view .LVU5
+  43              		.loc 1 15 28 is_stmt 0 view .LVU6
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccBZtRCE.s 			page 2
+
+
   44 0006 0223     		movs	r3, #2
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccokmJJc.s 			page 2
-
-
   45 0008 8360     		str	r3, [r0, #8]
-  15:Core/Src/fdcan_starter.c **** 	sFilterConfig->FilterConfig = FDCAN_FILTER_TO_RXFIFO0;
-  46              		.loc 1 15 2 is_stmt 1 view .LVU7
-  47              		.loc 1 15 30 is_stmt 0 view .LVU8
+  16:Core/Src/fdcan_starter.c **** 	sFilterConfig->FilterConfig = FDCAN_FILTER_TO_RXFIFO0;
+  46              		.loc 1 16 2 is_stmt 1 view .LVU7
+  47              		.loc 1 16 30 is_stmt 0 view .LVU8
   48 000a 0123     		movs	r3, #1
   49 000c C360     		str	r3, [r0, #12]
-  16:Core/Src/fdcan_starter.c **** 	sFilterConfig->FilterID1 = 0x07F; //router_id set to 127
-  50              		.loc 1 16 2 is_stmt 1 view .LVU9
-  51              		.loc 1 16 27 is_stmt 0 view .LVU10
-  52 000e 7F23     		movs	r3, #127
+  17:Core/Src/fdcan_starter.c **** 	sFilterConfig->FilterID1 = JOINTN + 20; //router_id set to 127
+  50              		.loc 1 17 2 is_stmt 1 view .LVU9
+  51              		.loc 1 17 27 is_stmt 0 view .LVU10
+  52 000e 1623     		movs	r3, #22
   53 0010 0361     		str	r3, [r0, #16]
-  17:Core/Src/fdcan_starter.c **** 	sFilterConfig->FilterID2 = 0x7FF; //;0x1FFFFFFF;
-  54              		.loc 1 17 2 is_stmt 1 view .LVU11
-  55              		.loc 1 17 27 is_stmt 0 view .LVU12
+  18:Core/Src/fdcan_starter.c **** 	sFilterConfig->FilterID2 = 0x7FF; //;0x1FFFFFFF;
+  54              		.loc 1 18 2 is_stmt 1 view .LVU11
+  55              		.loc 1 18 27 is_stmt 0 view .LVU12
   56 0012 40F2FF73 		movw	r3, #2047
   57 0016 4361     		str	r3, [r0, #20]
-  18:Core/Src/fdcan_starter.c **** }
-  58              		.loc 1 18 1 view .LVU13
+  19:Core/Src/fdcan_starter.c **** }
+  58              		.loc 1 19 1 view .LVU13
   59 0018 7047     		bx	lr
   60              		.cfi_endproc
   61              	.LFE132:
@@ -91,270 +92,261 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccokmJJc.s 			page 1
   70              	FDCAN_Header_Config:
   71              	.LVL1:
   72              	.LFB133:
-  19:Core/Src/fdcan_starter.c **** 
-  20:Core/Src/fdcan_starter.c **** void FDCAN_Header_Config(FDCAN_TxHeaderTypeDef* TxHeader){
-  73              		.loc 1 20 58 is_stmt 1 view -0
+  20:Core/Src/fdcan_starter.c **** 
+  21:Core/Src/fdcan_starter.c **** void FDCAN_Header_Config(FDCAN_TxHeaderTypeDef* TxHeader){
+  73              		.loc 1 21 58 is_stmt 1 view -0
   74              		.cfi_startproc
   75              		@ args = 0, pretend = 0, frame = 0
   76              		@ frame_needed = 0, uses_anonymous_args = 0
   77              		@ link register save eliminated.
-  21:Core/Src/fdcan_starter.c **** 	TxHeader->Identifier = jc.joint_number;
-  78              		.loc 1 21 2 view .LVU15
-  79              		.loc 1 21 27 is_stmt 0 view .LVU16
-  80 0000 0A4B     		ldr	r3, .L3
-  81 0002 93F90230 		ldrsb	r3, [r3, #2]
-  82              		.loc 1 21 23 view .LVU17
-  83 0006 0360     		str	r3, [r0]
-  22:Core/Src/fdcan_starter.c **** 
-  23:Core/Src/fdcan_starter.c **** 	TxHeader->IdType = FDCAN_STANDARD_ID; // 11-битный ID
-  84              		.loc 1 23 2 is_stmt 1 view .LVU18
-  85              		.loc 1 23 19 is_stmt 0 view .LVU19
-  86 0008 0023     		movs	r3, #0
-  87 000a 4360     		str	r3, [r0, #4]
-  24:Core/Src/fdcan_starter.c **** 
-  25:Core/Src/fdcan_starter.c **** 	TxHeader->TxFrameType = FDCAN_DATA_FRAME; // Передача обычного кадра данн
-  88              		.loc 1 25 2 is_stmt 1 view .LVU20
-  89              		.loc 1 25 24 is_stmt 0 view .LVU21
-  90 000c 8360     		str	r3, [r0, #8]
-  26:Core/Src/fdcan_starter.c **** 
-  27:Core/Src/fdcan_starter.c **** 	TxHeader->DataLength = FDCAN_DLC_BYTES_8; // Длина данных 8 байт
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccokmJJc.s 			page 3
+  22:Core/Src/fdcan_starter.c **** 	TxHeader->Identifier = JOINTN;
+  78              		.loc 1 22 2 view .LVU15
+  79              		.loc 1 22 23 is_stmt 0 view .LVU16
+  80 0000 0223     		movs	r3, #2
+  81 0002 0360     		str	r3, [r0]
+  23:Core/Src/fdcan_starter.c **** 
+  24:Core/Src/fdcan_starter.c **** 	TxHeader->IdType = FDCAN_STANDARD_ID; // 11-битный ID
+  82              		.loc 1 24 2 is_stmt 1 view .LVU17
+  83              		.loc 1 24 19 is_stmt 0 view .LVU18
+  84 0004 0023     		movs	r3, #0
+  85 0006 4360     		str	r3, [r0, #4]
+  25:Core/Src/fdcan_starter.c **** 
+  26:Core/Src/fdcan_starter.c **** 	TxHeader->TxFrameType = FDCAN_DATA_FRAME; // Передача обычного кадра данн
+  86              		.loc 1 26 2 is_stmt 1 view .LVU19
+  87              		.loc 1 26 24 is_stmt 0 view .LVU20
+  88 0008 8360     		str	r3, [r0, #8]
+  27:Core/Src/fdcan_starter.c **** 
+  28:Core/Src/fdcan_starter.c **** 	TxHeader->DataLength = FDCAN_DLC_BYTES_8; // Длина данных 8 байт
+  89              		.loc 1 28 2 is_stmt 1 view .LVU21
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccBZtRCE.s 			page 3
 
 
-  91              		.loc 1 27 2 is_stmt 1 view .LVU22
-  92              		.loc 1 27 23 is_stmt 0 view .LVU23
-  93 000e 4FF40022 		mov	r2, #524288
-  94 0012 C260     		str	r2, [r0, #12]
-  28:Core/Src/fdcan_starter.c **** 
-  29:Core/Src/fdcan_starter.c **** 	TxHeader->ErrorStateIndicator = FDCAN_ESI_ACTIVE; // Индикатор ошибок активе�
-  95              		.loc 1 29 2 is_stmt 1 view .LVU24
-  96              		.loc 1 29 32 is_stmt 0 view .LVU25
-  97 0014 0361     		str	r3, [r0, #16]
-  30:Core/Src/fdcan_starter.c **** 
-  31:Core/Src/fdcan_starter.c **** 	TxHeader->BitRateSwitch = FDCAN_BRS_ON; // C переключения частоты переда�
-  98              		.loc 1 31 2 is_stmt 1 view .LVU26
-  99              		.loc 1 31 26 is_stmt 0 view .LVU27
- 100 0016 4FF48012 		mov	r2, #1048576
- 101 001a 4261     		str	r2, [r0, #20]
-  32:Core/Src/fdcan_starter.c **** 
-  33:Core/Src/fdcan_starter.c **** 	TxHeader->FDFormat = FDCAN_FD_CAN; // Формат кадра CANFD
- 102              		.loc 1 33 2 is_stmt 1 view .LVU28
- 103              		.loc 1 33 21 is_stmt 0 view .LVU29
- 104 001c 4FF40012 		mov	r2, #2097152
- 105 0020 8261     		str	r2, [r0, #24]
-  34:Core/Src/fdcan_starter.c **** 
-  35:Core/Src/fdcan_starter.c **** 	TxHeader->TxEventFifoControl = FDCAN_NO_TX_EVENTS; // Не сохранение параметро
- 106              		.loc 1 35 2 is_stmt 1 view .LVU30
- 107              		.loc 1 35 31 is_stmt 0 view .LVU31
- 108 0022 C361     		str	r3, [r0, #28]
-  36:Core/Src/fdcan_starter.c **** 
-  37:Core/Src/fdcan_starter.c **** 	TxHeader->MessageMarker = 0x52;// Метка сообщения
- 109              		.loc 1 37 2 is_stmt 1 view .LVU32
- 110              		.loc 1 37 26 is_stmt 0 view .LVU33
- 111 0024 5223     		movs	r3, #82
- 112 0026 0362     		str	r3, [r0, #32]
-  38:Core/Src/fdcan_starter.c **** }
- 113              		.loc 1 38 1 view .LVU34
- 114 0028 7047     		bx	lr
- 115              	.L4:
- 116 002a 00BF     		.align	2
- 117              	.L3:
- 118 002c 00000000 		.word	jc
- 119              		.cfi_endproc
- 120              	.LFE133:
- 122              		.section	.text.FDCAN_Starter,"ax",%progbits
- 123              		.align	1
- 124              		.global	FDCAN_Starter
- 125              		.syntax unified
- 126              		.thumb
- 127              		.thumb_func
- 129              	FDCAN_Starter:
- 130              	.LVL2:
- 131              	.LFB134:
-  39:Core/Src/fdcan_starter.c **** 
-  40:Core/Src/fdcan_starter.c **** void FDCAN_Starter(FDCAN_HandleTypeDef* hfdcan, FDCAN_FilterTypeDef* sFilterConfig){
- 132              		.loc 1 40 84 is_stmt 1 view -0
- 133              		.cfi_startproc
- 134              		@ args = 0, pretend = 0, frame = 0
- 135              		@ frame_needed = 0, uses_anonymous_args = 0
- 136              		.loc 1 40 84 is_stmt 0 view .LVU36
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccokmJJc.s 			page 4
+  90              		.loc 1 28 23 is_stmt 0 view .LVU22
+  91 000a 4FF40022 		mov	r2, #524288
+  92 000e C260     		str	r2, [r0, #12]
+  29:Core/Src/fdcan_starter.c **** 
+  30:Core/Src/fdcan_starter.c **** 	TxHeader->ErrorStateIndicator = FDCAN_ESI_ACTIVE; // Индикатор ошибок активе�
+  93              		.loc 1 30 2 is_stmt 1 view .LVU23
+  94              		.loc 1 30 32 is_stmt 0 view .LVU24
+  95 0010 0361     		str	r3, [r0, #16]
+  31:Core/Src/fdcan_starter.c **** 
+  32:Core/Src/fdcan_starter.c **** 	TxHeader->BitRateSwitch = FDCAN_BRS_ON; // C переключения частоты переда�
+  96              		.loc 1 32 2 is_stmt 1 view .LVU25
+  97              		.loc 1 32 26 is_stmt 0 view .LVU26
+  98 0012 4FF48012 		mov	r2, #1048576
+  99 0016 4261     		str	r2, [r0, #20]
+  33:Core/Src/fdcan_starter.c **** 
+  34:Core/Src/fdcan_starter.c **** 	TxHeader->FDFormat = FDCAN_FD_CAN; // Формат кадра CANFD
+ 100              		.loc 1 34 2 is_stmt 1 view .LVU27
+ 101              		.loc 1 34 21 is_stmt 0 view .LVU28
+ 102 0018 4FF40012 		mov	r2, #2097152
+ 103 001c 8261     		str	r2, [r0, #24]
+  35:Core/Src/fdcan_starter.c **** 
+  36:Core/Src/fdcan_starter.c **** 	TxHeader->TxEventFifoControl = FDCAN_NO_TX_EVENTS; // Не сохранение параметро
+ 104              		.loc 1 36 2 is_stmt 1 view .LVU29
+ 105              		.loc 1 36 31 is_stmt 0 view .LVU30
+ 106 001e C361     		str	r3, [r0, #28]
+  37:Core/Src/fdcan_starter.c **** 
+  38:Core/Src/fdcan_starter.c **** 	TxHeader->MessageMarker = 0x52;// Метка сообщения
+ 107              		.loc 1 38 2 is_stmt 1 view .LVU31
+ 108              		.loc 1 38 26 is_stmt 0 view .LVU32
+ 109 0020 5223     		movs	r3, #82
+ 110 0022 0362     		str	r3, [r0, #32]
+  39:Core/Src/fdcan_starter.c **** }
+ 111              		.loc 1 39 1 view .LVU33
+ 112 0024 7047     		bx	lr
+ 113              		.cfi_endproc
+ 114              	.LFE133:
+ 116              		.section	.text.FDCAN_Starter,"ax",%progbits
+ 117              		.align	1
+ 118              		.global	FDCAN_Starter
+ 119              		.syntax unified
+ 120              		.thumb
+ 121              		.thumb_func
+ 123              	FDCAN_Starter:
+ 124              	.LVL2:
+ 125              	.LFB134:
+  40:Core/Src/fdcan_starter.c **** 
+  41:Core/Src/fdcan_starter.c **** void FDCAN_Starter(FDCAN_HandleTypeDef* hfdcan, FDCAN_FilterTypeDef* sFilterConfig){
+ 126              		.loc 1 41 84 is_stmt 1 view -0
+ 127              		.cfi_startproc
+ 128              		@ args = 0, pretend = 0, frame = 0
+ 129              		@ frame_needed = 0, uses_anonymous_args = 0
+ 130              		.loc 1 41 84 is_stmt 0 view .LVU35
+ 131 0000 10B5     		push	{r4, lr}
+ 132              	.LCFI0:
+ 133              		.cfi_def_cfa_offset 8
+ 134              		.cfi_offset 4, -8
+ 135              		.cfi_offset 14, -4
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccBZtRCE.s 			page 4
 
 
- 137 0000 10B5     		push	{r4, lr}
- 138              	.LCFI0:
- 139              		.cfi_def_cfa_offset 8
- 140              		.cfi_offset 4, -8
- 141              		.cfi_offset 14, -4
- 142 0002 82B0     		sub	sp, sp, #8
- 143              	.LCFI1:
- 144              		.cfi_def_cfa_offset 16
- 145 0004 0446     		mov	r4, r0
-  41:Core/Src/fdcan_starter.c **** 	if (HAL_FDCAN_ConfigFilter(hfdcan, sFilterConfig) != HAL_OK)
- 146              		.loc 1 41 2 is_stmt 1 view .LVU37
- 147              		.loc 1 41 6 is_stmt 0 view .LVU38
- 148 0006 FFF7FEFF 		bl	HAL_FDCAN_ConfigFilter
- 149              	.LVL3:
- 150              		.loc 1 41 5 view .LVU39
- 151 000a E8B9     		cbnz	r0, .L13
- 152              	.L6:
-  42:Core/Src/fdcan_starter.c **** 	{
-  43:Core/Src/fdcan_starter.c **** 	  Error_Handler();
-  44:Core/Src/fdcan_starter.c **** 	}
-  45:Core/Src/fdcan_starter.c **** 
-  46:Core/Src/fdcan_starter.c **** 	if (HAL_FDCAN_ConfigGlobalFilter(hfdcan, FDCAN_REJECT, FDCAN_REJECT, FDCAN_FILTER_REMOTE, FDCAN_FI
- 153              		.loc 1 46 2 is_stmt 1 view .LVU40
- 154              		.loc 1 46 6 is_stmt 0 view .LVU41
- 155 000c 0023     		movs	r3, #0
- 156 000e 0093     		str	r3, [sp]
- 157 0010 0222     		movs	r2, #2
- 158 0012 1146     		mov	r1, r2
- 159 0014 2046     		mov	r0, r4
- 160 0016 FFF7FEFF 		bl	HAL_FDCAN_ConfigGlobalFilter
- 161              	.LVL4:
- 162              		.loc 1 46 5 view .LVU42
- 163 001a C0B9     		cbnz	r0, .L14
- 164              	.L7:
-  47:Core/Src/fdcan_starter.c **** 	{
-  48:Core/Src/fdcan_starter.c **** 	  Error_Handler();
-  49:Core/Src/fdcan_starter.c **** 	}
-  50:Core/Src/fdcan_starter.c **** 
+ 136 0002 82B0     		sub	sp, sp, #8
+ 137              	.LCFI1:
+ 138              		.cfi_def_cfa_offset 16
+ 139 0004 0446     		mov	r4, r0
+  42:Core/Src/fdcan_starter.c **** 	if (HAL_FDCAN_ConfigFilter(hfdcan, sFilterConfig) != HAL_OK)
+ 140              		.loc 1 42 2 is_stmt 1 view .LVU36
+ 141              		.loc 1 42 6 is_stmt 0 view .LVU37
+ 142 0006 FFF7FEFF 		bl	HAL_FDCAN_ConfigFilter
+ 143              	.LVL3:
+ 144              		.loc 1 42 5 view .LVU38
+ 145 000a E8B9     		cbnz	r0, .L11
+ 146              	.L4:
+  43:Core/Src/fdcan_starter.c **** 	{
+  44:Core/Src/fdcan_starter.c **** 	  Error_Handler();
+  45:Core/Src/fdcan_starter.c **** 	}
+  46:Core/Src/fdcan_starter.c **** 
+  47:Core/Src/fdcan_starter.c **** 	if (HAL_FDCAN_ConfigGlobalFilter(hfdcan, FDCAN_REJECT, FDCAN_REJECT, FDCAN_FILTER_REMOTE, FDCAN_FI
+ 147              		.loc 1 47 2 is_stmt 1 view .LVU39
+ 148              		.loc 1 47 6 is_stmt 0 view .LVU40
+ 149 000c 0023     		movs	r3, #0
+ 150 000e 0093     		str	r3, [sp]
+ 151 0010 0222     		movs	r2, #2
+ 152 0012 1146     		mov	r1, r2
+ 153 0014 2046     		mov	r0, r4
+ 154 0016 FFF7FEFF 		bl	HAL_FDCAN_ConfigGlobalFilter
+ 155              	.LVL4:
+ 156              		.loc 1 47 5 view .LVU41
+ 157 001a C0B9     		cbnz	r0, .L12
+ 158              	.L5:
+  48:Core/Src/fdcan_starter.c **** 	{
+  49:Core/Src/fdcan_starter.c **** 	  Error_Handler();
+  50:Core/Src/fdcan_starter.c **** 	}
   51:Core/Src/fdcan_starter.c **** 
-  52:Core/Src/fdcan_starter.c **** 	if( HAL_FDCAN_ConfigTxDelayCompensation(hfdcan, 5, 0) != HAL_OK)
- 165              		.loc 1 52 2 is_stmt 1 view .LVU43
- 166              		.loc 1 52 6 is_stmt 0 view .LVU44
- 167 001c 0022     		movs	r2, #0
- 168 001e 0521     		movs	r1, #5
- 169 0020 2046     		mov	r0, r4
- 170 0022 FFF7FEFF 		bl	HAL_FDCAN_ConfigTxDelayCompensation
- 171              	.LVL5:
- 172              		.loc 1 52 4 view .LVU45
- 173 0026 A8B9     		cbnz	r0, .L15
- 174              	.L8:
-  53:Core/Src/fdcan_starter.c **** 	{
-  54:Core/Src/fdcan_starter.c **** 		Error_Handler();
-  55:Core/Src/fdcan_starter.c **** 	}
-  56:Core/Src/fdcan_starter.c **** 	if( HAL_FDCAN_EnableTxDelayCompensation(hfdcan) != HAL_OK)
- 175              		.loc 1 56 2 is_stmt 1 view .LVU46
- 176              		.loc 1 56 6 is_stmt 0 view .LVU47
- 177 0028 2046     		mov	r0, r4
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccokmJJc.s 			page 5
+  52:Core/Src/fdcan_starter.c **** 
+  53:Core/Src/fdcan_starter.c **** 	if( HAL_FDCAN_ConfigTxDelayCompensation(hfdcan, 5, 0) != HAL_OK)
+ 159              		.loc 1 53 2 is_stmt 1 view .LVU42
+ 160              		.loc 1 53 6 is_stmt 0 view .LVU43
+ 161 001c 0022     		movs	r2, #0
+ 162 001e 0521     		movs	r1, #5
+ 163 0020 2046     		mov	r0, r4
+ 164 0022 FFF7FEFF 		bl	HAL_FDCAN_ConfigTxDelayCompensation
+ 165              	.LVL5:
+ 166              		.loc 1 53 4 view .LVU44
+ 167 0026 A8B9     		cbnz	r0, .L13
+ 168              	.L6:
+  54:Core/Src/fdcan_starter.c **** 	{
+  55:Core/Src/fdcan_starter.c **** 		Error_Handler();
+  56:Core/Src/fdcan_starter.c **** 	}
+  57:Core/Src/fdcan_starter.c **** 	if( HAL_FDCAN_EnableTxDelayCompensation(hfdcan) != HAL_OK)
+ 169              		.loc 1 57 2 is_stmt 1 view .LVU45
+ 170              		.loc 1 57 6 is_stmt 0 view .LVU46
+ 171 0028 2046     		mov	r0, r4
+ 172 002a FFF7FEFF 		bl	HAL_FDCAN_EnableTxDelayCompensation
+ 173              	.LVL6:
+ 174              		.loc 1 57 4 view .LVU47
+ 175 002e A0B9     		cbnz	r0, .L14
+ 176              	.L7:
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccBZtRCE.s 			page 5
 
 
- 178 002a FFF7FEFF 		bl	HAL_FDCAN_EnableTxDelayCompensation
- 179              	.LVL6:
- 180              		.loc 1 56 4 view .LVU48
- 181 002e A0B9     		cbnz	r0, .L16
- 182              	.L9:
-  57:Core/Src/fdcan_starter.c **** 	{
-  58:Core/Src/fdcan_starter.c **** 		Error_Handler();
-  59:Core/Src/fdcan_starter.c **** 	}
-  60:Core/Src/fdcan_starter.c **** 
+  58:Core/Src/fdcan_starter.c **** 	{
+  59:Core/Src/fdcan_starter.c **** 		Error_Handler();
+  60:Core/Src/fdcan_starter.c **** 	}
   61:Core/Src/fdcan_starter.c **** 
-  62:Core/Src/fdcan_starter.c **** 	if (HAL_FDCAN_ActivateNotification(hfdcan, FDCAN_IT_RX_FIFO0_NEW_MESSAGE, 0) != HAL_OK)
- 183              		.loc 1 62 2 is_stmt 1 view .LVU49
- 184              		.loc 1 62 6 is_stmt 0 view .LVU50
- 185 0030 0022     		movs	r2, #0
- 186 0032 0121     		movs	r1, #1
- 187 0034 2046     		mov	r0, r4
- 188 0036 FFF7FEFF 		bl	HAL_FDCAN_ActivateNotification
- 189              	.LVL7:
- 190              		.loc 1 62 5 view .LVU51
- 191 003a 88B9     		cbnz	r0, .L17
- 192              	.L10:
-  63:Core/Src/fdcan_starter.c **** 	{
-  64:Core/Src/fdcan_starter.c **** 	  Error_Handler();
+  62:Core/Src/fdcan_starter.c **** 
+  63:Core/Src/fdcan_starter.c **** 	if (HAL_FDCAN_ActivateNotification(hfdcan, FDCAN_IT_RX_FIFO0_NEW_MESSAGE, 0) != HAL_OK)
+ 177              		.loc 1 63 2 is_stmt 1 view .LVU48
+ 178              		.loc 1 63 6 is_stmt 0 view .LVU49
+ 179 0030 0022     		movs	r2, #0
+ 180 0032 0121     		movs	r1, #1
+ 181 0034 2046     		mov	r0, r4
+ 182 0036 FFF7FEFF 		bl	HAL_FDCAN_ActivateNotification
+ 183              	.LVL7:
+ 184              		.loc 1 63 5 view .LVU50
+ 185 003a 88B9     		cbnz	r0, .L15
+ 186              	.L8:
+  64:Core/Src/fdcan_starter.c **** 	{
+  65:Core/Src/fdcan_starter.c **** 	  Error_Handler();
+  66:Core/Src/fdcan_starter.c **** 	}
+  67:Core/Src/fdcan_starter.c **** 	if( HAL_FDCAN_Start(hfdcan) != HAL_OK )
+ 187              		.loc 1 67 2 is_stmt 1 view .LVU51
+ 188              		.loc 1 67 6 is_stmt 0 view .LVU52
+ 189 003c 2046     		mov	r0, r4
+ 190 003e FFF7FEFF 		bl	HAL_FDCAN_Start
+ 191              	.LVL8:
+ 192              		.loc 1 67 4 view .LVU53
+ 193 0042 80B9     		cbnz	r0, .L16
+ 194              	.L3:
+  68:Core/Src/fdcan_starter.c **** 	{
+  69:Core/Src/fdcan_starter.c **** 		Error_Handler();
+  70:Core/Src/fdcan_starter.c **** 	}
+  71:Core/Src/fdcan_starter.c **** }
+ 195              		.loc 1 71 1 view .LVU54
+ 196 0044 02B0     		add	sp, sp, #8
+ 197              	.LCFI2:
+ 198              		.cfi_remember_state
+ 199              		.cfi_def_cfa_offset 8
+ 200              		@ sp needed
+ 201 0046 10BD     		pop	{r4, pc}
+ 202              	.LVL9:
+ 203              	.L11:
+ 204              	.LCFI3:
+ 205              		.cfi_restore_state
+  44:Core/Src/fdcan_starter.c **** 	}
+ 206              		.loc 1 44 4 is_stmt 1 view .LVU55
+ 207 0048 FFF7FEFF 		bl	Error_Handler
+ 208              	.LVL10:
+ 209 004c DEE7     		b	.L4
+ 210              	.L12:
+  49:Core/Src/fdcan_starter.c **** 	}
+ 211              		.loc 1 49 4 view .LVU56
+ 212 004e FFF7FEFF 		bl	Error_Handler
+ 213              	.LVL11:
+ 214 0052 E3E7     		b	.L5
+ 215              	.L13:
+  55:Core/Src/fdcan_starter.c **** 	}
+ 216              		.loc 1 55 3 view .LVU57
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccBZtRCE.s 			page 6
+
+
+ 217 0054 FFF7FEFF 		bl	Error_Handler
+ 218              	.LVL12:
+ 219 0058 E6E7     		b	.L6
+ 220              	.L14:
+  59:Core/Src/fdcan_starter.c **** 	}
+ 221              		.loc 1 59 3 view .LVU58
+ 222 005a FFF7FEFF 		bl	Error_Handler
+ 223              	.LVL13:
+ 224 005e E7E7     		b	.L7
+ 225              	.L15:
   65:Core/Src/fdcan_starter.c **** 	}
-  66:Core/Src/fdcan_starter.c **** 	if( HAL_FDCAN_Start(hfdcan) != HAL_OK )
- 193              		.loc 1 66 2 is_stmt 1 view .LVU52
- 194              		.loc 1 66 6 is_stmt 0 view .LVU53
- 195 003c 2046     		mov	r0, r4
- 196 003e FFF7FEFF 		bl	HAL_FDCAN_Start
- 197              	.LVL8:
- 198              		.loc 1 66 4 view .LVU54
- 199 0042 80B9     		cbnz	r0, .L18
- 200              	.L5:
-  67:Core/Src/fdcan_starter.c **** 	{
-  68:Core/Src/fdcan_starter.c **** 		Error_Handler();
+ 226              		.loc 1 65 4 view .LVU59
+ 227 0060 FFF7FEFF 		bl	Error_Handler
+ 228              	.LVL14:
+ 229 0064 EAE7     		b	.L8
+ 230              	.L16:
   69:Core/Src/fdcan_starter.c **** 	}
-  70:Core/Src/fdcan_starter.c **** }
- 201              		.loc 1 70 1 view .LVU55
- 202 0044 02B0     		add	sp, sp, #8
- 203              	.LCFI2:
- 204              		.cfi_remember_state
- 205              		.cfi_def_cfa_offset 8
- 206              		@ sp needed
- 207 0046 10BD     		pop	{r4, pc}
- 208              	.LVL9:
- 209              	.L13:
- 210              	.LCFI3:
- 211              		.cfi_restore_state
-  43:Core/Src/fdcan_starter.c **** 	}
- 212              		.loc 1 43 4 is_stmt 1 view .LVU56
- 213 0048 FFF7FEFF 		bl	Error_Handler
- 214              	.LVL10:
- 215 004c DEE7     		b	.L6
- 216              	.L14:
-  48:Core/Src/fdcan_starter.c **** 	}
- 217              		.loc 1 48 4 view .LVU57
- 218 004e FFF7FEFF 		bl	Error_Handler
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccokmJJc.s 			page 6
-
-
- 219              	.LVL11:
- 220 0052 E3E7     		b	.L7
- 221              	.L15:
-  54:Core/Src/fdcan_starter.c **** 	}
- 222              		.loc 1 54 3 view .LVU58
- 223 0054 FFF7FEFF 		bl	Error_Handler
- 224              	.LVL12:
- 225 0058 E6E7     		b	.L8
- 226              	.L16:
-  58:Core/Src/fdcan_starter.c **** 	}
- 227              		.loc 1 58 3 view .LVU59
- 228 005a FFF7FEFF 		bl	Error_Handler
- 229              	.LVL13:
- 230 005e E7E7     		b	.L9
- 231              	.L17:
-  64:Core/Src/fdcan_starter.c **** 	}
- 232              		.loc 1 64 4 view .LVU60
- 233 0060 FFF7FEFF 		bl	Error_Handler
- 234              	.LVL14:
- 235 0064 EAE7     		b	.L10
- 236              	.L18:
-  68:Core/Src/fdcan_starter.c **** 	}
- 237              		.loc 1 68 3 view .LVU61
- 238 0066 FFF7FEFF 		bl	Error_Handler
- 239              	.LVL15:
- 240              		.loc 1 70 1 is_stmt 0 view .LVU62
- 241 006a EBE7     		b	.L5
- 242              		.cfi_endproc
- 243              	.LFE134:
- 245              		.text
- 246              	.Letext0:
- 247              		.file 2 "C:\\ST\\STM32CubeIDE_1.8.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools
- 248              		.file 3 "C:\\ST\\STM32CubeIDE_1.8.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools
- 249              		.file 4 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g474xx.h"
- 250              		.file 5 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g4xx.h"
- 251              		.file 6 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h"
- 252              		.file 7 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_fdcan.h"
- 253              		.file 8 "Core/Inc/joint_config.h"
- 254              		.file 9 "Core/Inc/main.h"
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccokmJJc.s 			page 7
+ 231              		.loc 1 69 3 view .LVU60
+ 232 0066 FFF7FEFF 		bl	Error_Handler
+ 233              	.LVL15:
+ 234              		.loc 1 71 1 is_stmt 0 view .LVU61
+ 235 006a EBE7     		b	.L3
+ 236              		.cfi_endproc
+ 237              	.LFE134:
+ 239              		.text
+ 240              	.Letext0:
+ 241              		.file 2 "C:\\ST\\STM32CubeIDE_1.9.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools
+ 242              		.file 3 "C:\\ST\\STM32CubeIDE_1.9.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools
+ 243              		.file 4 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g474xx.h"
+ 244              		.file 5 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g4xx.h"
+ 245              		.file 6 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h"
+ 246              		.file 7 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_fdcan.h"
+ 247              		.file 8 "Core/Inc/main.h"
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccBZtRCE.s 			page 7
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 fdcan_starter.c
-C:\Users\VR\AppData\Local\Temp\ccokmJJc.s:20     .text.FDCAN_Filter_Config:0000000000000000 $t
-C:\Users\VR\AppData\Local\Temp\ccokmJJc.s:26     .text.FDCAN_Filter_Config:0000000000000000 FDCAN_Filter_Config
-C:\Users\VR\AppData\Local\Temp\ccokmJJc.s:64     .text.FDCAN_Header_Config:0000000000000000 $t
-C:\Users\VR\AppData\Local\Temp\ccokmJJc.s:70     .text.FDCAN_Header_Config:0000000000000000 FDCAN_Header_Config
-C:\Users\VR\AppData\Local\Temp\ccokmJJc.s:118    .text.FDCAN_Header_Config:000000000000002c $d
-C:\Users\VR\AppData\Local\Temp\ccokmJJc.s:123    .text.FDCAN_Starter:0000000000000000 $t
-C:\Users\VR\AppData\Local\Temp\ccokmJJc.s:129    .text.FDCAN_Starter:0000000000000000 FDCAN_Starter
+C:\Users\SOROKO~1\AppData\Local\Temp\ccBZtRCE.s:20     .text.FDCAN_Filter_Config:0000000000000000 $t
+C:\Users\SOROKO~1\AppData\Local\Temp\ccBZtRCE.s:26     .text.FDCAN_Filter_Config:0000000000000000 FDCAN_Filter_Config
+C:\Users\SOROKO~1\AppData\Local\Temp\ccBZtRCE.s:64     .text.FDCAN_Header_Config:0000000000000000 $t
+C:\Users\SOROKO~1\AppData\Local\Temp\ccBZtRCE.s:70     .text.FDCAN_Header_Config:0000000000000000 FDCAN_Header_Config
+C:\Users\SOROKO~1\AppData\Local\Temp\ccBZtRCE.s:117    .text.FDCAN_Starter:0000000000000000 $t
+C:\Users\SOROKO~1\AppData\Local\Temp\ccBZtRCE.s:123    .text.FDCAN_Starter:0000000000000000 FDCAN_Starter
 
 UNDEFINED SYMBOLS
-jc
 HAL_FDCAN_ConfigFilter
 HAL_FDCAN_ConfigGlobalFilter
 HAL_FDCAN_ConfigTxDelayCompensation

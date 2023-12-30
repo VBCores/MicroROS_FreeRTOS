@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccM8KsoF.s 			page 1
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccFBjzTg.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccM8KsoF.s 			page 1
   28:Core/Src/at24_eeprom.c **** static uint8_t at24_lock = 0;
   29:Core/Src/at24_eeprom.c **** 
   30:Core/Src/at24_eeprom.c **** /**
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccM8KsoF.s 			page 2
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccFBjzTg.s 			page 2
 
 
   31:Core/Src/at24_eeprom.c ****   * @brief  Checks if memory device is ready for communication.
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccM8KsoF.s 			page 1
   69              		.thumb_func
   71              	at24_write:
   72              	.LVL1:
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccM8KsoF.s 			page 3
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccFBjzTg.s 			page 3
 
 
   73              	.LFB137:
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccM8KsoF.s 			page 1
   60:Core/Src/at24_eeprom.c ****   uint16_t w;
  112              		.loc 1 60 3 is_stmt 1 view .LVU16
   61:Core/Src/at24_eeprom.c ****   uint32_t startTime = HAL_GetTick();
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccM8KsoF.s 			page 4
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccFBjzTg.s 			page 4
 
 
  113              		.loc 1 61 3 view .LVU17
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccM8KsoF.s 			page 1
  141              	.LVL8:
   88:Core/Src/at24_eeprom.c ****       len -= w;
  142              		.loc 1 88 7 view .LVU25
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccM8KsoF.s 			page 5
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccFBjzTg.s 			page 5
 
 
  143              		.loc 1 88 11 is_stmt 0 view .LVU26
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccM8KsoF.s 			page 1
   73:Core/Src/at24_eeprom.c ****       w = len;
  182              		.loc 1 73 5 is_stmt 1 view .LVU43
   73:Core/Src/at24_eeprom.c ****       w = len;
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccM8KsoF.s 			page 6
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccFBjzTg.s 			page 6
 
 
  183              		.loc 1 73 11 is_stmt 0 view .LVU44
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccM8KsoF.s 			page 1
  219              		.loc 1 111 14 is_stmt 0 view .LVU58
  220 008a 00E0     		b	.L7
  221              	.LVL19:
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccM8KsoF.s 			page 7
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccFBjzTg.s 			page 7
 
 
  222              	.L13:
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccM8KsoF.s 			page 1
  263              		.cfi_offset 6, -12
  264              		.cfi_offset 7, -8
  265              		.cfi_offset 14, -4
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccM8KsoF.s 			page 8
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccFBjzTg.s 			page 8
 
 
  266 0002 85B0     		sub	sp, sp, #20
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccM8KsoF.s 			page 1
  300 002e FFF7FEFF 		bl	HAL_I2C_Mem_Read
  301              	.LVL25:
  302              		.loc 1 145 6 view .LVU73
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccM8KsoF.s 			page 9
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccFBjzTg.s 			page 9
 
 
  303 0032 20B9     		cbnz	r0, .L21
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccM8KsoF.s 			page 1
  346              		.thumb
  347              		.thumb_func
  349              	at24_eraseChip:
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccM8KsoF.s 			page 10
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccFBjzTg.s 			page 10
 
 
  350              	.LFB139:
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccM8KsoF.s 			page 1
  390              		.loc 1 169 8 view .LVU94
  391 0028 0346     		mov	r3, r0
  392 002a 10B1     		cbz	r0, .L26
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccM8KsoF.s 			page 11
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccFBjzTg.s 			page 11
 
 
  170:Core/Src/at24_eeprom.c ****       return false;
@@ -651,38 +651,38 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccM8KsoF.s 			page 1
  431 0000 00       		.space	1
  432              		.text
  433              	.Letext0:
- 434              		.file 2 "C:\\ST\\STM32CubeIDE_1.8.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools
- 435              		.file 3 "C:\\ST\\STM32CubeIDE_1.8.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools
+ 434              		.file 2 "C:\\ST\\STM32CubeIDE_1.9.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools
+ 435              		.file 3 "C:\\ST\\STM32CubeIDE_1.9.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools
  436              		.file 4 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g474xx.h"
  437              		.file 5 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h"
  438              		.file 6 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_dma.h"
  439              		.file 7 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_i2c.h"
  440              		.file 8 "Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h"
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccM8KsoF.s 			page 12
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccFBjzTg.s 			page 12
 
 
  441              		.file 9 "Core/Inc/i2c.h"
  442              		.file 10 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h"
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccM8KsoF.s 			page 13
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccFBjzTg.s 			page 13
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 at24_eeprom.c
-C:\Users\VR\AppData\Local\Temp\ccM8KsoF.s:20     .text.at24_isConnected:0000000000000000 $t
-C:\Users\VR\AppData\Local\Temp\ccM8KsoF.s:26     .text.at24_isConnected:0000000000000000 at24_isConnected
-C:\Users\VR\AppData\Local\Temp\ccM8KsoF.s:60     .text.at24_isConnected:0000000000000018 $d
-C:\Users\VR\AppData\Local\Temp\ccM8KsoF.s:65     .text.at24_write:0000000000000000 $t
-C:\Users\VR\AppData\Local\Temp\ccM8KsoF.s:71     .text.at24_write:0000000000000000 at24_write
-C:\Users\VR\AppData\Local\Temp\ccM8KsoF.s:238    .text.at24_write:0000000000000094 $d
-C:\Users\VR\AppData\Local\Temp\ccM8KsoF.s:244    .text.at24_read:0000000000000000 $t
-C:\Users\VR\AppData\Local\Temp\ccM8KsoF.s:250    .text.at24_read:0000000000000000 at24_read
-C:\Users\VR\AppData\Local\Temp\ccM8KsoF.s:337    .text.at24_read:000000000000004c $d
-C:\Users\VR\AppData\Local\Temp\ccM8KsoF.s:343    .text.at24_eraseChip:0000000000000000 $t
-C:\Users\VR\AppData\Local\Temp\ccM8KsoF.s:349    .text.at24_eraseChip:0000000000000000 at24_eraseChip
-C:\Users\VR\AppData\Local\Temp\ccM8KsoF.s:415    .text.at24_eraseChip:0000000000000038 $d
-C:\Users\VR\AppData\Local\Temp\ccM8KsoF.s:420    .rodata:0000000000000000 $d
-C:\Users\VR\AppData\Local\Temp\ccM8KsoF.s:430    .bss.at24_lock:0000000000000000 at24_lock
-C:\Users\VR\AppData\Local\Temp\ccM8KsoF.s:431    .bss.at24_lock:0000000000000000 $d
+C:\Users\SOROKO~1\AppData\Local\Temp\ccFBjzTg.s:20     .text.at24_isConnected:0000000000000000 $t
+C:\Users\SOROKO~1\AppData\Local\Temp\ccFBjzTg.s:26     .text.at24_isConnected:0000000000000000 at24_isConnected
+C:\Users\SOROKO~1\AppData\Local\Temp\ccFBjzTg.s:60     .text.at24_isConnected:0000000000000018 $d
+C:\Users\SOROKO~1\AppData\Local\Temp\ccFBjzTg.s:65     .text.at24_write:0000000000000000 $t
+C:\Users\SOROKO~1\AppData\Local\Temp\ccFBjzTg.s:71     .text.at24_write:0000000000000000 at24_write
+C:\Users\SOROKO~1\AppData\Local\Temp\ccFBjzTg.s:238    .text.at24_write:0000000000000094 $d
+C:\Users\SOROKO~1\AppData\Local\Temp\ccFBjzTg.s:244    .text.at24_read:0000000000000000 $t
+C:\Users\SOROKO~1\AppData\Local\Temp\ccFBjzTg.s:250    .text.at24_read:0000000000000000 at24_read
+C:\Users\SOROKO~1\AppData\Local\Temp\ccFBjzTg.s:337    .text.at24_read:000000000000004c $d
+C:\Users\SOROKO~1\AppData\Local\Temp\ccFBjzTg.s:343    .text.at24_eraseChip:0000000000000000 $t
+C:\Users\SOROKO~1\AppData\Local\Temp\ccFBjzTg.s:349    .text.at24_eraseChip:0000000000000000 at24_eraseChip
+C:\Users\SOROKO~1\AppData\Local\Temp\ccFBjzTg.s:415    .text.at24_eraseChip:0000000000000038 $d
+C:\Users\SOROKO~1\AppData\Local\Temp\ccFBjzTg.s:420    .rodata:0000000000000000 $d
+C:\Users\SOROKO~1\AppData\Local\Temp\ccFBjzTg.s:430    .bss.at24_lock:0000000000000000 at24_lock
+C:\Users\SOROKO~1\AppData\Local\Temp\ccFBjzTg.s:431    .bss.at24_lock:0000000000000000 $d
 
 UNDEFINED SYMBOLS
 HAL_I2C_IsDeviceReady

@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccj5bpec.s 			page 1
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccTKoWMJ.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccj5bpec.s 			page 1
   27:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_iwdg.c ****     (+) The IWDG can be started by either software or hardware (configurable
   28:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_iwdg.c ****         through option byte).
   29:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_iwdg.c **** 
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccj5bpec.s 			page 2
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccTKoWMJ.s 			page 2
 
 
   30:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_iwdg.c ****     (+) The IWDG is clocked by the Low-Speed Internal clock (LSI) and thus stays
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccj5bpec.s 			page 1
   84:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_iwdg.c ****              watchdog counter.
   85:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_iwdg.c ****       (++) Wait for status flags to be reset.
   86:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_iwdg.c **** 
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccj5bpec.s 			page 3
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccTKoWMJ.s 			page 3
 
 
   87:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_iwdg.c ****     (#) Then the application program must refresh the IWDG counter at regular
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccj5bpec.s 			page 1
  141:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_iwdg.c ****   * @{
  142:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_iwdg.c ****   */
  143:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_iwdg.c **** 
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccj5bpec.s 			page 4
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccTKoWMJ.s 			page 4
 
 
  144:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_iwdg.c **** /** @addtogroup IWDG_Exported_Functions_Group1
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccj5bpec.s 			page 1
  179:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_iwdg.c **** 
  180:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_iwdg.c ****   /* Check the parameters */
  181:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_iwdg.c ****   assert_param(IS_IWDG_ALL_INSTANCE(hiwdg->Instance));
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccj5bpec.s 			page 5
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccTKoWMJ.s 			page 5
 
 
   48              		.loc 1 181 3 is_stmt 1 view .LVU5
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccj5bpec.s 			page 1
   82              	.L3:
   83              		.loc 1 201 59 view .LVU23
   84              		.loc 1 201 16 is_stmt 0 view .LVU24
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccj5bpec.s 			page 6
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccTKoWMJ.s 			page 6
 
 
   85 002a 2368     		ldr	r3, [r4]
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccj5bpec.s 			page 1
  121              		.loc 1 219 27 is_stmt 0 view .LVU41
  122 0054 1A61     		str	r2, [r3, #16]
  220:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_iwdg.c ****   }
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccj5bpec.s 			page 7
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccTKoWMJ.s 			page 7
 
 
  221:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_iwdg.c ****   else
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccj5bpec.s 			page 1
  235:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_iwdg.c **** 
  236:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_iwdg.c **** 
  237:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_iwdg.c **** /** @addtogroup IWDG_Exported_Functions_Group2
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccj5bpec.s 			page 8
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccTKoWMJ.s 			page 8
 
 
  238:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_iwdg.c ****   *  @brief   IO operation functions
@@ -467,21 +467,21 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccj5bpec.s 			page 1
  178              	.LFE133:
  180              		.text
  181              	.Letext0:
- 182              		.file 2 "C:\\ST\\STM32CubeIDE_1.8.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools
- 183              		.file 3 "C:\\ST\\STM32CubeIDE_1.8.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools
+ 182              		.file 2 "C:\\ST\\STM32CubeIDE_1.9.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools
+ 183              		.file 3 "C:\\ST\\STM32CubeIDE_1.9.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools
  184              		.file 4 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g474xx.h"
  185              		.file 5 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h"
  186              		.file 6 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_iwdg.h"
  187              		.file 7 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h"
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccj5bpec.s 			page 9
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccTKoWMJ.s 			page 9
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 stm32g4xx_hal_iwdg.c
-C:\Users\VR\AppData\Local\Temp\ccj5bpec.s:20     .text.HAL_IWDG_Init:0000000000000000 $t
-C:\Users\VR\AppData\Local\Temp\ccj5bpec.s:26     .text.HAL_IWDG_Init:0000000000000000 HAL_IWDG_Init
-C:\Users\VR\AppData\Local\Temp\ccj5bpec.s:153    .text.HAL_IWDG_Refresh:0000000000000000 $t
-C:\Users\VR\AppData\Local\Temp\ccj5bpec.s:159    .text.HAL_IWDG_Refresh:0000000000000000 HAL_IWDG_Refresh
+C:\Users\SOROKO~1\AppData\Local\Temp\ccTKoWMJ.s:20     .text.HAL_IWDG_Init:0000000000000000 $t
+C:\Users\SOROKO~1\AppData\Local\Temp\ccTKoWMJ.s:26     .text.HAL_IWDG_Init:0000000000000000 HAL_IWDG_Init
+C:\Users\SOROKO~1\AppData\Local\Temp\ccTKoWMJ.s:153    .text.HAL_IWDG_Refresh:0000000000000000 $t
+C:\Users\SOROKO~1\AppData\Local\Temp\ccTKoWMJ.s:159    .text.HAL_IWDG_Refresh:0000000000000000 HAL_IWDG_Refresh
 
 UNDEFINED SYMBOLS
 HAL_GetTick

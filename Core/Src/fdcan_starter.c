@@ -6,6 +6,7 @@
  */
 #include <fdcan.h>
 #include "joint_config.h"
+#include "main.h"
 extern joint_config jc;
 
 void FDCAN_Filter_Config(FDCAN_FilterTypeDef* sFilterConfig){
@@ -13,12 +14,12 @@ void FDCAN_Filter_Config(FDCAN_FilterTypeDef* sFilterConfig){
 	sFilterConfig->FilterIndex = 0;
 	sFilterConfig->FilterType = FDCAN_FILTER_MASK;
 	sFilterConfig->FilterConfig = FDCAN_FILTER_TO_RXFIFO0;
-	sFilterConfig->FilterID1 = 0x07F; //router_id set to 127
+	sFilterConfig->FilterID1 = JOINTN + 20; //router_id set to 127
 	sFilterConfig->FilterID2 = 0x7FF; //;0x1FFFFFFF;
 }
 
 void FDCAN_Header_Config(FDCAN_TxHeaderTypeDef* TxHeader){
-	TxHeader->Identifier = jc.joint_number;
+	TxHeader->Identifier = JOINTN;
 
 	TxHeader->IdType = FDCAN_STANDARD_ID; // 11-битный ID
 

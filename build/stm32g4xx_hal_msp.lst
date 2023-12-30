@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccfIEBr9.s 			page 1
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccxJLmYh.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccfIEBr9.s 			page 1
   28:Core/Src/stm32g4xx_hal_msp.c **** /* Private typedef -----------------------------------------------------------*/
   29:Core/Src/stm32g4xx_hal_msp.c **** /* USER CODE BEGIN TD */
   30:Core/Src/stm32g4xx_hal_msp.c **** 
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccfIEBr9.s 			page 2
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccxJLmYh.s 			page 2
 
 
   31:Core/Src/stm32g4xx_hal_msp.c **** /* USER CODE END TD */
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccfIEBr9.s 			page 1
   43              		.loc 1 70 3 view .LVU3
   44 0004 0E4B     		ldr	r3, .L3
   45 0006 1A6E     		ldr	r2, [r3, #96]
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccfIEBr9.s 			page 3
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccxJLmYh.s 			page 3
 
 
   46 0008 42F00102 		orr	r2, r2, #1
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccfIEBr9.s 			page 1
   86              	.L4:
   87              		.align	2
   88              	.L3:
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccfIEBr9.s 			page 4
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccxJLmYh.s 			page 4
 
 
   89 0040 00100240 		.word	1073876992
@@ -187,18 +187,18 @@ ARM GAS  C:\Users\VR\AppData\Local\Temp\ccfIEBr9.s 			page 1
   93              		.text
   94              	.Letext0:
   95              		.file 2 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g474xx.h"
-  96              		.file 3 "C:\\ST\\STM32CubeIDE_1.8.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools
-  97              		.file 4 "C:\\ST\\STM32CubeIDE_1.8.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools
+  96              		.file 3 "C:\\ST\\STM32CubeIDE_1.9.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools
+  97              		.file 4 "C:\\ST\\STM32CubeIDE_1.9.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools
   98              		.file 5 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_pwr_ex.h"
   99              		.file 6 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_cortex.h"
-ARM GAS  C:\Users\VR\AppData\Local\Temp\ccfIEBr9.s 			page 5
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccxJLmYh.s 			page 5
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 stm32g4xx_hal_msp.c
-C:\Users\VR\AppData\Local\Temp\ccfIEBr9.s:20     .text.HAL_MspInit:0000000000000000 $t
-C:\Users\VR\AppData\Local\Temp\ccfIEBr9.s:26     .text.HAL_MspInit:0000000000000000 HAL_MspInit
-C:\Users\VR\AppData\Local\Temp\ccfIEBr9.s:89     .text.HAL_MspInit:0000000000000040 $d
+C:\Users\SOROKO~1\AppData\Local\Temp\ccxJLmYh.s:20     .text.HAL_MspInit:0000000000000000 $t
+C:\Users\SOROKO~1\AppData\Local\Temp\ccxJLmYh.s:26     .text.HAL_MspInit:0000000000000000 HAL_MspInit
+C:\Users\SOROKO~1\AppData\Local\Temp\ccxJLmYh.s:89     .text.HAL_MspInit:0000000000000040 $d
 
 UNDEFINED SYMBOLS
 HAL_NVIC_SetPriority
