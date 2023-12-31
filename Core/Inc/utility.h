@@ -10,6 +10,8 @@
 
 #include "stdint.h"
 
+#define nop() asm volatile("nop")
+
 //TODO make sure that is works for less than 24 bit values
 int32_t sign_extend_bits_to_32(int32_t x, uint8_t bits);
 double clamp_value_noref(double min_value, double value, double max_value);

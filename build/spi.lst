@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccSIQG8m.s 			page 1
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccyZQHv1.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccSIQG8m.s 			page 1
   28:Core/Src/spi.c **** SPI_HandleTypeDef hspi3;
   29:Core/Src/spi.c **** 
   30:Core/Src/spi.c **** /* SPI1 init function */
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccSIQG8m.s 			page 2
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccyZQHv1.s 			page 2
 
 
   31:Core/Src/spi.c **** void MX_SPI1_Init(void)
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccSIQG8m.s 			page 1
   66 0024 8261     		str	r2, [r0, #24]
   48:Core/Src/spi.c ****   hspi1.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_64;
   67              		.loc 1 48 3 is_stmt 1 view .LVU15
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccSIQG8m.s 			page 3
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccyZQHv1.s 			page 3
 
 
   68              		.loc 1 48 32 is_stmt 0 view .LVU16
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccSIQG8m.s 			page 1
  106 0046 00BF     		.align	2
  107              	.L5:
  108 0048 00000000 		.word	.LANCHOR0
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccSIQG8m.s 			page 4
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccyZQHv1.s 			page 4
 
 
  109 004c 00300140 		.word	1073819648
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccSIQG8m.s 			page 1
  149              		.loc 1 79 26 is_stmt 0 view .LVU45
  150 0018 0361     		str	r3, [r0, #16]
   80:Core/Src/spi.c ****   hspi3.Init.CLKPhase = SPI_PHASE_2EDGE;
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccSIQG8m.s 			page 5
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccyZQHv1.s 			page 5
 
 
  151              		.loc 1 80 3 is_stmt 1 view .LVU46
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccSIQG8m.s 			page 1
   97:Core/Src/spi.c **** }
  189              		.loc 1 97 1 view .LVU67
  190 003c 08BD     		pop	{r3, pc}
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccSIQG8m.s 			page 6
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccyZQHv1.s 			page 6
 
 
  191              	.L10:
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccSIQG8m.s 			page 1
  240              		.loc 1 103 5 view .LVU76
  241 0012 2F4A     		ldr	r2, .L19
  242 0014 9342     		cmp	r3, r2
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccSIQG8m.s 			page 7
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccyZQHv1.s 			page 7
 
 
  243 0016 04D0     		beq	.L17
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccSIQG8m.s 			page 1
  150:Core/Src/spi.c ****     PC12     ------> SPI3_MOSI
  151:Core/Src/spi.c ****     */
  152:Core/Src/spi.c ****     GPIO_InitStruct.Pin = GPIO_PIN_10|GPIO_PIN_11|GPIO_PIN_12;
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccSIQG8m.s 			page 8
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccyZQHv1.s 			page 8
 
 
  153:Core/Src/spi.c ****     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccSIQG8m.s 			page 1
  111:Core/Src/spi.c ****     /**SPI1 GPIO Configuration
  285              		.loc 1 111 5 view .LVU89
  286 003e DB6C     		ldr	r3, [r3, #76]
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccSIQG8m.s 			page 9
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccyZQHv1.s 			page 9
 
 
  287 0040 03F00103 		and	r3, r3, #1
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccSIQG8m.s 			page 1
  126:Core/Src/spi.c ****     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
  324              		.loc 1 126 5 is_stmt 1 view .LVU107
  126:Core/Src/spi.c ****     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccSIQG8m.s 			page 10
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccyZQHv1.s 			page 10
 
 
  325              		.loc 1 126 26 is_stmt 0 view .LVU108
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccSIQG8m.s 			page 1
  144:Core/Src/spi.c **** 
  367              		.loc 1 144 5 view .LVU121
  146:Core/Src/spi.c ****     /**SPI3 GPIO Configuration
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccSIQG8m.s 			page 11
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccyZQHv1.s 			page 11
 
 
  368              		.loc 1 146 5 view .LVU122
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccSIQG8m.s 			page 1
  406              	.LVL14:
  407              		.loc 1 163 1 view .LVU139
  408 00cc A7E7     		b	.L13
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccSIQG8m.s 			page 12
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccyZQHv1.s 			page 12
 
 
  409              	.L20:
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccSIQG8m.s 			page 1
  183:Core/Src/spi.c ****     /* SPI1 interrupt Deinit */
  184:Core/Src/spi.c ****     HAL_NVIC_DisableIRQ(SPI1_IRQn);
  185:Core/Src/spi.c ****   /* USER CODE BEGIN SPI1_MspDeInit 1 */
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccSIQG8m.s 			page 13
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccyZQHv1.s 			page 13
 
 
  186:Core/Src/spi.c **** 
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccSIQG8m.s 			page 1
  473 002e EFE7     		b	.L21
  474              	.LVL21:
  475              	.L26:
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccSIQG8m.s 			page 14
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccyZQHv1.s 			page 14
 
 
  195:Core/Src/spi.c **** 
@@ -838,30 +838,30 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccSIQG8m.s 			page 1
  524              		.file 9 "Core/Inc/spi.h"
  525              		.file 10 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_cortex.h"
  526              		.file 11 "Core/Inc/main.h"
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccSIQG8m.s 			page 15
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccyZQHv1.s 			page 15
 
 
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccSIQG8m.s 			page 16
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccyZQHv1.s 			page 16
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 spi.c
-C:\Users\SOROKO~1\AppData\Local\Temp\ccSIQG8m.s:20     .text.MX_SPI1_Init:0000000000000000 $t
-C:\Users\SOROKO~1\AppData\Local\Temp\ccSIQG8m.s:26     .text.MX_SPI1_Init:0000000000000000 MX_SPI1_Init
-C:\Users\SOROKO~1\AppData\Local\Temp\ccSIQG8m.s:108    .text.MX_SPI1_Init:0000000000000048 $d
-C:\Users\SOROKO~1\AppData\Local\Temp\ccSIQG8m.s:114    .text.MX_SPI3_Init:0000000000000000 $t
-C:\Users\SOROKO~1\AppData\Local\Temp\ccSIQG8m.s:120    .text.MX_SPI3_Init:0000000000000000 MX_SPI3_Init
-C:\Users\SOROKO~1\AppData\Local\Temp\ccSIQG8m.s:200    .text.MX_SPI3_Init:0000000000000044 $d
-C:\Users\SOROKO~1\AppData\Local\Temp\ccSIQG8m.s:206    .text.HAL_SPI_MspInit:0000000000000000 $t
-C:\Users\SOROKO~1\AppData\Local\Temp\ccSIQG8m.s:212    .text.HAL_SPI_MspInit:0000000000000000 HAL_SPI_MspInit
-C:\Users\SOROKO~1\AppData\Local\Temp\ccSIQG8m.s:412    .text.HAL_SPI_MspInit:00000000000000d0 $d
-C:\Users\SOROKO~1\AppData\Local\Temp\ccSIQG8m.s:420    .text.HAL_SPI_MspDeInit:0000000000000000 $t
-C:\Users\SOROKO~1\AppData\Local\Temp\ccSIQG8m.s:426    .text.HAL_SPI_MspDeInit:0000000000000000 HAL_SPI_MspDeInit
-C:\Users\SOROKO~1\AppData\Local\Temp\ccSIQG8m.s:493    .text.HAL_SPI_MspDeInit:0000000000000048 $d
-C:\Users\SOROKO~1\AppData\Local\Temp\ccSIQG8m.s:513    .bss.hspi3:0000000000000000 hspi3
-C:\Users\SOROKO~1\AppData\Local\Temp\ccSIQG8m.s:506    .bss.hspi1:0000000000000000 hspi1
-C:\Users\SOROKO~1\AppData\Local\Temp\ccSIQG8m.s:502    .bss.hspi1:0000000000000000 $d
-C:\Users\SOROKO~1\AppData\Local\Temp\ccSIQG8m.s:509    .bss.hspi3:0000000000000000 $d
+C:\Users\SOROKO~1\AppData\Local\Temp\ccyZQHv1.s:20     .text.MX_SPI1_Init:0000000000000000 $t
+C:\Users\SOROKO~1\AppData\Local\Temp\ccyZQHv1.s:26     .text.MX_SPI1_Init:0000000000000000 MX_SPI1_Init
+C:\Users\SOROKO~1\AppData\Local\Temp\ccyZQHv1.s:108    .text.MX_SPI1_Init:0000000000000048 $d
+C:\Users\SOROKO~1\AppData\Local\Temp\ccyZQHv1.s:114    .text.MX_SPI3_Init:0000000000000000 $t
+C:\Users\SOROKO~1\AppData\Local\Temp\ccyZQHv1.s:120    .text.MX_SPI3_Init:0000000000000000 MX_SPI3_Init
+C:\Users\SOROKO~1\AppData\Local\Temp\ccyZQHv1.s:200    .text.MX_SPI3_Init:0000000000000044 $d
+C:\Users\SOROKO~1\AppData\Local\Temp\ccyZQHv1.s:206    .text.HAL_SPI_MspInit:0000000000000000 $t
+C:\Users\SOROKO~1\AppData\Local\Temp\ccyZQHv1.s:212    .text.HAL_SPI_MspInit:0000000000000000 HAL_SPI_MspInit
+C:\Users\SOROKO~1\AppData\Local\Temp\ccyZQHv1.s:412    .text.HAL_SPI_MspInit:00000000000000d0 $d
+C:\Users\SOROKO~1\AppData\Local\Temp\ccyZQHv1.s:420    .text.HAL_SPI_MspDeInit:0000000000000000 $t
+C:\Users\SOROKO~1\AppData\Local\Temp\ccyZQHv1.s:426    .text.HAL_SPI_MspDeInit:0000000000000000 HAL_SPI_MspDeInit
+C:\Users\SOROKO~1\AppData\Local\Temp\ccyZQHv1.s:493    .text.HAL_SPI_MspDeInit:0000000000000048 $d
+C:\Users\SOROKO~1\AppData\Local\Temp\ccyZQHv1.s:513    .bss.hspi3:0000000000000000 hspi3
+C:\Users\SOROKO~1\AppData\Local\Temp\ccyZQHv1.s:506    .bss.hspi1:0000000000000000 hspi1
+C:\Users\SOROKO~1\AppData\Local\Temp\ccyZQHv1.s:502    .bss.hspi1:0000000000000000 $d
+C:\Users\SOROKO~1\AppData\Local\Temp\ccyZQHv1.s:509    .bss.hspi3:0000000000000000 $d
 
 UNDEFINED SYMBOLS
 HAL_SPI_Init

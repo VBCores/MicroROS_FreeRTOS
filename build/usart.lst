@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccmc1sDT.s 			page 1
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccJCEkI2.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccmc1sDT.s 			page 1
   28:Core/Src/usart.c **** 
   29:Core/Src/usart.c **** /* USART2 init function */
   30:Core/Src/usart.c **** 
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccmc1sDT.s 			page 2
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccJCEkI2.s 			page 2
 
 
   31:Core/Src/usart.c **** void MX_USART2_UART_Init(void)
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccmc1sDT.s 			page 1
   65              		.loc 1 48 28 is_stmt 0 view .LVU16
   66 001c C361     		str	r3, [r0, #28]
   49:Core/Src/usart.c ****   huart2.Init.OneBitSampling = UART_ONE_BIT_SAMPLE_DISABLE;
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccmc1sDT.s 			page 3
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccJCEkI2.s 			page 3
 
 
   67              		.loc 1 49 3 is_stmt 1 view .LVU17
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccmc1sDT.s 			page 1
  106              		.loc 1 64 6 view .LVU34
  107 0044 48B9     		cbnz	r0, .L10
  108              	.L1:
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccmc1sDT.s 			page 4
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccJCEkI2.s 			page 4
 
 
   65:Core/Src/usart.c ****   {
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccmc1sDT.s 			page 1
  150              		.loc 1 75 1 is_stmt 1 view -0
  151              		.cfi_startproc
  152              		@ args = 0, pretend = 0, frame = 112
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccmc1sDT.s 			page 5
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccJCEkI2.s 			page 5
 
 
  153              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccmc1sDT.s 			page 1
   94:Core/Src/usart.c ****     /* USART2 clock enable */
   95:Core/Src/usart.c ****     __HAL_RCC_USART2_CLK_ENABLE();
   96:Core/Src/usart.c **** 
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccmc1sDT.s 			page 6
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccJCEkI2.s 			page 6
 
 
   97:Core/Src/usart.c ****     __HAL_RCC_GPIOA_CLK_ENABLE();
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccmc1sDT.s 			page 1
  215              		.loc 1 95 5 view .LVU59
   95:Core/Src/usart.c **** 
  216              		.loc 1 95 5 view .LVU60
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccmc1sDT.s 			page 7
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccJCEkI2.s 			page 7
 
 
  217 0032 174B     		ldr	r3, .L19+4
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccmc1sDT.s 			page 1
  104:Core/Src/usart.c ****     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
  256              		.loc 1 104 26 view .LVU76
  257 0062 1994     		str	r4, [sp, #100]
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccmc1sDT.s 			page 8
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccJCEkI2.s 			page 8
 
 
  105:Core/Src/usart.c ****     GPIO_InitStruct.Alternate = GPIO_AF7_USART2;
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccmc1sDT.s 			page 1
  117:Core/Src/usart.c **** 
  118:Core/Src/usart.c **** void HAL_UART_MspDeInit(UART_HandleTypeDef* uartHandle)
  119:Core/Src/usart.c **** {
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccmc1sDT.s 			page 9
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccJCEkI2.s 			page 9
 
 
  306              		.loc 1 119 1 view -0
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccmc1sDT.s 			page 1
  336 0018 4FF09040 		mov	r0, #1207959552
  337              	.LVL23:
  133:Core/Src/usart.c **** 
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccmc1sDT.s 			page 10
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccJCEkI2.s 			page 10
 
 
  338              		.loc 1 133 5 is_stmt 0 view .LVU94
@@ -583,22 +583,22 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccmc1sDT.s 			page 1
  375              		.file 12 "Core/Inc/usart.h"
  376              		.file 13 "Core/Inc/main.h"
  377              		.file 14 "<built-in>"
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccmc1sDT.s 			page 11
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccJCEkI2.s 			page 11
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 usart.c
-C:\Users\SOROKO~1\AppData\Local\Temp\ccmc1sDT.s:20     .text.MX_USART2_UART_Init:0000000000000000 $t
-C:\Users\SOROKO~1\AppData\Local\Temp\ccmc1sDT.s:26     .text.MX_USART2_UART_Init:0000000000000000 MX_USART2_UART_Init
-C:\Users\SOROKO~1\AppData\Local\Temp\ccmc1sDT.s:135    .text.MX_USART2_UART_Init:0000000000000060 $d
-C:\Users\SOROKO~1\AppData\Local\Temp\ccmc1sDT.s:141    .text.HAL_UART_MspInit:0000000000000000 $t
-C:\Users\SOROKO~1\AppData\Local\Temp\ccmc1sDT.s:147    .text.HAL_UART_MspInit:0000000000000000 HAL_UART_MspInit
-C:\Users\SOROKO~1\AppData\Local\Temp\ccmc1sDT.s:291    .text.HAL_UART_MspInit:000000000000008c $d
-C:\Users\SOROKO~1\AppData\Local\Temp\ccmc1sDT.s:297    .text.HAL_UART_MspDeInit:0000000000000000 $t
-C:\Users\SOROKO~1\AppData\Local\Temp\ccmc1sDT.s:303    .text.HAL_UART_MspDeInit:0000000000000000 HAL_UART_MspDeInit
-C:\Users\SOROKO~1\AppData\Local\Temp\ccmc1sDT.s:350    .text.HAL_UART_MspDeInit:0000000000000028 $d
-C:\Users\SOROKO~1\AppData\Local\Temp\ccmc1sDT.s:361    .bss.huart2:0000000000000000 huart2
-C:\Users\SOROKO~1\AppData\Local\Temp\ccmc1sDT.s:357    .bss.huart2:0000000000000000 $d
+C:\Users\SOROKO~1\AppData\Local\Temp\ccJCEkI2.s:20     .text.MX_USART2_UART_Init:0000000000000000 $t
+C:\Users\SOROKO~1\AppData\Local\Temp\ccJCEkI2.s:26     .text.MX_USART2_UART_Init:0000000000000000 MX_USART2_UART_Init
+C:\Users\SOROKO~1\AppData\Local\Temp\ccJCEkI2.s:135    .text.MX_USART2_UART_Init:0000000000000060 $d
+C:\Users\SOROKO~1\AppData\Local\Temp\ccJCEkI2.s:141    .text.HAL_UART_MspInit:0000000000000000 $t
+C:\Users\SOROKO~1\AppData\Local\Temp\ccJCEkI2.s:147    .text.HAL_UART_MspInit:0000000000000000 HAL_UART_MspInit
+C:\Users\SOROKO~1\AppData\Local\Temp\ccJCEkI2.s:291    .text.HAL_UART_MspInit:000000000000008c $d
+C:\Users\SOROKO~1\AppData\Local\Temp\ccJCEkI2.s:297    .text.HAL_UART_MspDeInit:0000000000000000 $t
+C:\Users\SOROKO~1\AppData\Local\Temp\ccJCEkI2.s:303    .text.HAL_UART_MspDeInit:0000000000000000 HAL_UART_MspDeInit
+C:\Users\SOROKO~1\AppData\Local\Temp\ccJCEkI2.s:350    .text.HAL_UART_MspDeInit:0000000000000028 $d
+C:\Users\SOROKO~1\AppData\Local\Temp\ccJCEkI2.s:361    .bss.huart2:0000000000000000 huart2
+C:\Users\SOROKO~1\AppData\Local\Temp\ccJCEkI2.s:357    .bss.huart2:0000000000000000 $d
 
 UNDEFINED SYMBOLS
 HAL_UART_Init

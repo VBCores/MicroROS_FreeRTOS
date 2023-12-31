@@ -100,7 +100,10 @@ void Error_Handler(void);
 
 #define ROUTER_ID (127)					// CAN ID OF ROUTER DEVICE SHOULD BE MY_CAN_ID + 10
 
-#define JOINTN 2
+#define NODIPSWITCH
+#ifdef NODIPSWITCH
+#define JOINTN 1
+#endif
 
 #define USE_ENCODER 1
 #define USE_FREEETOS 1

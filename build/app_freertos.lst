@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s 			page 1
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s 			page 1
   11:Core/Src/app_freertos.c ****   *
   12:Core/Src/app_freertos.c ****   * This software is licensed under terms that can be found in the LICENSE file
   13:Core/Src/app_freertos.c ****   * in the root directory of this software component.
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s 			page 2
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s 			page 2
 
 
   14:Core/Src/app_freertos.c ****   * If no LICENSE file comes with this software, it is provided AS-IS.
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s 			page 1
   68:Core/Src/app_freertos.c **** /* Private define ------------------------------------------------------------*/
   69:Core/Src/app_freertos.c **** /* USER CODE BEGIN PD */
   70:Core/Src/app_freertos.c **** 
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s 			page 3
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s 			page 3
 
 
   71:Core/Src/app_freertos.c **** /* USER CODE END PD */
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s 			page 1
  125:Core/Src/app_freertos.c **** bool cubemx_transport_close(struct uxrCustomTransport * transport);
  126:Core/Src/app_freertos.c **** size_t cubemx_transport_write(struct uxrCustomTransport* transport, const uint8_t * buf, size_t len
  127:Core/Src/app_freertos.c **** size_t cubemx_transport_read(struct uxrCustomTransport* transport, uint8_t* buf, size_t len, int ti
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s 			page 4
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s 			page 4
 
 
  128:Core/Src/app_freertos.c **** 
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s 			page 1
  182:Core/Src/app_freertos.c ****   /* USER CODE BEGIN RTOS_SEMAPHORES */
  183:Core/Src/app_freertos.c ****   /* add semaphores, ... */
  184:Core/Src/app_freertos.c ****   /* USER CODE END RTOS_SEMAPHORES */
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s 			page 5
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s 			page 5
 
 
  185:Core/Src/app_freertos.c **** 
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s 			page 1
  224:Core/Src/app_freertos.c **** 
  225:Core/Src/app_freertos.c **** 		//RCL init
  226:Core/Src/app_freertos.c **** 
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s 			page 6
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s 			page 6
 
 
  227:Core/Src/app_freertos.c **** 		rmw_uros_set_custom_transport(
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s 			page 1
  243:Core/Src/app_freertos.c **** 		allocator = rcl_get_default_allocator();
   93              		.loc 1 243 3 view .LVU15
   94              		.loc 1 243 15 is_stmt 0 view .LVU16
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s 			page 7
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s 			page 7
 
 
   95 0034 334C     		ldr	r4, .L6+36
@@ -411,14 +411,14 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s 			page 1
  132              		.loc 1 253 3 view .LVU24
  254:Core/Src/app_freertos.c **** 		rmw_uros_options_set_client_key(client_key, rmw_options);
  133              		.loc 1 254 3 view .LVU25
- 134 0080 0C20     		movs	r0, #12
+ 134 0080 0B20     		movs	r0, #11
  135              	.LVL11:
  136              		.loc 1 254 3 is_stmt 0 view .LVU26
  137 0082 FFF7FEFF 		bl	rmw_uros_options_set_client_key
  138              	.LVL12:
  255:Core/Src/app_freertos.c **** 
  256:Core/Src/app_freertos.c **** 		rclc_support_init_with_options(&support, 0, NULL, &init_options, &allocator);
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s 			page 8
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s 			page 8
 
 
  139              		.loc 1 256 3 is_stmt 1 view .LVU27
@@ -436,7 +436,7 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s 			page 1
  148              		.loc 1 259 3 view .LVU28
  260:Core/Src/app_freertos.c **** 		sprintf(node_name,"sonic_node_%d", JOINTN);
  149              		.loc 1 260 3 view .LVU29
- 150 0096 0222     		movs	r2, #2
+ 150 0096 0122     		movs	r2, #1
  151 0098 1D49     		ldr	r1, .L6+48
  152 009a 0EA8     		add	r0, sp, #56
  153 009c FFF7FEFF 		bl	sprintf
@@ -456,7 +456,7 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s 			page 1
  163              		.loc 1 264 3 view .LVU31
  265:Core/Src/app_freertos.c **** 		sprintf(topic_pub_name,"sonic_pub_%d", JOINTN);
  164              		.loc 1 265 3 view .LVU32
- 165 00ae 0222     		movs	r2, #2
+ 165 00ae 0122     		movs	r2, #1
  166 00b0 1A49     		ldr	r1, .L6+60
  167 00b2 09A8     		add	r0, sp, #36
  168 00b4 FFF7FEFF 		bl	sprintf
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s 			page 1
  269:Core/Src/app_freertos.c **** 			&node,
  270:Core/Src/app_freertos.c **** 			ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Int32),
  271:Core/Src/app_freertos.c **** 			topic_pub_name);
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s 			page 9
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s 			page 9
 
 
  272:Core/Src/app_freertos.c **** 
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s 			page 1
  200 00de F7E7     		b	.L2
  201              	.L7:
  202              		.align	2
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s 			page 10
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s 			page 10
 
 
  203              	.L6:
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s 			page 1
  245              		.cfi_offset 14, -4
  316:Core/Src/app_freertos.c ****   /* USER CODE BEGIN StartTask09 */
  317:Core/Src/app_freertos.c **** 	//jcPublisher
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s 			page 11
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s 			page 11
 
 
  318:Core/Src/app_freertos.c **** 	int32_t i = 0;
@@ -631,9 +631,9 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s 			page 1
  263              		.loc 1 327 3 is_stmt 0 discriminator 1 view .LVU50
  264 0010 0134     		adds	r4, r4, #1
  265              	.LVL25:
- 328:Core/Src/app_freertos.c ****     osDelay(10);
+ 328:Core/Src/app_freertos.c ****     osDelay(1);
  266              		.loc 1 328 5 is_stmt 1 discriminator 1 view .LVU51
- 267 0012 0A20     		movs	r0, #10
+ 267 0012 0120     		movs	r0, #1
  268 0014 FFF7FEFF 		bl	osDelay
  269              	.LVL26:
  320:Core/Src/app_freertos.c ****   {
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s 			page 1
  330:Core/Src/app_freertos.c ****   /* USER CODE END StartTask09 */
  331:Core/Src/app_freertos.c **** }
  332:Core/Src/app_freertos.c **** 
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s 			page 12
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s 			page 12
 
 
  333:Core/Src/app_freertos.c **** /* USER CODE BEGIN Header_StartTask10 */
@@ -691,9 +691,9 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s 			page 1
  303              		.loc 1 345 3 is_stmt 1 discriminator 1 view .LVU55
  346:Core/Src/app_freertos.c ****   {
  347:Core/Src/app_freertos.c **** 	//rclc_executor_spin_some(&jc_executor, 1);
- 348:Core/Src/app_freertos.c ****     osDelay(1000);
+ 348:Core/Src/app_freertos.c ****     osDelay(10000);
  304              		.loc 1 348 5 discriminator 1 view .LVU56
- 305 0002 4FF47A70 		mov	r0, #1000
+ 305 0002 42F21070 		movw	r0, #10000
  306 0006 FFF7FEFF 		bl	osDelay
  307              	.LVL29:
  345:Core/Src/app_freertos.c ****   {
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s 			page 1
  327              	.LCFI4:
  328              		.cfi_def_cfa_offset 8
  329              		.cfi_offset 3, -8
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s 			page 13
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s 			page 13
 
 
  330              		.cfi_offset 14, -4
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s 			page 1
  371              		.loc 1 212 1 view .LVU71
  372 003a 08BD     		pop	{r3, pc}
  373              	.L19:
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s 			page 14
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s 			page 14
 
 
  374              		.align	2
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s 			page 1
  419              		.global	jc_subscriber
  420              		.global	jc_publisher
  421              		.global	PublisherSemaphore_attributes
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s 			page 15
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s 			page 15
 
 
  422              		.section	.rodata.str1.4,"aMS",%progbits,1
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s 			page 1
  463              		.section	.bss.defaultTaskHandle,"aw",%nobits
  464              		.align	2
  465              		.set	.LANCHOR9,. + 0
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s 			page 16
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s 			page 16
 
 
  468              	defaultTaskHandle:
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s 			page 1
  535      00000000 
  536              		.section	.bss.rc,"aw",%nobits
  537              		.align	2
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s 			page 17
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s 			page 17
 
 
  540              	rc:
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s 			page 1
  589 0014 D0070000 		.word	2000
  590 0018 08000000 		.word	8
  591 001c 00000000 		.space	8
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s 			page 18
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s 			page 18
 
 
  591      00000000 
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s 			page 1
  645              		.file 53 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/uxr/cli
  646              		.file 54 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/uxr/cli
  647              		.file 55 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/uxr/cli
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s 			page 19
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s 			page 19
 
 
  648              		.file 56 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/uxr/cli
@@ -1094,67 +1094,67 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s 			page 1
  658              		.file 66 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/rclc/in
  659              		.file 67 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/rmw_mic
  660              		.file 68 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/rmw_mic
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s 			page 20
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s 			page 20
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 app_freertos.c
-C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s:20     .rodata.StartDefaultTask.str1.4:0000000000000000 $d
-C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s:30     .text.StartDefaultTask:0000000000000000 $t
-C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s:36     .text.StartDefaultTask:0000000000000000 StartDefaultTask
-C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s:204    .text.StartDefaultTask:00000000000000e0 $d
-C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s:227    .text.StartTask09:0000000000000000 $t
-C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s:233    .text.StartTask09:0000000000000000 StartTask09
-C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s:275    .text.StartTask09:000000000000001c $d
-C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s:281    .text.StartTask10:0000000000000000 $t
-C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s:287    .text.StartTask10:0000000000000000 StartTask10
-C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s:314    .text.MX_FREERTOS_Init:0000000000000000 $t
-C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s:320    .text.MX_FREERTOS_Init:0000000000000000 MX_FREERTOS_Init
-C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s:376    .text.MX_FREERTOS_Init:000000000000003c $d
-C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s:391    .text.jc_sub_cb:0000000000000000 $t
-C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s:397    .text.jc_sub_cb:0000000000000000 jc_sub_cb
-C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s:520    .bss.msg_in:0000000000000000 msg_in
-C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s:527    .bss.msg_out:0000000000000000 msg_out
-C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s:514    .bss.msg:0000000000000000 msg
-C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s:540    .bss.rc:0000000000000000 rc
-C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s:475    .bss.init_options:0000000000000000 init_options
-C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s:534    .bss.node:0000000000000000 node
-C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s:461    .bss.allocator:0000000000000000 allocator
-C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s:547    .bss.support:0000000000000000 support
-C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s:495    .bss.jc_executor:0000000000000000 jc_executor
-C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s:508    .bss.jc_subscriber:0000000000000000 jc_subscriber
-C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s:502    .bss.jc_publisher:0000000000000000 jc_publisher
-C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s:554    .rodata.PublisherSemaphore_attributes:0000000000000000 PublisherSemaphore_attributes
-C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s:423    .rodata.str1.4:0000000000000000 $d
-C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s:447    .bss.PublisherSemaphoreControlBlock:0000000000000000 PublisherSemaphoreControlBlock
-C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s:454    .bss.PublisherSemaphoreHandle:0000000000000000 PublisherSemaphoreHandle
-C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s:586    .rodata.jcSubscriber_attributes:0000000000000000 jcSubscriber_attributes
-C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s:489    .bss.jcSubscriberHandle:0000000000000000 jcSubscriberHandle
-C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s:575    .rodata.jcPublisher_attributes:0000000000000000 jcPublisher_attributes
-C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s:482    .bss.jcPublisherHandle:0000000000000000 jcPublisherHandle
-C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s:564    .rodata.defaultTask_attributes:0000000000000000 defaultTask_attributes
-C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s:468    .bss.defaultTaskHandle:0000000000000000 defaultTaskHandle
-C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s:444    .bss.PublisherSemaphoreControlBlock:0000000000000000 $d
-C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s:450    .bss.PublisherSemaphoreHandle:0000000000000000 $d
-C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s:457    .bss.allocator:0000000000000000 $d
-C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s:464    .bss.defaultTaskHandle:0000000000000000 $d
-C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s:471    .bss.init_options:0000000000000000 $d
-C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s:478    .bss.jcPublisherHandle:0000000000000000 $d
-C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s:485    .bss.jcSubscriberHandle:0000000000000000 $d
-C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s:492    .bss.jc_executor:0000000000000000 $d
-C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s:498    .bss.jc_publisher:0000000000000000 $d
-C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s:505    .bss.jc_subscriber:0000000000000000 $d
-C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s:511    .bss.msg:0000000000000000 $d
-C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s:517    .bss.msg_in:0000000000000000 $d
-C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s:523    .bss.msg_out:0000000000000000 $d
-C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s:530    .bss.node:0000000000000000 $d
-C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s:537    .bss.rc:0000000000000000 $d
-C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s:543    .bss.support:0000000000000000 $d
-C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s:550    .rodata.PublisherSemaphore_attributes:0000000000000000 $d
-C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s:560    .rodata.defaultTask_attributes:0000000000000000 $d
-C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s:571    .rodata.jcPublisher_attributes:0000000000000000 $d
-C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s:582    .rodata.jcSubscriber_attributes:0000000000000000 $d
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccQ20GYb.s 			page 21
+C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s:20     .rodata.StartDefaultTask.str1.4:0000000000000000 $d
+C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s:30     .text.StartDefaultTask:0000000000000000 $t
+C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s:36     .text.StartDefaultTask:0000000000000000 StartDefaultTask
+C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s:204    .text.StartDefaultTask:00000000000000e0 $d
+C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s:227    .text.StartTask09:0000000000000000 $t
+C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s:233    .text.StartTask09:0000000000000000 StartTask09
+C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s:275    .text.StartTask09:000000000000001c $d
+C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s:281    .text.StartTask10:0000000000000000 $t
+C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s:287    .text.StartTask10:0000000000000000 StartTask10
+C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s:314    .text.MX_FREERTOS_Init:0000000000000000 $t
+C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s:320    .text.MX_FREERTOS_Init:0000000000000000 MX_FREERTOS_Init
+C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s:376    .text.MX_FREERTOS_Init:000000000000003c $d
+C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s:391    .text.jc_sub_cb:0000000000000000 $t
+C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s:397    .text.jc_sub_cb:0000000000000000 jc_sub_cb
+C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s:520    .bss.msg_in:0000000000000000 msg_in
+C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s:527    .bss.msg_out:0000000000000000 msg_out
+C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s:514    .bss.msg:0000000000000000 msg
+C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s:540    .bss.rc:0000000000000000 rc
+C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s:475    .bss.init_options:0000000000000000 init_options
+C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s:534    .bss.node:0000000000000000 node
+C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s:461    .bss.allocator:0000000000000000 allocator
+C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s:547    .bss.support:0000000000000000 support
+C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s:495    .bss.jc_executor:0000000000000000 jc_executor
+C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s:508    .bss.jc_subscriber:0000000000000000 jc_subscriber
+C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s:502    .bss.jc_publisher:0000000000000000 jc_publisher
+C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s:554    .rodata.PublisherSemaphore_attributes:0000000000000000 PublisherSemaphore_attributes
+C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s:423    .rodata.str1.4:0000000000000000 $d
+C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s:447    .bss.PublisherSemaphoreControlBlock:0000000000000000 PublisherSemaphoreControlBlock
+C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s:454    .bss.PublisherSemaphoreHandle:0000000000000000 PublisherSemaphoreHandle
+C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s:586    .rodata.jcSubscriber_attributes:0000000000000000 jcSubscriber_attributes
+C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s:489    .bss.jcSubscriberHandle:0000000000000000 jcSubscriberHandle
+C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s:575    .rodata.jcPublisher_attributes:0000000000000000 jcPublisher_attributes
+C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s:482    .bss.jcPublisherHandle:0000000000000000 jcPublisherHandle
+C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s:564    .rodata.defaultTask_attributes:0000000000000000 defaultTask_attributes
+C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s:468    .bss.defaultTaskHandle:0000000000000000 defaultTaskHandle
+C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s:444    .bss.PublisherSemaphoreControlBlock:0000000000000000 $d
+C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s:450    .bss.PublisherSemaphoreHandle:0000000000000000 $d
+C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s:457    .bss.allocator:0000000000000000 $d
+C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s:464    .bss.defaultTaskHandle:0000000000000000 $d
+C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s:471    .bss.init_options:0000000000000000 $d
+C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s:478    .bss.jcPublisherHandle:0000000000000000 $d
+C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s:485    .bss.jcSubscriberHandle:0000000000000000 $d
+C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s:492    .bss.jc_executor:0000000000000000 $d
+C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s:498    .bss.jc_publisher:0000000000000000 $d
+C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s:505    .bss.jc_subscriber:0000000000000000 $d
+C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s:511    .bss.msg:0000000000000000 $d
+C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s:517    .bss.msg_in:0000000000000000 $d
+C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s:523    .bss.msg_out:0000000000000000 $d
+C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s:530    .bss.node:0000000000000000 $d
+C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s:537    .bss.rc:0000000000000000 $d
+C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s:543    .bss.support:0000000000000000 $d
+C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s:550    .rodata.PublisherSemaphore_attributes:0000000000000000 $d
+C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s:560    .rodata.defaultTask_attributes:0000000000000000 $d
+C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s:571    .rodata.jcPublisher_attributes:0000000000000000 $d
+C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s:582    .rodata.jcSubscriber_attributes:0000000000000000 $d
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\cc8FP6rN.s 			page 21
 
 
 

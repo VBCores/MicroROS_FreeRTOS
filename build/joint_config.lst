@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccWPFCGC.s 			page 1
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccjtlBYc.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccWPFCGC.s 			page 1
   27:Core/Src/joint_config.c **** 		joint_config_assembler(jconf);
   28:Core/Src/joint_config.c **** 		joint_config_write(jconf);
   29:Core/Src/joint_config.c **** 		return;
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccWPFCGC.s 			page 2
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccjtlBYc.s 			page 2
 
 
   30:Core/Src/joint_config.c **** 	}
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccWPFCGC.s 			page 1
   67              		.loc 1 46 2 is_stmt 1 view .LVU21
   68              		.loc 1 46 19 is_stmt 0 view .LVU22
   69 0018 0123     		movs	r3, #1
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccWPFCGC.s 			page 3
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccjtlBYc.s 			page 3
 
 
   70 001a C370     		strb	r3, [r0, #3]
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccWPFCGC.s 			page 1
   61:Core/Src/joint_config.c **** 	else if (HAL_GPIO_ReadPin(DIP_3_GPIO_Port, DIP_3_Pin))
   62:Core/Src/joint_config.c **** 	{
   63:Core/Src/joint_config.c **** 		jc->joint_number = 3;
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccWPFCGC.s 			page 4
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccjtlBYc.s 			page 4
 
 
   64:Core/Src/joint_config.c **** 	}
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccWPFCGC.s 			page 1
   63:Core/Src/joint_config.c **** 	}
  139              		.loc 1 63 20 is_stmt 0 view .LVU42
  140 0034 0323     		movs	r3, #3
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccWPFCGC.s 			page 5
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccjtlBYc.s 			page 5
 
 
  141 0036 6370     		strb	r3, [r4, #1]
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccWPFCGC.s 			page 1
   75:Core/Src/joint_config.c **** 	}
  181              		.loc 1 75 20 is_stmt 0 view .LVU57
  182 006a 0623     		movs	r3, #6
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccWPFCGC.s 			page 6
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccjtlBYc.s 			page 6
 
 
  183 006c 6370     		strb	r3, [r4, #1]
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccWPFCGC.s 			page 1
  231              		.loc 1 87 17 is_stmt 0 view .LVU68
  232 0010 0023     		movs	r3, #0
  233 0012 2370     		strb	r3, [r4]
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccWPFCGC.s 			page 7
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccjtlBYc.s 			page 7
 
 
  234              	.L13:
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccWPFCGC.s 			page 1
  283              		.syntax unified
  284              		.thumb
  285              		.thumb_func
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccWPFCGC.s 			page 8
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccjtlBYc.s 			page 8
 
 
  287              	joint_config_write:
@@ -432,55 +432,57 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccWPFCGC.s 			page 1
  292              		@ args = 0, pretend = 0, frame = 0
  293              		@ frame_needed = 0, uses_anonymous_args = 0
  294              		.loc 1 92 1 is_stmt 0 view .LVU78
- 295 0000 10B5     		push	{r4, lr}
+ 295 0000 38B5     		push	{r3, r4, r5, lr}
  296              	.LCFI3:
- 297              		.cfi_def_cfa_offset 8
- 298              		.cfi_offset 4, -8
- 299              		.cfi_offset 14, -4
- 300 0002 0446     		mov	r4, r0
+ 297              		.cfi_def_cfa_offset 16
+ 298              		.cfi_offset 3, -16
+ 299              		.cfi_offset 4, -12
+ 300              		.cfi_offset 5, -8
+ 301              		.cfi_offset 14, -4
+ 302 0002 0446     		mov	r4, r0
   93:Core/Src/joint_config.c **** 	uint16_t address_of_domain_id = 0x00;
- 301              		.loc 1 93 2 is_stmt 1 view .LVU79
- 302              	.LVL18:
+ 303              		.loc 1 93 2 is_stmt 1 view .LVU79
+ 304              	.LVL18:
   94:Core/Src/joint_config.c **** 	uint16_t address_of_upper_limit_enc = sizeof(&jc->domain_id);
- 303              		.loc 1 94 2 view .LVU80
+ 305              		.loc 1 94 2 view .LVU80
   95:Core/Src/joint_config.c **** 	uint16_t address_of_lower_limit_enc = address_of_upper_limit_enc + sizeof(&jc->upper_limit_enc);
- 304              		.loc 1 95 2 view .LVU81
+ 306              		.loc 1 95 2 view .LVU81
   96:Core/Src/joint_config.c **** 	uint16_t address_of_upper_limit_ticks = address_of_lower_limit_enc + sizeof(&jc->lower_limit_enc);
- 305              		.loc 1 96 2 view .LVU82
+ 307              		.loc 1 96 2 view .LVU82
   97:Core/Src/joint_config.c **** 	uint16_t address_of_lower_limit_ticks = address_of_upper_limit_ticks + sizeof(&jc->upper_limit_tic
- 306              		.loc 1 97 2 view .LVU83
+ 308              		.loc 1 97 2 view .LVU83
   98:Core/Src/joint_config.c **** 	uint16_t address_of_zero_enc = address_of_lower_limit_ticks + sizeof(&jc->lower_limit_ticks);
- 307              		.loc 1 98 2 view .LVU84
+ 309              		.loc 1 98 2 view .LVU84
   99:Core/Src/joint_config.c **** 	uint16_t address_of_joint_number = address_of_zero_enc + sizeof(&jc->zero_enc);
- 308              		.loc 1 99 2 view .LVU85
+ 310              		.loc 1 99 2 view .LVU85
  100:Core/Src/joint_config.c **** 	uint16_t address_of_motor_type = address_of_joint_number + sizeof(&jc->joint_number);
- 309              		.loc 1 100 2 view .LVU86
+ 311              		.loc 1 100 2 view .LVU86
  101:Core/Src/joint_config.c **** 	uint16_t address_of_full_steps = address_of_motor_type + sizeof(&jc->motor_type);
- 310              		.loc 1 101 2 view .LVU87
+ 312              		.loc 1 101 2 view .LVU87
  102:Core/Src/joint_config.c **** 	uint16_t address_of_gear_ratio = address_of_full_steps + sizeof(&jc->full_steps);
- 311              		.loc 1 102 2 view .LVU88
+ 313              		.loc 1 102 2 view .LVU88
  103:Core/Src/joint_config.c **** 	uint16_t address_of_upper_limit_effort = address_of_gear_ratio + sizeof(&jc->gear_ratio);
- 312              		.loc 1 103 2 view .LVU89
+ 314              		.loc 1 103 2 view .LVU89
  104:Core/Src/joint_config.c **** 	uint16_t address_of_direction = address_of_upper_limit_effort + sizeof(&jc->upper_limit_effort);
- 313              		.loc 1 104 2 view .LVU90
+ 315              		.loc 1 104 2 view .LVU90
  105:Core/Src/joint_config.c **** 
  106:Core/Src/joint_config.c **** 	int timeout = 100;
- 314              		.loc 1 106 2 view .LVU91
+ 316              		.loc 1 106 2 view .LVU91
  107:Core/Src/joint_config.c **** 	if (at24_isConnected())
- 315              		.loc 1 107 2 view .LVU92
- 316              		.loc 1 107 6 is_stmt 0 view .LVU93
- 317 0004 FFF7FEFF 		bl	at24_isConnected
- 318              	.LVL19:
- 319              		.loc 1 107 5 view .LVU94
- 320 0008 00B9     		cbnz	r0, .L23
- 321              	.L20:
+ 317              		.loc 1 107 2 view .LVU92
+ 318              		.loc 1 107 6 is_stmt 0 view .LVU93
+ 319 0004 FFF7FEFF 		bl	at24_isConnected
+ 320              	.LVL19:
+ 321              		.loc 1 107 5 view .LVU94
+ 322 0008 00B9     		cbnz	r0, .L23
+ 323              	.L20:
  108:Core/Src/joint_config.c **** 	{
  109:Core/Src/joint_config.c **** 
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccjtlBYc.s 			page 9
+
+
  110:Core/Src/joint_config.c **** 		at24_write(address_of_domain_id, &jc->domain_id, sizeof(&jc->domain_id), timeout);
  111:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccWPFCGC.s 			page 9
-
-
  112:Core/Src/joint_config.c **** 		at24_write(address_of_upper_limit_enc, &jc->upper_limit_enc, sizeof(&jc->upper_limit_enc), timeou
  113:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
  114:Core/Src/joint_config.c **** 		at24_write(address_of_lower_limit_enc, &jc->lower_limit_enc, sizeof(&jc->lower_limit_enc), timeou
@@ -506,241 +508,246 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccWPFCGC.s 			page 1
  134:Core/Src/joint_config.c **** 
  135:Core/Src/joint_config.c **** 	}
  136:Core/Src/joint_config.c **** }
- 322              		.loc 1 136 1 view .LVU95
- 323 000a 10BD     		pop	{r4, pc}
- 324              	.LVL20:
- 325              	.L23:
+ 324              		.loc 1 136 1 view .LVU95
+ 325 000a 38BD     		pop	{r3, r4, r5, pc}
+ 326              	.LVL20:
+ 327              	.L23:
  110:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
- 326              		.loc 1 110 3 is_stmt 1 view .LVU96
- 327 000c 6423     		movs	r3, #100
- 328 000e 0422     		movs	r2, #4
- 329 0010 2146     		mov	r1, r4
- 330 0012 0020     		movs	r0, #0
- 331 0014 FFF7FEFF 		bl	at24_write
- 332              	.LVL21:
+ 328              		.loc 1 110 3 is_stmt 1 view .LVU96
+ 329 000c 6423     		movs	r3, #100
+ 330 000e 0422     		movs	r2, #4
+ 331 0010 2146     		mov	r1, r4
+ 332 0012 0020     		movs	r0, #0
+ 333 0014 FFF7FEFF 		bl	at24_write
+ 334              	.LVL21:
  111:Core/Src/joint_config.c **** 		at24_write(address_of_upper_limit_enc, &jc->upper_limit_enc, sizeof(&jc->upper_limit_enc), timeou
- 333              		.loc 1 111 3 view .LVU97
- 334 0018 0120     		movs	r0, #1
- 335 001a FFF7FEFF 		bl	vTaskDelay
- 336              	.LVL22:
+ 335              		.loc 1 111 3 view .LVU97
+ 336 0018 0125     		movs	r5, #1
+ 337 001a 0023     		movs	r3, #0
+ 338 001c B5FBF3F5 		udiv	r5, r5, r3
+ 339 0020 2846     		mov	r0, r5
+ 340 0022 FFF7FEFF 		bl	vTaskDelay
+ 341              	.LVL22:
  112:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
- 337              		.loc 1 112 3 view .LVU98
- 338 001e 6423     		movs	r3, #100
- 339 0020 0422     		movs	r2, #4
- 340 0022 04F11401 		add	r1, r4, #20
- 341 0026 1046     		mov	r0, r2
- 342 0028 FFF7FEFF 		bl	at24_write
- 343              	.LVL23:
+ 342              		.loc 1 112 3 view .LVU98
+ 343 0026 6423     		movs	r3, #100
+ 344 0028 0422     		movs	r2, #4
+ 345 002a 04F11401 		add	r1, r4, #20
+ 346 002e 1046     		mov	r0, r2
+ 347 0030 FFF7FEFF 		bl	at24_write
+ 348              	.LVL23:
  113:Core/Src/joint_config.c **** 		at24_write(address_of_lower_limit_enc, &jc->lower_limit_enc, sizeof(&jc->lower_limit_enc), timeou
- 344              		.loc 1 113 3 view .LVU99
- 345 002c 0120     		movs	r0, #1
- 346 002e FFF7FEFF 		bl	vTaskDelay
- 347              	.LVL24:
+ 349              		.loc 1 113 3 view .LVU99
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccjtlBYc.s 			page 10
+
+
+ 350 0034 2846     		mov	r0, r5
+ 351 0036 FFF7FEFF 		bl	vTaskDelay
+ 352              	.LVL24:
  114:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
- 348              		.loc 1 114 3 view .LVU100
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccWPFCGC.s 			page 10
-
-
- 349 0032 6423     		movs	r3, #100
- 350 0034 0422     		movs	r2, #4
- 351 0036 04F11801 		add	r1, r4, #24
- 352 003a 0820     		movs	r0, #8
- 353 003c FFF7FEFF 		bl	at24_write
- 354              	.LVL25:
+ 353              		.loc 1 114 3 view .LVU100
+ 354 003a 6423     		movs	r3, #100
+ 355 003c 0422     		movs	r2, #4
+ 356 003e 04F11801 		add	r1, r4, #24
+ 357 0042 0820     		movs	r0, #8
+ 358 0044 FFF7FEFF 		bl	at24_write
+ 359              	.LVL25:
  115:Core/Src/joint_config.c **** 		at24_write(address_of_upper_limit_ticks, &jc->upper_limit_ticks, sizeof(&jc->upper_limit_ticks), 
- 355              		.loc 1 115 3 view .LVU101
- 356 0040 0120     		movs	r0, #1
- 357 0042 FFF7FEFF 		bl	vTaskDelay
- 358              	.LVL26:
+ 360              		.loc 1 115 3 view .LVU101
+ 361 0048 2846     		mov	r0, r5
+ 362 004a FFF7FEFF 		bl	vTaskDelay
+ 363              	.LVL26:
  116:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
- 359              		.loc 1 116 3 view .LVU102
- 360 0046 6423     		movs	r3, #100
- 361 0048 0422     		movs	r2, #4
- 362 004a 04F10C01 		add	r1, r4, #12
- 363 004e 0C20     		movs	r0, #12
- 364 0050 FFF7FEFF 		bl	at24_write
- 365              	.LVL27:
+ 364              		.loc 1 116 3 view .LVU102
+ 365 004e 6423     		movs	r3, #100
+ 366 0050 0422     		movs	r2, #4
+ 367 0052 04F10C01 		add	r1, r4, #12
+ 368 0056 0C20     		movs	r0, #12
+ 369 0058 FFF7FEFF 		bl	at24_write
+ 370              	.LVL27:
  117:Core/Src/joint_config.c **** 		at24_write(address_of_lower_limit_ticks, &jc->lower_limit_ticks, sizeof(&jc->lower_limit_ticks), 
- 366              		.loc 1 117 3 view .LVU103
- 367 0054 0120     		movs	r0, #1
- 368 0056 FFF7FEFF 		bl	vTaskDelay
- 369              	.LVL28:
+ 371              		.loc 1 117 3 view .LVU103
+ 372 005c 2846     		mov	r0, r5
+ 373 005e FFF7FEFF 		bl	vTaskDelay
+ 374              	.LVL28:
  118:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
- 370              		.loc 1 118 3 view .LVU104
- 371 005a 6423     		movs	r3, #100
- 372 005c 0422     		movs	r2, #4
- 373 005e 04F11001 		add	r1, r4, #16
- 374 0062 1020     		movs	r0, #16
- 375 0064 FFF7FEFF 		bl	at24_write
- 376              	.LVL29:
+ 375              		.loc 1 118 3 view .LVU104
+ 376 0062 6423     		movs	r3, #100
+ 377 0064 0422     		movs	r2, #4
+ 378 0066 04F11001 		add	r1, r4, #16
+ 379 006a 1020     		movs	r0, #16
+ 380 006c FFF7FEFF 		bl	at24_write
+ 381              	.LVL29:
  119:Core/Src/joint_config.c **** 		at24_write(address_of_zero_enc, &jc->zero_enc, sizeof(&jc->zero_enc), timeout);
- 377              		.loc 1 119 3 view .LVU105
- 378 0068 0120     		movs	r0, #1
- 379 006a FFF7FEFF 		bl	vTaskDelay
- 380              	.LVL30:
+ 382              		.loc 1 119 3 view .LVU105
+ 383 0070 2846     		mov	r0, r5
+ 384 0072 FFF7FEFF 		bl	vTaskDelay
+ 385              	.LVL30:
  120:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
- 381              		.loc 1 120 3 view .LVU106
- 382 006e 6423     		movs	r3, #100
- 383 0070 0422     		movs	r2, #4
- 384 0072 04F11C01 		add	r1, r4, #28
- 385 0076 1420     		movs	r0, #20
- 386 0078 FFF7FEFF 		bl	at24_write
- 387              	.LVL31:
+ 386              		.loc 1 120 3 view .LVU106
+ 387 0076 6423     		movs	r3, #100
+ 388 0078 0422     		movs	r2, #4
+ 389 007a 04F11C01 		add	r1, r4, #28
+ 390 007e 1420     		movs	r0, #20
+ 391 0080 FFF7FEFF 		bl	at24_write
+ 392              	.LVL31:
  121:Core/Src/joint_config.c **** 		at24_write(address_of_joint_number, &jc->joint_number, sizeof(&jc->joint_number), timeout);
- 388              		.loc 1 121 3 view .LVU107
- 389 007c 0120     		movs	r0, #1
- 390 007e FFF7FEFF 		bl	vTaskDelay
- 391              	.LVL32:
+ 393              		.loc 1 121 3 view .LVU107
+ 394 0084 2846     		mov	r0, r5
+ 395 0086 FFF7FEFF 		bl	vTaskDelay
+ 396              	.LVL32:
  122:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
- 392              		.loc 1 122 3 view .LVU108
- 393 0082 6423     		movs	r3, #100
- 394 0084 0422     		movs	r2, #4
- 395 0086 611C     		adds	r1, r4, #1
- 396 0088 1820     		movs	r0, #24
- 397 008a FFF7FEFF 		bl	at24_write
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccWPFCGC.s 			page 11
+ 397              		.loc 1 122 3 view .LVU108
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccjtlBYc.s 			page 11
 
 
- 398              	.LVL33:
+ 398 008a 6423     		movs	r3, #100
+ 399 008c 0422     		movs	r2, #4
+ 400 008e 611C     		adds	r1, r4, #1
+ 401 0090 1820     		movs	r0, #24
+ 402 0092 FFF7FEFF 		bl	at24_write
+ 403              	.LVL33:
  123:Core/Src/joint_config.c **** 		at24_write(address_of_motor_type, &jc->motor_type, sizeof(&jc->motor_type), timeout);
- 399              		.loc 1 123 3 view .LVU109
- 400 008e 0120     		movs	r0, #1
- 401 0090 FFF7FEFF 		bl	vTaskDelay
- 402              	.LVL34:
+ 404              		.loc 1 123 3 view .LVU109
+ 405 0096 2846     		mov	r0, r5
+ 406 0098 FFF7FEFF 		bl	vTaskDelay
+ 407              	.LVL34:
  124:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
- 403              		.loc 1 124 3 view .LVU110
- 404 0094 6423     		movs	r3, #100
- 405 0096 0422     		movs	r2, #4
- 406 0098 A11C     		adds	r1, r4, #2
- 407 009a 1C20     		movs	r0, #28
- 408 009c FFF7FEFF 		bl	at24_write
- 409              	.LVL35:
+ 408              		.loc 1 124 3 view .LVU110
+ 409 009c 6423     		movs	r3, #100
+ 410 009e 0422     		movs	r2, #4
+ 411 00a0 A11C     		adds	r1, r4, #2
+ 412 00a2 1C20     		movs	r0, #28
+ 413 00a4 FFF7FEFF 		bl	at24_write
+ 414              	.LVL35:
  125:Core/Src/joint_config.c **** 		at24_write(address_of_full_steps, &jc->full_steps, sizeof(&jc->full_steps), timeout);
- 410              		.loc 1 125 3 view .LVU111
- 411 00a0 0120     		movs	r0, #1
- 412 00a2 FFF7FEFF 		bl	vTaskDelay
- 413              	.LVL36:
+ 415              		.loc 1 125 3 view .LVU111
+ 416 00a8 2846     		mov	r0, r5
+ 417 00aa FFF7FEFF 		bl	vTaskDelay
+ 418              	.LVL36:
  126:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
- 414              		.loc 1 126 3 view .LVU112
- 415 00a6 6423     		movs	r3, #100
- 416 00a8 0422     		movs	r2, #4
- 417 00aa A118     		adds	r1, r4, r2
- 418 00ac 2020     		movs	r0, #32
- 419 00ae FFF7FEFF 		bl	at24_write
- 420              	.LVL37:
+ 419              		.loc 1 126 3 view .LVU112
+ 420 00ae 6423     		movs	r3, #100
+ 421 00b0 0422     		movs	r2, #4
+ 422 00b2 A118     		adds	r1, r4, r2
+ 423 00b4 2020     		movs	r0, #32
+ 424 00b6 FFF7FEFF 		bl	at24_write
+ 425              	.LVL37:
  127:Core/Src/joint_config.c **** 		at24_write(address_of_gear_ratio, &jc->gear_ratio, sizeof(&jc->gear_ratio), timeout);
- 421              		.loc 1 127 3 view .LVU113
- 422 00b2 0120     		movs	r0, #1
- 423 00b4 FFF7FEFF 		bl	vTaskDelay
- 424              	.LVL38:
+ 426              		.loc 1 127 3 view .LVU113
+ 427 00ba 2846     		mov	r0, r5
+ 428 00bc FFF7FEFF 		bl	vTaskDelay
+ 429              	.LVL38:
  128:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
- 425              		.loc 1 128 3 view .LVU114
- 426 00b8 6423     		movs	r3, #100
- 427 00ba 0422     		movs	r2, #4
- 428 00bc 04F10801 		add	r1, r4, #8
- 429 00c0 2420     		movs	r0, #36
- 430 00c2 FFF7FEFF 		bl	at24_write
- 431              	.LVL39:
+ 430              		.loc 1 128 3 view .LVU114
+ 431 00c0 6423     		movs	r3, #100
+ 432 00c2 0422     		movs	r2, #4
+ 433 00c4 04F10801 		add	r1, r4, #8
+ 434 00c8 2420     		movs	r0, #36
+ 435 00ca FFF7FEFF 		bl	at24_write
+ 436              	.LVL39:
  129:Core/Src/joint_config.c **** 		at24_write(address_of_upper_limit_effort, &jc->upper_limit_effort, sizeof(&jc->upper_limit_effort
- 432              		.loc 1 129 3 view .LVU115
- 433 00c6 0120     		movs	r0, #1
- 434 00c8 FFF7FEFF 		bl	vTaskDelay
- 435              	.LVL40:
+ 437              		.loc 1 129 3 view .LVU115
+ 438 00ce 2846     		mov	r0, r5
+ 439 00d0 FFF7FEFF 		bl	vTaskDelay
+ 440              	.LVL40:
  130:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
- 436              		.loc 1 130 3 view .LVU116
- 437 00cc 6423     		movs	r3, #100
- 438 00ce 0422     		movs	r2, #4
- 439 00d0 04F12001 		add	r1, r4, #32
- 440 00d4 2820     		movs	r0, #40
- 441 00d6 FFF7FEFF 		bl	at24_write
- 442              	.LVL41:
+ 441              		.loc 1 130 3 view .LVU116
+ 442 00d4 6423     		movs	r3, #100
+ 443 00d6 0422     		movs	r2, #4
+ 444 00d8 04F12001 		add	r1, r4, #32
+ 445 00dc 2820     		movs	r0, #40
+ 446 00de FFF7FEFF 		bl	at24_write
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccjtlBYc.s 			page 12
+
+
+ 447              	.LVL41:
  131:Core/Src/joint_config.c **** 		at24_write(address_of_direction, &jc->direction, sizeof(&jc->direction), timeout);
- 443              		.loc 1 131 3 view .LVU117
- 444 00da 0120     		movs	r0, #1
- 445 00dc FFF7FEFF 		bl	vTaskDelay
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccWPFCGC.s 			page 12
-
-
- 446              	.LVL42:
+ 448              		.loc 1 131 3 view .LVU117
+ 449 00e2 2846     		mov	r0, r5
+ 450 00e4 FFF7FEFF 		bl	vTaskDelay
+ 451              	.LVL42:
  132:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
- 447              		.loc 1 132 3 view .LVU118
- 448 00e0 6423     		movs	r3, #100
- 449 00e2 0422     		movs	r2, #4
- 450 00e4 E11C     		adds	r1, r4, #3
- 451 00e6 2C20     		movs	r0, #44
- 452 00e8 FFF7FEFF 		bl	at24_write
- 453              	.LVL43:
+ 452              		.loc 1 132 3 view .LVU118
+ 453 00e8 6423     		movs	r3, #100
+ 454 00ea 0422     		movs	r2, #4
+ 455 00ec E11C     		adds	r1, r4, #3
+ 456 00ee 2C20     		movs	r0, #44
+ 457 00f0 FFF7FEFF 		bl	at24_write
+ 458              	.LVL43:
  133:Core/Src/joint_config.c **** 
- 454              		.loc 1 133 3 view .LVU119
- 455 00ec 0120     		movs	r0, #1
- 456 00ee FFF7FEFF 		bl	vTaskDelay
- 457              	.LVL44:
- 458              		.loc 1 136 1 is_stmt 0 view .LVU120
- 459 00f2 8AE7     		b	.L20
- 460              		.cfi_endproc
- 461              	.LFE141:
- 463              		.section	.text.joint_config_read,"ax",%progbits
- 464              		.align	1
- 465              		.global	joint_config_read
- 466              		.syntax unified
- 467              		.thumb
- 468              		.thumb_func
- 470              	joint_config_read:
- 471              	.LVL45:
- 472              	.LFB142:
+ 459              		.loc 1 133 3 view .LVU119
+ 460 00f4 2846     		mov	r0, r5
+ 461 00f6 FFF7FEFF 		bl	vTaskDelay
+ 462              	.LVL44:
+ 463              		.loc 1 136 1 is_stmt 0 view .LVU120
+ 464 00fa 86E7     		b	.L20
+ 465              		.cfi_endproc
+ 466              	.LFE141:
+ 468              		.section	.text.joint_config_read,"ax",%progbits
+ 469              		.align	1
+ 470              		.global	joint_config_read
+ 471              		.syntax unified
+ 472              		.thumb
+ 473              		.thumb_func
+ 475              	joint_config_read:
+ 476              	.LVL45:
+ 477              	.LFB142:
  137:Core/Src/joint_config.c **** 
  138:Core/Src/joint_config.c **** void joint_config_read(joint_config * jc)
  139:Core/Src/joint_config.c **** {
- 473              		.loc 1 139 1 is_stmt 1 view -0
- 474              		.cfi_startproc
- 475              		@ args = 0, pretend = 0, frame = 0
- 476              		@ frame_needed = 0, uses_anonymous_args = 0
- 477              		.loc 1 139 1 is_stmt 0 view .LVU122
- 478 0000 10B5     		push	{r4, lr}
- 479              	.LCFI4:
- 480              		.cfi_def_cfa_offset 8
- 481              		.cfi_offset 4, -8
- 482              		.cfi_offset 14, -4
- 483 0002 0446     		mov	r4, r0
+ 478              		.loc 1 139 1 is_stmt 1 view -0
+ 479              		.cfi_startproc
+ 480              		@ args = 0, pretend = 0, frame = 0
+ 481              		@ frame_needed = 0, uses_anonymous_args = 0
+ 482              		.loc 1 139 1 is_stmt 0 view .LVU122
+ 483 0000 38B5     		push	{r3, r4, r5, lr}
+ 484              	.LCFI4:
+ 485              		.cfi_def_cfa_offset 16
+ 486              		.cfi_offset 3, -16
+ 487              		.cfi_offset 4, -12
+ 488              		.cfi_offset 5, -8
+ 489              		.cfi_offset 14, -4
+ 490 0002 0446     		mov	r4, r0
  140:Core/Src/joint_config.c **** 	uint16_t address_of_domain_id = 0x00;
- 484              		.loc 1 140 2 is_stmt 1 view .LVU123
- 485              	.LVL46:
+ 491              		.loc 1 140 2 is_stmt 1 view .LVU123
+ 492              	.LVL46:
  141:Core/Src/joint_config.c **** 	uint16_t address_of_upper_limit_enc = sizeof(&jc->domain_id);
- 486              		.loc 1 141 2 view .LVU124
+ 493              		.loc 1 141 2 view .LVU124
  142:Core/Src/joint_config.c **** 	uint16_t address_of_lower_limit_enc = address_of_upper_limit_enc + sizeof(&jc->upper_limit_enc);
- 487              		.loc 1 142 2 view .LVU125
+ 494              		.loc 1 142 2 view .LVU125
  143:Core/Src/joint_config.c **** 	uint16_t address_of_upper_limit_ticks = address_of_lower_limit_enc + sizeof(&jc->lower_limit_enc);
- 488              		.loc 1 143 2 view .LVU126
+ 495              		.loc 1 143 2 view .LVU126
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccjtlBYc.s 			page 13
+
+
  144:Core/Src/joint_config.c **** 	uint16_t address_of_lower_limit_ticks = address_of_upper_limit_ticks + sizeof(&jc->upper_limit_tic
- 489              		.loc 1 144 2 view .LVU127
+ 496              		.loc 1 144 2 view .LVU127
  145:Core/Src/joint_config.c **** 	uint16_t address_of_zero_enc = address_of_lower_limit_ticks + sizeof(&jc->lower_limit_ticks);
- 490              		.loc 1 145 2 view .LVU128
+ 497              		.loc 1 145 2 view .LVU128
  146:Core/Src/joint_config.c **** 	uint16_t address_of_joint_number = address_of_zero_enc + sizeof(&jc->zero_enc);
- 491              		.loc 1 146 2 view .LVU129
+ 498              		.loc 1 146 2 view .LVU129
  147:Core/Src/joint_config.c **** 	uint16_t address_of_motor_type = address_of_joint_number + sizeof(&jc->joint_number);
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccWPFCGC.s 			page 13
-
-
- 492              		.loc 1 147 2 view .LVU130
+ 499              		.loc 1 147 2 view .LVU130
  148:Core/Src/joint_config.c **** 	uint16_t address_of_full_steps = address_of_motor_type + sizeof(&jc->motor_type);
- 493              		.loc 1 148 2 view .LVU131
+ 500              		.loc 1 148 2 view .LVU131
  149:Core/Src/joint_config.c **** 	uint16_t address_of_gear_ratio = address_of_full_steps + sizeof(&jc->full_steps);
- 494              		.loc 1 149 2 view .LVU132
+ 501              		.loc 1 149 2 view .LVU132
  150:Core/Src/joint_config.c **** 	uint16_t address_of_upper_limit_effort = address_of_gear_ratio + sizeof(&jc->gear_ratio);
- 495              		.loc 1 150 2 view .LVU133
+ 502              		.loc 1 150 2 view .LVU133
  151:Core/Src/joint_config.c **** 	uint16_t address_of_direction = address_of_upper_limit_effort + sizeof(&jc->upper_limit_effort);
- 496              		.loc 1 151 2 view .LVU134
+ 503              		.loc 1 151 2 view .LVU134
  152:Core/Src/joint_config.c **** 
  153:Core/Src/joint_config.c **** 	int timeout = 100;
- 497              		.loc 1 153 2 view .LVU135
+ 504              		.loc 1 153 2 view .LVU135
  154:Core/Src/joint_config.c **** 	if (at24_isConnected())
- 498              		.loc 1 154 2 view .LVU136
- 499              		.loc 1 154 6 is_stmt 0 view .LVU137
- 500 0004 FFF7FEFF 		bl	at24_isConnected
- 501              	.LVL47:
- 502              		.loc 1 154 5 view .LVU138
- 503 0008 00B9     		cbnz	r0, .L27
- 504              	.L24:
+ 505              		.loc 1 154 2 view .LVU136
+ 506              		.loc 1 154 6 is_stmt 0 view .LVU137
+ 507 0004 FFF7FEFF 		bl	at24_isConnected
+ 508              	.LVL47:
+ 509              		.loc 1 154 5 view .LVU138
+ 510 0008 00B9     		cbnz	r0, .L27
+ 511              	.L24:
  155:Core/Src/joint_config.c **** 		{
  156:Core/Src/joint_config.c **** 		at24_read(address_of_domain_id, &jc->domain_id, sizeof(&jc->domain_id), timeout);
  157:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
@@ -768,263 +775,266 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccWPFCGC.s 			page 1
  179:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
  180:Core/Src/joint_config.c **** 		}
  181:Core/Src/joint_config.c **** }
- 505              		.loc 1 181 1 view .LVU139
- 506 000a 10BD     		pop	{r4, pc}
- 507              	.LVL48:
- 508              	.L27:
+ 512              		.loc 1 181 1 view .LVU139
+ 513 000a 38BD     		pop	{r3, r4, r5, pc}
+ 514              	.LVL48:
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccjtlBYc.s 			page 14
+
+
+ 515              	.L27:
  156:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
- 509              		.loc 1 156 3 is_stmt 1 view .LVU140
- 510 000c 6423     		movs	r3, #100
- 511 000e 0422     		movs	r2, #4
- 512 0010 2146     		mov	r1, r4
- 513 0012 0020     		movs	r0, #0
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccWPFCGC.s 			page 14
-
-
- 514 0014 FFF7FEFF 		bl	at24_read
- 515              	.LVL49:
+ 516              		.loc 1 156 3 is_stmt 1 view .LVU140
+ 517 000c 6423     		movs	r3, #100
+ 518 000e 0422     		movs	r2, #4
+ 519 0010 2146     		mov	r1, r4
+ 520 0012 0020     		movs	r0, #0
+ 521 0014 FFF7FEFF 		bl	at24_read
+ 522              	.LVL49:
  157:Core/Src/joint_config.c **** 		at24_read(address_of_upper_limit_enc, &jc->upper_limit_enc, sizeof(&jc->upper_limit_enc), timeout
- 516              		.loc 1 157 3 view .LVU141
- 517 0018 0120     		movs	r0, #1
- 518 001a FFF7FEFF 		bl	vTaskDelay
- 519              	.LVL50:
+ 523              		.loc 1 157 3 view .LVU141
+ 524 0018 0125     		movs	r5, #1
+ 525 001a 0023     		movs	r3, #0
+ 526 001c B5FBF3F5 		udiv	r5, r5, r3
+ 527 0020 2846     		mov	r0, r5
+ 528 0022 FFF7FEFF 		bl	vTaskDelay
+ 529              	.LVL50:
  158:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
- 520              		.loc 1 158 3 view .LVU142
- 521 001e 6423     		movs	r3, #100
- 522 0020 0422     		movs	r2, #4
- 523 0022 04F11401 		add	r1, r4, #20
- 524 0026 1046     		mov	r0, r2
- 525 0028 FFF7FEFF 		bl	at24_read
- 526              	.LVL51:
+ 530              		.loc 1 158 3 view .LVU142
+ 531 0026 6423     		movs	r3, #100
+ 532 0028 0422     		movs	r2, #4
+ 533 002a 04F11401 		add	r1, r4, #20
+ 534 002e 1046     		mov	r0, r2
+ 535 0030 FFF7FEFF 		bl	at24_read
+ 536              	.LVL51:
  159:Core/Src/joint_config.c **** 		at24_read(address_of_lower_limit_enc, &jc->lower_limit_enc, sizeof(&jc->lower_limit_enc), timeout
- 527              		.loc 1 159 3 view .LVU143
- 528 002c 0120     		movs	r0, #1
- 529 002e FFF7FEFF 		bl	vTaskDelay
- 530              	.LVL52:
+ 537              		.loc 1 159 3 view .LVU143
+ 538 0034 2846     		mov	r0, r5
+ 539 0036 FFF7FEFF 		bl	vTaskDelay
+ 540              	.LVL52:
  160:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
- 531              		.loc 1 160 3 view .LVU144
- 532 0032 6423     		movs	r3, #100
- 533 0034 0422     		movs	r2, #4
- 534 0036 04F11801 		add	r1, r4, #24
- 535 003a 0820     		movs	r0, #8
- 536 003c FFF7FEFF 		bl	at24_read
- 537              	.LVL53:
+ 541              		.loc 1 160 3 view .LVU144
+ 542 003a 6423     		movs	r3, #100
+ 543 003c 0422     		movs	r2, #4
+ 544 003e 04F11801 		add	r1, r4, #24
+ 545 0042 0820     		movs	r0, #8
+ 546 0044 FFF7FEFF 		bl	at24_read
+ 547              	.LVL53:
  161:Core/Src/joint_config.c **** 		at24_read(address_of_upper_limit_ticks, &jc->upper_limit_ticks, sizeof(&jc->upper_limit_ticks), t
- 538              		.loc 1 161 3 view .LVU145
- 539 0040 0120     		movs	r0, #1
- 540 0042 FFF7FEFF 		bl	vTaskDelay
- 541              	.LVL54:
+ 548              		.loc 1 161 3 view .LVU145
+ 549 0048 2846     		mov	r0, r5
+ 550 004a FFF7FEFF 		bl	vTaskDelay
+ 551              	.LVL54:
  162:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
- 542              		.loc 1 162 3 view .LVU146
- 543 0046 6423     		movs	r3, #100
- 544 0048 0422     		movs	r2, #4
- 545 004a 04F10C01 		add	r1, r4, #12
- 546 004e 0C20     		movs	r0, #12
- 547 0050 FFF7FEFF 		bl	at24_read
- 548              	.LVL55:
+ 552              		.loc 1 162 3 view .LVU146
+ 553 004e 6423     		movs	r3, #100
+ 554 0050 0422     		movs	r2, #4
+ 555 0052 04F10C01 		add	r1, r4, #12
+ 556 0056 0C20     		movs	r0, #12
+ 557 0058 FFF7FEFF 		bl	at24_read
+ 558              	.LVL55:
  163:Core/Src/joint_config.c **** 		at24_read(address_of_lower_limit_ticks, &jc->lower_limit_ticks, sizeof(&jc->lower_limit_ticks), t
- 549              		.loc 1 163 3 view .LVU147
- 550 0054 0120     		movs	r0, #1
- 551 0056 FFF7FEFF 		bl	vTaskDelay
- 552              	.LVL56:
+ 559              		.loc 1 163 3 view .LVU147
+ 560 005c 2846     		mov	r0, r5
+ 561 005e FFF7FEFF 		bl	vTaskDelay
+ 562              	.LVL56:
  164:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
- 553              		.loc 1 164 3 view .LVU148
- 554 005a 6423     		movs	r3, #100
- 555 005c 0422     		movs	r2, #4
- 556 005e 04F11001 		add	r1, r4, #16
- 557 0062 1020     		movs	r0, #16
- 558 0064 FFF7FEFF 		bl	at24_read
- 559              	.LVL57:
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccjtlBYc.s 			page 15
+
+
+ 563              		.loc 1 164 3 view .LVU148
+ 564 0062 6423     		movs	r3, #100
+ 565 0064 0422     		movs	r2, #4
+ 566 0066 04F11001 		add	r1, r4, #16
+ 567 006a 1020     		movs	r0, #16
+ 568 006c FFF7FEFF 		bl	at24_read
+ 569              	.LVL57:
  165:Core/Src/joint_config.c **** 		at24_read(address_of_zero_enc, &jc->zero_enc, sizeof(&jc->zero_enc), timeout);
- 560              		.loc 1 165 3 view .LVU149
- 561 0068 0120     		movs	r0, #1
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccWPFCGC.s 			page 15
-
-
- 562 006a FFF7FEFF 		bl	vTaskDelay
- 563              	.LVL58:
+ 570              		.loc 1 165 3 view .LVU149
+ 571 0070 2846     		mov	r0, r5
+ 572 0072 FFF7FEFF 		bl	vTaskDelay
+ 573              	.LVL58:
  166:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
- 564              		.loc 1 166 3 view .LVU150
- 565 006e 6423     		movs	r3, #100
- 566 0070 0422     		movs	r2, #4
- 567 0072 04F11C01 		add	r1, r4, #28
- 568 0076 1420     		movs	r0, #20
- 569 0078 FFF7FEFF 		bl	at24_read
- 570              	.LVL59:
+ 574              		.loc 1 166 3 view .LVU150
+ 575 0076 6423     		movs	r3, #100
+ 576 0078 0422     		movs	r2, #4
+ 577 007a 04F11C01 		add	r1, r4, #28
+ 578 007e 1420     		movs	r0, #20
+ 579 0080 FFF7FEFF 		bl	at24_read
+ 580              	.LVL59:
  167:Core/Src/joint_config.c **** 		//at24_read(address_of_joint_number, &jc->joint_number, sizeof(&jc->joint_number), timeout);
- 571              		.loc 1 167 3 view .LVU151
- 572 007c 0120     		movs	r0, #1
- 573 007e FFF7FEFF 		bl	vTaskDelay
- 574              	.LVL60:
+ 581              		.loc 1 167 3 view .LVU151
+ 582 0084 2846     		mov	r0, r5
+ 583 0086 FFF7FEFF 		bl	vTaskDelay
+ 584              	.LVL60:
  170:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
- 575              		.loc 1 170 3 view .LVU152
- 576 0082 6423     		movs	r3, #100
- 577 0084 0422     		movs	r2, #4
- 578 0086 A11C     		adds	r1, r4, #2
- 579 0088 1C20     		movs	r0, #28
- 580 008a FFF7FEFF 		bl	at24_read
- 581              	.LVL61:
+ 585              		.loc 1 170 3 view .LVU152
+ 586 008a 6423     		movs	r3, #100
+ 587 008c 0422     		movs	r2, #4
+ 588 008e A11C     		adds	r1, r4, #2
+ 589 0090 1C20     		movs	r0, #28
+ 590 0092 FFF7FEFF 		bl	at24_read
+ 591              	.LVL61:
  171:Core/Src/joint_config.c **** 		at24_read(address_of_full_steps, &jc->full_steps, sizeof(&jc->full_steps), timeout);
- 582              		.loc 1 171 3 view .LVU153
- 583 008e 0120     		movs	r0, #1
- 584 0090 FFF7FEFF 		bl	vTaskDelay
- 585              	.LVL62:
+ 592              		.loc 1 171 3 view .LVU153
+ 593 0096 2846     		mov	r0, r5
+ 594 0098 FFF7FEFF 		bl	vTaskDelay
+ 595              	.LVL62:
  172:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
- 586              		.loc 1 172 3 view .LVU154
- 587 0094 6423     		movs	r3, #100
- 588 0096 0422     		movs	r2, #4
- 589 0098 A118     		adds	r1, r4, r2
- 590 009a 2020     		movs	r0, #32
- 591 009c FFF7FEFF 		bl	at24_read
- 592              	.LVL63:
+ 596              		.loc 1 172 3 view .LVU154
+ 597 009c 6423     		movs	r3, #100
+ 598 009e 0422     		movs	r2, #4
+ 599 00a0 A118     		adds	r1, r4, r2
+ 600 00a2 2020     		movs	r0, #32
+ 601 00a4 FFF7FEFF 		bl	at24_read
+ 602              	.LVL63:
  173:Core/Src/joint_config.c **** 		at24_read(address_of_gear_ratio, &jc->gear_ratio, sizeof(&jc->gear_ratio), timeout);
- 593              		.loc 1 173 3 view .LVU155
- 594 00a0 0120     		movs	r0, #1
- 595 00a2 FFF7FEFF 		bl	vTaskDelay
- 596              	.LVL64:
+ 603              		.loc 1 173 3 view .LVU155
+ 604 00a8 2846     		mov	r0, r5
+ 605 00aa FFF7FEFF 		bl	vTaskDelay
+ 606              	.LVL64:
  174:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
- 597              		.loc 1 174 3 view .LVU156
- 598 00a6 6423     		movs	r3, #100
- 599 00a8 0422     		movs	r2, #4
- 600 00aa 04F10801 		add	r1, r4, #8
- 601 00ae 2420     		movs	r0, #36
- 602 00b0 FFF7FEFF 		bl	at24_read
- 603              	.LVL65:
+ 607              		.loc 1 174 3 view .LVU156
+ 608 00ae 6423     		movs	r3, #100
+ 609 00b0 0422     		movs	r2, #4
+ 610 00b2 04F10801 		add	r1, r4, #8
+ 611 00b6 2420     		movs	r0, #36
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccjtlBYc.s 			page 16
+
+
+ 612 00b8 FFF7FEFF 		bl	at24_read
+ 613              	.LVL65:
  175:Core/Src/joint_config.c **** 		at24_read(address_of_upper_limit_effort, &jc->upper_limit_effort, sizeof(&jc->upper_limit_effort)
- 604              		.loc 1 175 3 view .LVU157
- 605 00b4 0120     		movs	r0, #1
- 606 00b6 FFF7FEFF 		bl	vTaskDelay
- 607              	.LVL66:
+ 614              		.loc 1 175 3 view .LVU157
+ 615 00bc 2846     		mov	r0, r5
+ 616 00be FFF7FEFF 		bl	vTaskDelay
+ 617              	.LVL66:
  176:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
- 608              		.loc 1 176 3 view .LVU158
- 609 00ba 6423     		movs	r3, #100
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccWPFCGC.s 			page 16
-
-
- 610 00bc 0422     		movs	r2, #4
- 611 00be 04F12001 		add	r1, r4, #32
- 612 00c2 2820     		movs	r0, #40
- 613 00c4 FFF7FEFF 		bl	at24_read
- 614              	.LVL67:
+ 618              		.loc 1 176 3 view .LVU158
+ 619 00c2 6423     		movs	r3, #100
+ 620 00c4 0422     		movs	r2, #4
+ 621 00c6 04F12001 		add	r1, r4, #32
+ 622 00ca 2820     		movs	r0, #40
+ 623 00cc FFF7FEFF 		bl	at24_read
+ 624              	.LVL67:
  177:Core/Src/joint_config.c **** 		at24_read(address_of_direction, &jc->direction, sizeof(&jc->direction), timeout);
- 615              		.loc 1 177 3 view .LVU159
- 616 00c8 0120     		movs	r0, #1
- 617 00ca FFF7FEFF 		bl	vTaskDelay
- 618              	.LVL68:
+ 625              		.loc 1 177 3 view .LVU159
+ 626 00d0 2846     		mov	r0, r5
+ 627 00d2 FFF7FEFF 		bl	vTaskDelay
+ 628              	.LVL68:
  178:Core/Src/joint_config.c **** 		vTaskDelay(1/ portTICK_PERIOD_MS);
- 619              		.loc 1 178 3 view .LVU160
- 620 00ce 6423     		movs	r3, #100
- 621 00d0 0422     		movs	r2, #4
- 622 00d2 E11C     		adds	r1, r4, #3
- 623 00d4 2C20     		movs	r0, #44
- 624 00d6 FFF7FEFF 		bl	at24_read
- 625              	.LVL69:
+ 629              		.loc 1 178 3 view .LVU160
+ 630 00d6 6423     		movs	r3, #100
+ 631 00d8 0422     		movs	r2, #4
+ 632 00da E11C     		adds	r1, r4, #3
+ 633 00dc 2C20     		movs	r0, #44
+ 634 00de FFF7FEFF 		bl	at24_read
+ 635              	.LVL69:
  179:Core/Src/joint_config.c **** 		}
- 626              		.loc 1 179 3 view .LVU161
- 627 00da 0120     		movs	r0, #1
- 628 00dc FFF7FEFF 		bl	vTaskDelay
- 629              	.LVL70:
- 630              		.loc 1 181 1 is_stmt 0 view .LVU162
- 631 00e0 93E7     		b	.L24
- 632              		.cfi_endproc
- 633              	.LFE142:
- 635              		.section	.text.joint_config_freertos_init,"ax",%progbits
- 636              		.align	1
- 637              		.global	joint_config_freertos_init
- 638              		.syntax unified
- 639              		.thumb
- 640              		.thumb_func
- 642              	joint_config_freertos_init:
- 643              	.LVL71:
- 644              	.LFB137:
+ 636              		.loc 1 179 3 view .LVU161
+ 637 00e2 2846     		mov	r0, r5
+ 638 00e4 FFF7FEFF 		bl	vTaskDelay
+ 639              	.LVL70:
+ 640              		.loc 1 181 1 is_stmt 0 view .LVU162
+ 641 00e8 8FE7     		b	.L24
+ 642              		.cfi_endproc
+ 643              	.LFE142:
+ 645              		.section	.text.joint_config_freertos_init,"ax",%progbits
+ 646              		.align	1
+ 647              		.global	joint_config_freertos_init
+ 648              		.syntax unified
+ 649              		.thumb
+ 650              		.thumb_func
+ 652              	joint_config_freertos_init:
+ 653              	.LVL71:
+ 654              	.LFB137:
   21:Core/Src/joint_config.c **** 	//TODO to make clear why JC not transfered from main()
- 645              		.loc 1 21 1 is_stmt 1 view -0
- 646              		.cfi_startproc
- 647              		@ args = 0, pretend = 0, frame = 0
- 648              		@ frame_needed = 0, uses_anonymous_args = 0
+ 655              		.loc 1 21 1 is_stmt 1 view -0
+ 656              		.cfi_startproc
+ 657              		@ args = 0, pretend = 0, frame = 0
+ 658              		@ frame_needed = 0, uses_anonymous_args = 0
   21:Core/Src/joint_config.c **** 	//TODO to make clear why JC not transfered from main()
- 649              		.loc 1 21 1 is_stmt 0 view .LVU164
- 650 0000 10B5     		push	{r4, lr}
- 651              	.LCFI5:
- 652              		.cfi_def_cfa_offset 8
- 653              		.cfi_offset 4, -8
- 654              		.cfi_offset 14, -4
- 655 0002 0446     		mov	r4, r0
+ 659              		.loc 1 21 1 is_stmt 0 view .LVU164
+ 660 0000 10B5     		push	{r4, lr}
+ 661              	.LCFI5:
+ 662              		.cfi_def_cfa_offset 8
+ 663              		.cfi_offset 4, -8
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccjtlBYc.s 			page 17
+
+
+ 664              		.cfi_offset 14, -4
+ 665 0002 0446     		mov	r4, r0
   23:Core/Src/joint_config.c **** 	domain_id_selector(jconf);
- 656              		.loc 1 23 2 is_stmt 1 view .LVU165
- 657 0004 FFF7FEFF 		bl	joint_number_selector
- 658              	.LVL72:
+ 666              		.loc 1 23 2 is_stmt 1 view .LVU165
+ 667 0004 FFF7FEFF 		bl	joint_number_selector
+ 668              	.LVL72:
   24:Core/Src/joint_config.c **** 	if (&jconf->joint_number == 0)
- 659              		.loc 1 24 2 view .LVU166
- 660 0008 2046     		mov	r0, r4
- 661 000a FFF7FEFF 		bl	domain_id_selector
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccWPFCGC.s 			page 17
-
-
- 662              	.LVL73:
+ 669              		.loc 1 24 2 view .LVU166
+ 670 0008 2046     		mov	r0, r4
+ 671 000a FFF7FEFF 		bl	domain_id_selector
+ 672              	.LVL73:
   25:Core/Src/joint_config.c **** 	{
- 663              		.loc 1 25 2 view .LVU167
+ 673              		.loc 1 25 2 view .LVU167
   25:Core/Src/joint_config.c **** 	{
- 664              		.loc 1 25 5 is_stmt 0 view .LVU168
- 665 000e B4F1FF3F 		cmp	r4, #-1
- 666 0012 03D0     		beq	.L32
+ 674              		.loc 1 25 5 is_stmt 0 view .LVU168
+ 675 000e B4F1FF3F 		cmp	r4, #-1
+ 676 0012 03D0     		beq	.L32
   31:Core/Src/joint_config.c **** }
- 667              		.loc 1 31 2 is_stmt 1 view .LVU169
- 668 0014 2046     		mov	r0, r4
- 669 0016 FFF7FEFF 		bl	joint_config_read
- 670              	.LVL74:
- 671              	.L28:
+ 677              		.loc 1 31 2 is_stmt 1 view .LVU169
+ 678 0014 2046     		mov	r0, r4
+ 679 0016 FFF7FEFF 		bl	joint_config_read
+ 680              	.LVL74:
+ 681              	.L28:
   32:Core/Src/joint_config.c **** 
- 672              		.loc 1 32 1 is_stmt 0 view .LVU170
- 673 001a 10BD     		pop	{r4, pc}
- 674              	.LVL75:
- 675              	.L32:
+ 682              		.loc 1 32 1 is_stmt 0 view .LVU170
+ 683 001a 10BD     		pop	{r4, pc}
+ 684              	.LVL75:
+ 685              	.L32:
   27:Core/Src/joint_config.c **** 		joint_config_write(jconf);
- 676              		.loc 1 27 3 is_stmt 1 view .LVU171
- 677 001c 2046     		mov	r0, r4
- 678 001e FFF7FEFF 		bl	joint_config_assembler
- 679              	.LVL76:
+ 686              		.loc 1 27 3 is_stmt 1 view .LVU171
+ 687 001c 2046     		mov	r0, r4
+ 688 001e FFF7FEFF 		bl	joint_config_assembler
+ 689              	.LVL76:
   28:Core/Src/joint_config.c **** 		return;
- 680              		.loc 1 28 3 view .LVU172
- 681 0022 2046     		mov	r0, r4
- 682 0024 FFF7FEFF 		bl	joint_config_write
- 683              	.LVL77:
+ 690              		.loc 1 28 3 view .LVU172
+ 691 0022 2046     		mov	r0, r4
+ 692 0024 FFF7FEFF 		bl	joint_config_write
+ 693              	.LVL77:
   29:Core/Src/joint_config.c **** 	}
- 684              		.loc 1 29 3 view .LVU173
- 685 0028 F7E7     		b	.L28
- 686              		.cfi_endproc
- 687              	.LFE137:
- 689              		.text
- 690              	.Letext0:
- 691              		.file 2 "C:\\ST\\STM32CubeIDE_1.9.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools
- 692              		.file 3 "C:\\ST\\STM32CubeIDE_1.9.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools
- 693              		.file 4 "Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/portmacro.h"
- 694              		.file 5 "Core/Inc/joint_config.h"
- 695              		.file 6 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g474xx.h"
- 696              		.file 7 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_gpio.h"
- 697              		.file 8 "Core/Inc/at24_eeprom.h"
- 698              		.file 9 "Middlewares/Third_Party/FreeRTOS/Source/include/task.h"
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccWPFCGC.s 			page 18
+ 694              		.loc 1 29 3 view .LVU173
+ 695 0028 F7E7     		b	.L28
+ 696              		.cfi_endproc
+ 697              	.LFE137:
+ 699              		.text
+ 700              	.Letext0:
+ 701              		.file 2 "C:\\ST\\STM32CubeIDE_1.9.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools
+ 702              		.file 3 "C:\\ST\\STM32CubeIDE_1.9.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools
+ 703              		.file 4 "Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/portmacro.h"
+ 704              		.file 5 "Core/Inc/joint_config.h"
+ 705              		.file 6 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g474xx.h"
+ 706              		.file 7 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_gpio.h"
+ 707              		.file 8 "Core/Inc/at24_eeprom.h"
+ 708              		.file 9 "Middlewares/Third_Party/FreeRTOS/Source/include/task.h"
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccjtlBYc.s 			page 18
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 joint_config.c
-C:\Users\SOROKO~1\AppData\Local\Temp\ccWPFCGC.s:20     .text.joint_config_assembler:0000000000000000 $t
-C:\Users\SOROKO~1\AppData\Local\Temp\ccWPFCGC.s:26     .text.joint_config_assembler:0000000000000000 joint_config_assembler
-C:\Users\SOROKO~1\AppData\Local\Temp\ccWPFCGC.s:77     .text.joint_number_selector:0000000000000000 $t
-C:\Users\SOROKO~1\AppData\Local\Temp\ccWPFCGC.s:83     .text.joint_number_selector:0000000000000000 joint_number_selector
-C:\Users\SOROKO~1\AppData\Local\Temp\ccWPFCGC.s:195    .text.joint_number_selector:0000000000000078 $d
-C:\Users\SOROKO~1\AppData\Local\Temp\ccWPFCGC.s:200    .text.domain_id_selector:0000000000000000 $t
-C:\Users\SOROKO~1\AppData\Local\Temp\ccWPFCGC.s:206    .text.domain_id_selector:0000000000000000 domain_id_selector
-C:\Users\SOROKO~1\AppData\Local\Temp\ccWPFCGC.s:242    .text.domain_id_selector:0000000000000018 $d
-C:\Users\SOROKO~1\AppData\Local\Temp\ccWPFCGC.s:247    .text.joint_config_main_part_init:0000000000000000 $t
-C:\Users\SOROKO~1\AppData\Local\Temp\ccWPFCGC.s:253    .text.joint_config_main_part_init:0000000000000000 joint_config_main_part_init
-C:\Users\SOROKO~1\AppData\Local\Temp\ccWPFCGC.s:281    .text.joint_config_write:0000000000000000 $t
-C:\Users\SOROKO~1\AppData\Local\Temp\ccWPFCGC.s:287    .text.joint_config_write:0000000000000000 joint_config_write
-C:\Users\SOROKO~1\AppData\Local\Temp\ccWPFCGC.s:464    .text.joint_config_read:0000000000000000 $t
-C:\Users\SOROKO~1\AppData\Local\Temp\ccWPFCGC.s:470    .text.joint_config_read:0000000000000000 joint_config_read
-C:\Users\SOROKO~1\AppData\Local\Temp\ccWPFCGC.s:636    .text.joint_config_freertos_init:0000000000000000 $t
-C:\Users\SOROKO~1\AppData\Local\Temp\ccWPFCGC.s:642    .text.joint_config_freertos_init:0000000000000000 joint_config_freertos_init
+C:\Users\SOROKO~1\AppData\Local\Temp\ccjtlBYc.s:20     .text.joint_config_assembler:0000000000000000 $t
+C:\Users\SOROKO~1\AppData\Local\Temp\ccjtlBYc.s:26     .text.joint_config_assembler:0000000000000000 joint_config_assembler
+C:\Users\SOROKO~1\AppData\Local\Temp\ccjtlBYc.s:77     .text.joint_number_selector:0000000000000000 $t
+C:\Users\SOROKO~1\AppData\Local\Temp\ccjtlBYc.s:83     .text.joint_number_selector:0000000000000000 joint_number_selector
+C:\Users\SOROKO~1\AppData\Local\Temp\ccjtlBYc.s:195    .text.joint_number_selector:0000000000000078 $d
+C:\Users\SOROKO~1\AppData\Local\Temp\ccjtlBYc.s:200    .text.domain_id_selector:0000000000000000 $t
+C:\Users\SOROKO~1\AppData\Local\Temp\ccjtlBYc.s:206    .text.domain_id_selector:0000000000000000 domain_id_selector
+C:\Users\SOROKO~1\AppData\Local\Temp\ccjtlBYc.s:242    .text.domain_id_selector:0000000000000018 $d
+C:\Users\SOROKO~1\AppData\Local\Temp\ccjtlBYc.s:247    .text.joint_config_main_part_init:0000000000000000 $t
+C:\Users\SOROKO~1\AppData\Local\Temp\ccjtlBYc.s:253    .text.joint_config_main_part_init:0000000000000000 joint_config_main_part_init
+C:\Users\SOROKO~1\AppData\Local\Temp\ccjtlBYc.s:281    .text.joint_config_write:0000000000000000 $t
+C:\Users\SOROKO~1\AppData\Local\Temp\ccjtlBYc.s:287    .text.joint_config_write:0000000000000000 joint_config_write
+C:\Users\SOROKO~1\AppData\Local\Temp\ccjtlBYc.s:469    .text.joint_config_read:0000000000000000 $t
+C:\Users\SOROKO~1\AppData\Local\Temp\ccjtlBYc.s:475    .text.joint_config_read:0000000000000000 joint_config_read
+C:\Users\SOROKO~1\AppData\Local\Temp\ccjtlBYc.s:646    .text.joint_config_freertos_init:0000000000000000 $t
+C:\Users\SOROKO~1\AppData\Local\Temp\ccjtlBYc.s:652    .text.joint_config_freertos_init:0000000000000000 joint_config_freertos_init
 
 UNDEFINED SYMBOLS
 HAL_GPIO_ReadPin

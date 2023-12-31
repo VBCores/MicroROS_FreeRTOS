@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccrlU4SZ.s 			page 1
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccPWeTqY.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccrlU4SZ.s 			page 1
   28:Core/Src/i2c.c **** 
   29:Core/Src/i2c.c **** /* I2C4 init function */
   30:Core/Src/i2c.c **** void MX_I2C4_Init(void)
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccrlU4SZ.s 			page 2
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccPWeTqY.s 			page 2
 
 
   31:Core/Src/i2c.c **** {
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccrlU4SZ.s 			page 1
   66              		.loc 1 47 3 is_stmt 1 view .LVU15
   67              		.loc 1 47 30 is_stmt 0 view .LVU16
   68 0024 C361     		str	r3, [r0, #28]
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccrlU4SZ.s 			page 3
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccPWeTqY.s 			page 3
 
 
   48:Core/Src/i2c.c ****   hi2c4.Init.NoStretchMode = I2C_NOSTRETCH_DISABLE;
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccrlU4SZ.s 			page 1
   99              	.L6:
   51:Core/Src/i2c.c ****   }
  100              		.loc 1 51 5 is_stmt 1 view .LVU29
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccrlU4SZ.s 			page 4
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccPWeTqY.s 			page 4
 
 
  101 0044 FFF7FEFF 		bl	Error_Handler
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccrlU4SZ.s 			page 1
  150              		.loc 1 76 20 is_stmt 0 view .LVU36
  151 0006 0021     		movs	r1, #0
  152 0008 1991     		str	r1, [sp, #100]
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccrlU4SZ.s 			page 5
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccPWeTqY.s 			page 5
 
 
  153 000a 1A91     		str	r1, [sp, #104]
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccrlU4SZ.s 			page 1
  110:Core/Src/i2c.c ****     GPIO_InitStruct.Alternate = GPIO_AF3_I2C4;
  111:Core/Src/i2c.c ****     HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
  112:Core/Src/i2c.c **** 
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccrlU4SZ.s 			page 6
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccPWeTqY.s 			page 6
 
 
  113:Core/Src/i2c.c ****     /* I2C4 clock enable */
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccrlU4SZ.s 			page 1
  210 0040 E36C     		ldr	r3, [r4, #76]
  211 0042 03F00403 		and	r3, r3, #4
  212 0046 0193     		str	r3, [sp, #4]
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccrlU4SZ.s 			page 7
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccPWeTqY.s 			page 7
 
 
   93:Core/Src/i2c.c ****     __HAL_RCC_GPIOB_CLK_ENABLE();
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccrlU4SZ.s 			page 1
  249 006a 0823     		movs	r3, #8
  250 006c 1D93     		str	r3, [sp, #116]
  104:Core/Src/i2c.c **** 
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccrlU4SZ.s 			page 8
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccPWeTqY.s 			page 8
 
 
  251              		.loc 1 104 5 is_stmt 1 view .LVU73
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccrlU4SZ.s 			page 1
  289              		.loc 1 114 5 view .LVU89
  290 009c 039B     		ldr	r3, [sp, #12]
  291              	.LBE4:
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccrlU4SZ.s 			page 9
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccPWeTqY.s 			page 9
 
 
  114:Core/Src/i2c.c ****   /* USER CODE BEGIN I2C4_MspInit 1 */
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccrlU4SZ.s 			page 1
  126:Core/Src/i2c.c ****   /* USER CODE BEGIN I2C4_MspDeInit 0 */
  127:Core/Src/i2c.c **** 
  128:Core/Src/i2c.c ****   /* USER CODE END I2C4_MspDeInit 0 */
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccrlU4SZ.s 			page 10
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccPWeTqY.s 			page 10
 
 
  129:Core/Src/i2c.c ****     /* Peripheral clock disable */
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccrlU4SZ.s 			page 1
  375              		.align	2
  376              		.set	.LANCHOR0,. + 0
  379              	hi2c4:
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccrlU4SZ.s 			page 11
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccPWeTqY.s 			page 11
 
 
  380 0000 00000000 		.space	76
@@ -620,22 +620,22 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccrlU4SZ.s 			page 1
  392              		.file 11 "Core/Inc/i2c.h"
  393              		.file 12 "Core/Inc/main.h"
  394              		.file 13 "<built-in>"
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccrlU4SZ.s 			page 12
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccPWeTqY.s 			page 12
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 i2c.c
-C:\Users\SOROKO~1\AppData\Local\Temp\ccrlU4SZ.s:20     .text.MX_I2C4_Init:0000000000000000 $t
-C:\Users\SOROKO~1\AppData\Local\Temp\ccrlU4SZ.s:26     .text.MX_I2C4_Init:0000000000000000 MX_I2C4_Init
-C:\Users\SOROKO~1\AppData\Local\Temp\ccrlU4SZ.s:118    .text.MX_I2C4_Init:0000000000000058 $d
-C:\Users\SOROKO~1\AppData\Local\Temp\ccrlU4SZ.s:124    .text.HAL_I2C_MspInit:0000000000000000 $t
-C:\Users\SOROKO~1\AppData\Local\Temp\ccrlU4SZ.s:130    .text.HAL_I2C_MspInit:0000000000000000 HAL_I2C_MspInit
-C:\Users\SOROKO~1\AppData\Local\Temp\ccrlU4SZ.s:304    .text.HAL_I2C_MspInit:00000000000000a8 $d
-C:\Users\SOROKO~1\AppData\Local\Temp\ccrlU4SZ.s:312    .text.HAL_I2C_MspDeInit:0000000000000000 $t
-C:\Users\SOROKO~1\AppData\Local\Temp\ccrlU4SZ.s:318    .text.HAL_I2C_MspDeInit:0000000000000000 HAL_I2C_MspDeInit
-C:\Users\SOROKO~1\AppData\Local\Temp\ccrlU4SZ.s:366    .text.HAL_I2C_MspDeInit:0000000000000028 $d
-C:\Users\SOROKO~1\AppData\Local\Temp\ccrlU4SZ.s:379    .bss.hi2c4:0000000000000000 hi2c4
-C:\Users\SOROKO~1\AppData\Local\Temp\ccrlU4SZ.s:375    .bss.hi2c4:0000000000000000 $d
+C:\Users\SOROKO~1\AppData\Local\Temp\ccPWeTqY.s:20     .text.MX_I2C4_Init:0000000000000000 $t
+C:\Users\SOROKO~1\AppData\Local\Temp\ccPWeTqY.s:26     .text.MX_I2C4_Init:0000000000000000 MX_I2C4_Init
+C:\Users\SOROKO~1\AppData\Local\Temp\ccPWeTqY.s:118    .text.MX_I2C4_Init:0000000000000058 $d
+C:\Users\SOROKO~1\AppData\Local\Temp\ccPWeTqY.s:124    .text.HAL_I2C_MspInit:0000000000000000 $t
+C:\Users\SOROKO~1\AppData\Local\Temp\ccPWeTqY.s:130    .text.HAL_I2C_MspInit:0000000000000000 HAL_I2C_MspInit
+C:\Users\SOROKO~1\AppData\Local\Temp\ccPWeTqY.s:304    .text.HAL_I2C_MspInit:00000000000000a8 $d
+C:\Users\SOROKO~1\AppData\Local\Temp\ccPWeTqY.s:312    .text.HAL_I2C_MspDeInit:0000000000000000 $t
+C:\Users\SOROKO~1\AppData\Local\Temp\ccPWeTqY.s:318    .text.HAL_I2C_MspDeInit:0000000000000000 HAL_I2C_MspDeInit
+C:\Users\SOROKO~1\AppData\Local\Temp\ccPWeTqY.s:366    .text.HAL_I2C_MspDeInit:0000000000000028 $d
+C:\Users\SOROKO~1\AppData\Local\Temp\ccPWeTqY.s:379    .bss.hi2c4:0000000000000000 hi2c4
+C:\Users\SOROKO~1\AppData\Local\Temp\ccPWeTqY.s:375    .bss.hi2c4:0000000000000000 $d
 
 UNDEFINED SYMBOLS
 HAL_I2C_Init

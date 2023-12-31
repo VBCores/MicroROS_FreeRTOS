@@ -22,7 +22,7 @@
 #define		_STEPPER_MOTOR_DRIVER_USE_FREERTOS		1  /* FreeRTOS by default */
 #define     _STEPPER_MOTOR_DRIVER_NSS_GPIO GPIOA
 #define     _STEPPER_MOTOR_DRIVER_NSS_PIN GPIO_PIN_4
-#define nop() asm volatile("nop")
+
 
 
 #define BYTE(value, n)    (((value) >> ((n) << 3)) & 0xFF)

@@ -37,3 +37,4 @@ void clamp_value(double *min_value, double *value, double *max_value)
 {
 	*value = (((*min_value < *value)? *value : *min_value) > *max_value)? *max_value: *value;
 }
+

@@ -325,7 +325,7 @@ void StartTask09(void *argument)
 	rcl_publish(&jc_publisher, &msg_out, NULL);
 	//osSemaphoreRelease(PublisherSemaphoreHandle);
 	i++;
-    osDelay(10);
+    osDelay(1);
   }
   /* USER CODE END StartTask09 */
 }
@@ -345,7 +345,7 @@ void StartTask10(void *argument)
   for(;;)
   {
 	//rclc_executor_spin_some(&jc_executor, 1);
-    osDelay(1000);
+    osDelay(10000);
   }
   /* USER CODE END StartTask10 */
 }

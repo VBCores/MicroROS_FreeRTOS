@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccEgdP0p.s 			page 1
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\cczrF3Qx.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccEgdP0p.s 			page 1
   27:Core/Src/as50xx.c **** /*
   28:Core/Src/as50xx.c **** uint16_t parity(uint16_t x){};
   29:Core/Src/as50xx.c **** bool as50_readAngle(uint16_t * data, uint32_t timeout){};
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccEgdP0p.s 			page 2
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\cczrF3Qx.s 			page 2
 
 
   30:Core/Src/as50xx.c **** bool as50_setZero(uint32_t timeout){};
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccEgdP0p.s 			page 1
   67              		.syntax unified
   68              		.thumb
   69              		.thumb_func
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccEgdP0p.s 			page 3
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\cczrF3Qx.s 			page 3
 
 
   71              	as50_readAngle:
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccEgdP0p.s 			page 1
   54:Core/Src/as50xx.c **** 		  *data &= _ENCODER_READMASK;
  117              		.loc 1 54 5 view .LVU22
  118              		.loc 1 54 11 is_stmt 0 view .LVU23
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccEgdP0p.s 			page 4
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\cczrF3Qx.s 			page 4
 
 
  119 0034 2388     		ldrh	r3, [r4]
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccEgdP0p.s 			page 1
  164              	.LFB135:
   63:Core/Src/as50xx.c **** 
   64:Core/Src/as50xx.c **** 
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccEgdP0p.s 			page 5
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\cczrF3Qx.s 			page 5
 
 
   65:Core/Src/as50xx.c **** bool as50_setZero(uint32_t timeout)
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccEgdP0p.s 			page 1
   82:Core/Src/as50xx.c **** 
   83:Core/Src/as50xx.c **** 	if (HAL_SPI_Transmit(&_ENCODER_SPI, (uint8_t*) &address, 2, 100) != HAL_OK)
  202              		.loc 1 83 2 view .LVU38
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccEgdP0p.s 			page 6
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\cczrF3Qx.s 			page 6
 
 
  203              		.loc 1 83 6 is_stmt 0 view .LVU39
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccEgdP0p.s 			page 1
   98:Core/Src/as50xx.c **** 	if (HAL_SPI_Transmit(&_ENCODER_SPI, (uint8_t*) &data, 2, 100) != HAL_OK)
  243              		.loc 1 98 2 view .LVU48
  244              		.loc 1 98 6 is_stmt 0 view .LVU49
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccEgdP0p.s 			page 7
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\cczrF3Qx.s 			page 7
 
 
  245 0076 6423     		movs	r3, #100
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccEgdP0p.s 			page 1
  287 00b0 6FEA5444 		mvn	r4, r4, lsr #17
  288 00b4 ADF80440 		strh	r4, [sp, #4]	@ movhi
  289 00b8 D3E7     		b	.L13
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccEgdP0p.s 			page 8
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\cczrF3Qx.s 			page 8
 
 
  290              	.L19:
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccEgdP0p.s 			page 1
  337 0016 084B     		ldr	r3, .L24
  338 0018 1888     		ldrh	r0, [r3]
  339 001a FFF7FEFF 		bl	as50_write
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccEgdP0p.s 			page 9
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\cczrF3Qx.s 			page 9
 
 
  340              	.LVL31:
@@ -538,37 +538,37 @@ ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccEgdP0p.s 			page 1
  400              		.file 5 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h"
  401              		.file 6 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_gpio.h"
  402              		.file 7 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_dma.h"
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccEgdP0p.s 			page 10
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\cczrF3Qx.s 			page 10
 
 
  403              		.file 8 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_spi.h"
  404              		.file 9 "Core/Inc/spi.h"
  405              		.file 10 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h"
  406              		.file 11 "Core/Inc/main.h"
-ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\ccEgdP0p.s 			page 11
+ARM GAS  C:\Users\SOROKO~1\AppData\Local\Temp\cczrF3Qx.s 			page 11
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 as50xx.c
-C:\Users\SOROKO~1\AppData\Local\Temp\ccEgdP0p.s:20     .text.parity:0000000000000000 $t
-C:\Users\SOROKO~1\AppData\Local\Temp\ccEgdP0p.s:26     .text.parity:0000000000000000 parity
-C:\Users\SOROKO~1\AppData\Local\Temp\ccEgdP0p.s:65     .text.as50_readAngle:0000000000000000 $t
-C:\Users\SOROKO~1\AppData\Local\Temp\ccEgdP0p.s:71     .text.as50_readAngle:0000000000000000 as50_readAngle
-C:\Users\SOROKO~1\AppData\Local\Temp\ccEgdP0p.s:150    .text.as50_readAngle:0000000000000054 $d
-C:\Users\SOROKO~1\AppData\Local\Temp\ccEgdP0p.s:156    .text.as50_write:0000000000000000 $t
-C:\Users\SOROKO~1\AppData\Local\Temp\ccEgdP0p.s:162    .text.as50_write:0000000000000000 as50_write
-C:\Users\SOROKO~1\AppData\Local\Temp\ccEgdP0p.s:298    .text.as50_write:00000000000000c0 $d
-C:\Users\SOROKO~1\AppData\Local\Temp\ccEgdP0p.s:303    .text.as50_setZero:0000000000000000 $t
-C:\Users\SOROKO~1\AppData\Local\Temp\ccEgdP0p.s:309    .text.as50_setZero:0000000000000000 as50_setZero
-C:\Users\SOROKO~1\AppData\Local\Temp\ccEgdP0p.s:359    .text.as50_setZero:0000000000000038 $d
-C:\Users\SOROKO~1\AppData\Local\Temp\ccEgdP0p.s:372    .bss.spiR:0000000000000000 spiR
-C:\Users\SOROKO~1\AppData\Local\Temp\ccEgdP0p.s:386    .data.set_zero_register_L:0000000000000000 set_zero_register_L
-C:\Users\SOROKO~1\AppData\Local\Temp\ccEgdP0p.s:393    .data.set_zero_register_M:0000000000000000 set_zero_register_M
-C:\Users\SOROKO~1\AppData\Local\Temp\ccEgdP0p.s:379    .data.read_angle_register:0000000000000000 read_angle_register
-C:\Users\SOROKO~1\AppData\Local\Temp\ccEgdP0p.s:369    .bss.spiR:0000000000000000 $d
-C:\Users\SOROKO~1\AppData\Local\Temp\ccEgdP0p.s:375    .data.read_angle_register:0000000000000000 $d
-C:\Users\SOROKO~1\AppData\Local\Temp\ccEgdP0p.s:382    .data.set_zero_register_L:0000000000000000 $d
-C:\Users\SOROKO~1\AppData\Local\Temp\ccEgdP0p.s:389    .data.set_zero_register_M:0000000000000000 $d
+C:\Users\SOROKO~1\AppData\Local\Temp\cczrF3Qx.s:20     .text.parity:0000000000000000 $t
+C:\Users\SOROKO~1\AppData\Local\Temp\cczrF3Qx.s:26     .text.parity:0000000000000000 parity
+C:\Users\SOROKO~1\AppData\Local\Temp\cczrF3Qx.s:65     .text.as50_readAngle:0000000000000000 $t
+C:\Users\SOROKO~1\AppData\Local\Temp\cczrF3Qx.s:71     .text.as50_readAngle:0000000000000000 as50_readAngle
+C:\Users\SOROKO~1\AppData\Local\Temp\cczrF3Qx.s:150    .text.as50_readAngle:0000000000000054 $d
+C:\Users\SOROKO~1\AppData\Local\Temp\cczrF3Qx.s:156    .text.as50_write:0000000000000000 $t
+C:\Users\SOROKO~1\AppData\Local\Temp\cczrF3Qx.s:162    .text.as50_write:0000000000000000 as50_write
+C:\Users\SOROKO~1\AppData\Local\Temp\cczrF3Qx.s:298    .text.as50_write:00000000000000c0 $d
+C:\Users\SOROKO~1\AppData\Local\Temp\cczrF3Qx.s:303    .text.as50_setZero:0000000000000000 $t
+C:\Users\SOROKO~1\AppData\Local\Temp\cczrF3Qx.s:309    .text.as50_setZero:0000000000000000 as50_setZero
+C:\Users\SOROKO~1\AppData\Local\Temp\cczrF3Qx.s:359    .text.as50_setZero:0000000000000038 $d
+C:\Users\SOROKO~1\AppData\Local\Temp\cczrF3Qx.s:372    .bss.spiR:0000000000000000 spiR
+C:\Users\SOROKO~1\AppData\Local\Temp\cczrF3Qx.s:386    .data.set_zero_register_L:0000000000000000 set_zero_register_L
+C:\Users\SOROKO~1\AppData\Local\Temp\cczrF3Qx.s:393    .data.set_zero_register_M:0000000000000000 set_zero_register_M
+C:\Users\SOROKO~1\AppData\Local\Temp\cczrF3Qx.s:379    .data.read_angle_register:0000000000000000 read_angle_register
+C:\Users\SOROKO~1\AppData\Local\Temp\cczrF3Qx.s:369    .bss.spiR:0000000000000000 $d
+C:\Users\SOROKO~1\AppData\Local\Temp\cczrF3Qx.s:375    .data.read_angle_register:0000000000000000 $d
+C:\Users\SOROKO~1\AppData\Local\Temp\cczrF3Qx.s:382    .data.set_zero_register_L:0000000000000000 $d
+C:\Users\SOROKO~1\AppData\Local\Temp\cczrF3Qx.s:389    .data.set_zero_register_M:0000000000000000 $d
 
 UNDEFINED SYMBOLS
 HAL_GPIO_WritePin
